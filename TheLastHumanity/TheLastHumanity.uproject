@@ -1,0 +1,16 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.4",
+	"Category": "",
+	"Description": "THE LAST HUMANITY - Die Geschichte der Menschheit",
+	"Modules": [
+		{
+			"Name": "TheLastHumanity",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"TargetPlatforms": [
+		"Windows"
+	]
+}

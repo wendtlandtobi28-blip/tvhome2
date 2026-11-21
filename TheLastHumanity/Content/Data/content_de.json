@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "language": "de",
+  "ui": {
+    "menu.title": "THE LAST HUMANITY",
+    "menu.subtitle": "Die Geschichte der Menschheit",
+    "menu.pause_subtitle": "Pause",
+    "menu.new": "Neues Spiel",
+    "menu.continue": "Fortsetzen",
+    "menu.resume": "Weiterspielen",
+    "menu.save": "Spiel speichern",
+    "menu.load": "Letzten Spielstand laden",
+    "menu.chapters": "Kapitelübersicht",
+    "menu.mainmenu": "Zum Hauptmenü",
+    "menu.quit": "Spiel beenden",
+    "menu.controls": "W A S D / Pfeiltasten: Gehen   ·   Maus: Umsehen   ·   Shift: Laufen   ·   Leertaste: Springen\nE: Untersuchen / Schließen   ·   Tab oder K: Kapitelübersicht   ·   Esc oder P: Menü   ·   F5: Schnellspeichern",
+    "menu.nosave_hint": "Noch kein Spielstand vorhanden.",
+    "hud.controls": "E Untersuchen · Tab Kapitel · Esc/P Menü · F5 Speichern",
+    "hud.interact": "[E]  Untersuchen: {0}",
+    "hud.interact_again": "[E]  Erneut lesen: {0}",
+    "info.chapter": "Kapitel {0} · {1}",
+    "info.kind_fact": "HISTORISCHER BEFUND",
+    "info.kind_fiction": "RAHMENHANDLUNG (FIKTION)",
+    "info.label_short": "Kurzfassung",
+    "info.label_long": "Ausführliche Fassung",
+    "info.toggle_long": "Ausführlich lesen",
+    "info.toggle_short": "Kurzfassung zeigen",
+    "info.close": "Schließen  [E]",
+    "chapters.title": "Kapitelübersicht",
+    "chapters.heading": "Kapitel {0} · {1}",
+    "chapters.discovered": "{0} von {1} Erkenntnissen entdeckt",
+    "chapters.locked": "Noch nicht verfügbar",
+    "chapters.back": "Zurück",
+    "toast.newgame": "Kapitel 1 · Die Ursprünge – Gehe zu den leuchtenden Sockeln.",
+    "toast.loaded": "Spielstand geladen.",
+    "toast.nosave": "Es ist noch kein Spielstand vorhanden.",
+    "toast.saved": "Spiel gespeichert.",
+    "toast.save_failed": "Speichern fehlgeschlagen!",
+    "toast.discovered": "Neue Erkenntnis archiviert · automatisch gespeichert"
+  },
+  "chapters": [
+    {
+      "id": "kap01_urspruenge",
+      "number": 1,
+      "available": true,
+      "title": "Die Ursprünge",
+      "era": "vor etwa 300.000 bis 12.000 Jahren",
+      "summary": "Die frühesten Spuren unserer Art, die Beherrschung des Feuers, die Ausbreitung über die Kontinente und die ersten Kunstwerke.",
+      "infoPoints": [
+        {
+          "id": "kap01_archiv",
+          "kind": "fiktion",
+          "title": "Das letzte Archiv",
+          "location": [-1350.0, 420.0, 0.0],
+          "short": "Du erwachst im Archiv MNEMOSYNE – dem letzten Ort, an dem die Erinnerung der Menschheit bewahrt wird. Jeder leuchtende Sockel hält ein Stück dieser Geschichte fest.",
+          "long": "Du erwachst im Archiv MNEMOSYNE. Wie lange du geschlafen hast, weiß niemand mehr. Draußen ist es still geworden; hier drinnen aber ist die Geschichte der Menschheit in Hallen geordnet, Kapitel für Kapitel, von den ersten Feuerstellen bis zur letzten Nachricht.\n\nDeine Aufgabe als Hüterin oder Hüter des Archivs ist es, diese Erinnerungen wieder zu erwecken. Gehe zu den leuchtenden Sockeln und untersuche sie. Goldene Lichter zeigen Erkenntnisse, die du noch nicht kennst; blaue Lichter solche, die bereits archiviert sind.\n\nHinweis: Dieser Text gehört zur erfundenen Rahmenhandlung des Spiels. Alle Sockel mit der Kennzeichnung „Historischer Befund“ beschreiben dagegen den Stand der Forschung."
+        },
+        {
+          "id": "kap01_homo_sapiens",
+          "kind": "fakt",
+          "title": "Die ersten Menschen unserer Art",
+          "location": [-850.0, -450.0, 0.0],
+          "short": "Die ältesten bekannten Fossilien des Homo sapiens stammen aus Jebel Irhoud in Marokko und sind etwa 300.000 Jahre alt. Unsere Art ist in Afrika entstanden.",
+          "long": "Die ältesten bekannten Fossilien, die dem Homo sapiens zugeordnet werden, wurden in Jebel Irhoud in Marokko gefunden. Sie sind etwa 300.000 Jahre alt. Weitere frühe Funde stammen unter anderem aus Omo-Kibish in Äthiopien (mindestens rund 230.000 Jahre).\n\nDa frühe Funde aus weit voneinander entfernten Regionen Afrikas stammen, gehen viele Forschende heute davon aus, dass sich unsere Art nicht an einem einzigen Ort, sondern in einem langen Prozess über große Teile des afrikanischen Kontinents entwickelt hat.\n\nDiese frühen Menschen lebten als Jäger und Sammler in kleinen Gruppen. Ihre Gesichter ähnelten bereits unseren, die Form des Hirnschädels war jedoch noch länglicher als heute.\n\nZur selben Zeit lebten auf der Erde noch andere Menschenformen, etwa die Neandertaler in Europa und Westasien."
+        },
+        {
+          "id": "kap01_feuer",
+          "kind": "fakt",
+          "title": "Die Beherrschung des Feuers",
+          "location": [-150.0, 450.0, 0.0],
+          "short": "Feuer nutzten schon Vorfahren des Homo sapiens. Spuren in der Wonderwerk-Höhle in Südafrika sind etwa eine Million Jahre alt. Feuer bot Wärme, Schutz und gekochte Nahrung.",
+          "long": "Die Nutzung des Feuers ist älter als unsere eigene Art. Verbrannte Knochen und Pflanzenreste in der Wonderwerk-Höhle in Südafrika deuten auf Feuer vor etwa einer Million Jahren hin. Am Fundort Gesher Benot Ya'aqov in Israel gibt es Hinweise auf kontrollierte Feuerstellen vor rund 780.000 Jahren. Spätestens seit etwa 400.000 Jahren wurde Feuer an vielen Orten regelmäßig genutzt.\n\nFeuer veränderte das Leben grundlegend: Es spendete Wärme und Licht, hielt Raubtiere fern und machte Nahrung durch Kochen leichter verdaulich. Am Feuer verlängerte sich der Tag – Zeit zum Erzählen, Lernen und für Gemeinschaft.\n\nWie Menschen Feuer zuerst „gezähmt“ haben – ob durch Bewahren natürlicher Brände oder durch eigenes Entzünden – ist bis heute Gegenstand der Forschung."
+        },
+        {
+          "id": "kap01_ausbreitung",
+          "kind": "fakt",
+          "title": "Aufbruch in die Welt",
+          "location": [550.0, -450.0, 0.0],
+          "short": "Vor etwa 70.000 bis 50.000 Jahren breitete sich der Homo sapiens von Afrika aus über die Welt aus. Dabei begegnete er anderen Menschenformen wie den Neandertalern.",
+          "long": "Schon vor mehr als 100.000 Jahren gelangten einzelne Gruppen des Homo sapiens bis in die Levante. Die große Ausbreitung, auf die die meisten heutigen Menschen außerhalb Afrikas zurückgehen, begann jedoch vor etwa 70.000 bis 50.000 Jahren.\n\nAustralien wurde vor mindestens rund 50.000 Jahren erreicht – dafür mussten Menschen über das offene Meer fahren. In Europa ist der Homo sapiens seit etwa 45.000 Jahren sicher nachgewiesen, vereinzelt vielleicht schon früher. Amerika wurde spätestens vor etwa 15.000 Jahren besiedelt, möglicherweise deutlich früher.\n\nUnterwegs trafen unsere Vorfahren auf andere Menschenformen. Mit Neandertalern und Denisova-Menschen kam es zu Nachkommen: Menschen außerhalb Afrikas tragen bis heute etwa ein bis zwei Prozent Neandertaler-Erbgut in sich."
+        },
+        {
+          "id": "kap01_kunst",
+          "kind": "fakt",
+          "title": "Die ersten Bilder und Symbole",
+          "location": [1250.0, 450.0, 0.0],
+          "short": "Menschen schufen schon früh Zeichen, Figuren und Bilder. Auf der Schwäbischen Alb entstanden vor rund 40.000 Jahren der Löwenmensch und die ältesten bekannten Flöten.",
+          "long": "In der Blombos-Höhle in Südafrika fanden Forschende Ockerstücke mit eingeritzten Mustern, die etwa 75.000 bis 100.000 Jahre alt sind – frühe Zeugnisse symbolischen Denkens.\n\nAus den Höhlen der Schwäbischen Alb stammen einige der ältesten Kunstwerke der Welt: der Löwenmensch aus dem Hohlenstein-Stadel, eine aus Mammutelfenbein geschnitzte Figur, und Flöten aus Vogelknochen und Elfenbein. Sie sind rund 40.000 Jahre alt; die Höhlen gehören heute zum UNESCO-Welterbe.\n\nAuf der indonesischen Insel Sulawesi wurde eine Höhlenmalerei auf ein Mindestalter von etwa 51.000 Jahren datiert. Die Bilder der Chauvet-Höhle in Frankreich sind etwa 36.000 Jahre alt, die berühmten Malereien von Lascaux etwa 17.000 Jahre.\n\nAm Ende dieses Kapitels, nach dem Höhepunkt der letzten Eiszeit vor rund 20.000 Jahren, erwärmte sich das Klima. Damit begann eine Entwicklung, die das Leben der Menschen grundlegend verändern sollte: die Sesshaftigkeit."
+        }
+      ]
+    },
+    {
+      "id": "kap02_sesshaftigkeit",
+      "number": 2,
+      "available": false,
+      "title": "Sesshaftigkeit",
+      "era": "ab etwa 10.000 v. Chr.",
+      "summary": "Ackerbau, Viehzucht und die ersten Dörfer: die Neolithische Revolution im Fruchtbaren Halbmond und anderswo.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap03_hochkulturen",
+      "number": 3,
+      "available": false,
+      "title": "Die ersten Hochkulturen",
+      "era": "etwa 3500 bis 1200 v. Chr.",
+      "summary": "Städte, Schrift und Staaten in Mesopotamien, Ägypten, im Industal und in China.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap04_antike",
+      "number": 4,
+      "available": false,
+      "title": "Die Antike",
+      "era": "etwa 800 v. Chr. bis 500 n. Chr.",
+      "summary": "Griechische Stadtstaaten, das Römische Reich, Philosophie und Weltreligionen.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap05_mittelalter",
+      "number": 5,
+      "available": false,
+      "title": "Das Mittelalter",
+      "era": "etwa 500 bis 1500",
+      "summary": "Reiche und Glaubenswelten, Handelswege zwischen Europa, Afrika und Asien.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap06_neuzeit",
+      "number": 6,
+      "available": false,
+      "title": "Aufbruch in die Neuzeit",
+      "era": "etwa 1450 bis 1800",
+      "summary": "Buchdruck, Entdeckungsfahrten, Kolonialismus, wissenschaftliche Revolution und Aufklärung.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap07_industrie",
+      "number": 7,
+      "available": false,
+      "title": "Das industrielle Zeitalter",
+      "era": "etwa 1760 bis 1914",
+      "summary": "Dampfmaschine, Fabriken, Eisenbahn und der Wandel der Gesellschaft.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap08_extreme",
+      "number": 8,
+      "available": false,
+      "title": "Das Zeitalter der Extreme",
+      "era": "1914 bis 1991",
+      "summary": "Weltkriege, Holocaust, Kalter Krieg, Dekolonisation und der Aufbruch ins All.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap09_vernetzt",
+      "number": 9,
+      "available": false,
+      "title": "Die vernetzte Welt",
+      "era": "seit 1991",
+      "summary": "Globalisierung, Internet und die großen Herausforderungen der Gegenwart.",
+      "infoPoints": []
+    },
+    {
+      "id": "kap10_letztes_kapitel",
+      "number": 10,
+      "available": false,
+      "title": "Das letzte Kapitel",
+      "era": "Rahmenhandlung (Fiktion)",
+      "summary": "Was im Archiv MNEMOSYNE geschah – und was die Hüterin oder der Hüter daraus macht.",
+      "infoPoints": []
+    }
+  ]
+}

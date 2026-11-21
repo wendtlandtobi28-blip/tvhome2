@@ -1,0 +1,14 @@
+# Unreal Engine – erzeugte Dateien
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+*.sln
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
+*.xcworkspace
+.idea/
