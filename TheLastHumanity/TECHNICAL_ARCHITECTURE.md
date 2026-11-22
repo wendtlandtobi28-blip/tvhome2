@@ -27,7 +27,10 @@ TheLastHumanity/
 │   ├── DefaultEngine.ini           Startkarte, GameMode, Lumen, DX12
 │   ├── DefaultGame.ini             Projektname, Packen (Data-Ordner, Grundformen)
 │   └── DefaultInput.ini            Mausfang
-├── Content/Data/content_de.json    Kapitel, Informationspunkte, UI-Texte (UTF-8)
+├── Content/Data/kapitel/kapNN.json 20 Kapiteldateien (Quelle der Geschichtsinhalte)
+├── Content/Data/basis_de.json      UI-Texte und Abspann (Quelle)
+├── Content/Data/content_de.json    Daraus erzeugt (Tools/merge_content.py), UTF-8
+├── Content/Data/story_de.json      Rahmenhandlung der Browser-Version
 ├── Source/
 │   ├── TheLastHumanity.Target.cs           Spiel-Ziel
 │   ├── TheLastHumanityEditor.Target.cs     Editor-Ziel
@@ -41,6 +44,7 @@ TheLastHumanity/
 ├── 1_Editor_starten.bat            Kompilieren + Editor öffnen (Doppelklick)
 ├── 2_Windows_Spiel_erstellen.bat   Fertige .exe erzeugen (Doppelklick)
 ├── Tools/validate_project.py       Statische Prüfung ohne Engine
+├── Tools/merge_content.py          Kapiteldateien → content_de.json
 ├── Tools/ue_find_engine.bat        Engine-Suche für die Skripte
 └── *.md                            Dokumentation
 ```
@@ -133,3 +137,11 @@ Slate statt UMG, weil UMG-Widgets als Editor-Assets erstellt werden müssten. Di
 | UI | UMG + CommonUI, Optionen (Grafik, Audio, Steuerung, Textgröße), Barrierefreiheit |
 | Audio | Erzählerstimme (Deutsch), Musik, Umgebungsgeräusche |
 | Build | Automatisches Packen per Skript (`RunUAT BuildCookRun`), optional self-hosted Runner |
+
+
+## 7. Inhalts-Pipeline (ab Browser-Version 3, grober 45-Stunden-Entwurf)
+
+- Jedes Kapitel liegt in einer eigenen Datei `Content/Data/kapitel/kapNN.json`: `id`, `number`, `title`, `era`, `summary`, `theme`, `infoPoints` (12–15 Erinnerungen), `artifacts` (4), `echo` (`name`, `role`, `lines`), `quiz` (3 Fragen mit je 3 Antworten und `correct`).
+- `python3 Tools/merge_content.py` fügt die Kapitel mit `basis_de.json` zu `content_de.json` (`schemaVersion` 3) zusammen. Die Browser-Version liest diese Datei beim Bündeln ein (`TheLastHumanity_Web/tools/bundle.mjs`).
+- `Tools/validate_project.py` prüft u. a. Anzahl der Erinnerungen, Artefakte, Echo, Quizfragen, Latin-1-Titel, Übereinstimmung der Kapiteldateien mit `content_de.json` sowie die Nebenaufgaben in `story_de.json`.
+- **Einschränkung Unreal-Version:** Der C++-Code wurde für 10 Kapitel mit bis zu 7 Erkenntnissen geschrieben. Artefakte, Echo und Wissensprüfung gibt es dort noch nicht; die neuen Felder werden ignoriert. Hallenaufbau und Positionen für 12–15 Punkte müssen beim Ausbau in Unreal angepasst werden.

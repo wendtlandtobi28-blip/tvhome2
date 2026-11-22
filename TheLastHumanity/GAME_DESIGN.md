@@ -123,3 +123,5 @@ Ein Spielstand-Slot (Phase 1). Automatische Speicherung bei jeder neuen Erkenntn
 | Sammeln und Kodex | optionale Extras | ca. 2 h |
 
 **Vorgehen:** Zuerst ein vollständiger, durchspielbarer grober Entwurf mit der vorhandenen Grafik (Browser-Version). Die Grafik wird später auf dem PC des Projektinhabers (i7-10700K, RTX 3080, 32 GB RAM) mit Unreal Engine 5 verbessert. Ein Kapitel in Endqualität wird gemessen und die Planung danach angepasst.
+
+**Stand 22.11.2026 – grober Entwurf umgesetzt (Browser-Version 3):** 20 Sektoren mit zusammen 246 Erinnerungen (12–15 je Sektor), 80 Artefakte, 40 Rauschstellen, 20 Zeitzeugen-Echos, 20 Wissensprüfungen (60 Fragen), 20 Nebenaufgaben auf der Station (bringen, holen, besuchen) und 10 sprechende Bewohner. Jeder Sektor besteht aus drei Kammern (Eingang, Mitte mit Echo, Ende mit Prüfterminal und Tor). Die Grafik ist unverändert. Die Texte sind Entwürfe und müssen noch fachlich geprüft werden. Wie lange das tatsächlich dauert, ist noch nicht gemessen (siehe `PROGRESS.md`).

@@ -1383,6 +1383,7 @@ window.TLH = {
   quizCorrect: () => (quiz ? quiz.ch.quiz[quiz.index].correct : null),
   quizPassed: () => [...P.quizPassed],
   side: () => (P.side ? { ...P.side } : null),
+  sideAvailable: () => S.sidequests.filter((q) => !P.sideDone.has(q.id) && q.unlockAfter <= P.completed.size).map((q) => ({ id: q.id, giver: q.giver, type: q.task.type, to: q.task.to, pos: q.task.pos })),
   sideDone: () => P.sideDone.size,
   sideTarget: () => questInfo().sideTarget,
   npcIds: () => (world && world.npcs ? world.npcs.filter((n) => n.marker).map((n) => n.id) : []),
