@@ -1,0 +1,188 @@
+{
+ "id": "kap01_urspruenge",
+ "number": 1,
+ "title": "Die Ursprünge",
+ "era": "vor etwa 7 Millionen bis 300.000 Jahren",
+ "summary": "Von den ersten aufrecht gehenden Vorfahren über das Feuer bis zu den frühesten Menschen unserer Art.",
+ "theme": {
+  "floor": [
+   0.55,
+   0.47,
+   0.36
+  ],
+  "wall": [
+   0.32,
+   0.29,
+   0.25
+  ],
+  "column": [
+   0.16,
+   0.15,
+   0.13
+  ],
+  "torch": [
+   1.0,
+   0.55,
+   0.25
+  ],
+  "columnShape": "rund",
+  "monument": "feuer",
+  "sunPitch": -38,
+  "sunIntensity": 7,
+  "fog": 0.015
+ },
+ "infoPoints": [
+  {
+   "id": "kap01_archiv",
+   "kind": "fiktion",
+   "title": "Das letzte Archiv",
+   "short": "Du erwachst im Archiv MNEMOSYNE – dem letzten Ort, an dem die Erinnerung der Menschheit bewahrt wird. Jeder leuchtende Sockel hält ein Stück dieser Geschichte fest.",
+   "long": "Du erwachst im Archiv MNEMOSYNE. Wie lange du geschlafen hast, weiß niemand mehr. Draußen ist es still geworden; hier drinnen aber ist die Geschichte der Menschheit in Hallen geordnet, Kapitel für Kapitel, von den ersten Feuerstellen bis zur letzten Nachricht.\n\nDeine Aufgabe als Hüterin oder Hüter des Archivs ist es, diese Erinnerungen wieder zu erwecken. Gehe zu den leuchtenden Sockeln und untersuche sie. Goldene Lichter zeigen Erkenntnisse, die du noch nicht kennst; blaue Lichter solche, die bereits archiviert sind. Sind alle Erkenntnisse einer Halle archiviert, öffnet sich das Tor am Ende der Halle.\n\nHinweis: Dieser Text gehört zur erfundenen Rahmenhandlung des Spiels. Alle Sockel mit der Kennzeichnung „Historischer Befund“ beschreiben dagegen den Stand der Forschung."
+  },
+  {
+   "id": "kap01_feuer",
+   "kind": "fakt",
+   "title": "Die Beherrschung des Feuers",
+   "short": "Feuer nutzten schon Vorfahren des Homo sapiens. Spuren in der Wonderwerk-Höhle in Südafrika sind etwa eine Million Jahre alt. Feuer bot Wärme, Schutz und gekochte Nahrung.",
+   "long": "Die Nutzung des Feuers ist älter als unsere eigene Art. Verbrannte Knochen und Pflanzenreste in der Wonderwerk-Höhle in Südafrika deuten auf Feuer vor etwa einer Million Jahren hin. Am Fundort Gesher Benot Ya'aqov in Israel gibt es Hinweise auf kontrollierte Feuerstellen vor rund 780.000 Jahren. Spätestens seit etwa 400.000 Jahren wurde Feuer an vielen Orten regelmäßig genutzt.\n\nFeuer veränderte das Leben grundlegend: Es spendete Wärme und Licht, hielt Raubtiere fern und machte Nahrung durch Kochen leichter verdaulich. Am Feuer verlängerte sich der Tag – Zeit zum Erzählen, Lernen und für Gemeinschaft.\n\nWie Menschen Feuer zuerst „gezähmt“ haben – ob durch Bewahren natürlicher Brände oder durch eigenes Entzünden – ist bis heute Gegenstand der Forschung."
+  },
+  {
+   "id": "kap01_homo_sapiens",
+   "kind": "fakt",
+   "title": "Die ersten Menschen unserer Art",
+   "short": "Die ältesten bekannten Fossilien des Homo sapiens stammen aus Jebel Irhoud in Marokko und sind etwa 300.000 Jahre alt. Unsere Art ist in Afrika entstanden.",
+   "long": "Die ältesten bekannten Fossilien, die dem Homo sapiens zugeordnet werden, wurden in Jebel Irhoud in Marokko gefunden. Sie sind etwa 300.000 Jahre alt. Weitere frühe Funde stammen unter anderem aus Omo-Kibish in Äthiopien (mindestens rund 230.000 Jahre).\n\nDa frühe Funde aus weit voneinander entfernten Regionen Afrikas stammen, gehen viele Forschende heute davon aus, dass sich unsere Art nicht an einem einzigen Ort, sondern in einem langen Prozess über große Teile des afrikanischen Kontinents entwickelt hat.\n\nDiese frühen Menschen lebten als Jäger und Sammler in kleinen Gruppen. Ihre Gesichter ähnelten bereits unseren, die Form des Hirnschädels war jedoch noch länglicher als heute.\n\nZur selben Zeit lebten auf der Erde noch andere Menschenformen, etwa die Neandertaler in Europa und Westasien."
+  },
+  {
+   "id": "kap01_vorfahren",
+   "kind": "fakt",
+   "title": "Die ersten Vorfahren",
+   "short": "Vor etwa 7 bis 6 Millionen Jahren trennten sich in Afrika die Entwicklungslinien, die zu den Menschen und zu den Schimpansen führten.",
+   "long": "Menschen und Schimpansen haben gemeinsame Vorfahren. Die Trennung der beiden Linien liegt nach heutigem Wissen etwa 7 bis 6 Millionen Jahre zurück.\n\nZu den ältesten Funden, die möglicherweise schon zur menschlichen Linie gehören, zählt Sahelanthropus tchadensis aus dem Tschad, rund 7 Millionen Jahre alt. Ob er bereits aufrecht ging, ist umstritten.\n\nSicher ist: Die frühe Geschichte der Menschheit spielte sich viele Millionen Jahre lang ausschließlich in Afrika ab."
+  },
+  {
+   "id": "kap01_lucy",
+   "kind": "fakt",
+   "title": "Lucy und der aufrechte Gang",
+   "short": "„Lucy“ ist ein etwa 3,2 Millionen Jahre altes Teilskelett aus Äthiopien. Ihre Art, Australopithecus afarensis, ging bereits aufrecht.",
+   "long": "1974 fanden Forschende in Hadar in Äthiopien rund 40 Prozent eines Skeletts. Sie nannten es „Lucy“. Lucy lebte vor etwa 3,2 Millionen Jahren, war gut einen Meter groß und gehörte zur Art Australopithecus afarensis.\n\nIhr Becken und ihre Beine zeigen, dass sie aufrecht ging. Ihr Gehirn war aber noch nicht größer als das eines Schimpansen. Der aufrechte Gang kam in der Menschheitsgeschichte also lange vor dem großen Gehirn.\n\nIn Laetoli in Tansania sind sogar Fußspuren dieser Zeit erhalten: Vor etwa 3,66 Millionen Jahren liefen aufrecht gehende Wesen durch feuchte Vulkanasche."
+  },
+  {
+   "id": "kap01_werkzeuge",
+   "kind": "fakt",
+   "title": "Die ersten Steinwerkzeuge",
+   "short": "Die ältesten bekannten Steinwerkzeuge aus Lomekwi in Kenia sind etwa 3,3 Millionen Jahre alt – älter als die Gattung Homo.",
+   "long": "Am Turkana-See in Kenia wurden an der Fundstelle Lomekwi 3 geschlagene Steine entdeckt, die etwa 3,3 Millionen Jahre alt sind. Wer sie herstellte, ist unbekannt.\n\nAb etwa 2,6 Millionen Jahren verbreitete sich in Afrika die sogenannte Oldowan-Technik: Man schlug von einem Stein scharfe Abschläge ab, mit denen sich Fleisch schneiden und Knochen aufbrechen ließen.\n\nWerkzeuge gaben den frühen Menschen Zugang zu neuer Nahrung – vor allem zu nährstoffreichem Fleisch und Knochenmark."
+  },
+  {
+   "id": "kap01_homo_erectus",
+   "kind": "fakt",
+   "title": "Homo erectus",
+   "short": "Homo erectus erschien vor etwa 1,9 Millionen Jahren. Er war der erste Mensch, der Afrika verließ und bis nach Asien gelangte.",
+   "long": "Homo erectus hatte bereits Körperproportionen ähnlich wie wir: lange Beine, kürzere Arme, ein größeres Gehirn als frühere Arten. Er konnte ausdauernd laufen.\n\nFunde in Dmanisi in Georgien zeigen, dass Menschen schon vor rund 1,8 Millionen Jahren außerhalb Afrikas lebten. Später ist Homo erectus auch auf Java und in China nachgewiesen.\n\nDie Art existierte über eine Million Jahre lang – deutlich länger als unsere eigene bisher."
+  },
+  {
+   "id": "kap01_faustkeil",
+   "kind": "fakt",
+   "title": "Der Faustkeil",
+   "short": "Der Faustkeil war über eine Million Jahre lang das wichtigste Werkzeug. Die ältesten Exemplare sind etwa 1,7 Millionen Jahre alt.",
+   "long": "Faustkeile sind beidseitig bearbeitete, meist tropfenförmige Steinwerkzeuge. Die ältesten stammen aus Ostafrika und sind etwa 1,7 Millionen Jahre alt. Diese Werkzeugkultur nennt man Acheuléen.\n\nUm einen Faustkeil herzustellen, musste man die Form vorher im Kopf planen und viele Schläge in der richtigen Reihenfolge ausführen. Das zeigt vorausschauendes Denken.\n\nFaustkeile wurden in Afrika, Europa und Asien genutzt und kaum verändert über mehr als eine Million Jahre hergestellt."
+  },
+  {
+   "id": "kap01_neandertaler",
+   "kind": "fakt",
+   "title": "Die Neandertaler",
+   "short": "Die Neandertaler lebten etwa von 400.000 bis 40.000 Jahren vor heute in Europa und Westasien. Benannt sind sie nach einem Fundort bei Düsseldorf.",
+   "long": "1856 wurden im Neandertal bei Düsseldorf Knochen gefunden, die einer bis dahin unbekannten Menschenform gehörten. Heute wissen wir: Neandertaler lebten etwa von 400.000 bis 40.000 Jahren vor heute in Europa und Westasien.\n\nSie waren an kühles Klima angepasst, kräftig gebaut und hatten ein Gehirn mindestens so groß wie unseres. Sie stellten feine Steinwerkzeuge her, nutzten Feuer, versorgten Verletzte und bestatteten ihre Toten.\n\nDas alte Bild vom „primitiven Höhlenmenschen“ gilt längst als widerlegt."
+  },
+  {
+   "id": "kap01_denisova",
+   "kind": "fakt",
+   "title": "Die Denisova-Menschen",
+   "short": "Die Denisova-Menschen wurden 2010 anhand der Erbinformation aus einem kleinen Fingerknochen aus einer sibirischen Höhle entdeckt.",
+   "long": "In der Denisova-Höhle im Altai-Gebirge in Sibirien fand man einen winzigen Fingerknochen. 2010 zeigte die Untersuchung seiner Erbinformation: Er gehörte zu einer bis dahin unbekannten Menschengruppe, eng verwandt mit den Neandertalern.\n\nVon den Denisova-Menschen gibt es bis heute nur wenige Knochen und Zähne. Ihr Erbe lebt aber weiter: Manche Menschen in Südostasien und Ozeanien, etwa in Papua-Neuguinea, tragen einige Prozent Denisova-Erbgut in sich.\n\nDie Entdeckung zeigte, wie viel man allein aus alter Erbinformation über unsere Vergangenheit lernen kann."
+  },
+  {
+   "id": "kap01_schoeningen",
+   "kind": "fakt",
+   "title": "Die Speere von Schöningen",
+   "short": "In Schöningen in Niedersachsen wurden hölzerne Speere gefunden, die etwa 200.000 bis 300.000 Jahre alt sind – die ältesten vollständig erhaltenen Jagdwaffen.",
+   "long": "In einem Braunkohletagebau bei Schöningen entdeckten Archäologen ab 1994 mehrere hölzerne Speere, über zwei Meter lang und sorgfältig aus Fichten- und Kiefernholz geschnitzt. Neuere Untersuchungen datieren sie auf ein Alter von etwa 200.000 bis 300.000 Jahren.\n\nDie Speere lagen zusammen mit Knochen von Wildpferden. Sie zeigen, dass schon frühe Menschen in Gruppen planvoll große Tiere jagten.\n\nHolz verrottet normalerweise schnell. Dass diese Speere erhalten blieben, verdanken wir dem feuchten, luftdichten Boden."
+  },
+  {
+   "id": "kap01_sprache",
+   "kind": "fakt",
+   "title": "Sprache und Zusammenarbeit",
+   "short": "Wann Menschen zu sprechen begannen, weiß niemand genau. Sprache hinterlässt keine direkten Spuren – Forschende suchen nach indirekten Hinweisen.",
+   "long": "Gesprochene Sprache versteinert nicht. Forschende vergleichen deshalb Schädelformen, das Zungenbein, Gene und die Komplexität von Werkzeugen, um herauszufinden, wann Sprache entstand.\n\nEin bei Neandertalern gefundenes Zungenbein ähnelt unserem stark. Manche Fachleute vermuten deshalb, dass auch sie sprechen konnten. Andere sind vorsichtiger.\n\nSicher ist: Sprache ermöglichte es, Wissen weiterzugeben, gemeinsam zu planen und Geschichten zu erzählen – die Grundlage jeder Kultur."
+  },
+  {
+   "id": "kap01_jaeger_sammler",
+   "kind": "fakt",
+   "title": "Leben als Jäger und Sammler",
+   "short": "Über 95 Prozent ihrer Geschichte lebten Menschen als Jäger und Sammler in kleinen, beweglichen Gruppen.",
+   "long": "Bis vor etwa 12.000 Jahren lebten alle Menschen als Jäger und Sammler. Sie zogen in Gruppen von meist einigen Dutzend Personen durch ihr Gebiet, sammelten Pflanzen, Nüsse und Früchte, jagten und fischten.\n\nUntersuchungen heutiger Jäger-und-Sammler-Gesellschaften zeigen: Teilen ist dort oft eine feste Regel, und Wissen über Pflanzen, Tiere und Wege wird von Generation zu Generation weitergegeben.\n\nDiese Lebensweise prägte unseren Körper und unser Verhalten über Hunderttausende von Jahren."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art01_abschlag",
+   "title": "Scharfer Steinabschlag",
+   "text": "Ein Abschlag aus Feuerstein, schärfer als manche Rasierklinge. Mit solchen Splittern zerlegten frühe Menschen ihre Beute."
+  },
+  {
+   "id": "art01_ocker",
+   "title": "Rotes Ockerstück",
+   "text": "Ocker ist farbige Erde. Frühe Menschen nutzten ihn schon vor Hunderttausenden von Jahren – vielleicht als Farbe, vielleicht zum Gerben."
+  },
+  {
+   "id": "art01_holzkohle",
+   "title": "Holzkohle aus einer Feuerstelle",
+   "text": "Schwarze Reste eines Lagerfeuers. Solche Spuren verraten Archäologen, wo Menschen einst saßen, kochten und sich wärmten."
+  },
+  {
+   "id": "art01_fussabdruck",
+   "title": "Abguss eines Fußabdrucks",
+   "text": "Der Abguss erinnert an die Spuren von Laetoli: zwei Wesen, die vor 3,66 Millionen Jahren nebeneinander durch Vulkanasche gingen."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Ama vom Fluss",
+  "role": "Sammlerin, vor etwa 300.000 Jahren (erfunden)",
+  "lines": [
+   "Du siehst aus wie wir – und doch so anders. Woher kommst du?",
+   "Wir ziehen mit dem Regen. Wo das Gras grün wird, kommen die Tiere, und wo die Tiere sind, sind wir.",
+   "Das Feuer hält die Nacht fern. Am Feuer erzählen die Alten, wo das Wasser nie versiegt.",
+   "Wenn du gehst, nimm diese Geschichte mit. Dann gehen wir nie ganz verloren."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Wie alt ist das Teilskelett „Lucy“ ungefähr?",
+   "options": [
+    "32.000 Jahre",
+    "3,2 Millionen Jahre",
+    "32 Millionen Jahre"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Welche Menschenform wurde nach einem Fundort bei Düsseldorf benannt?",
+   "options": [
+    "Neandertaler",
+    "Denisova-Mensch",
+    "Homo erectus"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wo wurden die ältesten Fossilien des Homo sapiens gefunden?",
+   "options": [
+    "In Jebel Irhoud, Marokko",
+    "In Schöningen, Deutschland",
+    "Auf Java"
+   ],
+   "correct": 0
+  }
+ ]
+}

@@ -1,0 +1,181 @@
+{
+ "id": "kap20_gegenwart",
+ "number": 20,
+ "title": "Die vernetzte Welt und das letzte Kapitel",
+ "era": "seit 1991 · Rahmenhandlung",
+ "summary": "Internet, Globalisierung, Raumstation, Genom, Klima und Pandemie – und was im Archiv MNEMOSYNE wirklich geschah.",
+ "theme": {
+  "floor": [
+   0.12,
+   0.14,
+   0.18
+  ],
+  "wall": [
+   0.18,
+   0.2,
+   0.26
+  ],
+  "column": [
+   0.1,
+   0.12,
+   0.16
+  ],
+  "torch": [
+   0.4,
+   0.7,
+   1.0
+  ],
+  "columnShape": "rund",
+  "monument": "feuer",
+  "sunPitch": -8,
+  "sunIntensity": 2.5,
+  "fog": 0.02
+ },
+ "infoPoints": [
+  {
+   "id": "kap09_internet",
+   "kind": "fakt",
+   "title": "Das World Wide Web",
+   "short": "Am Forschungszentrum CERN entwickelte Tim Berners-Lee ab 1989 das World Wide Web; 1991 ging es öffentlich online. Heute nutzt mehr als die Hälfte der Menschheit das Internet.",
+   "long": "Das Internet entstand aus Computernetzen, die seit Ende der 1960er-Jahre in den USA aufgebaut wurden. Für die meisten Menschen nutzbar wurde es durch das World Wide Web: Der britische Physiker Tim Berners-Lee schlug es 1989 am europäischen Forschungszentrum CERN bei Genf vor, um Forschungsergebnisse über Links miteinander zu verbinden. 1991 wurde es öffentlich zugänglich, 1993 gab das CERN die Technik zur freien Nutzung frei.\n\nIn den folgenden Jahrzehnten veränderte das Internet Kommunikation, Arbeit, Handel, Politik und Freizeit. Seit Ende der 2000er-Jahre verbreiteten sich Smartphones, mit denen Milliarden Menschen ständig online sind.\n\nDie Vernetzung bringt Zugang zu Wissen und weltweiten Austausch – aber auch neue Fragen zu Datenschutz, Falschinformationen, Überwachung und Abhängigkeit."
+  },
+  {
+   "id": "kap09_globalisierung",
+   "kind": "fakt",
+   "title": "Eine Welt, eng verflochten",
+   "short": "Nach dem Ende des Kalten Krieges wuchsen Handel und Austausch weltweit stark. Die Europäische Union entstand 1993; seit 2002 bezahlen Millionen Menschen mit dem Euro.",
+   "long": "Nach 1991 öffneten sich viele Länder für den Welthandel. Waren werden heute oft in mehreren Ländern hergestellt und um die halbe Welt transportiert. 1995 wurde die Welthandelsorganisation gegründet. China entwickelte sich zu einer der größten Volkswirtschaften der Welt.\n\nIn Europa trat 1993 der Vertrag von Maastricht in Kraft, mit dem die Europäische Union entstand. Seit 2002 gibt es den Euro als Bargeld. Grenzkontrollen zwischen vielen Mitgliedstaaten fielen weg.\n\nDie Globalisierung hat Hunderte Millionen Menschen aus extremer Armut geholfen. Gleichzeitig führte sie in manchen Regionen zum Verlust von Arbeitsplätzen, und Krisen breiten sich schneller aus – wie die weltweite Finanzkrise von 2008 zeigte."
+  },
+  {
+   "id": "kap09_bevoelkerung",
+   "kind": "fakt",
+   "title": "Acht Milliarden Menschen",
+   "short": "Nach Berechnungen der Vereinten Nationen erreichte die Weltbevölkerung im November 2022 acht Milliarden Menschen. Um 1800 war es noch etwa eine Milliarde.",
+   "long": "Über den größten Teil der Geschichte wuchs die Menschheit nur langsam. Um das Jahr 1800 lebten etwa eine Milliarde Menschen auf der Erde. Durch bessere Ernährung, Hygiene, Impfungen und Medizin sanken die Kindersterblichkeit und andere frühe Todesfälle, und die Bevölkerung wuchs stark. Die Vereinten Nationen legten den 15. November 2022 als den Tag fest, an dem die Weltbevölkerung acht Milliarden erreichte.\n\nDie durchschnittliche Lebenserwartung weltweit hat sich seit 1900 mehr als verdoppelt und liegt heute bei über 70 Jahren. In vielen Ländern bekommen Familien inzwischen weniger Kinder; nach den Prognosen der Vereinten Nationen wird die Weltbevölkerung im Laufe dieses Jahrhunderts ihren Höchststand erreichen.\n\nDie Unterschiede bleiben groß: Noch immer leben Hunderte Millionen Menschen in extremer Armut, besonders in Afrika südlich der Sahara."
+  },
+  {
+   "id": "kap09_klima",
+   "kind": "fakt",
+   "title": "Der Klimawandel",
+   "short": "Durch das Verbrennen von Kohle, Öl und Gas hat sich die Erde seit Beginn der Industrialisierung um mehr als ein Grad erwärmt. Im Pariser Abkommen von 2015 vereinbarten fast alle Staaten, die Erwärmung zu begrenzen.",
+   "long": "Seit der Industrialisierung verbrennt die Menschheit große Mengen fossiler Brennstoffe. Dabei entsteht Kohlendioxid, das wie eine wärmende Decke in der Atmosphäre wirkt. Der Weltklimarat (IPCC) stellte 2021 fest, dass es eindeutig ist, dass der Mensch die Erwärmung verursacht hat. Im Jahrzehnt von 2011 bis 2020 war es weltweit im Mittel rund 1,1 Grad wärmer als vor der Industrialisierung; seither ist die Erwärmung weiter gestiegen.\n\nDie Folgen sind schon sichtbar: häufigere Hitzewellen, Dürren und Starkregen, schmelzende Gletscher und ein steigender Meeresspiegel.\n\nIm Pariser Klimaabkommen von 2015 vereinbarten fast alle Staaten der Welt, die Erwärmung deutlich unter 2 Grad zu halten und möglichst auf 1,5 Grad zu begrenzen. Erneuerbare Energien wie Sonne und Wind werden weltweit stark ausgebaut – doch die Treibhausgas-Emissionen müssen noch viel stärker sinken."
+  },
+  {
+   "id": "kap09_pandemie",
+   "kind": "fakt",
+   "title": "Eine weltweite Pandemie",
+   "short": "Ab Anfang 2020 breitete sich das Coronavirus SARS-CoV-2 über die ganze Welt aus. Die WHO erklärte im März 2020 eine Pandemie. Ende 2020 wurden die ersten Impfstoffe zugelassen.",
+   "long": "Ende 2019 wurden in der chinesischen Stadt Wuhan die ersten Erkrankungen an einer neuen Lungenkrankheit bekannt, später COVID-19 genannt. Das Virus verbreitete sich durch den weltweiten Reiseverkehr in kurzer Zeit auf alle Kontinente. Am 11. März 2020 stufte die Weltgesundheitsorganisation die Ausbreitung als Pandemie ein.\n\nViele Länder schlossen Schulen, Geschäfte und Grenzen; Menschen hielten Abstand und trugen Masken. Forschende entwickelten in weniger als einem Jahr wirksame Impfstoffe, darunter erstmals in großem Umfang zugelassene mRNA-Impfstoffe, an deren Entwicklung auch ein Mainzer Unternehmen maßgeblich beteiligt war. Ende 2020 begannen die ersten Impfungen.\n\nNach Schätzungen der WHO starben in den Jahren 2020 und 2021 weltweit deutlich mehr Menschen als üblich – die Zahl der zusätzlichen Todesfälle wird auf rund 15 Millionen geschätzt. Die Pandemie zeigte, wie eng die Menschheit verbunden ist."
+  },
+  {
+   "id": "kap10_huetende",
+   "kind": "fiktion",
+   "title": "Die Hüterinnen und Hüter",
+   "short": "In dieser Halle findest du Spuren derer, die vor dir das Archiv bewahrt haben. Jede Generation hat neue Erinnerungen hinzugefügt – und keine war die erste.",
+   "long": "Die letzte Halle ist anders als die anderen. Hier gibt es keine Epoche, sondern Namen. Tausende sind in die Wände eingeritzt, in Schriften, die du aus den vorigen Hallen kennst: Keilschrift, Hieroglyphen, chinesische Zeichen, lateinische Buchstaben, Ziffern aus Indien.\n\nDu verstehst: MNEMOSYNE wurde nicht auf einmal gebaut. Jede Generation von Hüterinnen und Hütern hat eine Halle hinzugefügt, ergänzt, korrigiert. Manche Einträge sind durchgestrichen und neu geschrieben – Irrtümer, die spätere Generationen berichtigt haben.\n\nGeschichte, so begreifst du, ist kein fertiges Buch. Sie ist ein Gespräch zwischen den Lebenden und denen, die vor ihnen waren."
+  },
+  {
+   "id": "kap10_warum",
+   "kind": "fiktion",
+   "title": "Warum es das Archiv gibt",
+   "short": "Eine letzte Nachricht erklärt den Sinn des Archivs: Es wurde nicht für die Vergangenheit gebaut, sondern für jene, die nach uns kommen.",
+   "long": "Auf einem schlichten Sockel liegt eine Nachricht, an dich gerichtet, ohne Namen:\n\n„Wenn du dies liest, hast du die Hallen durchschritten. Du hast gesehen, wozu Menschen fähig sind – zum Schrecklichsten und zum Wunderbarsten. Wir haben dieses Archiv nicht gebaut, um uns zu rühmen oder zu entschuldigen. Wir haben es gebaut, damit niemand wieder ganz von vorn anfangen muss.\n\nVergiss nicht, dass jede Erkenntnis in diesen Hallen von Menschen stammt, die nicht wussten, wie ihre Geschichte ausgehen würde. Genau wie du.“"
+  },
+  {
+   "id": "kap10_stille",
+   "kind": "fiktion",
+   "title": "Die Stille draußen",
+   "short": "Durch einen schmalen Spalt in der Wand siehst du nach draußen. Es ist still – aber nicht leer. Am Horizont glimmt ein einzelnes Licht.",
+   "long": "Du hast lange geglaubt, du seist allein. Die Stille vor den Mauern des Archivs schien zu bedeuten, dass niemand mehr da ist.\n\nDoch durch den Spalt in der Wand siehst du Gras, das über alte Wege gewachsen ist, und Vögel, die über den Hof fliegen. Und am Horizont, weit entfernt, glimmt ein einzelnes Licht. Vielleicht ein Feuer.\n\nVielleicht hat dort jemand anderes gerade erst angefangen, sich zu erinnern."
+  },
+  {
+   "id": "kap10_entscheidung",
+   "kind": "fiktion",
+   "title": "Die Entscheidung",
+   "short": "Das Archiv ist vollständig erweckt. Nun liegt es an dir: Das letzte Tor führt hinaus – mit allem, was du hier erfahren hast.",
+   "long": "Alle Hallen leuchten blau. Jede Erinnerung ist archiviert. Das Archiv braucht dich nicht mehr als Wächterin oder Wächter – aber die Welt draußen könnte dich als Erzählerin oder Erzähler brauchen.\n\nAm Ende der Halle öffnet sich das letzte Tor. Du kannst bleiben und die Hallen weiter durchstreifen. Oder du gehst hinaus, dem Licht am Horizont entgegen, und nimmst die Geschichte der Menschheit mit.\n\nWas aus ihr wird, schreiben diejenigen, die sich an sie erinnern."
+  },
+  {
+   "id": "kap20_iss",
+   "kind": "fakt",
+   "title": "Die Internationale Raumstation",
+   "short": "Seit November 2000 leben ununterbrochen Menschen auf der Internationalen Raumstation ISS – ein Gemeinschaftsprojekt vieler Länder.",
+   "long": "Die ISS umkreist die Erde in rund 400 Kilometern Höhe etwa alle 90 Minuten. Beteiligt sind die USA, Russland, Europa, Japan und Kanada.\n\nDie Besatzungen forschen zu Medizin, Physik und den Folgen der Schwerelosigkeit. Auch deutsche Astronauten wie Alexander Gerst arbeiteten dort.\n\nDie ISS zeigt, dass Länder trotz Konflikten auf der Erde im All zusammenarbeiten können."
+  },
+  {
+   "id": "kap20_genom",
+   "kind": "fakt",
+   "title": "Das menschliche Genom",
+   "short": "2003 wurde die Entschlüsselung des menschlichen Erbguts weitgehend abgeschlossen. Seit 2012 lässt sich Erbgut mit der Genschere CRISPR gezielt verändern.",
+   "long": "Im Humangenomprojekt arbeiteten Forschende aus vielen Ländern über ein Jahrzehnt daran, die rund drei Milliarden Bausteine unseres Erbguts zu lesen.\n\nDie Genschere CRISPR/Cas9, beschrieben 2012 von Emmanuelle Charpentier und Jennifer Doudna, macht gezielte Veränderungen möglich. Beide erhielten 2020 den Nobelpreis für Chemie.\n\nDie Technik eröffnet Chancen für die Medizin und wirft zugleich schwierige ethische Fragen auf."
+  },
+  {
+   "id": "kap20_ki",
+   "kind": "fakt",
+   "title": "Künstliche Intelligenz",
+   "short": "Seit den 2010er-Jahren haben lernende Computerprogramme große Fortschritte gemacht – von Bilderkennung über Spiele bis zu Programmen, die Texte schreiben.",
+   "long": "2016 besiegte das Programm AlphaGo einen der weltbesten Spieler im Brettspiel Go – eine Leistung, die viele erst Jahrzehnte später erwartet hatten.\n\nIn den 2020er-Jahren verbreiteten sich Sprachmodelle, die Texte verstehen und erzeugen können, sehr schnell.\n\nKünstliche Intelligenz kann Forschung, Medizin und Alltag erleichtern. Zugleich wird über Fehler, Missbrauch, Arbeitsplätze und Regeln für ihren Einsatz diskutiert."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art20_chip",
+   "title": "Mikrochip",
+   "text": "Milliarden Schalter auf einer Fläche kleiner als ein Fingernagel. Fast jede Erinnerung dieses Archivs ging einmal durch solche Chips."
+  },
+  {
+   "id": "art20_maske",
+   "title": "Atemschutzmaske",
+   "text": "2020 trug sie fast die ganze Welt. Ein einfaches Stück Stoff als Zeichen dafür, dass wir aufeinander achten."
+  },
+  {
+   "id": "art20_saatgut",
+   "title": "Saatgutprobe",
+   "text": "Aus einem Saatguttresor im ewigen Eis Spitzbergens. Eine Arche für Pflanzen – so wie MNEMOSYNE eine Arche für Erinnerungen ist."
+  },
+  {
+   "id": "art20_brief",
+   "title": "Unvollendeter Brief eines Hüters",
+   "text": "„An wen auch immer nach mir kommt: Ihr seid nicht allein. Es gab immer jemanden, der sich erinnert hat …“ (Fiktion)"
+  }
+ ],
+ "echo": {
+  "name": "Echo: Die erste Hüterin",
+  "role": "Gründerin des Archivs MNEMOSYNE (Fiktion)",
+  "lines": [
+   "Du bist also bis hierher gekommen. Durch alle Hallen, alle Zeitalter.",
+   "Wir haben das Archiv nicht gebaut, weil wir glaubten, das Ende sei nah. Sondern weil wir wussten, wie leicht man vergisst.",
+   "Jede Generation steht auf den Schultern der vorigen. Manchmal stolpert sie. Manchmal fliegt sie.",
+   "Geh durch das letzte Tor, Hüter. Und erzähl draußen, was du hier gefunden hast."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Seit wann leben ununterbrochen Menschen auf der ISS?",
+   "options": [
+    "Seit November 2000",
+    "Seit 1969",
+    "Seit 2020"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wofür erhielten Emmanuelle Charpentier und Jennifer Doudna 2020 den Nobelpreis?",
+   "options": [
+    "Für die Genschere CRISPR/Cas9",
+    "Für das World Wide Web",
+    "Für die Mondlandung"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Was ist das Ziel des Pariser Klimaabkommens?",
+   "options": [
+    "Die Erwärmung deutlich unter 2 Grad halten",
+    "Mehr Kohle verbrennen",
+    "Den Mond besiedeln"
+   ],
+   "correct": 0
+  }
+ ]
+}

@@ -1,0 +1,181 @@
+{
+ "id": "kap16_entdeckungen",
+ "number": 16,
+ "title": "Entdeckungen und Kolonialismus",
+ "era": "etwa 1415 bis 1800",
+ "summary": "Seefahrt um die Welt, die Eroberung Amerikas, Sklavenhandel, Handelskompanien, Großreiche in Asien und Widerstand.",
+ "theme": {
+  "floor": [
+   0.4,
+   0.32,
+   0.24
+  ],
+  "wall": [
+   0.3,
+   0.38,
+   0.46
+  ],
+  "column": [
+   0.36,
+   0.26,
+   0.18
+  ],
+  "torch": [
+   1.0,
+   0.75,
+   0.45
+  ],
+  "columnShape": "rund",
+  "monument": "kugel",
+  "sunPitch": -40,
+  "sunIntensity": 7,
+  "fog": 0.012
+ },
+ "infoPoints": [
+  {
+   "id": "kap06_entdeckungen",
+   "kind": "fakt",
+   "title": "Entdeckungsfahrten und Eroberung",
+   "short": "1492 erreichte Christoph Kolumbus Amerika, 1498 Vasco da Gama auf dem Seeweg Indien. Für die Menschen in Amerika begann eine Katastrophe: Krankheiten, Gewalt und Ausbeutung forderten Millionen Opfer.",
+   "long": "Europäische Seefahrer suchten im 15. Jahrhundert neue Wege zu den Gewürzen und Reichtümern Asiens. 1492 landete Christoph Kolumbus im Auftrag Spaniens auf Inseln der Karibik; er glaubte, Indien erreicht zu haben. 1498 erreichte Vasco da Gama um Afrika herum Indien. Die Expedition von Ferdinand Magellan umrundete von 1519 bis 1522 erstmals die Erde; Magellan selbst starb unterwegs.\n\nFür die Bevölkerung Amerikas waren die Folgen verheerend. Spanische Eroberer zerstörten 1521 das Aztekenreich und ab 1532 das Inkareich. Eingeschleppte Krankheiten wie Pocken, gegen die die Menschen keine Abwehr hatten, sowie Krieg, Zwangsarbeit und Vertreibung ließen die Bevölkerung in vielen Regionen um einen sehr großen Teil schrumpfen.\n\nZwischen den Kontinenten wurden Pflanzen und Tiere ausgetauscht: Kartoffeln, Mais und Tomaten kamen nach Europa, Pferde, Rinder und Weizen nach Amerika."
+  },
+  {
+   "id": "kap06_sklavenhandel",
+   "kind": "fakt",
+   "title": "Der transatlantische Sklavenhandel",
+   "short": "Vom 16. bis ins 19. Jahrhundert wurden etwa 12,5 Millionen Menschen aus Afrika verschleppt und über den Atlantik nach Amerika verschifft. Fast zwei Millionen starben schon während der Überfahrt.",
+   "long": "Für Plantagen mit Zucker, Tabak und später Baumwolle in Amerika verlangten europäische Kolonialmächte nach immer mehr Arbeitskräften. Vom 16. bis ins 19. Jahrhundert wurden schätzungsweise 12,5 Millionen Afrikanerinnen und Afrikaner gewaltsam auf Schiffe gebracht. Etwa 10,7 Millionen überlebten die grausame Überfahrt; die anderen starben an Krankheiten, Hunger und Misshandlung.\n\nVersklavte Menschen galten rechtlich als Eigentum. Sie wurden verkauft, von ihren Familien getrennt und zu harter Arbeit gezwungen. Viele leisteten Widerstand – durch Flucht, Aufstände und das Bewahren ihrer Kultur. 1791 begann auf Haiti eine Revolution versklavter Menschen, die 1804 zum ersten unabhängigen Staat führte, der von ehemals Versklavten gegründet wurde.\n\nDie Folgen dieses Verbrechens prägen Gesellschaften in Afrika, Amerika und Europa bis heute."
+  },
+  {
+   "id": "kap16_karavelle",
+   "kind": "fakt",
+   "title": "Die Karavelle",
+   "short": "Portugiesische Seefahrer erkundeten im 15. Jahrhundert mit wendigen Schiffen, den Karavellen, die Westküste Afrikas.",
+   "long": "1415 eroberte Portugal Ceuta in Nordafrika. Prinz Heinrich, später „der Seefahrer“ genannt, förderte Expeditionen entlang der afrikanischen Küste.\n\nDie Karavelle konnte mit ihren Lateinsegeln auch gegen den Wind kreuzen. Mit Kompass, Astrolabium und Seekarten wagten sich die Portugiesen immer weiter nach Süden.\n\nSchon früh wurden dabei auch Afrikanerinnen und Afrikaner verschleppt und versklavt."
+  },
+  {
+   "id": "kap16_dias",
+   "kind": "fakt",
+   "title": "Das Kap der Guten Hoffnung",
+   "short": "1488 umsegelte Bartolomeu Dias als erster Europäer die Südspitze Afrikas. Damit war der Seeweg nach Indien offen.",
+   "long": "Dias geriet in einen Sturm und fand sich danach östlich der Südspitze Afrikas wieder. Er nannte sie zunächst „Kap der Stürme“.\n\nDer portugiesische König benannte sie in „Kap der Guten Hoffnung“ um – die Hoffnung auf den Seeweg nach Indien.\n\nZehn Jahre später erreichte Vasco da Gama auf diesem Weg Indien."
+  },
+  {
+   "id": "kap16_tordesillas",
+   "kind": "fakt",
+   "title": "Der Vertrag von Tordesillas",
+   "short": "1494 teilten Spanien und Portugal die außereuropäische Welt entlang einer Linie im Atlantik unter sich auf.",
+   "long": "Nach der Reise des Kolumbus vereinbarten die beiden Königreiche mit Vermittlung des Papstes eine Trennlinie: Gebiete westlich davon sollten an Spanien, östlich davon an Portugal fallen.\n\nDeshalb wird in Brasilien bis heute Portugiesisch gesprochen, im übrigen Südamerika meist Spanisch.\n\nDie Menschen, die in diesen Gebieten lebten, wurden nicht gefragt."
+  },
+  {
+   "id": "kap16_tenochtitlan",
+   "kind": "fakt",
+   "title": "Der Fall von Tenochtitlan",
+   "short": "1521 eroberten spanische Truppen unter Hernán Cortés mit Tausenden indigenen Verbündeten die Aztekenhauptstadt Tenochtitlan.",
+   "long": "Cortés landete 1519 mit wenigen Hundert Männern in Mexiko. Entscheidend war die Hilfe zehntausender Verbündeter, vor allem der Tlaxcalteken, die von den Azteken unterworfen worden waren. Die Übersetzerin Malinche spielte eine wichtige Rolle.\n\nEine Pockenepidemie schwächte die Stadt schwer. Nach monatelanger Belagerung fiel Tenochtitlan 1521.\n\nAuf ihren Ruinen errichteten die Spanier Mexiko-Stadt."
+  },
+  {
+   "id": "kap16_potosi",
+   "kind": "fakt",
+   "title": "Das Silber von Potosí",
+   "short": "Ab 1545 förderten die Spanier im Cerro Rico von Potosí im heutigen Bolivien riesige Mengen Silber – unter mörderischen Bedingungen.",
+   "long": "Potosí wurde im 17. Jahrhundert eine der größten Städte der Welt. Das Silber floss nach Spanien, Europa und über Manila bis nach China.\n\nDie Arbeit leisteten indigene Zwangsarbeiter im System der Mita und versklavte Afrikaner. Viele starben durch Unfälle und Quecksilbervergiftung.\n\nIn Spanien wurde „ein Potosí wert sein“ zum Ausdruck für unermesslichen Reichtum."
+  },
+  {
+   "id": "kap16_las_casas",
+   "kind": "fakt",
+   "title": "Bartolomé de las Casas",
+   "short": "Der Dominikaner Bartolomé de las Casas klagte im 16. Jahrhundert die Grausamkeiten gegen die indigene Bevölkerung Amerikas an.",
+   "long": "Las Casas war selbst zunächst Siedler und Besitzer von Zwangsarbeitern, wurde dann aber zum entschiedenen Kritiker. In seinem „Kurzgefassten Bericht“ schilderte er Massaker und Ausbeutung.\n\n1550/51 stritt er im Disput von Valladolid darüber, ob die Bewohner Amerikas als vollwertige Menschen mit Rechten anzusehen seien.\n\nEr setzte sich anfangs dafür ein, stattdessen Afrikaner einzusetzen – eine Haltung, die er später bereute."
+  },
+  {
+   "id": "kap16_kompanien",
+   "kind": "fakt",
+   "title": "Die Ostindien-Kompanien",
+   "short": "1600 und 1602 wurden die englische und die niederländische Ostindien-Kompanie gegründet. Sie handelten, führten Kriege und beherrschten ganze Länder.",
+   "long": "Die Niederländische Ostindien-Kompanie (VOC) gab Anteile an Anleger aus und gilt als eines der ersten Aktienunternehmen. Sie kontrollierte den Gewürzhandel und besaß eigene Armeen.\n\nDie Britische Ostindien-Kompanie eroberte ab dem 18. Jahrhundert weite Teile Indiens und herrschte dort bis 1858.\n\nDer Profit der Kompanien beruhte oft auf Gewalt, Monopolen und Ausbeutung."
+  },
+  {
+   "id": "kap16_moguln",
+   "kind": "fakt",
+   "title": "Das Mogulreich",
+   "short": "Ab 1526 beherrschten die Moguln große Teile Indiens. Unter ihnen entstand das Taj Mahal.",
+   "long": "Babur gründete das Mogulreich 1526. Sein Enkel Akbar förderte den Austausch zwischen Religionen und lud Gelehrte verschiedener Glaubensrichtungen an seinen Hof.\n\nShah Jahan ließ von 1632 an das Taj Mahal in Agra als Grabmal für seine Frau Mumtaz Mahal errichten.\n\nUm 1700 gehörte das Mogulreich zu den reichsten Staaten der Welt."
+  },
+  {
+   "id": "kap16_edo",
+   "kind": "fakt",
+   "title": "Japan schließt sich ab",
+   "short": "Ab den 1630er-Jahren beschränkte Japan den Kontakt zum Ausland stark. Erst 1853/54 erzwangen amerikanische Kriegsschiffe die Öffnung.",
+   "long": "Nach Jahrzehnten von Bürgerkriegen einte Tokugawa Ieyasu das Land; 1603 begann das Tokugawa-Shogunat mit Sitz in Edo, dem heutigen Tokio.\n\nDas Shogunat verbot das Christentum und erlaubte Handel nur noch sehr eingeschränkt, etwa mit Niederländern auf der kleinen Insel Dejima bei Nagasaki.\n\nIn mehr als zwei Jahrhunderten relativen Friedens blühten Städte, Theater und Holzschnittkunst."
+  },
+  {
+   "id": "kap16_widerstand",
+   "kind": "fakt",
+   "title": "Widerstand gegen die Kolonialherren",
+   "short": "Überall leisteten Menschen Widerstand: Königin Nzinga in Angola, die Maroons in der Karibik, Túpac Amaru II. in Peru.",
+   "long": "Königin Nzinga von Ndongo und Matamba im heutigen Angola wehrte sich im 17. Jahrhundert jahrzehntelang mit Diplomatie und Krieg gegen die Portugiesen.\n\nIn der Karibik gründeten geflohene Versklavte, die Maroons, freie Gemeinschaften in den Bergen – etwa unter Nanny of the Maroons auf Jamaika.\n\n1780 führte Túpac Amaru II. in Peru einen großen indigenen Aufstand gegen die spanische Herrschaft an. Er wurde 1781 hingerichtet."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art16_astrolab",
+   "title": "Seeastrolabium",
+   "text": "Ein schwerer Bronzering zur Bestimmung der Breite auf See. Wer sich verrechnete, segelte ins Ungewisse."
+  },
+  {
+   "id": "art16_pfeffer",
+   "title": "Säckchen Pfeffer",
+   "text": "Einst so wertvoll, dass man damit Steuern zahlte. Für Gewürze wurden Flotten ausgesandt und Kriege geführt."
+  },
+  {
+   "id": "art16_fessel",
+   "title": "Eiserne Fessel",
+   "text": "Ein stummes Zeugnis des transatlantischen Sklavenhandels. Millionen Menschen wurden so verschleppt."
+  },
+  {
+   "id": "art16_karte",
+   "title": "Frühe Weltkarte",
+   "text": "Die Umrisse Amerikas sind noch verschwommen, das Innere voller Fantasietiere. Die Welt wurde gerade erst vermessen."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Kofi",
+  "role": "Gefangener auf einem Sklavenschiff, 18. Jahrhundert (erfunden)",
+  "lines": [
+   "Sie haben mich von der Küste fortgebracht. Ich weiß nicht, wohin. Unter Deck ist es dunkel und eng.",
+   "Neben mir liegt ein Mann aus einem anderen Volk. Wir verstehen unsere Sprachen nicht. Aber wir singen dieselben Lieder der Trauer.",
+   "Mein Name ist Kofi. Ich wurde an einem Freitag geboren. Sie werden mir einen anderen Namen geben wollen. Ich werde ihn nicht vergessen.",
+   "Erinnere dich an uns, Hüter. Nicht als Ware. Als Menschen."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Warum wird in Brasilien Portugiesisch gesprochen?",
+   "options": [
+    "Wegen des Vertrags von Tordesillas",
+    "Weil Brasilien in Portugal liegt",
+    "Wegen der Hanse"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wer umsegelte 1488 als erster Europäer die Südspitze Afrikas?",
+   "options": [
+    "Christoph Kolumbus",
+    "Bartolomeu Dias",
+    "Zheng He"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wer leistete im 17. Jahrhundert in Angola Widerstand gegen Portugal?",
+   "options": [
+    "Königin Nzinga",
+    "Kleopatra",
+    "Hatschepsut"
+   ],
+   "correct": 0
+  }
+ ]
+}

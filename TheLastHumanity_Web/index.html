@@ -181,6 +181,14 @@ button.small { font-size: 14px; padding: 6px 10px; font-weight: 600; }
 .dialog-box .speaker span { font-size: 15px; color: var(--muted); font-weight: 600; }
 .dialog-box p { font-size: 18px; line-height: 1.55; margin: 8px 0 12px; }
 .intro-panel { width: min(760px, 100%); }
+.quiz-panel { width: min(760px, 100%); }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; margin: 6px 0 4px; }
+.quiz-option { font-size: 19px; padding: 14px 18px; }
+.quiz-feedback { font-family: var(--font-ui); font-size: 20px; font-weight: 700; padding: 10px 14px; border-left: 3px solid; }
+.quiz-feedback.ok { color: #6fe39a; border-color: #4fd17a; background: rgba(40,90,60,0.25); }
+.quiz-feedback.bad { color: #ff9a8a; border-color: var(--red); background: rgba(90,30,30,0.25); }
+#quest-steps li.side { color: #9fdcff; }
+#quest-steps li.side::before { border-color: var(--cyan); }
 .stats { color: var(--cyan); font-style: italic; text-align: center; }
 #ending .panel { text-align: center; align-items: center; }
 #ending .reading p { margin-inline: auto; }
@@ -252,6 +260,7 @@ button.small { font-size: 14px; padding: 6px 10px; font-weight: 600; }
 <div id="intro" class="screen" hidden></div>
 <div id="info" class="screen" hidden></div>
 <div id="dialog" class="screen" hidden></div>
+<div id="quiz" class="screen" hidden></div>
 <div id="journal" class="screen" hidden></div>
 <div id="codex" class="screen" hidden></div>
 <div id="skills" class="screen" hidden></div>

@@ -1,0 +1,181 @@
+{
+ "id": "kap06_alter_orient",
+ "number": 6,
+ "title": "Reiche des Alten Orients",
+ "era": "etwa 2350 bis 539 v. Chr.",
+ "summary": "Akkad, Babylon, Assyrien, Hethiter, Phönizier, Israel und Persien – Reiche, Gesetze und das Alphabet.",
+ "theme": {
+  "floor": [
+   0.5,
+   0.42,
+   0.34
+  ],
+  "wall": [
+   0.3,
+   0.34,
+   0.52
+  ],
+  "column": [
+   0.22,
+   0.24,
+   0.4
+  ],
+  "torch": [
+   0.6,
+   0.75,
+   1.0
+  ],
+  "columnShape": "eckig",
+  "monument": "zikkurat",
+  "sunPitch": -40,
+  "sunIntensity": 7,
+  "fog": 0.012
+ },
+ "infoPoints": [
+  {
+   "id": "kap03_hammurabi",
+   "kind": "fakt",
+   "title": "Gesetze in Stein: Hammurabi",
+   "short": "König Hammurabi von Babylon ließ um 1754 v. Chr. eine Sammlung von rund 280 Rechtssätzen auf eine Steinsäule meißeln. Sie gehört zu den bekanntesten Gesetzessammlungen des Altertums.",
+   "long": "Hammurabi regierte etwa von 1792 bis 1750 v. Chr. in Babylon und vereinte große Teile Mesopotamiens. Gegen Ende seiner Regierungszeit ließ er Rechtssätze auf eine über zwei Meter hohe Stele aus schwarzem Stein schreiben. Sie regeln Handel, Familie, Erbschaft, Arbeit und Strafen.\n\nViele Bestimmungen folgen dem Prinzip der Vergeltung („Auge um Auge“). Die Strafen hingen jedoch vom Stand ab: Für Freie, Abhängige und Sklaven galten unterschiedliche Regeln. Neu war die Idee, dass Recht öffentlich aufgeschrieben und für alle sichtbar ist.\n\nHammurabis Sammlung war nicht die erste ihrer Art – ältere Gesetzestexte sind bekannt –, aber sie ist die vollständigste erhaltene. Die Stele wurde 1901 in Susa im heutigen Iran gefunden und steht heute im Louvre in Paris."
+  },
+  {
+   "id": "kap06_akkad",
+   "kind": "fakt",
+   "title": "Sargon von Akkad",
+   "short": "Sargon von Akkad vereinte um 2300 v. Chr. die Städte Mesopotamiens. Sein Reich gilt oft als erstes Großreich der Geschichte.",
+   "long": "Sargon stammte der Überlieferung nach aus einfachen Verhältnissen. Er eroberte die sumerischen Stadtstaaten und schuf ein Reich, das vom Persischen Golf bis nach Syrien reichte.\n\nAkkadisch wurde zur Sprache der Verwaltung und blieb über zwei Jahrtausende eine wichtige Sprache des Vorderen Orients.\n\nDie genauen Daten seiner Herrschaft sind unsicher; meist wird die Zeit um 2334 bis 2279 v. Chr. genannt."
+  },
+  {
+   "id": "kap06_enheduanna",
+   "kind": "fakt",
+   "title": "Enheduanna",
+   "short": "Enheduanna, eine Tochter Sargons, war Hohepriesterin in Ur. Sie gilt als erste namentlich bekannte Autorin der Welt.",
+   "long": "Enheduanna lebte um 2300 v. Chr. und war Hohepriesterin des Mondgottes in Ur. Ihr werden Hymnen an die Göttin Inanna und Tempelhymnen zugeschrieben.\n\nDamit ist sie die älteste Person, von der wir Werke unter eigenem Namen kennen – lange vor Homer.\n\nIhre Texte wurden noch Jahrhunderte nach ihrem Tod in Schreiberschulen abgeschrieben."
+  },
+  {
+   "id": "kap06_babylon",
+   "kind": "fakt",
+   "title": "Babylon und das Ischtar-Tor",
+   "short": "Babylon war eine der größten Städte der Antike. Das blau glasierte Ischtar-Tor steht heute rekonstruiert im Pergamonmuseum in Berlin.",
+   "long": "Unter König Nebukadnezar II. im 6. Jahrhundert v. Chr. erlebte Babylon eine Blütezeit. Prachtstraßen, Tempel und Mauern wurden erneuert.\n\nDas Ischtar-Tor war mit blau glasierten Ziegeln und Bildern von Löwen, Stieren und Drachen geschmückt. Teile wurden Anfang des 20. Jahrhunderts von deutschen Archäologen ausgegraben und in Berlin wieder aufgebaut.\n\nDie berühmten „Hängenden Gärten“ sind dagegen archäologisch nicht nachgewiesen."
+  },
+  {
+   "id": "kap06_assyrien",
+   "kind": "fakt",
+   "title": "Assyrien und die Bibliothek von Ninive",
+   "short": "Das Assyrische Reich beherrschte im 8. und 7. Jahrhundert v. Chr. große Teile des Vorderen Orients. In Ninive sammelte König Assurbanipal Tausende Tontafeln.",
+   "long": "Die Assyrer schufen mit einem schlagkräftigen Heer und einer straffen Verwaltung ein Großreich. Besiegte Völker wurden oft gewaltsam umgesiedelt.\n\nKönig Assurbanipal ließ im 7. Jahrhundert v. Chr. in Ninive eine große Sammlung von Texten anlegen: Medizin, Astronomie, Rituale und Literatur, darunter das Gilgamesch-Epos.\n\nZehntausende Tafeln und Bruchstücke liegen heute im British Museum in London. Durch den Brand Ninives 612 v. Chr. wurden viele Tafeln gebrannt und dadurch haltbarer."
+  },
+  {
+   "id": "kap06_hethiter",
+   "kind": "fakt",
+   "title": "Die Hethiter",
+   "short": "Die Hethiter herrschten von Anatolien aus über ein Großreich. Ihre Hauptstadt Hattusa liegt in der heutigen Türkei.",
+   "long": "Das Hethiterreich bestand etwa von 1600 bis 1200 v. Chr. Seine Hauptstadt Hattusa war von gewaltigen Mauern und Toren umgeben, darunter das Löwentor.\n\nDie Hethiter sprachen eine indogermanische Sprache – verwandt mit Deutsch, Latein und Sanskrit. Ihre Archive enthalten Verträge, Gesetze und Briefe an andere Königshöfe.\n\nUm 1200 v. Chr. brach das Reich zusammen."
+  },
+  {
+   "id": "kap06_alphabet",
+   "kind": "fakt",
+   "title": "Die Phönizier und das Alphabet",
+   "short": "Die Phönizier nutzten um 1050 v. Chr. ein Alphabet mit 22 Zeichen. Daraus entwickelten sich das griechische, das lateinische und viele weitere Schriften.",
+   "long": "Die Phönizier lebten an der Küste des heutigen Libanon und waren berühmte Seefahrer und Händler. Sie gründeten Kolonien im ganzen Mittelmeerraum, darunter Karthago.\n\nIhre Schrift kam mit nur 22 Zeichen für Konsonanten aus – viel einfacher als Keilschrift oder Hieroglyphen. Die Griechen übernahmen sie und ergänzten Zeichen für Vokale.\n\nDas Alphabet, mit dem dieser Text geschrieben ist, geht über das Lateinische und Griechische auf das Phönizische zurück."
+  },
+  {
+   "id": "kap06_israel",
+   "kind": "fakt",
+   "title": "Das alte Israel",
+   "short": "Im alten Israel und Juda entstand der Glaube an einen einzigen Gott. Die Hebräische Bibel wurde über Jahrhunderte aufgeschrieben.",
+   "long": "Im 1. Jahrtausend v. Chr. bestanden die Königreiche Israel und Juda. 722 v. Chr. eroberten die Assyrer Israel, 587/586 v. Chr. zerstörten die Babylonier Jerusalem und den Tempel. Viele Judäer wurden nach Babylon verschleppt.\n\nIn dieser Zeit wurden wichtige Teile der Hebräischen Bibel gesammelt und aufgeschrieben. Der Glaube an einen einzigen Gott prägte später auch Christentum und Islam.\n\nNach der Eroberung Babylons durch die Perser durften die Verschleppten zurückkehren."
+  },
+  {
+   "id": "kap06_persien",
+   "kind": "fakt",
+   "title": "Kyros und das Perserreich",
+   "short": "539 v. Chr. eroberte der Perserkönig Kyros II. Babylon. Das Perserreich wurde das größte Reich seiner Zeit.",
+   "long": "Kyros II., genannt der Große, schuf ein Reich vom heutigen Iran bis nach Kleinasien. 539 v. Chr. zog er in Babylon ein.\n\nDie Perser regierten ihr Vielvölkerreich über Provinzen, verbunden durch eine Königsstraße mit Poststationen. Örtliche Religionen und Bräuche wurden vielfach geduldet.\n\nDer sogenannte Kyros-Zylinder, eine Tonwalze mit einer Inschrift des Königs, liegt heute im British Museum."
+  },
+  {
+   "id": "kap06_kollaps",
+   "kind": "fakt",
+   "title": "Der Zusammenbruch der Bronzezeit",
+   "short": "Um 1200 v. Chr. brachen im östlichen Mittelmeer viele Reiche und Städte zusammen. Die Gründe waren vielfältig.",
+   "long": "Innerhalb weniger Jahrzehnte endeten das Hethiterreich und die mykenischen Paläste, Handelsstädte wie Ugarit wurden zerstört. Ägypten wehrte die sogenannten Seevölker nur mit Mühe ab.\n\nAls Ursachen werden Dürren, Hungersnöte, Erdbeben, Aufstände, Wanderungsbewegungen und der Zusammenbruch der Handelsnetze diskutiert. Wahrscheinlich wirkten mehrere zusammen.\n\nDas Beispiel zeigt, wie verletzlich eng vernetzte Gesellschaften sein können."
+  },
+  {
+   "id": "kap06_eisen",
+   "kind": "fakt",
+   "title": "Die Eisenzeit beginnt",
+   "short": "Nach 1200 v. Chr. verbreitete sich die Verarbeitung von Eisen. Eisenerz gab es fast überall – anders als Zinn für Bronze.",
+   "long": "Eisen war schon länger bekannt, aber schwer zu verarbeiten: Es muss bei hohen Temperaturen verhüttet und anschließend geschmiedet werden.\n\nNach dem Zusammenbruch der Bronzezeit setzte sich Eisen nach und nach durch. Weil Eisenerz weit verbreitet ist, wurden Werkzeuge und Waffen für viel mehr Menschen erschwinglich.\n\nEisengeräte wie Pflugscharen und Äxte erleichterten den Ackerbau und das Roden von Wäldern."
+  },
+  {
+   "id": "kap06_muenzen",
+   "kind": "fakt",
+   "title": "Die ersten Münzen",
+   "short": "Die ersten Münzen wurden im 7. Jahrhundert v. Chr. in Lydien geprägt, in der heutigen Türkei.",
+   "long": "Vor den Münzen bezahlte man mit Getreide, Vieh oder abgewogenem Metall. Im Königreich Lydien in Kleinasien begann man, Klümpchen aus Elektron, einer natürlichen Gold-Silber-Mischung, mit einem Bild zu prägen.\n\nDie Prägung garantierte Gewicht und Wert. Das machte Handel einfacher und schneller.\n\nDer lydische König Krösus wurde so reich, dass sein Name bis heute sprichwörtlich ist."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art06_ziegel",
+   "title": "Glasierter Ziegel mit Löwe",
+   "text": "Ein blauer Ziegel mit einem schreitenden Löwen – so schmückten die Babylonier ihre Prozessionsstraße."
+  },
+  {
+   "id": "art06_vertrag",
+   "title": "Abschrift eines Friedensvertrags",
+   "text": "Zwei Großmächte versprechen sich, einander nicht mehr anzugreifen. Ein Gedanke, der nie aus der Mode gekommen ist."
+  },
+  {
+   "id": "art06_muenze",
+   "title": "Lydische Elektronmünze",
+   "text": "Ein kleiner Klumpen Edelmetall mit einem Löwenkopf. Der Anfang des Geldes, wie wir es kennen."
+  },
+  {
+   "id": "art06_alphabet",
+   "title": "Scherbe mit phönizischen Buchstaben",
+   "text": "Zweiundzwanzig Zeichen genügen, um jedes Wort zu schreiben. Eine Erfindung, die die Welt veränderte."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Hanno",
+  "role": "Phönizischer Kaufmann, um 800 v. Chr. (erfunden)",
+  "lines": [
+   "Purpur aus Tyros, Zedern aus dem Libanon, Glas, Wein – mein Schiff trägt alles, was das Meer begehrt.",
+   "In jedem Hafen spricht man anders. Aber unsere Zeichen versteht bald jeder, der rechnen und handeln will.",
+   "Reiche kommen und gehen. Assyrer, Babylonier, Perser. Der Handel bleibt.",
+   "Schreib es auf, Hüter. Was aufgeschrieben ist, segelt weiter, auch wenn das Schiff längst gesunken ist."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Wie viele Zeichen hatte das phönizische Alphabet?",
+   "options": [
+    "22",
+    "60",
+    "über 600"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wer gilt als erste namentlich bekannte Autorin der Welt?",
+   "options": [
+    "Kleopatra",
+    "Enheduanna",
+    "Hatschepsut"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wo wurden die ersten Münzen geprägt?",
+   "options": [
+    "In Lydien",
+    "In Ägypten",
+    "In China"
+   ],
+   "correct": 0
+  }
+ ]
+}

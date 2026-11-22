@@ -1,0 +1,181 @@
+{
+ "id": "kap17_aufklaerung",
+ "number": 17,
+ "title": "Wissenschaft, Aufklärung und Revolutionen",
+ "era": "1543 bis 1815",
+ "summary": "Ein neues Weltbild, Mikroskop und Impfung, die Ideen der Aufklärung und die Revolutionen in Amerika, Frankreich und Haiti.",
+ "theme": {
+  "floor": [
+   0.56,
+   0.5,
+   0.44
+  ],
+  "wall": [
+   0.3,
+   0.34,
+   0.46
+  ],
+  "column": [
+   0.7,
+   0.66,
+   0.6
+  ],
+  "torch": [
+   0.85,
+   0.9,
+   1.0
+  ],
+  "columnShape": "rund",
+  "monument": "kugel",
+  "sunPitch": -45,
+  "sunIntensity": 8,
+  "fog": 0.01
+ },
+ "infoPoints": [
+  {
+   "id": "kap06_aufklaerung",
+   "kind": "fakt",
+   "title": "Wissenschaft und Aufklärung",
+   "short": "Kopernikus, Galilei und Newton veränderten das Bild vom Universum. Die Aufklärung forderte, selbst zu denken; 1776 und 1789 wurden in Amerika und Frankreich Menschenrechte erklärt.",
+   "long": "1543 veröffentlichte Nikolaus Kopernikus seine Lehre, dass die Erde um die Sonne kreist und nicht umgekehrt. Galileo Galilei beobachtete mit dem Fernrohr die Monde des Jupiter und geriet deshalb in Konflikt mit der Kirche. Isaac Newton beschrieb 1687 die Gesetze der Bewegung und der Schwerkraft. Beobachtung, Experiment und Mathematik wurden zur Grundlage der Naturwissenschaft.\n\nIm 18. Jahrhundert forderten Denkerinnen und Denker der Aufklärung, Vernunft statt Autorität entscheiden zu lassen. Immanuel Kant schrieb 1784: „Habe Mut, dich deines eigenen Verstandes zu bedienen!“\n\nDiese Ideen wirkten politisch: Die Unabhängigkeitserklärung der Vereinigten Staaten von 1776 und die Erklärung der Menschen- und Bürgerrechte der Französischen Revolution von 1789 verkündeten Freiheit und Gleichheit. Für Frauen, versklavte Menschen und die Völker der Kolonien galten diese Rechte zunächst allerdings nicht – sie mussten sie sich erst erkämpfen."
+  },
+  {
+   "id": "kap17_kopernikus",
+   "kind": "fakt",
+   "title": "Kopernikus und Kepler",
+   "short": "Kopernikus stellte 1543 die Sonne in den Mittelpunkt. Johannes Kepler zeigte Anfang des 17. Jahrhunderts, dass die Planeten auf Ellipsen kreisen.",
+   "long": "Nikolaus Kopernikus veröffentlichte sein Hauptwerk kurz vor seinem Tod 1543. Die Erde war nun ein Planet unter vielen, der sich um die Sonne dreht.\n\nJohannes Kepler, der unter anderem in Prag und Linz arbeitete, wertete die genauen Beobachtungen Tycho Brahes aus. Er erkannte, dass Planetenbahnen keine Kreise, sondern Ellipsen sind.\n\nDiese Gesetze bildeten die Grundlage für Newtons spätere Theorie der Schwerkraft."
+  },
+  {
+   "id": "kap17_galilei",
+   "kind": "fakt",
+   "title": "Galileo Galilei",
+   "short": "Galilei richtete 1609/10 ein Fernrohr auf den Himmel. 1633 musste er vor der Inquisition seiner Lehre abschwören.",
+   "long": "Mit seinem Fernrohr sah Galilei Berge auf dem Mond, die Phasen der Venus und vier Monde, die den Jupiter umkreisen. Das sprach für das Weltbild des Kopernikus.\n\n1633 wurde er von der Inquisition verurteilt und verbrachte den Rest seines Lebens unter Hausarrest.\n\nErst 1992 räumte Papst Johannes Paul II. offiziell ein, dass die Verurteilung ein Fehler war."
+  },
+  {
+   "id": "kap17_mikroskop",
+   "kind": "fakt",
+   "title": "Die unsichtbare Welt",
+   "short": "Mit selbst gebauten Mikroskopen beobachtete Antoni van Leeuwenhoek in den 1670er-Jahren als Erster Bakterien und andere Kleinstlebewesen.",
+   "long": "Robert Hooke veröffentlichte 1665 sein Buch „Micrographia“ und prägte das Wort „Zelle“, als er Kork unter dem Mikroskop betrachtete.\n\nDer niederländische Tuchhändler Antoni van Leeuwenhoek schliff winzige Linsen von großer Qualität. In Wassertropfen und Zahnbelag entdeckte er „kleine Tierchen“ – Bakterien und Einzeller.\n\nDass solche Mikroben Krankheiten verursachen, wurde erst im 19. Jahrhundert nachgewiesen."
+  },
+  {
+   "id": "kap17_absolutismus",
+   "kind": "fakt",
+   "title": "Ludwig XIV. und der Absolutismus",
+   "short": "Ludwig XIV. regierte Frankreich von 1643 bis 1715 und beanspruchte unbeschränkte Macht. Sein Schloss Versailles wurde zum Vorbild vieler Fürsten.",
+   "long": "Ludwig XIV., der „Sonnenkönig“, sah sich als von Gott eingesetzter Herrscher. Der Satz „Der Staat bin ich“ wird ihm zugeschrieben, ist aber nicht sicher belegt.\n\nIn Versailles hielt er den Adel mit Festen und strenger Etikette unter Kontrolle. Zahlreiche Kriege und der Prunk belasteten die Staatsfinanzen schwer.\n\nViele deutsche Fürsten ahmten Versailles mit eigenen Schlössern nach."
+  },
+  {
+   "id": "kap17_enzyklopaedie",
+   "kind": "fakt",
+   "title": "Die Enzyklopädie",
+   "short": "Von 1751 bis 1772 gaben Diderot und d'Alembert in Frankreich eine große Enzyklopädie heraus. Sie wollte das Wissen der Zeit für alle zugänglich machen.",
+   "long": "Die Enzyklopädie umfasste viele Bände mit Artikeln und Tausenden Bildtafeln zu Handwerk, Wissenschaft, Philosophie und Politik.\n\nViele Artikel kritisierten versteckt Kirche und Adel. Die Regierung verbot das Werk zeitweise, doch es wurde weiter gedruckt.\n\nSie wurde zum Symbol der Aufklärung: Wissen soll nicht geheim, sondern öffentlich sein."
+  },
+  {
+   "id": "kap17_frauenrechte",
+   "kind": "fakt",
+   "title": "Rechte für Frauen",
+   "short": "1791 verfasste Olympe de Gouges eine „Erklärung der Rechte der Frau und Bürgerin“. 1792 forderte Mary Wollstonecraft Bildung für Frauen.",
+   "long": "Die Französische Revolution verkündete Rechte für „den Menschen“ – gemeint waren aber meist nur Männer. Olympe de Gouges hielt dagegen: Wenn Frauen das Schafott besteigen dürfen, müssten sie auch die Rednertribüne besteigen dürfen.\n\nSie wurde 1793 hingerichtet. Die Engländerin Mary Wollstonecraft forderte 1792 in einer berühmten Schrift gleiche Bildung für Mädchen.\n\nBis zum Wahlrecht für Frauen dauerte es in den meisten Ländern noch über ein Jahrhundert."
+  },
+  {
+   "id": "kap17_usa",
+   "kind": "fakt",
+   "title": "Die Amerikanische Revolution",
+   "short": "1776 erklärten sich 13 britische Kolonien in Nordamerika für unabhängig. 1787 gaben sich die USA eine Verfassung, die bis heute gilt.",
+   "long": "Die Kolonisten protestierten gegen Steuern ohne Mitsprache. Nach der Unabhängigkeitserklärung vom 4. Juli 1776 kämpften sie, unterstützt von Frankreich, gegen Großbritannien.\n\nDie Verfassung von 1787 teilte die Macht zwischen Präsident, Kongress und Gerichten auf.\n\nDie Freiheit galt jedoch nicht für alle: Die Sklaverei blieb bestehen, und die Rechte der indigenen Völker wurden missachtet."
+  },
+  {
+   "id": "kap17_bastille",
+   "kind": "fakt",
+   "title": "Die Französische Revolution",
+   "short": "Am 14. Juli 1789 stürmten Pariser die Bastille. Die Revolution schaffte Adelsprivilegien ab, mündete aber 1793/94 in eine Schreckensherrschaft.",
+   "long": "Frankreich war hoch verschuldet, viele Menschen litten Hunger. Die Vertreter des dritten Standes erklärten sich 1789 zur Nationalversammlung.\n\nDie Erklärung der Menschen- und Bürgerrechte verkündete Freiheit und Gleichheit. 1793 wurde König Ludwig XVI. hingerichtet.\n\nIn der Schreckensherrschaft unter Robespierre wurden Tausende Menschen mit der Guillotine getötet. 1799 übernahm Napoleon die Macht."
+  },
+  {
+   "id": "kap17_napoleon",
+   "kind": "fakt",
+   "title": "Napoleon",
+   "short": "Napoleon Bonaparte krönte sich 1804 zum Kaiser und eroberte große Teile Europas. 1815 wurde er bei Waterloo endgültig besiegt.",
+   "long": "Napoleon führte mit dem Code civil von 1804 ein modernes Gesetzbuch ein, das Gleichheit vor dem Gesetz festschrieb und in vielen Ländern nachwirkte.\n\nSeine Kriege kosteten Millionen Menschen das Leben. 1806 endete unter seinem Druck das Heilige Römische Reich Deutscher Nation.\n\nNach dem gescheiterten Russlandfeldzug 1812 und der Niederlage bei Waterloo 1815 wurde er auf die Insel St. Helena verbannt."
+  },
+  {
+   "id": "kap17_haiti",
+   "kind": "fakt",
+   "title": "Die Haitianische Revolution",
+   "short": "Ab 1791 erhoben sich die Versklavten der französischen Kolonie Saint-Domingue. 1804 wurde Haiti unabhängig – der erste Staat, der aus einem Sklavenaufstand hervorging.",
+   "long": "Saint-Domingue war die profitabelste Kolonie der Welt, ihr Reichtum beruhte auf der brutalen Ausbeutung von Hunderttausenden Versklavten auf Zuckerplantagen.\n\nToussaint Louverture wurde zum wichtigsten Anführer des Aufstands. Napoleon versuchte, die Sklaverei wieder einzuführen; Toussaint wurde gefangen genommen und starb 1803 in Frankreich in Haft.\n\nAm 1. Januar 1804 erklärte Haiti seine Unabhängigkeit. Frankreich zwang das Land später zu hohen Entschädigungszahlungen."
+  },
+  {
+   "id": "kap17_impfung",
+   "kind": "fakt",
+   "title": "Die erste Impfung",
+   "short": "1796 impfte der Arzt Edward Jenner einen Jungen mit Kuhpocken und schützte ihn so vor den gefährlichen Pocken.",
+   "long": "Jenner hatte beobachtet, dass Melkerinnen, die an harmlosen Kuhpocken erkrankt waren, keine Pocken bekamen. Er übertrug Material aus einer Kuhpockenblase auf den Jungen James Phipps.\n\nDas lateinische Wort für Kuh, „vacca“, steckt bis heute im englischen Wort „vaccination“.\n\nDurch weltweite Impfprogramme wurden die Pocken 1980 offiziell als ausgerottet erklärt – die erste Krankheit, die der Mensch vollständig besiegt hat."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art17_linse",
+   "title": "Geschliffene Linse",
+   "text": "Kaum größer als ein Stecknadelkopf – und doch öffnete sie den Blick in eine Welt voller Leben."
+  },
+  {
+   "id": "art17_band",
+   "title": "Band der Enzyklopädie",
+   "text": "Ein schwerer Lederband mit Kupferstichen von Werkstätten. Wissen, zum ersten Mal für alle gedacht."
+  },
+  {
+   "id": "art17_kokarde",
+   "title": "Revolutionskokarde",
+   "text": "Blau, Weiß, Rot. Wer sie trug, bekannte sich zur Revolution."
+  },
+  {
+   "id": "art17_lanzette",
+   "title": "Impflanzette",
+   "text": "Ein kleines Messer, mit dem Jenner Haut ritzte. Eine der folgenreichsten Erfindungen der Medizin."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Élise",
+  "role": "Buchdruckerin in Paris, 1789 (erfunden)",
+  "lines": [
+   "Die Pressen laufen Tag und Nacht. Jeder will Flugschriften drucken: über Freiheit, über Brot, über den König.",
+   "Gestern haben sie die Bastille gestürmt. Heute fragt jeder, was als Nächstes kommt.",
+   "Man spricht von den Rechten des Menschen. Ich frage mich, ob sie auch für mich gelten – für eine Frau.",
+   "Ideen sind gefährlich, Hüter. Darum muss man sie aufschreiben."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Was entdeckte Antoni van Leeuwenhoek mit seinen Mikroskopen?",
+   "options": [
+    "Bakterien",
+    "Die Jupitermonde",
+    "Die Schwerkraft"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Welches Land ging 1804 aus einem Aufstand von Versklavten hervor?",
+   "options": [
+    "Haiti",
+    "Mexiko",
+    "Brasilien"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wer führte 1796 die erste Impfung durch?",
+   "options": [
+    "Edward Jenner",
+    "Isaac Newton",
+    "Robert Koch"
+   ],
+   "correct": 0
+  }
+ ]
+}

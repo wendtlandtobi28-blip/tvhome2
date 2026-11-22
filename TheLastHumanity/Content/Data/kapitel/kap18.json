@@ -1,0 +1,181 @@
+{
+ "id": "kap18_industrie",
+ "number": 18,
+ "title": "Das industrielle Zeitalter",
+ "era": "etwa 1760 bis 1914",
+ "summary": "Dampf, Eisenbahn, Strom und Auto, die soziale Frage, das Ende der Sklaverei, Imperialismus und neue Nationalstaaten.",
+ "theme": {
+  "floor": [
+   0.2,
+   0.19,
+   0.18
+  ],
+  "wall": [
+   0.45,
+   0.2,
+   0.15
+  ],
+  "column": [
+   0.15,
+   0.15,
+   0.16
+  ],
+  "torch": [
+   1.0,
+   0.85,
+   0.55
+  ],
+  "columnShape": "eckig",
+  "monument": "turm",
+  "sunPitch": -30,
+  "sunIntensity": 4,
+  "fog": 0.04
+ },
+ "infoPoints": [
+  {
+   "id": "kap07_dampf",
+   "kind": "fakt",
+   "title": "Die Kraft des Dampfes",
+   "short": "In Großbritannien begann im 18. Jahrhundert die Industrialisierung. James Watt verbesserte ab 1769 die Dampfmaschine entscheidend. Maschinen und Fabriken veränderten Arbeit und Leben grundlegend.",
+   "long": "Über Jahrtausende hatten Menschen vor allem die Kraft von Muskeln, Wasser und Wind genutzt. In Großbritannien wurden im 18. Jahrhundert erste Dampfmaschinen gebaut, um Wasser aus Bergwerken zu pumpen. James Watt verbesserte sie ab 1769 so, dass sie viel weniger Kohle verbrauchten und bald auch Maschinen in Fabriken antreiben konnten.\n\nZuerst veränderte sich die Textilherstellung: Spinn- und Webmaschinen produzierten in Fabriken ein Vielfaches dessen, was Handarbeit leisten konnte. Kohle und Eisen wurden zu den wichtigsten Rohstoffen.\n\nDie Industrialisierung breitete sich im 19. Jahrhundert nach Europa, Nordamerika und Japan aus. Sie brachte enormen Wohlstand für manche – und für die Umwelt den Beginn des massenhaften Verbrennens fossiler Brennstoffe, dessen Folgen wir bis heute spüren."
+  },
+  {
+   "id": "kap07_eisenbahn",
+   "kind": "fakt",
+   "title": "Die Eisenbahn verkürzt die Welt",
+   "short": "1825 fuhr in England die erste öffentliche Eisenbahn mit Dampflokomotive. In Deutschland verband 1835 der „Adler“ Nürnberg und Fürth. Reisen, die Tage dauerten, waren nun in Stunden möglich.",
+   "long": "Die Strecke zwischen Stockton und Darlington in England wurde 1825 als erste öffentliche Eisenbahn mit Dampflokomotiven eröffnet. Bald entstanden in vielen Ländern Eisenbahnnetze. In Deutschland fuhr am 7. Dezember 1835 die Lokomotive „Adler“ zwischen Nürnberg und Fürth.\n\nDie Eisenbahn veränderte das Verständnis von Raum und Zeit. Waren, Rohstoffe und Menschen gelangten schnell und günstig an weit entfernte Orte. Damit überall nach denselben Fahrplänen gefahren werden konnte, wurden einheitliche Zeitzonen eingeführt.\n\nDampfschiffe, der Telegraf und später das Telefon verbanden die Kontinente zusätzlich. 1869 wurde der Suezkanal eröffnet, der den Seeweg zwischen Europa und Asien stark verkürzte."
+  },
+  {
+   "id": "kap07_soziale_frage",
+   "kind": "fakt",
+   "title": "Die soziale Frage",
+   "short": "In den Fabrikstädten arbeiteten Männer, Frauen und Kinder oft 12 bis 16 Stunden am Tag für wenig Lohn. Arbeiterbewegungen kämpften für bessere Bedingungen; ab 1883 entstand in Deutschland die Sozialversicherung.",
+   "long": "Millionen Menschen zogen vom Land in die wachsenden Industriestädte. Dort lebten viele Familien in engen, feuchten Wohnungen. In den Fabriken waren Arbeitstage von 12 bis 16 Stunden üblich, auch Kinder mussten arbeiten. Wer krank wurde oder verunglückte, verlor oft jedes Einkommen.\n\nArbeiterinnen und Arbeiter schlossen sich in Gewerkschaften und Parteien zusammen. Karl Marx und Friedrich Engels veröffentlichten 1848 das „Manifest der Kommunistischen Partei“. Andere setzten auf Reformen, Genossenschaften oder kirchliche Hilfe.\n\nIn Deutschland führte die Regierung unter Otto von Bismarck ab 1883 die Krankenversicherung, 1884 die Unfallversicherung und 1889 die Invaliditäts- und Altersversicherung ein – unter anderem, um der Arbeiterbewegung Zulauf zu nehmen. Diese Sozialversicherung wurde zum Vorbild für viele Länder."
+  },
+  {
+   "id": "kap07_abolition",
+   "kind": "fakt",
+   "title": "Das Ende der Sklaverei in Amerika",
+   "short": "Nach langem Kampf wurde die Sklaverei verboten: im Britischen Weltreich 1833, in den USA 1865 nach dem Bürgerkrieg, in Brasilien als letztem Land Amerikas 1888.",
+   "long": "Gegen die Sklaverei kämpften versklavte Menschen selbst, ehemalige Versklavte wie Frederick Douglass und Harriet Tubman sowie Abolitionistinnen und Abolitionisten in vielen Ländern.\n\nGroßbritannien verbot 1807 den Sklavenhandel und beschloss 1833 die Abschaffung der Sklaverei in seinen Kolonien. In den Vereinigten Staaten war die Sklaverei eine der Hauptursachen des Bürgerkriegs von 1861 bis 1865. Nach dem Sieg der Nordstaaten verbot der 13. Zusatzartikel zur Verfassung 1865 die Sklaverei im ganzen Land. Brasilien schaffte sie 1888 als letztes Land Amerikas ab.\n\nDie Freiheit bedeutete noch keine Gleichberechtigung. In den USA folgten Jahrzehnte der Rassentrennung und Diskriminierung, gegen die im 20. Jahrhundert die Bürgerrechtsbewegung kämpfte."
+  },
+  {
+   "id": "kap07_imperialismus",
+   "kind": "fakt",
+   "title": "Imperialismus",
+   "short": "Ende des 19. Jahrhunderts teilten europäische Mächte fast ganz Afrika unter sich auf. Bis 1914 standen etwa neun Zehntel des Kontinents unter Kolonialherrschaft – auch unter deutscher.",
+   "long": "Industriestaaten suchten Rohstoffe, Absatzmärkte und Macht. Auf der Berliner Konferenz 1884/85 legten europäische Staaten Regeln für die Aufteilung Afrikas fest – ohne dass Afrikanerinnen und Afrikaner beteiligt waren. Bis 1914 waren nur noch Äthiopien und Liberia unabhängig.\n\nKolonialherrschaft bedeutete Ausbeutung, Zwangsarbeit und Gewalt. Im Kongo, damals Privatbesitz des belgischen Königs Leopold II., kamen Millionen Menschen durch Zwangsarbeit und brutale Strafen ums Leben. In der Kolonie Deutsch-Südwestafrika, dem heutigen Namibia, verübten deutsche Truppen ab 1904 einen Völkermord an den Herero und Nama.\n\nAuch in Asien weiteten Großbritannien, Frankreich, die Niederlande, Russland, Japan und die USA ihre Herrschaft aus. Die Rivalität der Großmächte trug zu den Spannungen bei, die 1914 in den Ersten Weltkrieg mündeten."
+  },
+  {
+   "id": "kap18_strom",
+   "kind": "fakt",
+   "title": "Strom für alle",
+   "short": "1831 entdeckte Michael Faraday die elektromagnetische Induktion. Ab den 1880er-Jahren versorgten Kraftwerke ganze Stadtviertel mit Strom.",
+   "long": "Faradays Entdeckung ermöglichte Generatoren und Elektromotoren. Werner von Siemens baute 1866 eine leistungsfähige Dynamomaschine.\n\nThomas Edison verbesserte die Glühlampe und eröffnete 1882 in New York eines der ersten Kraftwerke für die öffentliche Versorgung.\n\nElektrisches Licht verlängerte den Tag, Elektromotoren veränderten Fabriken und später auch Haushalte."
+  },
+  {
+   "id": "kap18_telefon",
+   "kind": "fakt",
+   "title": "Telegraf und Telefon",
+   "short": "Ab den 1840er-Jahren übertrug der Telegraf Nachrichten in Sekunden. 1876 erhielt Alexander Graham Bell ein Patent auf das Telefon.",
+   "long": "Mit dem Morsecode konnten Nachrichten über Drahtleitungen geschickt werden. 1866 verband ein Kabel durch den Atlantik Europa und Amerika dauerhaft.\n\nDer Deutsche Philipp Reis hatte schon 1861 ein Gerät zur Übertragung von Tönen vorgestellt. Bell meldete 1876 sein Telefon zum Patent an.\n\nZum ersten Mal konnten Menschen über große Entfernungen fast ohne Verzögerung miteinander sprechen."
+  },
+  {
+   "id": "kap18_auto",
+   "kind": "fakt",
+   "title": "Das Automobil",
+   "short": "1886 meldete Carl Benz seinen Motorwagen zum Patent an. 1888 fuhr Bertha Benz damit über 100 Kilometer weit.",
+   "long": "Der Benz Patent-Motorwagen hatte drei Räder und einen Verbrennungsmotor. Unabhängig davon entwickelten Gottlieb Daimler und Wilhelm Maybach ebenfalls Motorfahrzeuge.\n\nBertha Benz fuhr 1888 ohne Wissen ihres Mannes mit ihren Söhnen von Mannheim nach Pforzheim und bewies, dass das Auto alltagstauglich ist.\n\n1913 führte Henry Ford die Fließbandfertigung ein. Autos wurden dadurch für viel mehr Menschen erschwinglich."
+  },
+  {
+   "id": "kap18_medizin",
+   "kind": "fakt",
+   "title": "Mikroben und Hygiene",
+   "short": "Im 19. Jahrhundert wurde klar, dass winzige Erreger Krankheiten verursachen. Robert Koch entdeckte 1882 den Erreger der Tuberkulose.",
+   "long": "Ignaz Semmelweis zeigte 1847 in Wien, dass Händewaschen die Todesrate von Müttern nach der Geburt drastisch senkt. Viele Kollegen lehnten seine Erkenntnis ab.\n\nLouis Pasteur und Robert Koch wiesen nach, dass Bakterien Krankheiten auslösen. Koch entdeckte die Erreger von Tuberkulose und Cholera.\n\nSauberes Trinkwasser, Kanalisation und Hygiene retteten in den Städten Millionen Leben."
+  },
+  {
+   "id": "kap18_frauenwahlrecht",
+   "kind": "fakt",
+   "title": "Das Frauenwahlrecht",
+   "short": "1893 führte Neuseeland als erstes Land ein landesweites Wahlrecht für Frauen ein. In Deutschland durften Frauen ab 1918 wählen.",
+   "long": "Frauenrechtlerinnen kämpften jahrzehntelang mit Petitionen, Demonstrationen und teils auch mit spektakulären Aktionen für das Wahlrecht. In Großbritannien wurden sie „Suffragetten“ genannt.\n\nIn Neuseeland sammelte Kate Sheppard Unterschriften von fast einem Viertel der erwachsenen Frauen. 1893 erhielten Frauen dort das Wahlrecht.\n\nIn Deutschland wurde das Frauenwahlrecht im November 1918 eingeführt; im Januar 1919 durften Frauen zum ersten Mal wählen."
+  },
+  {
+   "id": "kap18_meiji",
+   "kind": "fakt",
+   "title": "Japans Modernisierung",
+   "short": "Ab 1868 modernisierte sich Japan in der Meiji-Zeit rasant und wurde innerhalb weniger Jahrzehnte zur Industrie- und Großmacht.",
+   "long": "Nach der erzwungenen Öffnung durch die USA stürzten Reformer das Shogunat. Der Kaiser wurde wieder Mittelpunkt des Staates.\n\nJapan schickte Delegationen nach Europa und Amerika, führte Schulpflicht, Eisenbahnen, Fabriken und eine Verfassung ein.\n\nDie neue Großmacht führte bald selbst Kriege und eroberte Kolonien, etwa Taiwan und Korea."
+  },
+  {
+   "id": "kap18_einigung",
+   "kind": "fakt",
+   "title": "Die deutsche Einigung",
+   "short": "Nach der gescheiterten Revolution von 1848 wurde Deutschland 1871 unter preußischer Führung als Kaiserreich geeint.",
+   "long": "1848 forderten Revolutionäre in vielen deutschen Staaten Freiheit, Einheit und eine Verfassung. In der Frankfurter Paulskirche tagte das erste gesamtdeutsche Parlament, scheiterte aber.\n\nDie Einigung kam schließlich „von oben“: Nach drei Kriegen, zuletzt gegen Frankreich, wurde der preußische König am 18. Januar 1871 in Versailles zum Deutschen Kaiser ausgerufen.\n\nDas Kaiserreich war ein Obrigkeitsstaat mit einem gewählten Reichstag, aber begrenzter Macht des Parlaments."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art18_gluehbirne",
+   "title": "Frühe Glühbirne",
+   "text": "Ein Kohlefaden in einer Glaskugel. Er glühte nur einige Hundert Stunden – und veränderte doch die Nacht."
+  },
+  {
+   "id": "art18_fahrkarte",
+   "title": "Fahrkarte der Eisenbahn",
+   "text": "Eine Pappkarte, dritte Klasse. Für viele Menschen die erste Reise weiter als einen Tagesmarsch."
+  },
+  {
+   "id": "art18_lohnzettel",
+   "title": "Lohnbuch einer Fabrikarbeiterin",
+   "text": "Zwölf Stunden am Tag, sechs Tage die Woche. Ein paar Pfennige weniger, weil sie zu spät kam."
+  },
+  {
+   "id": "art18_flugblatt",
+   "title": "Flugblatt der Frauenbewegung",
+   "text": "„Heraus mit dem Frauenwahlrecht!“ Mit solchen Blättern wurde jahrzehntelang gekämpft – mit Erfolg."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Johann",
+  "role": "Fabrikarbeiter im Ruhrgebiet, um 1890 (erfunden)",
+  "lines": [
+   "Die Sirene weckt uns um fünf. Dann die Zeche, unten im Dunkeln, bis die Lampe fast leer ist.",
+   "Mein Vater war noch Bauer. Ich kenne Felder nur von Sonntagsausflügen.",
+   "Wir haben uns zusammengeschlossen, in der Gewerkschaft. Allein ist man nichts. Zusammen bekommen wir den Acht-Stunden-Tag. Irgendwann.",
+   "Wenn du durch die Welt der Zukunft gehst, Hüter, denk dran: Jemand hat für jeden freien Sonntag gekämpft."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Welches Land führte 1893 als erstes ein landesweites Frauenwahlrecht ein?",
+   "options": [
+    "Neuseeland",
+    "Deutschland",
+    "Frankreich"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wer fuhr 1888 mit dem Motorwagen über 100 Kilometer weit?",
+   "options": [
+    "Bertha Benz",
+    "Henry Ford",
+    "Marie Curie"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Was zeigte Ignaz Semmelweis 1847?",
+   "options": [
+    "Händewaschen senkt die Sterblichkeit nach Geburten",
+    "Die Erde ist rund",
+    "Strom fließt durch Drähte"
+   ],
+   "correct": 0
+  }
+ ]
+}

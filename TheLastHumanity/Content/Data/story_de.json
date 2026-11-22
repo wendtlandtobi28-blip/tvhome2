@@ -9,51 +9,185 @@
     "intro": "Im Orbit des Gasriesen Tethys treibt MNEMOSYNE – die letzte Arche der Menschheit. In ihrem Herzen liegt das Archiv: die Erinnerung an alles, was Menschen je waren. Doch das Archiv ist verstummt. Du bist aus dem Kälteschlaf erwacht. Man nennt dich: Hüter."
   },
   "characters": {
-    "kommandantin": { "name": "Kommandantin Aris Velan", "role": "Leitung der Station" },
-    "technikerin": { "name": "Technikerin Mara Okoye", "role": "Energie und Archivtechnik" },
-    "archivar": { "name": "Archivar Jonas Reth", "role": "Hüter der Datenkerne" },
-    "pilot": { "name": "Pilot Ilan Sato", "role": "Hangar und Flugverkehr" },
-    "kind": { "name": "Lio", "role": "geboren auf der Station" }
+    "kommandantin": {
+      "name": "Kommandantin Aris Velan",
+      "role": "Leitung der Station"
+    },
+    "technikerin": {
+      "name": "Technikerin Mara Okoye",
+      "role": "Energie und Archivtechnik"
+    },
+    "archivar": {
+      "name": "Archivar Jonas Reth",
+      "role": "Hüter der Datenkerne"
+    },
+    "pilot": {
+      "name": "Pilot Ilan Sato",
+      "role": "Hangar und Flugverkehr"
+    },
+    "kind": {
+      "name": "Lio",
+      "role": "geboren auf der Station"
+    },
+    "gaertnerin": {
+      "name": "Gärtnerin Ayla Demir",
+      "role": "Deck-Gärten"
+    },
+    "aerztin": {
+      "name": "Ärztin Dr. Lena Brandt",
+      "role": "Krankenstation"
+    },
+    "haendler": {
+      "name": "Händler Rafael Ortiz",
+      "role": "Tauschmarkt"
+    },
+    "musikerin": {
+      "name": "Musikerin Noor",
+      "role": "spielt auf der Plaza"
+    },
+    "wache": {
+      "name": "Wache Toma Kalnins",
+      "role": "Sicherheit"
+    }
   },
   "dialogues": {
     "kommandantin_start": [
-      { "who": "kommandantin", "text": "Du bist wach. Gut. Wir hatten fast die Hoffnung aufgegeben." },
-      { "who": "kommandantin", "text": "Vor drei Wochen ist das Archiv verstummt. Die Erinnerungen der Menschheit – Geschichte, Wissen, Kultur – liegen noch in den Datenkernen, aber niemand kann sie mehr lesen." },
-      { "who": "kommandantin", "text": "Nur die Hüter sind mit dem Archiv verbunden. Du bist der letzte. Erwecke die Erinnerungen, Sektor für Sektor." },
-      { "who": "kommandantin", "text": "Sieh dich erst auf der Station um: die Aussichtsplattform, das Denkmal der Gründer und der Zugang zum Archiv. Dann melde dich am Archivtor." }
+      {
+        "who": "kommandantin",
+        "text": "Du bist wach. Gut. Wir hatten fast die Hoffnung aufgegeben."
+      },
+      {
+        "who": "kommandantin",
+        "text": "Vor drei Wochen ist das Archiv verstummt. Die Erinnerungen der Menschheit – Geschichte, Wissen, Kultur – liegen noch in den Datenkernen, aber niemand kann sie mehr lesen."
+      },
+      {
+        "who": "kommandantin",
+        "text": "Nur die Hüter sind mit dem Archiv verbunden. Du bist der letzte. Erwecke die Erinnerungen, Sektor für Sektor."
+      },
+      {
+        "who": "kommandantin",
+        "text": "Sieh dich erst auf der Station um: die Aussichtsplattform, das Denkmal der Gründer und der Zugang zum Archiv. Dann melde dich am Archivtor."
+      }
     ],
     "kommandantin_wait": [
-      { "who": "kommandantin", "text": "Das Archiv wartet. Jede Erinnerung, die du erweckst, macht uns stärker." }
+      {
+        "who": "kommandantin",
+        "text": "Das Archiv wartet. Jede Erinnerung, die du erweckst, macht uns stärker."
+      }
     ],
     "kommandantin_report": [
-      { "who": "kommandantin", "text": "Die Anzeigen im Kommandozentrum leuchten wieder. Ein weiterer Sektor ist erwacht." },
-      { "who": "kommandantin", "text": "Ich habe das Archivtor auf den nächsten Sektor ausgerichtet. Wir zählen auf dich, Hüter." }
+      {
+        "who": "kommandantin",
+        "text": "Die Anzeigen im Kommandozentrum leuchten wieder. Ein weiterer Sektor ist erwacht."
+      },
+      {
+        "who": "kommandantin",
+        "text": "Ich habe das Archivtor auf den nächsten Sektor ausgerichtet. Wir zählen auf dich, Hüter."
+      }
     ],
     "kommandantin_final": [
-      { "who": "kommandantin", "text": "Alle Sektoren leuchten. Das Archiv lebt wieder." },
-      { "who": "kommandantin", "text": "Was immer da draußen auf uns wartet – wir wissen jetzt wieder, wer wir sind." }
+      {
+        "who": "kommandantin",
+        "text": "Alle Sektoren leuchten. Das Archiv lebt wieder."
+      },
+      {
+        "who": "kommandantin",
+        "text": "Was immer da draußen auf uns wartet – wir wissen jetzt wieder, wer wir sind."
+      }
     ],
     "technikerin": [
-      { "who": "technikerin", "text": "Die Hauptenergie reicht gerade so für das Archiv. Wenn du einen Sektor erweckst, springen bei mir die Anzeigen auf Grün." },
-      { "who": "technikerin", "text": "Tipp: Mit dem Scan-Puls (Taste 1) siehst du verborgene Erinnerungen auf Kompass und Karte." }
+      {
+        "who": "technikerin",
+        "text": "Die Hauptenergie reicht gerade so für das Archiv. Wenn du einen Sektor erweckst, springen bei mir die Anzeigen auf Grün."
+      },
+      {
+        "who": "technikerin",
+        "text": "Tipp: Mit dem Scan-Puls (Taste 1) siehst du verborgene Erinnerungen auf Kompass und Karte."
+      }
     ],
     "archivar": [
-      { "who": "archivar", "text": "Jeder Datenkern enthält eine Epoche. Ich habe sie mein Leben lang gehütet, aber lesen kann ich sie nicht – das kannst nur du." },
-      { "who": "archivar", "text": "Auf der Station liegen verstreute Datenkristalle. Bring sie zurück ins Archiv, sie enthalten Fragmente aus der Geschichte der Station." }
+      {
+        "who": "archivar",
+        "text": "Jeder Datenkern enthält eine Epoche. Ich habe sie mein Leben lang gehütet, aber lesen kann ich sie nicht – das kannst nur du."
+      },
+      {
+        "who": "archivar",
+        "text": "Auf der Station liegen verstreute Datenkristalle. Bring sie zurück ins Archiv, sie enthalten Fragmente aus der Geschichte der Station."
+      }
     ],
     "pilot": [
-      { "who": "pilot", "text": "Siehst du die Kreuzer da draußen? Leer. Wir fliegen sie nur, damit die Triebwerke nicht einrosten." },
-      { "who": "pilot", "text": "Eines Tages landen wir wieder irgendwo. Dann sollten wir wissen, woher wir kommen." }
+      {
+        "who": "pilot",
+        "text": "Siehst du die Kreuzer da draußen? Leer. Wir fliegen sie nur, damit die Triebwerke nicht einrosten."
+      },
+      {
+        "who": "pilot",
+        "text": "Eines Tages landen wir wieder irgendwo. Dann sollten wir wissen, woher wir kommen."
+      }
     ],
     "kind": [
-      { "who": "kind", "text": "Bist du wirklich ein Hüter? Meine Mutter sagt, auf der Erde gab es Meere, so groß, dass man kein Ende sehen konnte." },
-      { "who": "kind", "text": "Erzählst du mir irgendwann, was in den Erinnerungen steht?" }
+      {
+        "who": "kind",
+        "text": "Bist du wirklich ein Hüter? Meine Mutter sagt, auf der Erde gab es Meere, so groß, dass man kein Ende sehen konnte."
+      },
+      {
+        "who": "kind",
+        "text": "Erzählst du mir irgendwann, was in den Erinnerungen steht?"
+      }
+    ],
+    "gaertnerin": [
+      {
+        "who": "gaertnerin",
+        "text": "Auf Deck 7 wächst Weizen, auf Deck 4 Tomaten. Jede Pflanze hier ist ein Stück Erde, das wir mitgenommen haben."
+      }
+    ],
+    "aerztin": [
+      {
+        "who": "aerztin",
+        "text": "Seit das Archiv schweigt, schlafen viele schlecht. Erinnerungen sind auch eine Art Medizin, weißt du?"
+      }
+    ],
+    "haendler": [
+      {
+        "who": "haendler",
+        "text": "Geld gibt es hier nicht mehr. Wir tauschen. Eine Geschichte gegen einen Apfel – das ist ein fairer Preis."
+      }
+    ],
+    "musikerin": [
+      {
+        "who": "musikerin",
+        "text": "Ich spiele Lieder, deren Herkunft niemand mehr kennt. Vielleicht findest du sie im Archiv."
+      }
+    ],
+    "wache": [
+      {
+        "who": "wache",
+        "text": "Ruhig heute. Seit Jahren ist es ruhig. Manchmal wünschte ich, es passierte endlich etwas."
+      }
+    ],
+    "kommandantin_next": [
+      {
+        "who": "kommandantin",
+        "text": "Der nächste Sektor wartet: {0}. Das Archivtor ist ausgerichtet."
+      }
     ]
   },
   "landmarks": [
-    { "id": "aussicht", "title": "Aussichtsplattform", "text": "Unter dir die Ringstadt, über dir Tethys. Hier begreift man, wie klein die letzte Menschheit geworden ist." },
-    { "id": "denkmal", "title": "Denkmal der Gründer", "text": "Das Denkmal ehrt die ersten Hüter von MNEMOSYNE. Auf dem Sockel steht: „Wer sich erinnert, ist nie ganz verloren.“" },
-    { "id": "archivtor", "title": "Archivtor", "text": "Das Tor zum Archiv. Dahinter liegen die Sektoren mit den Erinnerungen der Menschheit." }
+    {
+      "id": "aussicht",
+      "title": "Aussichtsplattform",
+      "text": "Unter dir die Ringstadt, über dir Tethys. Hier begreift man, wie klein die letzte Menschheit geworden ist."
+    },
+    {
+      "id": "denkmal",
+      "title": "Denkmal der Gründer",
+      "text": "Das Denkmal ehrt die ersten Hüter von MNEMOSYNE. Auf dem Sockel steht: „Wer sich erinnert, ist nie ganz verloren.“"
+    },
+    {
+      "id": "archivtor",
+      "title": "Archivtor",
+      "text": "Das Tor zum Archiv. Dahinter liegen die Sektoren mit den Erinnerungen der Menschheit."
+    }
   ],
   "quests": {
     "main_title": "Die letzte Hoffnung",
@@ -66,26 +200,631 @@
     "step_final": "Sprich ein letztes Mal mit der Kommandantin",
     "done": "Das Archiv ist vollständig erwacht",
     "side_title": "Datenkristalle",
-    "side_step": "Sammle Datenkristalle ({0}/{1})"
+    "side_step": "Sammle Datenkristalle ({0}/{1})",
+    "side_active": "Nebenquest: {0}",
+    "side_fetch": "Finde: {0}",
+    "side_return": "Bring es zu {0}",
+    "side_deliver": "Bring {0} zu {1}",
+    "side_visit": "Geh zu: {0}"
   },
   "crystals": [
-    { "id": "kr01", "text": "Logbuch, Jahr 1 der Station: Die Arche ist bemannt. 4.112 Menschen an Bord. Möge das Archiv uns tragen." },
-    { "id": "kr02", "text": "Logbuch, Jahr 12: Die ersten Kinder, die nie einen Planeten gesehen haben, lernen heute lesen – mit Texten aus dem Archiv." },
-    { "id": "kr03", "text": "Technischer Vermerk: Die Ringstadt dreht sich alle 94 Sekunden einmal. So entsteht die künstliche Schwerkraft." },
-    { "id": "kr04", "text": "Notiz eines Gärtners: Die Weizenfelder auf Deck 7 tragen zum dritten Mal in diesem Jahr. Die Erde wäre stolz." },
-    { "id": "kr05", "text": "Logbuch, Jahr 40: Das Denkmal der Gründer wurde eingeweiht. Die Inschrift stammt von einem Kind." },
-    { "id": "kr06", "text": "Nachricht ohne Absender: „Wenn ihr das hier findet, vergesst nicht zu singen. Auch Lieder sind Erinnerung.“" },
-    { "id": "kr07", "text": "Technischer Vermerk: Jeder Archivsektor speichert eine Epoche in mehrfach gesicherten Kristallgittern." },
-    { "id": "kr08", "text": "Tagebuch der Kommandantin: Ich träume oft von Regen. Wir haben ihn auf Deck 3 nachgebaut, aber es ist nicht dasselbe." },
-    { "id": "kr09", "text": "Logbuch, Jahr 77: Der letzte Kontakt zu anderen Archen liegt 30 Jahre zurück. Wir senden weiter, jeden Tag." },
-    { "id": "kr10", "text": "Kinderzeichnung, eingescannt: Ein Haus, ein Baum, eine Sonne. Darunter: „Unser Zuhause irgendwann.“" }
+    {
+      "id": "kr01",
+      "text": "Logbuch, Jahr 1 der Station: Die Arche ist bemannt. 4.112 Menschen an Bord. Möge das Archiv uns tragen."
+    },
+    {
+      "id": "kr02",
+      "text": "Logbuch, Jahr 12: Die ersten Kinder, die nie einen Planeten gesehen haben, lernen heute lesen – mit Texten aus dem Archiv."
+    },
+    {
+      "id": "kr03",
+      "text": "Technischer Vermerk: Die Ringstadt dreht sich alle 94 Sekunden einmal. So entsteht die künstliche Schwerkraft."
+    },
+    {
+      "id": "kr04",
+      "text": "Notiz eines Gärtners: Die Weizenfelder auf Deck 7 tragen zum dritten Mal in diesem Jahr. Die Erde wäre stolz."
+    },
+    {
+      "id": "kr05",
+      "text": "Logbuch, Jahr 40: Das Denkmal der Gründer wurde eingeweiht. Die Inschrift stammt von einem Kind."
+    },
+    {
+      "id": "kr06",
+      "text": "Nachricht ohne Absender: „Wenn ihr das hier findet, vergesst nicht zu singen. Auch Lieder sind Erinnerung.“"
+    },
+    {
+      "id": "kr07",
+      "text": "Technischer Vermerk: Jeder Archivsektor speichert eine Epoche in mehrfach gesicherten Kristallgittern."
+    },
+    {
+      "id": "kr08",
+      "text": "Tagebuch der Kommandantin: Ich träume oft von Regen. Wir haben ihn auf Deck 3 nachgebaut, aber es ist nicht dasselbe."
+    },
+    {
+      "id": "kr09",
+      "text": "Logbuch, Jahr 77: Der letzte Kontakt zu anderen Archen liegt 30 Jahre zurück. Wir senden weiter, jeden Tag."
+    },
+    {
+      "id": "kr10",
+      "text": "Kinderzeichnung, eingescannt: Ein Haus, ein Baum, eine Sonne. Darunter: „Unser Zuhause irgendwann.“"
+    }
   ],
   "abilities": [
-    { "key": "1", "id": "scan", "name": "Scan-Puls", "desc": "Zeigt für 20 Sekunden alle unentdeckten Erinnerungen und Datenkristalle auf Kompass und Karte.", "energy": 30, "cooldown": 6 },
-    { "key": "2", "id": "dash", "name": "Schub", "desc": "Kurzer, schneller Vorstoß in Blickrichtung.", "energy": 20, "cooldown": 2 },
-    { "key": "3", "id": "light", "name": "Leuchtfeuer", "desc": "Ein Lichtorb begleitet dich 40 Sekunden lang.", "energy": 15, "cooldown": 4 },
-    { "key": "4", "id": "echo", "name": "Zeitecho", "desc": "Markiert die nächste unentdeckte Erinnerung als Wegpunkt.", "energy": 25, "cooldown": 5 },
-    { "key": "5", "id": "regen", "name": "Regeneration", "desc": "Stellt Lebenskraft vollständig wieder her.", "energy": 40, "cooldown": 20 },
-    { "key": "6", "id": "locked", "name": "Gesperrt", "desc": "Diese Fähigkeit schaltest du später frei (ab Stufe 10).", "energy": 0, "cooldown": 0, "unlockLevel": 10 }
+    {
+      "key": "1",
+      "id": "scan",
+      "name": "Scan-Puls",
+      "desc": "Zeigt für 20 Sekunden alle unentdeckten Erinnerungen und Datenkristalle auf Kompass und Karte.",
+      "energy": 30,
+      "cooldown": 6
+    },
+    {
+      "key": "2",
+      "id": "dash",
+      "name": "Schub",
+      "desc": "Kurzer, schneller Vorstoß in Blickrichtung.",
+      "energy": 20,
+      "cooldown": 2
+    },
+    {
+      "key": "3",
+      "id": "light",
+      "name": "Leuchtfeuer",
+      "desc": "Ein Lichtorb begleitet dich 40 Sekunden lang.",
+      "energy": 15,
+      "cooldown": 4
+    },
+    {
+      "key": "4",
+      "id": "echo",
+      "name": "Zeitecho",
+      "desc": "Markiert die nächste unentdeckte Erinnerung als Wegpunkt.",
+      "energy": 25,
+      "cooldown": 5
+    },
+    {
+      "key": "5",
+      "id": "regen",
+      "name": "Regeneration",
+      "desc": "Stellt Lebenskraft vollständig wieder her.",
+      "energy": 40,
+      "cooldown": 20
+    },
+    {
+      "key": "6",
+      "id": "locked",
+      "name": "Gesperrt",
+      "desc": "Diese Fähigkeit schaltest du später frei (ab Stufe 10).",
+      "energy": 0,
+      "cooldown": 0,
+      "unlockLevel": 10
+    }
+  ],
+  "sidequests": [
+    {
+      "id": "nq01",
+      "giver": "technikerin",
+      "unlockAfter": 0,
+      "title": "Ersatzteil für den Generator",
+      "intro": [
+        {
+          "who": "technikerin",
+          "text": "Der Hilfsgenerator stottert. Im Lager hinten links liegt eine Energiezelle – bringst du sie mir?"
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Energiezelle",
+        "pos": [
+          14,
+          -33
+        ]
+      },
+      "done": [
+        {
+          "who": "technikerin",
+          "text": "Perfekt, die passt. Hörst du? Der Generator summt wieder."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq02",
+      "giver": "kind",
+      "unlockAfter": 0,
+      "title": "Lios verlorener Stern",
+      "intro": [
+        {
+          "who": "kind",
+          "text": "Ich habe meinen Holo-Stern verloren! Irgendwo bei der Laterne in der Mitte der Plaza …"
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Holo-Stern",
+        "pos": [
+          -8,
+          12
+        ]
+      },
+      "done": [
+        {
+          "who": "kind",
+          "text": "Du hast ihn gefunden! Jetzt kann ich wieder Sterne an die Decke werfen."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq03",
+      "giver": "archivar",
+      "unlockAfter": 1,
+      "title": "Ein Bericht für die Kommandantin",
+      "intro": [
+        {
+          "who": "archivar",
+          "text": "Ich habe die Daten des ersten Sektors ausgewertet. Bitte bring diesen Bericht zur Kommandantin."
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Versiegelter Bericht",
+        "to": "kommandantin"
+      },
+      "done": [
+        {
+          "who": "kommandantin",
+          "text": "Ein Bericht von Reth? Danke. Er ist gründlicher als wir alle zusammen."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq04",
+      "giver": "gaertnerin",
+      "unlockAfter": 1,
+      "title": "Saatgut aus dem Lager",
+      "intro": [
+        {
+          "who": "gaertnerin",
+          "text": "Im hinteren Bereich der Plaza steht eine Kiste mit Saatgutkapseln. Ohne sie gibt es nächstes Jahr keinen Weizen."
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Saatgutkapsel",
+        "pos": [
+          -14,
+          -34
+        ]
+      },
+      "done": [
+        {
+          "who": "gaertnerin",
+          "text": "Wunderbar. Weißt du, dass die Menschen vor 10.000 Jahren genau damit angefangen haben? Mit Samen, die sie aufbewahrten."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq05",
+      "giver": "pilot",
+      "unlockAfter": 2,
+      "title": "Navigationsdaten",
+      "intro": [
+        {
+          "who": "pilot",
+          "text": "Mir fehlt ein Datenmodul mit alten Sternkarten. Es müsste vorne rechts bei den Pflanzkübeln liegen."
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Datenmodul",
+        "pos": [
+          28,
+          20
+        ]
+      },
+      "done": [
+        {
+          "who": "pilot",
+          "text": "Danke! Die Polynesier haben den Pazifik nur mit Sternen durchquert. Ich brauche wenigstens ein Modul."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq06",
+      "giver": "aerztin",
+      "unlockAfter": 3,
+      "title": "Medizin für die Wache",
+      "intro": [
+        {
+          "who": "aerztin",
+          "text": "Toma Kalnins hat wieder Kopfschmerzen und kommt nie selbst vorbei. Bringst du ihm dieses Paket?"
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Medikamentenpaket",
+        "to": "wache"
+      },
+      "done": [
+        {
+          "who": "wache",
+          "text": "Von der Ärztin? Sie gibt nie auf. Sag ihr danke von mir."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq07",
+      "giver": "haendler",
+      "unlockAfter": 4,
+      "title": "Gewürze von Deck 7",
+      "intro": [
+        {
+          "who": "haendler",
+          "text": "Eine Kiste Gewürze steht noch am linken Rand der Plaza. Für Pfeffer sind früher ganze Flotten um die Welt gesegelt!"
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Gewürzkiste",
+        "pos": [
+          -30,
+          14
+        ]
+      },
+      "done": [
+        {
+          "who": "haendler",
+          "text": "Riechst du das? Zimt und Pfeffer. Damit werde ich heute ein reicher Mann – na ja, im Tauschhandel."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq08",
+      "giver": "musikerin",
+      "unlockAfter": 5,
+      "title": "Ein Lied für die Aussicht",
+      "intro": [
+        {
+          "who": "musikerin",
+          "text": "Ich schreibe ein Lied über die Aussicht auf Tethys. Geh bitte zur Aussichtsplattform und erzähl mir, wie es heute dort aussieht."
+        }
+      ],
+      "task": {
+        "type": "visit",
+        "label": "Aussichtsplattform",
+        "pos": [
+          0,
+          40
+        ]
+      },
+      "done": [
+        {
+          "who": "musikerin",
+          "text": "Gold und Violett, sagst du? Dann wird es ein langsames Lied. Danke, Hüter."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq09",
+      "giver": "wache",
+      "unlockAfter": 6,
+      "title": "Kontrollgang",
+      "intro": [
+        {
+          "who": "wache",
+          "text": "Mach für mich einen Kontrollgang zum Archivtor. Meine Knie sind nicht mehr die jüngsten."
+        }
+      ],
+      "task": {
+        "type": "visit",
+        "label": "Archivtor",
+        "pos": [
+          28,
+          4
+        ]
+      },
+      "done": [
+        {
+          "who": "wache",
+          "text": "Alles ruhig? Gut. Wie immer."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq10",
+      "giver": "technikerin",
+      "unlockAfter": 7,
+      "title": "Kalibrierung der Ringe",
+      "intro": [
+        {
+          "who": "technikerin",
+          "text": "Die Ringstadt eiert ein kleines bisschen. Mein Kalibrierwerkzeug liegt hinten bei der Rückwand."
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Kalibrierwerkzeug",
+        "pos": [
+          10,
+          -28
+        ]
+      },
+      "done": [
+        {
+          "who": "technikerin",
+          "text": "Danke. Ein Hundertstel Grad Abweichung – und in hundert Jahren kracht es. Präzision ist alles."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq11",
+      "giver": "archivar",
+      "unlockAfter": 8,
+      "title": "Ein Buch für Lio",
+      "intro": [
+        {
+          "who": "archivar",
+          "text": "Lio hat nach einer Geschichte gefragt. Bring ihm dieses Kinderbuch aus dem Archiv."
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Kinderbuch",
+        "to": "kind"
+      },
+      "done": [
+        {
+          "who": "kind",
+          "text": "Ein echtes Buch! Mit Bildern von Pyramiden und Rittern! Liest du es mir später vor?"
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq12",
+      "giver": "gaertnerin",
+      "unlockAfter": 9,
+      "title": "Wasser für die Gärten",
+      "intro": [
+        {
+          "who": "gaertnerin",
+          "text": "Die Wasserfilter sind verstopft. Eine Filterpatrone liegt rechts neben dem Mittelweg."
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Filterpatrone",
+        "pos": [
+          18,
+          8
+        ]
+      },
+      "done": [
+        {
+          "who": "gaertnerin",
+          "text": "Danke. Die ersten Städte entstanden an Flüssen – ohne Wasser keine Zivilisation. Daran hat sich nichts geändert."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq13",
+      "giver": "aerztin",
+      "unlockAfter": 10,
+      "title": "Die fehlende Akte",
+      "intro": [
+        {
+          "who": "aerztin",
+          "text": "Mir ist eine Patientenakte abhandengekommen. Ich war vorhin bei der Kommandantin – vielleicht liegt sie dort in der Nähe."
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Patientenakte",
+        "pos": [
+          -24,
+          -12
+        ]
+      },
+      "done": [
+        {
+          "who": "aerztin",
+          "text": "Da ist sie ja! Semmelweis hätte mich für meine Unordnung gerügt."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq14",
+      "giver": "pilot",
+      "unlockAfter": 11,
+      "title": "Ein Gruß an die Kreuzer",
+      "intro": [
+        {
+          "who": "pilot",
+          "text": "Geh zur Aussichtsplattform und winke den Kreuzern zu. Die Crews mögen das. Glaub mir."
+        }
+      ],
+      "task": {
+        "type": "visit",
+        "label": "Aussichtsplattform",
+        "pos": [
+          0,
+          40
+        ]
+      },
+      "done": [
+        {
+          "who": "pilot",
+          "text": "Sie haben zurückgeblinkt! Siehst du, wir sind nicht allein hier oben."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq15",
+      "giver": "haendler",
+      "unlockAfter": 12,
+      "title": "Ein Tauschgeschäft",
+      "intro": [
+        {
+          "who": "haendler",
+          "text": "Ich habe der Technikerin eine Werkzeugkiste versprochen – gegen drei Gläser Honig. Bringst du sie ihr?"
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Werkzeugkiste",
+        "to": "technikerin"
+      },
+      "done": [
+        {
+          "who": "technikerin",
+          "text": "Endlich! Sag Ortiz, der Honig kommt morgen."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq16",
+      "giver": "musikerin",
+      "unlockAfter": 13,
+      "title": "Neue Saiten",
+      "intro": [
+        {
+          "who": "musikerin",
+          "text": "Mir ist eine Saite gerissen. Die Ersatzsaiten liegen vor der Archivhalle."
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Saitenrolle",
+        "pos": [
+          30,
+          -10
+        ]
+      },
+      "done": [
+        {
+          "who": "musikerin",
+          "text": "Die älteste bekannte Flöte ist 40.000 Jahre alt. Musik ist älter als jede Schrift. Danke!"
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq17",
+      "giver": "wache",
+      "unlockAfter": 14,
+      "title": "Verdächtiges Geräusch",
+      "intro": [
+        {
+          "who": "wache",
+          "text": "Hinten bei der Rückwand klappert etwas. Schau bitte nach."
+        }
+      ],
+      "task": {
+        "type": "visit",
+        "label": "Hinterer Bereich",
+        "pos": [
+          -14,
+          -34
+        ]
+      },
+      "done": [
+        {
+          "who": "wache",
+          "text": "Nur eine Wartungsdrohne? Na gut. Wieder ein ruhiger Tag."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq18",
+      "giver": "archivar",
+      "unlockAfter": 15,
+      "title": "Kristall-Analyse",
+      "intro": [
+        {
+          "who": "archivar",
+          "text": "Die Ärztin möchte die Kristalldaten auf Strahlung prüfen. Bring ihr bitte diese Kopie."
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Datenkristall-Kopie",
+        "to": "aerztin"
+      },
+      "done": [
+        {
+          "who": "aerztin",
+          "text": "Danke. Keine Strahlung, nur Erinnerungen. Die besten Daten überhaupt."
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq19",
+      "giver": "kind",
+      "unlockAfter": 16,
+      "title": "Der Stern am Horizont",
+      "intro": [
+        {
+          "who": "kind",
+          "text": "Mama sagt, man sieht von der Aussichtsplattform manchmal ein Licht am Horizont. Schaust du nach, ob es heute da ist?"
+        }
+      ],
+      "task": {
+        "type": "visit",
+        "label": "Aussichtsplattform",
+        "pos": [
+          0,
+          40
+        ]
+      },
+      "done": [
+        {
+          "who": "kind",
+          "text": "Wirklich? Ein Licht? Vielleicht leben dort Menschen. Vielleicht kommen sie uns besuchen!"
+        }
+      ],
+      "xp": 150
+    },
+    {
+      "id": "nq20",
+      "giver": "technikerin",
+      "unlockAfter": 17,
+      "title": "Die Hauptsicherung",
+      "intro": [
+        {
+          "who": "technikerin",
+          "text": "Für die letzten Sektoren braucht das Archiv volle Leistung. Die Hauptsicherung liegt vorne bei der Aussicht."
+        }
+      ],
+      "task": {
+        "type": "fetch",
+        "label": "Hauptsicherung",
+        "pos": [
+          2,
+          36
+        ]
+      },
+      "done": [
+        {
+          "who": "technikerin",
+          "text": "Volle Leistung! Jetzt kann uns nichts mehr aufhalten."
+        }
+      ],
+      "xp": 250
+    }
   ]
 }

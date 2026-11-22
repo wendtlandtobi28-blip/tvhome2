@@ -25,7 +25,8 @@ function fail(msg) {
 
 // ===================================================================== Speicher
 
-const SAVE_KEY = 'tlh.spielstand.v3';
+const SAVE_KEY = 'tlh.spielstand.v4';
+const OLD_SAVE_KEY = 'tlh.spielstand.v3';
 const SETTINGS_KEY = 'tlh.einstellungen.v2';
 const Store = {
   ok: (() => { try { localStorage.setItem('tlh.t', '1'); localStorage.removeItem('tlh.t'); return true; } catch (e) { return false; } })(),
@@ -52,12 +53,13 @@ if (urlQuality) settings.quality = urlQuality;
 // ===================================================================== Fortschritt
 
 const chapters = CONTENT.chapters;
-const XP = { memory: 100, crystal: 50, landmark: 50, chapter: 300, perLevel: 400 };
+const XP = { memory: 100, crystal: 50, landmark: 50, chapter: 300, artifact: 75, echo: 75, quiz: 200, noise: 50, perLevel: 800 };
 
 function newProgress(name) {
   return {
     name: (name || 'Hüter').slice(0, 24), xp: 0, area: 'hub', chapter: chapters[0].id,
     discovered: new Set(), crystals: new Set(), landmarks: new Set(), completed: new Set(),
+    quizPassed: new Set(), cleared: new Set(), artifacts: new Set(), echoes: new Set(), sideDone: new Set(), side: null,
     stage: 'talk', endingSeen: false, day: 1, minutes: 19 * 60 + 40
   };
 }
@@ -69,12 +71,19 @@ const Prog = {
   info(id) { for (const c of chapters) for (const p of c.infoPoints) if (p.id === id) return { chapter: c, point: p }; return null; },
   count: (ch) => ch.infoPoints.filter((p) => P.discovered.has(p.id)).length,
   complete: (ch) => ch.infoPoints.length > 0 && Prog.count(ch) === ch.infoPoints.length,
+  /** Sektor abgeschlossen: alle Erinnerungen + Wissenspruefung bestanden */
+  done: (ch) => Prog.complete(ch) && (P.quizPassed.has(ch.id) || !(ch.quiz && ch.quiz.length)),
   unlocked(ch) {
     if (!ch.available) return false;
     if (settings.unlockAll) return true;
     const i = chapters.indexOf(ch);
-    return i === 0 || Prog.complete(chapters[i - 1]) || P.completed.has(ch.id);
+    return i === 0 || Prog.done(chapters[i - 1]) || P.completed.has(chapters[i - 1].id) || P.completed.has(ch.id);
   },
+  sideAvailable(npcId) {
+    if (P.side) return null;
+    return S.sidequests.find((q) => q.giver === npcId && !P.sideDone.has(q.id) && q.unlockAfter <= P.completed.size) || null;
+  },
+  sideQuest: () => (P.side ? S.sidequests.find((q) => q.id === P.side.id) : null),
   total: () => chapters.reduce((n, c) => n + c.infoPoints.length, 0),
   level: () => 1 + Math.floor(P.xp / XP.perLevel),
   nextChapter() { return chapters.find((c) => c.available && !P.completed.has(c.id)) || null; },
@@ -83,14 +92,16 @@ const Prog = {
 
 function serialize() {
   return {
-    version: 3, name: P.name, xp: P.xp, area: P.area, chapter: P.chapter,
+    version: 4, name: P.name, xp: P.xp, area: P.area, chapter: P.chapter,
     discovered: [...P.discovered], crystals: [...P.crystals], landmarks: [...P.landmarks], completed: [...P.completed],
     stage: P.stage, endingSeen: P.endingSeen, day: P.day, minutes: P.minutes,
+    quizPassed: [...P.quizPassed], cleared: [...P.cleared], artifacts: [...P.artifacts], echoes: [...P.echoes],
+    sideDone: [...P.sideDone], side: P.side,
     pos: [player.x, player.z], yaw: player.yaw, camYaw: cam.yaw, savedAt: new Date().toISOString()
   };
 }
 function deserialize(s) {
-  if (!s || typeof s !== 'object' || !(s.version <= 3)) return null;
+  if (!s || typeof s !== 'object' || !(s.version <= 4)) return null;
   const p = newProgress(s.name);
   p.xp = Number(s.xp) || 0;
   p.area = s.area === 'sector' ? 'sector' : 'hub';
@@ -101,6 +112,12 @@ function deserialize(s) {
   p.completed = new Set((s.completed || []).filter((id) => Prog.chapter(id)));
   p.stage = typeof s.stage === 'string' ? s.stage : 'talk';
   p.endingSeen = !!s.endingSeen;
+  p.quizPassed = new Set((s.quizPassed || []).filter((id) => Prog.chapter(id)));
+  p.cleared = new Set(s.cleared || []);
+  p.artifacts = new Set(s.artifacts || []);
+  p.echoes = new Set(s.echoes || []);
+  p.sideDone = new Set(s.sideDone || []);
+  p.side = s.side && S.sidequests.some((q) => q.id === s.side.id) ? s.side : null;
   p.day = s.day || 1;
   p.minutes = s.minutes || p.minutes;
   return p;
@@ -158,6 +175,7 @@ let gameStarted = false;
 let showLong = false;
 let openInfoId = null;
 let dialog = null;
+let quiz = null;
 const returnFrom = {};
 let focused = null;
 let toastTime = 0;
@@ -200,12 +218,23 @@ function placePlayer(x, z, yaw) {
 function refreshWorld() {
   if (!world) return;
   if (world.kind === 'sector') {
-    world.points.forEach((p) => world.setMemoryState(p, P.discovered.has(p.id), focused === p));
+    world.points.forEach((p) => world.setMemoryState(p, P.discovered.has(p.id), focused === p, p.noisy && !P.cleared.has(p.id)));
+    world.artifacts.forEach((a) => a.setCollected(P.artifacts.has(a.id)));
     const ch = Prog.chapter(world.chapterId);
-    world.portal.setOpen(Prog.complete(ch));
+    world.quiz.setPassed(P.quizPassed.has(ch.id));
+    world.portal.setOpen(Prog.done(ch));
   } else {
     world.crystals.forEach((c) => c.setCollected(P.crystals.has(c.id)));
-    world.setQuestMarker('kommandantin', ['talk', 'report', 'final'].includes(P.stage));
+    const markers = {};
+    world.npcs.forEach((n) => { if (n.marker && Prog.sideAvailable(n.id)) markers[n.id] = 0x55d0ff; });
+    const sq = Prog.sideQuest();
+    if (sq) {
+      if (sq.task.type === 'deliver') markers[sq.task.to] = 0x55d0ff;
+      else if (P.side.stage === 'return') markers[sq.giver] = 0x55d0ff;
+      if (sq.task.type === 'fetch' && P.side.stage === 'task') world.spawnQuestItem(sq.id, sq.task.label, sq.task.pos[0], sq.task.pos[1]);
+    }
+    if (['talk', 'report', 'final'].includes(P.stage)) markers.kommandantin = 0xffb640;
+    world.setMarkers(markers);
   }
 }
 
@@ -240,19 +269,7 @@ function questInfo() {
     }
     case 'sector':
     case 'return':
-      if (ch) {
-        const done = Prog.complete(ch);
-        lines.push({ text: fmt(S.quests.step_sector, ch.number, Prog.count(ch), ch.infoPoints.length), done });
-        if (done) lines.push({ text: S.quests.step_return, done: false });
-        if (P.area === 'sector' && world && world.kind === 'sector') {
-          if (done) target = { x: SECTOR.PORTAL_X - 1, z: 0 };
-          else {
-            let best = null, bd = Infinity;
-            world.points.forEach((p) => { if (!P.discovered.has(p.id)) { const d = Math.hypot(p.pos.x - player.x, p.pos.z - player.z); if (d < bd) { bd = d; best = { x: p.pos.x, z: p.pos.z }; } } });
-            target = best;
-          }
-        }
-      }
+      if (ch) target = sectorLines(ch, lines);
       break;
     case 'report':
       lines.push({ text: S.quests.step_report, done: false });
@@ -267,12 +284,47 @@ function questInfo() {
   }
   if (P.area === 'sector' && P.stage !== 'sector' && P.stage !== 'return' && world && world.kind === 'sector') {
     // Freies Erkunden eines Sektors (z. B. erneut besucht)
-    const c = Prog.chapter(world.chapterId);
     lines.length = 0;
-    lines.push({ text: fmt(S.quests.step_sector, c.number, Prog.count(c), c.infoPoints.length), done: Prog.complete(c) });
-    if (Prog.complete(c)) { lines.push({ text: S.quests.step_return, done: false }); target = { x: SECTOR.PORTAL_X - 1, z: 0 }; }
+    target = sectorLines(Prog.chapter(world.chapterId), lines);
   }
-  return { title: S.quests.main_title, lines, target };
+  // Nebenquest
+  let side = null, sideTarget = null;
+  const sq = Prog.sideQuest();
+  if (sq) {
+    const giverName = (S.characters[sq.giver] || {}).name || sq.giver;
+    let step;
+    if (sq.task.type === 'deliver') {
+      const toName = (S.characters[sq.task.to] || {}).name || sq.task.to;
+      step = fmt(S.quests.side_deliver, sq.task.label, toName);
+      if (P.area === 'hub') sideTarget = npcPos(sq.task.to);
+    } else if (P.side.stage === 'return') {
+      step = fmt(S.quests.side_return, giverName);
+      if (P.area === 'hub') sideTarget = npcPos(sq.giver);
+    } else {
+      step = fmt(sq.task.type === 'visit' ? S.quests.side_visit : S.quests.side_fetch, sq.task.label);
+      if (P.area === 'hub') sideTarget = { x: sq.task.pos[0], z: sq.task.pos[1] };
+    }
+    side = { title: sq.title, step };
+  }
+  return { title: S.quests.main_title, lines, target: target || sideTarget, side, sideTarget };
+}
+
+function sectorLines(ch, lines) {
+  let target = null;
+  const memDone = Prog.complete(ch);
+  lines.push({ text: fmt(S.quests.step_sector, ch.number, Prog.count(ch), ch.infoPoints.length), done: memDone });
+  const quizOk = P.quizPassed.has(ch.id);
+  if (memDone) lines.push({ text: 'Bestehe die Wissensprüfung am Wissensterminal', done: quizOk });
+  if (memDone && quizOk) lines.push({ text: S.quests.step_return, done: false });
+  if (P.area === 'sector' && world && world.kind === 'sector' && world.chapterId === ch.id) {
+    if (memDone && quizOk) target = { x: SECTOR.PORTAL_X - 1, z: 0 };
+    else if (memDone) target = { x: SECTOR.quiz.x - 1.5, z: SECTOR.quiz.z };
+    else {
+      let bd = Infinity;
+      world.points.forEach((p) => { if (!P.discovered.has(p.id)) { const d = Math.hypot(p.pos.x - player.x, p.pos.z - player.z); if (d < bd) { bd = d; target = { x: p.pos.x, z: p.pos.z }; } } });
+    }
+  }
+  return target;
 }
 
 function addXp(amount, reason) {
@@ -398,6 +450,7 @@ function updateFocus() {
       if (P.stage === 'explore' && !P.landmarks.has(it.id) && Math.hypot(it.pos.x - player.x, it.pos.z - player.z) < it.range) visitLandmark(it);
       continue;
     }
+    if (it.kind === 'artifact' && it.collected) continue;
     if (it.kind === 'npc') { it.pos.set(it.npc.x, 1.6, it.npc.z); }
     const dx = it.pos.x - player.x, dz = it.pos.z - player.z;
     const d = Math.hypot(dx, dz);
@@ -408,15 +461,49 @@ function updateFocus() {
   }
   if (focused !== best) {
     focused = best;
+    noise.active = false; noise.progress = 0;
     refreshWorld();
   }
+  // Nebenquest "Gehe zu"
+  const sq = Prog.sideQuest();
+  if (sq && sq.task.type === 'visit' && P.side.stage === 'task' && world.kind === 'hub' && Math.hypot(sq.task.pos[0] - player.x, sq.task.pos[1] - player.z) < 4) {
+    P.side.stage = 'return';
+    toast(fmt('Ziel erreicht: {0} · kehre zurück zu {1}', sq.task.label, (S.characters[sq.giver] || {}).name), 4);
+    Audio.chime(1.4);
+    refreshWorld();
+    saveGame(false);
+  }
+}
+
+const noise = { active: false, progress: 0 };
+function isNoisy(it) { return it && it.kind === 'memory' && it.noisy && !P.cleared.has(it.id); }
+function clearNoise(it) {
+  P.cleared.add(it.id);
+  addXp(XP.noise, 'Datenrauschen beseitigt');
+  toast('Datenrauschen beseitigt – die Erinnerung ist wieder lesbar', 3.5);
+  Audio.sweep(0.5);
+  noise.active = false; noise.progress = 0;
+  refreshWorld();
+  saveGame(false);
 }
 
 function promptText() {
   if (state !== 'playing' || !focused) return '';
   const f = focused;
   if (f.kind === 'npc') return fmt('[E]  Sprechen: {0}', f.label);
-  if (f.kind === 'memory') return T(P.discovered.has(f.id) ? 'hud.interact_again' : 'hud.interact', f.label);
+  if (f.kind === 'memory') {
+    if (isNoisy(f)) return noise.active ? fmt('Datenrauschen wird beseitigt … {0} %', Math.round(noise.progress * 100)) : '[E gedrückt halten]  Datenrauschen beseitigen';
+    return T(P.discovered.has(f.id) ? 'hud.interact_again' : 'hud.interact', f.label);
+  }
+  if (f.kind === 'artifact') return fmt('[E]  Artefakt aufheben: {0}', f.label);
+  if (f.kind === 'echo') return fmt('[E]  Mit dem Echo sprechen: {0}', f.label);
+  if (f.kind === 'questitem') return fmt('[E]  Aufheben: {0}', f.label);
+  if (f.kind === 'quiz') {
+    const ch = Prog.chapter(world.chapterId);
+    if (P.quizPassed.has(ch.id)) return 'Wissensprüfung bestanden';
+    if (!Prog.complete(ch)) return fmt('Wissensterminal: erst alle Erinnerungen erwecken ({0}/{1})', Prog.count(ch), ch.infoPoints.length);
+    return '[E]  Wissensprüfung starten';
+  }
   if (f.kind === 'gate') {
     if (P.stage === 'talk') return 'Das Archivtor ist versiegelt. Sprich zuerst mit der Kommandantin.';
     if (P.stage === 'explore') return 'Erkunde zuerst die Station, dann öffnet sich das Archivtor.';
@@ -427,7 +514,7 @@ function promptText() {
   }
   if (f.kind === 'portal') {
     const ch = Prog.chapter(world.chapterId);
-    if (!f.open) return T('hud.portal_locked', Prog.count(ch), ch.infoPoints.length);
+    if (!f.open) return Prog.complete(ch) ? 'Das Sektortor öffnet sich nach der Wissensprüfung.' : T('hud.portal_locked', Prog.count(ch), ch.infoPoints.length);
     return '[E]  Zurück zur Station';
   }
   return '';
@@ -438,15 +525,55 @@ function interact() {
   const f = focused;
   Audio.blip(660, 0.06);
   if (f.kind === 'npc') talkTo(f.id);
+  else if (f.kind === 'memory' && isNoisy(f)) { noise.active = true; noise.start = performance.now(); }
+  else if (f.kind === 'artifact') {
+    if (!P.artifacts.has(f.id)) {
+      P.artifacts.add(f.id);
+      f.setCollected(true);
+      const ch = Prog.chapter(world.chapterId);
+      const a = (ch.artifacts || []).find((x) => x.id === f.id);
+      addXp(XP.artifact, 'Artefakt');
+      toast(fmt('Artefakt gefunden: {0} · im Kodex (I)', f.label), 4);
+      if (a) log('Artefakt: ' + a.title + ' – ' + a.text.slice(0, 70) + '…');
+      Audio.chime(1.6);
+      focused = null;
+      saveGame(false);
+    }
+  }
+  else if (f.kind === 'echo') {
+    const ch = Prog.chapter(world.chapterId);
+    const first = !P.echoes.has(ch.id);
+    const lines = ch.echo.lines.map((t) => ({ name: ch.echo.name, role: ch.echo.role, text: t }));
+    dialog = { lines, index: 0, npc: null, after: () => { if (first) { P.echoes.add(ch.id); addXp(XP.echo, 'Zeitzeugen-Echo'); saveGame(false); } } };
+    setState('dialog');
+  }
+  else if (f.kind === 'quiz') {
+    const ch = Prog.chapter(world.chapterId);
+    if (P.quizPassed.has(ch.id)) { toast('Diese Wissensprüfung hast du bereits bestanden.', 2.5); return; }
+    if (!Prog.complete(ch)) { toast(promptText(), 3); return; }
+    quiz = { ch, index: 0, feedback: null };
+    setState('quiz');
+  }
+  else if (f.kind === 'questitem') {
+    const sq = Prog.sideQuest();
+    if (sq && sq.id === f.id) {
+      P.side.stage = 'return';
+      world.removeQuestItem(f.id);
+      toast(fmt('{0} aufgehoben · bring es zu {1}', f.label, (S.characters[sq.giver] || {}).name), 4);
+      Audio.chime(1.3);
+      focused = null;
+      refreshWorld();
+      saveGame(false);
+    }
+  }
   else if (f.kind === 'memory') {
     if (!P.discovered.has(f.id)) {
       P.discovered.add(f.id);
       addXp(XP.memory, 'Erinnerung');
       const ch = Prog.chapter(world.chapterId);
       if (Prog.complete(ch)) {
-        if (P.stage === 'sector' && P.chapter === ch.id) P.stage = 'return';
-        toast(T('toast.chapter_complete').replace('Tor am Ende der Halle', 'Sektortor'), 5);
-        log('Sektor ' + ch.number + ' vollständig erweckt.');
+        toast('Alle Erinnerungen erweckt – jetzt die Wissensprüfung am Terminal vor dem Sektortor!', 5);
+        log('Sektor ' + ch.number + ': alle Erinnerungen erweckt.');
         Audio.chime(1.2);
       } else {
         toast(T('toast.discovered'), 3.5);
@@ -462,7 +589,7 @@ function interact() {
     if (next) { P.stage = 'sector'; travelToSector(next.id); }
     else openSub('journal');
   } else if (f.kind === 'portal') {
-    if (!f.open) { toast(T('toast.portal_locked').replace('alle Erkenntnisse dieser Halle', 'alle Erinnerungen dieses Sektors'), 3); return; }
+    if (!f.open) { toast(promptText(), 3); return; }
     returnToHub();
   }
 }
@@ -494,13 +621,39 @@ function visitLandmark(it) {
 function talkTo(id) {
   let key = id;
   let after = null;
+  let lines = null;
+  const sq = Prog.sideQuest();
+  // Nebenquest abschliessen (Rueckgabe oder Zustellung)
+  if (sq && ((sq.task.type === 'deliver' && sq.task.to === id) || (sq.task.type !== 'deliver' && P.side.stage === 'return' && sq.giver === id))) {
+    lines = sq.done;
+    after = () => { P.sideDone.add(sq.id); P.side = null; addXp(sq.xp || 150, 'Nebenquest'); log('Nebenquest abgeschlossen: ' + sq.title); Audio.chime(1.2); refreshWorld(); saveGame(false); };
+  } else if (id !== 'kommandantin' || !['talk', 'report', 'final'].includes(P.stage)) {
+    const avail = Prog.sideAvailable(id);
+    if (avail) {
+      lines = avail.intro;
+      after = () => { P.side = { id: avail.id, stage: 'task' }; log('Nebenquest angenommen: ' + avail.title); toast('Nebenquest: ' + avail.title, 3.5); refreshWorld(); saveGame(false); };
+    }
+  }
+  if (lines) { startDialog(lines, id, after); return; }
   if (id === 'kommandantin') {
     if (P.stage === 'talk') { key = 'kommandantin_start'; after = () => { P.stage = 'explore'; log('Quest aktualisiert: Erkunde die Raumstation'); refreshWorld(); saveGame(false); }; }
-    else if (P.stage === 'report') { key = 'kommandantin_report'; after = () => { P.stage = Prog.allDone() ? 'final' : 'gate'; refreshWorld(); saveGame(false); }; }
+    else if (P.stage === 'report') {
+      key = 'kommandantin_report';
+      const next = Prog.nextChapter();
+      if (next && !Prog.allDone()) {
+        const extra = S.dialogues.kommandantin_next.map((l) => ({ who: l.who, text: fmt(l.text, next.number + '. ' + next.title + ' (' + next.era + ')') }));
+        startDialog(S.dialogues.kommandantin_report.concat(extra), id, () => { P.stage = 'gate'; refreshWorld(); saveGame(false); });
+        return;
+      }
+      after = () => { P.stage = Prog.allDone() ? 'final' : 'gate'; refreshWorld(); saveGame(false); };
+    }
     else if (P.stage === 'final') { key = 'kommandantin_final'; after = () => { P.stage = 'done'; P.endingSeen = true; refreshWorld(); saveGame(false); setState('ending'); }; }
     else key = 'kommandantin_wait';
   }
-  const lines = S.dialogues[key];
+  startDialog(S.dialogues[key], id, after);
+}
+
+function startDialog(lines, id, after) {
   if (!lines) return;
   const npc = world.npcs && world.npcs.find((n) => n.id === id);
   if (npc) {
@@ -541,7 +694,7 @@ function travelToSector(chapterId) {
 function returnToHub() {
   const ch = world && world.kind === 'sector' ? Prog.chapter(world.chapterId) : null;
   let newlyCompleted = false;
-  if (ch && Prog.complete(ch) && !P.completed.has(ch.id)) {
+  if (ch && Prog.done(ch) && !P.completed.has(ch.id)) {
     P.completed.add(ch.id);
     addXp(XP.chapter, 'Sektor abgeschlossen');
     newlyCompleted = true;
@@ -565,7 +718,14 @@ function useAbility(slot) {
   if (player.energy < ab.energy) { toast('Zu wenig Energie für ' + ab.name, 2); return; }
   player.energy -= ab.energy;
   cooldowns[ab.id] = time + ab.cooldown;
-  if (ab.id === 'scan') { effects.scanUntil = time + 20; toast('Scan-Puls: verborgene Ziele markiert', 3); Audio.sweep(); }
+  if (ab.id === 'scan') {
+    effects.scanUntil = time + 20;
+    let n = 0;
+    if (world.kind === 'sector') world.points.forEach((p) => { if (isNoisy(p) && Math.hypot(p.pos.x - player.x, p.pos.z - player.z) < 12) { P.cleared.add(p.id); n++; } });
+    if (n) { addXp(XP.noise * n, 'Datenrauschen beseitigt'); refreshWorld(); saveGame(false); }
+    toast(n ? fmt('Scan-Puls: {0}× Datenrauschen beseitigt, Ziele markiert', n) : 'Scan-Puls: verborgene Ziele markiert', 3);
+    Audio.sweep();
+  }
   if (ab.id === 'dash') { player.dash = 16; Audio.whoosh(0.4); }
   if (ab.id === 'light') {
     effects.lightUntil = time + 40;
@@ -603,7 +763,7 @@ function useAbility(slot) {
 function nearestUndiscovered() {
   let best = null, bd = Infinity;
   world.interactables.forEach((it) => {
-    const open = (it.kind === 'memory' && !P.discovered.has(it.id)) || (it.kind === 'crystal' && !it.collected);
+    const open = (it.kind === 'memory' && !P.discovered.has(it.id)) || ((it.kind === 'crystal' || it.kind === 'artifact') && !it.collected);
     if (!open) return;
     const d = Math.hypot(it.pos.x - player.x, it.pos.z - player.z);
     if (d < bd) { bd = d; best = { x: it.pos.x, z: it.pos.z }; }
@@ -634,7 +794,7 @@ function startNewGame(name) {
 }
 
 function continueGame() {
-  const s = Store.get(SAVE_KEY);
+  const s = Store.get(SAVE_KEY) || Store.get(OLD_SAVE_KEY);
   const p = deserialize(s);
   if (!p) { toast(T('toast.nosave')); return; }
   P = p;
@@ -734,6 +894,10 @@ function drawMinimap() {
     if (it.kind === 'gate' || it.kind === 'portal') { color = '#55d0ff'; r = 5; }
     if (it.kind === 'memory') { color = P.discovered.has(it.id) ? '#55d0ff' : '#ffb640'; r = 4; }
     if (it.kind === 'crystal' && !it.collected && scanning) { color = '#9fe3ff'; r = 3; }
+    if (it.kind === 'artifact' && !it.collected && scanning) { color = '#e8c070'; r = 3; }
+    if (it.kind === 'echo') { color = '#c080ff'; r = 4; }
+    if (it.kind === 'quiz') { color = '#ffd27a'; r = 4; }
+    if (it.kind === 'questitem') { color = '#7fd0ff'; r = 4; }
     if (!color) return;
     const [x, y] = tr(it.pos.x, it.pos.z);
     mm.fillStyle = color; mm.beginPath(); mm.arc(x, y, r, 0, Math.PI * 2); mm.fill();
@@ -774,7 +938,8 @@ function updateHud(dt) {
     hudTick = 0.1;
     const q = questInfo();
     $('quest-title').textContent = q.title;
-    $('quest-steps').innerHTML = q.lines.map((l) => `<li class="${l.done ? 'done' : ''}">${esc(l.text)}</li>`).join('');
+    $('quest-steps').innerHTML = q.lines.map((l) => `<li class="${l.done ? 'done' : ''}">${esc(l.text)}</li>`).join('')
+      + (q.side ? `<li class="side"><b>${esc(q.side.title)}:</b> ${esc(q.side.step)}</li>` : '');
     const h = Math.floor(P.minutes / 60) % 24, m = Math.floor(P.minutes % 60);
     $('loc-name').textContent = P.area === 'hub' ? S.station.hubLocation : fmt(S.station.sectorLocation, (Prog.chapter(P.chapter) || {}).number || '');
     $('loc-time').textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ' | Tag ' + P.day;
@@ -797,7 +962,7 @@ function updateHud(dt) {
 
 // ===================================================================== Oberflaeche (Menues)
 
-const screens = ['menu', 'info', 'dialog', 'journal', 'codex', 'skills', 'map', 'options', 'ending', 'intro'].reduce((o, k) => { o[k] = $(k); return o; }, {});
+const screens = ['menu', 'info', 'dialog', 'quiz', 'journal', 'codex', 'skills', 'map', 'options', 'ending', 'intro'].reduce((o, k) => { o[k] = $(k); return o; }, {});
 
 function button(action, label, opts = {}) {
   return `<button type="button" data-action="${action}"${opts.id ? ` data-id="${esc(opts.id)}"` : ''}${opts.cls ? ` class="${opts.cls}"` : ''}${opts.disabled ? ' disabled' : ''}>${esc(label)}</button>`;
@@ -805,7 +970,7 @@ function button(action, label, opts = {}) {
 
 let confirmNew = false, askName = false;
 function renderMenu(pause) {
-  const hasSave = Store.has(SAVE_KEY);
+  const hasSave = Store.has(SAVE_KEY) || Store.has(OLD_SAVE_KEY);
   let h = `<div class="panel menu-panel${pause ? ' pause' : ''}" role="dialog"><img class="emblem" alt="" src="${emblemDataUrl('#d9a95a')}"><h1>THE LAST HUMANITY</h1>`;
   h += `<div class="subtitle">${esc(pause ? 'Pause' : T('menu.subtitle'))}</div><div class="buttons${pause ? ' two' : ''}">`;
   if (pause) {
@@ -845,7 +1010,7 @@ function renderInfo() {
 
 function renderDialog() {
   const line = dialog.lines[dialog.index];
-  const ch = S.characters[line.who] || { name: line.who, role: '' };
+  const ch = line.name ? { name: line.name, role: line.role || '' } : (S.characters[line.who] || { name: line.who, role: '' });
   screens.dialog.innerHTML = `<div class="dialog-box"><div class="speaker">${esc(ch.name)}<span>${esc(ch.role)}</span></div><p>${esc(line.text)}</p>
     <div class="row">${button('dialog-next', dialog.index + 1 < dialog.lines.length ? 'Weiter  [E]' : 'Ende  [E]', { cls: 'primary' })}</div></div>`;
 }
@@ -853,6 +1018,7 @@ function renderDialog() {
 function renderJournal() {
   const q = questInfo();
   let h = `<div class="panel wide" role="dialog"><h2>Journal</h2><div class="cols"><section><h3>Hauptquest · ${esc(q.title)}</h3><ul class="steps">${q.lines.map((l) => `<li class="${l.done ? 'done' : ''}">${esc(l.text)}</li>`).join('')}</ul>
+    <h3>Nebenquests (${P.sideDone.size}/${S.sidequests.length})</h3><ul class="steps">${q.side ? `<li><b>${esc(q.side.title)}</b> – ${esc(q.side.step)}</li>` : ''}${S.sidequests.filter((x) => P.sideDone.has(x.id)).slice(-4).map((x) => `<li class="done">${esc(x.title)}</li>`).join('')}${!q.side ? `<li>${esc(S.sidequests.some((x) => !P.sideDone.has(x.id) && x.unlockAfter <= P.completed.size) ? 'Bewohner mit blauer Markierung haben Aufträge für dich.' : 'Neue Aufträge gibt es nach weiteren Sektoren.')}</li>` : ''}</ul>
     <h3>${esc(S.quests.side_title)}</h3><ul class="steps"><li class="${P.crystals.size === S.crystals.length ? 'done' : ''}">${esc(fmt(S.quests.side_step, P.crystals.size, S.crystals.length))}</li></ul>
     <p class="total">${esc(T('chapters.total', P.discovered.size, Prog.total()))} · Stufe ${Prog.level()} · ${P.xp} Erfahrung</p></section><section class="scroll"><h3>Archivsektoren</h3><div class="cards">`;
   chapters.forEach((ch, idx) => {
@@ -860,6 +1026,7 @@ function renderJournal() {
     const done = Prog.complete(ch);
     const here = P.area === 'sector' && P.chapter === ch.id;
     let status = !unlocked ? T('chapters.locked', idx > 0 ? chapters[idx - 1].number : 0) : T(done ? 'chapters.complete' : 'chapters.discovered', Prog.count(ch), ch.infoPoints.length);
+    if (unlocked && ch.artifacts) status += ' · Artefakte ' + ch.artifacts.filter((a) => P.artifacts.has(a.id)).length + '/' + ch.artifacts.length;
     if (here) status = T('chapters.current') + ' · ' + status;
     h += `<div class="card${unlocked ? ' open' : ' locked'}${done ? ' done' : ''}${here ? ' here' : ''}"><div class="head"><h4>${esc(T('chapters.heading', ch.number, ch.title))}</h4><span class="status">${esc(status)}</span></div>
       <div class="era">${esc(ch.era)}</div><div>${esc(ch.summary)}</div>`;
@@ -876,6 +1043,10 @@ function renderJournal() {
 function renderCodex() {
   let h = `<div class="panel wide" role="dialog"><h2>Kodex</h2><div class="cols"><section class="scroll"><h3>Datenkristalle (${P.crystals.size}/${S.crystals.length})</h3><ul class="codex">`;
   S.crystals.forEach((c, i) => { h += P.crystals.has(c.id) ? `<li>${esc(c.text)}</li>` : `<li class="unknown">Kristall ${i + 1} – noch nicht gefunden</li>`; });
+  const artTotal = chapters.reduce((n, c) => n + (c.artifacts || []).length, 0);
+  h += `</ul><h3>Artefakte (${P.artifacts.size}/${artTotal})</h3><ul class="codex">`;
+  chapters.forEach((c) => (c.artifacts || []).forEach((a) => { if (P.artifacts.has(a.id)) h += `<li><b>${esc(a.title)}</b> · Sektor ${c.number}<br>${esc(a.text)}</li>`; }));
+  if (!P.artifacts.size) h += '<li class="unknown">Noch keine Artefakte gefunden – sie liegen versteckt in den Ecken der Archivsektoren.</li>';
   h += `</ul></section><section class="scroll"><h3>Orte der Station</h3><ul class="codex">`;
   S.landmarks.forEach((l) => { h += P.landmarks.has(l.id) ? `<li><b>${esc(l.title)}</b><br>${esc(l.text)}</li>` : `<li class="unknown">${esc(l.title)} – noch nicht erkundet</li>`; });
   h += `</ul><h3>Personen</h3><ul class="codex">${Object.values(S.characters).map((c) => `<li><b>${esc(c.name)}</b> · ${esc(c.role)}</li>`).join('')}</ul></section></div><div class="row">${button('back', 'Zurück', { cls: 'primary' })}</div></div>`;
@@ -945,7 +1116,52 @@ function renderEnding() {
     <div class="row">${button('close', 'Weiter auf der Station umsehen')}${button('mainmenu', 'Zum Hauptmenü', { cls: 'primary' })}</div></div>`;
 }
 
-const RENDER = { info: renderInfo, dialog: renderDialog, journal: renderJournal, codex: renderCodex, skills: renderSkills, map: renderMap, options: renderOptions, ending: renderEnding, intro: renderIntro };
+function renderQuiz() {
+  const ch = quiz.ch;
+  const q = ch.quiz[quiz.index];
+  let h = `<div class="panel quiz-panel" role="dialog"><div class="eyebrow"><span>Wissensterminal · Sektor ${ch.number}</span><span>Frage ${quiz.index + 1} von ${ch.quiz.length}</span></div>`;
+  h += `<h2>${esc(q.q)}</h2>`;
+  if (quiz.feedback) {
+    h += `<div class="quiz-feedback ${quiz.feedback.ok ? 'ok' : 'bad'}">${esc(quiz.feedback.text)}</div>`;
+    h += `<div class="row">${button(quiz.feedback.ok ? 'quiz-next' : 'quiz-retry', quiz.feedback.ok ? (quiz.index + 1 < ch.quiz.length ? 'Nächste Frage  [E]' : 'Abschließen  [E]') : 'Noch einmal  [E]', { cls: 'primary' })}</div>`;
+  } else {
+    h += `<div class="quiz-options">${q.options.map((o, i) => button('quiz-answer', (i + 1) + '  ' + o, { id: String(i), cls: 'quiz-option' })).join('')}</div>`;
+    h += `<div class="row">${button('close', 'Später', {})}</div>`;
+  }
+  h += '</div>';
+  screens.quiz.innerHTML = h;
+}
+
+function answerQuiz(i) {
+  if (!quiz || quiz.feedback) return;
+  const q = quiz.ch.quiz[quiz.index];
+  const ok = i === q.correct;
+  quiz.feedback = ok ? { ok: true, text: 'Richtig!' } : { ok: false, text: 'Leider falsch. Richtig wäre: „' + q.options[q.correct] + '“. Lies die Erinnerungen im Journal (J) noch einmal nach.' };
+  Audio.blip(ok ? 880 : 180, ok ? 0.12 : 0.25);
+  renderQuiz();
+}
+
+function quizContinue() {
+  if (!quiz || !quiz.feedback) return;
+  if (!quiz.feedback.ok) { quiz.feedback = null; renderQuiz(); return; }
+  quiz.index++;
+  quiz.feedback = null;
+  if (quiz.index >= quiz.ch.quiz.length) {
+    const ch = quiz.ch;
+    P.quizPassed.add(ch.id);
+    if (P.stage === 'sector' && P.chapter === ch.id) P.stage = 'return';
+    addXp(XP.quiz, 'Wissensprüfung');
+    quiz = null;
+    setState('playing');
+    toast('Wissensprüfung bestanden – das Sektortor ist offen!', 5);
+    log('Sektor ' + ch.number + ': Wissensprüfung bestanden.');
+    Audio.chime(1.2);
+    refreshWorld();
+    saveGame(false);
+  } else renderQuiz();
+}
+
+const RENDER = { quiz: renderQuiz, info: renderInfo, dialog: renderDialog, journal: renderJournal, codex: renderCodex, skills: renderSkills, map: renderMap, options: renderOptions, ending: renderEnding, intro: renderIntro };
 
 function setState(next) {
   const prev = state;
@@ -975,6 +1191,7 @@ function closeOverlay() {
   switch (state) {
     case 'pause': case 'ending': setState(gameStarted ? 'playing' : 'mainmenu'); break;
     case 'intro': setState('playing'); break;
+    case 'quiz': quiz = null; setState('playing'); break;
     case 'info': back('info', 'playing'); break;
     case 'journal': case 'codex': case 'skills': case 'map': back(state, 'playing'); break;
     case 'options': Store.set(SETTINGS_KEY, settings); back('options', 'mainmenu'); break;
@@ -1001,6 +1218,8 @@ document.addEventListener('click', (ev) => {
     case 'close': case 'back': closeOverlay(); break;
     case 'intro-ok': setState('playing'); break;
     case 'dialog-next': advanceDialog(); break;
+    case 'quiz-answer': answerQuiz(parseInt(id, 10)); break;
+    case 'quiz-next': case 'quiz-retry': quizContinue(); break;
     case 'read': openInfo(id); break;
     case 'enter': travelToSector(id); break;
     default: break;
@@ -1061,6 +1280,12 @@ addEventListener('keydown', (ev) => {
   if (ev.repeat) return;
   if (state === 'dialog' && (code === 'KeyE' || code === 'Space' || code === 'Enter')) { advanceDialog(); return; }
   if (state === 'intro' && (code === 'KeyE' || code === 'Enter')) { setState('playing'); return; }
+  if (state === 'quiz') {
+    const d = code.match(/^Digit([1-3])$/);
+    if (d) { answerQuiz(parseInt(d[1], 10) - 1); return; }
+    if ((code === 'KeyE' || code === 'Enter') && quiz && quiz.feedback) { quizContinue(); return; }
+  }
+  if (code === 'KeyE' && state === 'playing') keys.KeyE = true;
   if (code === 'KeyE') { if (state === 'playing') interact(); else if (state === 'info') closeOverlay(); return; }
   if (code === 'Escape' || code === 'KeyP') {
     if (code === 'Escape' && performance.now() - lastUnlockPause < 400) return;
@@ -1091,6 +1316,13 @@ function tick() {
     const steps = Math.max(1, Math.ceil(dt / 0.02));
     for (let i = 0; i < steps; i++) movePlayer(dt / steps);
     updateFocus();
+    if (noise.active) {
+      if (keys.KeyE && isNoisy(focused)) {
+        // echte Zeit seit dem Druecken (unabhaengig von der Bildrate)
+        noise.progress = Math.min(1, (performance.now() - noise.start) / 1500);
+        if (noise.progress >= 1) clearNoise(focused);
+      } else { noise.active = false; noise.progress = 0; }
+    }
     P.minutes += dt * 0.5; // Stationszeit: 1 Minute = 2 Sekunden
     if (P.minutes >= 24 * 60) { P.minutes -= 24 * 60; P.day++; }
   } else if (!gameStarted) {
@@ -1143,6 +1375,48 @@ window.TLH = {
   gate: () => ({ x: HUB.gate.x, z: HUB.gate.z }),
   portal: () => ({ x: SECTOR.PORTAL_X, z: 0 }),
   portalOpen: () => !!(world && world.portal && world.portal.open),
+  artifacts: () => (world && world.kind === 'sector' ? world.artifacts.map((a) => ({ id: a.id, x: a.pos.x, z: a.pos.z, collected: a.collected })) : []),
+  artifactCount: () => P.artifacts.size,
+  noisy: () => (world && world.kind === 'sector' ? world.points.filter((p) => isNoisy(p)).map((p) => p.id) : []),
+  echo: () => (world && world.echo ? { x: world.echo.pos.x, z: world.echo.pos.z } : null),
+  quizPos: () => ({ ...SECTOR.quiz }),
+  quizCorrect: () => (quiz ? quiz.ch.quiz[quiz.index].correct : null),
+  quizPassed: () => [...P.quizPassed],
+  side: () => (P.side ? { ...P.side } : null),
+  sideDone: () => P.sideDone.size,
+  sideTarget: () => questInfo().sideTarget,
+  npcIds: () => (world && world.npcs ? world.npcs.filter((n) => n.marker).map((n) => n.id) : []),
+  teleport: (x, z) => { player.x = x; player.z = z; resolveCollisions(); },
+  /** Erreichbarkeit aller Ziele vom Startpunkt (Gitter-Breitensuche ueber die Kollision) */
+  reachability: () => {
+    const step = 0.5, r = player.r + 0.05;
+    const blocked = (x, z) => {
+      if (world.kind === 'hub') { if (Math.hypot(x, z) > world.radius - 0.6) return true; }
+      else if (Math.abs(x) > world.bounds.x - r || Math.abs(z) > world.bounds.z - r) return true;
+      return world.colliders.some((c) => c.t === 'c' ? Math.hypot(x - c.x, z - c.z) < c.r + r : (x > c.x0 - r && x < c.x1 + r && z > c.z0 - r && z < c.z1 + r));
+    };
+    const key = (i, j) => i + ',' + j;
+    const s0 = world.start;
+    const seen = new Set([key(Math.round(s0.x / step), Math.round(s0.z / step))]);
+    const queue = [[Math.round(s0.x / step), Math.round(s0.z / step)]];
+    while (queue.length) {
+      const [i, j] = queue.shift();
+      for (const [di, dj] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const ni = i + di, nj = j + dj, k = key(ni, nj);
+        if (seen.has(k) || blocked(ni * step, nj * step) || seen.size > 200000) continue;
+        seen.add(k); queue.push([ni, nj]);
+      }
+    }
+    const res = [];
+    world.interactables.forEach((it) => {
+      if (it.kind === 'landmark') return;
+      const range = Math.min(it.range || 3, 2.6);
+      let ok = false;
+      for (const k of seen) { const [i, j] = k.split(',').map(Number); if (Math.hypot(i * step - it.pos.x, j * step - it.pos.z) < range) { ok = true; break; } }
+      res.push({ kind: it.kind, id: it.id, ok });
+    });
+    return res;
+  },
   face: (x, z) => { const a = Math.atan2(x - player.x, z - player.z); cam.yaw = a; player.yaw = a; },
   settings: () => JSON.parse(JSON.stringify(settings)),
   frames: () => renderer.info.render.frame

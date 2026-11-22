@@ -1,0 +1,188 @@
+{
+ "id": "kap02_aufbruch",
+ "number": 2,
+ "title": "Aufbruch in die Welt",
+ "era": "vor etwa 120.000 bis 12.000 Jahren",
+ "summary": "Homo sapiens breitet sich über alle Kontinente aus, überlebt die Eiszeit und schafft die ersten Kunstwerke.",
+ "theme": {
+  "floor": [
+   0.62,
+   0.66,
+   0.72
+  ],
+  "wall": [
+   0.4,
+   0.44,
+   0.5
+  ],
+  "column": [
+   0.22,
+   0.25,
+   0.3
+  ],
+  "torch": [
+   0.7,
+   0.85,
+   1.0
+  ],
+  "columnShape": "rund",
+  "monument": "kugel",
+  "sunPitch": -30,
+  "sunIntensity": 6,
+  "fog": 0.02
+ },
+ "infoPoints": [
+  {
+   "id": "kap01_ausbreitung",
+   "kind": "fakt",
+   "title": "Aufbruch in die Welt",
+   "short": "Vor etwa 70.000 bis 50.000 Jahren breitete sich der Homo sapiens von Afrika aus über die Welt aus. Dabei begegnete er anderen Menschenformen wie den Neandertalern.",
+   "long": "Schon vor mehr als 100.000 Jahren gelangten einzelne Gruppen des Homo sapiens bis in die Levante. Die große Ausbreitung, auf die die meisten heutigen Menschen außerhalb Afrikas zurückgehen, begann jedoch vor etwa 70.000 bis 50.000 Jahren.\n\nAustralien wurde vor mindestens rund 50.000 Jahren erreicht – dafür mussten Menschen über das offene Meer fahren. In Europa ist der Homo sapiens seit etwa 45.000 Jahren sicher nachgewiesen, vereinzelt vielleicht schon früher. Amerika wurde spätestens vor etwa 15.000 Jahren besiedelt, möglicherweise deutlich früher.\n\nUnterwegs trafen unsere Vorfahren auf andere Menschenformen. Mit Neandertalern und Denisova-Menschen kam es zu Nachkommen: Menschen außerhalb Afrikas tragen bis heute etwa ein bis zwei Prozent Neandertaler-Erbgut in sich."
+  },
+  {
+   "id": "kap01_kunst",
+   "kind": "fakt",
+   "title": "Die ersten Bilder und Symbole",
+   "short": "Menschen schufen schon früh Zeichen, Figuren und Bilder. Auf der Schwäbischen Alb entstanden vor rund 40.000 Jahren der Löwenmensch und die ältesten bekannten Flöten.",
+   "long": "In der Blombos-Höhle in Südafrika fanden Forschende Ockerstücke mit eingeritzten Mustern, die etwa 75.000 bis 100.000 Jahre alt sind – frühe Zeugnisse symbolischen Denkens.\n\nAus den Höhlen der Schwäbischen Alb stammen einige der ältesten Kunstwerke der Welt: der Löwenmensch aus dem Hohlenstein-Stadel, eine aus Mammutelfenbein geschnitzte Figur, und Flöten aus Vogelknochen und Elfenbein. Sie sind rund 40.000 Jahre alt; die Höhlen gehören heute zum UNESCO-Welterbe.\n\nAuf der indonesischen Insel Sulawesi wurde eine Höhlenmalerei auf ein Mindestalter von etwa 51.000 Jahren datiert. Die Bilder der Chauvet-Höhle in Frankreich sind etwa 36.000 Jahre alt, die berühmten Malereien von Lascaux etwa 17.000 Jahre.\n\nAm Ende dieses Kapitels, nach dem Höhepunkt der letzten Eiszeit vor rund 20.000 Jahren, erwärmte sich das Klima. Damit begann eine Entwicklung, die das Leben der Menschen grundlegend verändern sollte: die Sesshaftigkeit."
+  },
+  {
+   "id": "kap02_schmuck",
+   "kind": "fakt",
+   "title": "Schmuck aus Muscheln",
+   "short": "Durchbohrte Schneckenhäuser aus Marokko und Südafrika sind etwa 75.000 bis 82.000 Jahre alt – einige der ältesten Schmuckstücke der Welt.",
+   "long": "In der Grotte des Pigeons in Marokko fanden Forschende durchbohrte, mit Ocker gefärbte Schneckenhäuser, rund 82.000 Jahre alt. Ähnliche Perlen aus der Blombos-Höhle in Südafrika sind etwa 75.000 Jahre alt.\n\nSchmuck hat keinen direkten Nutzen zum Überleben. Er zeigt etwas anderes: Menschen begannen, Zugehörigkeit, Stellung oder Schönheit mit Zeichen auszudrücken.\n\nSolche Funde gelten als Hinweise auf symbolisches Denken – eine Fähigkeit, die Kunst, Religion und Sprache verbindet."
+  },
+  {
+   "id": "kap02_australien",
+   "kind": "fakt",
+   "title": "Über das Meer nach Australien",
+   "short": "Um Australien zu erreichen, mussten Menschen vor mindestens rund 50.000 Jahren offenes Meer überqueren – die ersten bekannten Seereisen.",
+   "long": "Selbst als der Meeresspiegel in der Eiszeit viel niedriger lag, blieb zwischen Südostasien und Australien mit Neuguinea Wasser. Wer Australien erreichen wollte, musste mit Booten oder Flößen viele Kilometer über das Meer fahren.\n\nAustralien wurde vor mindestens rund 50.000 Jahren besiedelt; manche Funde deuten auf ein noch höheres Alter hin, das aber umstritten ist.\n\nDie Aborigines und Torres-Strait-Insulaner gehören damit zu den ältesten bis heute bestehenden Kulturen der Welt."
+  },
+  {
+   "id": "kap02_europa",
+   "kind": "fakt",
+   "title": "Ankunft in Europa",
+   "short": "Homo sapiens erreichte Europa vor etwa 45.000 Jahren, an einzelnen Orten vielleicht früher. Hier lebten bereits die Neandertaler.",
+   "long": "Funde aus der Höhle Bacho Kiro in Bulgarien belegen Homo sapiens in Europa vor etwa 45.000 Jahren. In der Grotte Mandrin in Frankreich gibt es Hinweise auf eine noch frühere, kurze Anwesenheit.\n\nEinige Tausend Jahre lang lebten Neandertaler und moderne Menschen gleichzeitig in Europa. Sie begegneten sich und bekamen gemeinsame Nachkommen.\n\nDie ersten Europäerinnen und Europäer unserer Art hatten nach Ergebnissen der Erbgutforschung vermutlich dunkle Haut."
+  },
+  {
+   "id": "kap02_eiszeit",
+   "kind": "fakt",
+   "title": "Leben in der Eiszeit",
+   "short": "Vor etwa 20.000 Jahren bedeckten riesige Eisschilde Nordeuropa und Nordamerika. Der Meeresspiegel lag rund 120 Meter tiefer als heute.",
+   "long": "Auf dem Höhepunkt der letzten Eiszeit vor etwa 20.000 Jahren reichten Gletscher bis nach Norddeutschland. Weite Teile Europas waren baumlose Kältesteppe, in der Mammuts, Wollnashörner und Rentiere lebten.\n\nWeil so viel Wasser im Eis gebunden war, lag der Meeresspiegel rund 120 Meter tiefer. Großbritannien war über eine Landfläche, das heutige Doggerland, mit dem Festland verbunden.\n\nMenschen überlebten mit warmer Kleidung aus Fell, gut geplanter Jagd und Unterkünften aus Holz, Knochen und Fellen."
+  },
+  {
+   "id": "kap02_mammut",
+   "kind": "fakt",
+   "title": "Hütten aus Mammutknochen",
+   "short": "In der heutigen Ukraine bauten Menschen vor etwa 15.000 Jahren Hütten aus Hunderten Mammutknochen.",
+   "long": "An Fundorten wie Meschyritsch in der Ukraine fanden Archäologen runde Behausungen, deren Wände aus Mammutknochen, Stoßzähnen und Kiefern aufgeschichtet waren. Darüber spannten sich vermutlich Felle.\n\nIn der baumarmen Kältesteppe waren Knochen ein wertvolles Baumaterial. Ob die Tiere gejagt oder ihre Überreste gesammelt wurden, ist nicht immer klar.\n\nDie Hütten zeigen, wie erfinderisch Menschen sich an eine lebensfeindliche Umwelt anpassten."
+  },
+  {
+   "id": "kap02_venus",
+   "kind": "fakt",
+   "title": "Die Venus vom Hohle Fels",
+   "short": "Die nur sechs Zentimeter große Figur aus Mammutelfenbein ist etwa 40.000 Jahre alt – eine der ältesten Darstellungen eines Menschen.",
+   "long": "2008 wurde in der Höhle Hohle Fels auf der Schwäbischen Alb eine kleine Frauenfigur aus Mammutelfenbein gefunden. Sie ist etwa 40.000 Jahre alt und gilt als eine der ältesten bekannten Darstellungen des menschlichen Körpers.\n\nStatt eines Kopfes hat die Figur eine Öse – vielleicht wurde sie als Anhänger getragen. Was sie bedeutete, wissen wir nicht.\n\nDie Figur ist heute im Urgeschichtlichen Museum in Blaubeuren zu sehen."
+  },
+  {
+   "id": "kap02_beringia",
+   "kind": "fakt",
+   "title": "Über Beringia nach Amerika",
+   "short": "In der Eiszeit verband eine Landbrücke, Beringia, Sibirien mit Alaska. Über sie und entlang der Küste kamen die ersten Menschen nach Amerika.",
+   "long": "Durch den niedrigen Meeresspiegel lag zwischen Sibirien und Alaska eine breite Landfläche, Beringia. Menschen lebten dort und zogen später weiter nach Amerika – vermutlich auch mit Booten entlang der Pazifikküste.\n\nDie Fundstelle Monte Verde in Chile ist etwa 14.500 Jahre alt. Fußspuren im White-Sands-Nationalpark in den USA könnten sogar über 20.000 Jahre alt sein; diese Datierung wird diskutiert.\n\nIn wenigen Jahrtausenden besiedelten Menschen den gesamten Doppelkontinent bis Feuerland."
+  },
+  {
+   "id": "kap02_hunde",
+   "kind": "fakt",
+   "title": "Der Hund: erster Begleiter",
+   "short": "Der Hund ist das älteste Haustier. Aus Wölfen wurden Hunde, lange bevor Menschen Ackerbau betrieben.",
+   "long": "Hunde stammen von Wölfen ab. Wann genau die Zähmung begann, ist umstritten; sicher belegt sind Hunde seit mindestens 15.000 Jahren.\n\nEin bekanntes Beispiel ist das Doppelgrab von Bonn-Oberkassel, etwa 14.000 Jahre alt: Zwei Menschen wurden zusammen mit einem Hund bestattet. Der Hund war krank gewesen und wurde offenbar gepflegt.\n\nHunde halfen bei der Jagd, warnten vor Gefahren und wurden zu Gefährten des Menschen."
+  },
+  {
+   "id": "kap02_naehnadel",
+   "kind": "fakt",
+   "title": "Die Nähnadel",
+   "short": "Nadeln aus Knochen mit Öhr gibt es seit mindestens rund 40.000 Jahren. Mit ihnen ließ sich eng anliegende, warme Kleidung nähen.",
+   "long": "Kleidung aus Fell und Leder schützte vor der Kälte der Eiszeit. Mit einer Nadel mit Öhr konnte man Teile passgenau zusammennähen – das hielt deutlich wärmer als ein umgehängtes Fell.\n\nDie ältesten Nadeln dieser Art sind mindestens rund 40.000 Jahre alt. Als Faden dienten Tiersehnen oder Pflanzenfasern.\n\nEine kleine Erfindung mit großer Wirkung: Sie half Menschen, in sehr kalten Regionen zu überleben."
+  },
+  {
+   "id": "kap02_lascaux",
+   "kind": "fakt",
+   "title": "Die Entdeckung von Lascaux",
+   "short": "Die Höhle von Lascaux in Frankreich wurde 1940 von Jugendlichen entdeckt. Ihre Malereien sind etwa 17.000 Jahre alt.",
+   "long": "Im September 1940 stießen vier Jugendliche in Südwestfrankreich auf einen Höhlengang. Dahinter lagen Hunderte Bilder von Pferden, Hirschen, Auerochsen und anderen Tieren – etwa 17.000 Jahre alt.\n\nNach der Öffnung für Besucher schädigten Atemluft und Licht die Malereien. 1963 wurde die Höhle geschlossen. Heute sehen Besucher originalgetreue Nachbildungen.\n\nLascaux zeigt, dass Menschen der Eiszeit genaue Beobachter und begabte Künstler waren."
+  },
+  {
+   "id": "kap02_neandertaler_ende",
+   "kind": "fakt",
+   "title": "Das Verschwinden der Neandertaler",
+   "short": "Vor etwa 40.000 Jahren verschwanden die Neandertaler. Warum, ist bis heute nicht endgültig geklärt.",
+   "long": "Nach Hunderttausenden Jahren in Europa und Westasien verschwanden die Neandertaler vor etwa 40.000 Jahren. Diskutiert werden mehrere Gründe: Klimaschwankungen, kleine und isolierte Gruppen, Krankheiten und die Konkurrenz durch Homo sapiens.\n\nGanz verschwunden sind sie aber nicht: Durch gemeinsame Nachkommen lebt ein Teil ihres Erbguts in heutigen Menschen weiter.\n\nSeit ihrem Verschwinden ist Homo sapiens die einzige lebende Menschenart."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art02_perle",
+   "title": "Durchbohrtes Schneckenhaus",
+   "text": "Ein kleines Schneckenhaus mit Loch und Ockerspuren. Vielleicht war es Teil einer Kette, die jemand mit Stolz getragen hat."
+  },
+  {
+   "id": "art02_nadel",
+   "title": "Knochennadel",
+   "text": "Eine feine Nadel aus Knochen mit winzigem Öhr. Ohne sie wäre warme Kleidung für die Eiszeit kaum möglich gewesen."
+  },
+  {
+   "id": "art02_flote",
+   "title": "Fragment einer Flöte",
+   "text": "Ein Stück Vogelknochen mit Grifflöchern. Musik begleitet die Menschheit seit mindestens 40.000 Jahren."
+  },
+  {
+   "id": "art02_harpune",
+   "title": "Harpunenspitze aus Geweih",
+   "text": "Mit Widerhaken versehen – eine Erfindung für die Jagd auf Fische und Robben."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Kaleb der Wanderer",
+  "role": "Jäger der Eiszeit, vor etwa 20.000 Jahren (erfunden)",
+  "lines": [
+   "Das Eis frisst den Norden. Aber dort, wo es aufhört, ziehen die Rentiere entlang.",
+   "Meine Mutter hat mir beigebracht, Spuren zu lesen. Jede Spur ist eine Geschichte – wer hier war und wohin er ging.",
+   "In der Höhle malen wir die Tiere an die Wand. Nicht nur für die Jagd. Damit wir nicht vergessen, wie schön sie sind.",
+   "Geh weiter, Hüter. Hinter dem Horizont gibt es immer noch Land."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Wie tief lag der Meeresspiegel auf dem Höhepunkt der letzten Eiszeit ungefähr?",
+   "options": [
+    "rund 12 Meter",
+    "rund 120 Meter",
+    "rund 1.200 Meter"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Was war Beringia?",
+   "options": [
+    "Eine Landbrücke zwischen Sibirien und Alaska",
+    "Eine Höhle in Frankreich",
+    "Ein Gebirge in Afrika"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Welches ist das älteste Haustier des Menschen?",
+   "options": [
+    "Das Schaf",
+    "Das Pferd",
+    "Der Hund"
+   ],
+   "correct": 2
+  }
+ ]
+}

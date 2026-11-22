@@ -1,0 +1,181 @@
+{
+ "id": "kap13_mittelalter_europa",
+ "number": 13,
+ "title": "Europas Mittelalter",
+ "era": "etwa 750 bis 1450",
+ "summary": "Karl der Große, Wikinger, Burgen und Kathedralen, Kreuzzüge, Hanse, Universitäten und die Pest.",
+ "theme": {
+  "floor": [
+   0.3,
+   0.3,
+   0.32
+  ],
+  "wall": [
+   0.36,
+   0.35,
+   0.34
+  ],
+  "column": [
+   0.22,
+   0.21,
+   0.21
+  ],
+  "torch": [
+   1.0,
+   0.5,
+   0.2
+  ],
+  "columnShape": "eckig",
+  "monument": "zikkurat",
+  "sunPitch": -25,
+  "sunIntensity": 4,
+  "fog": 0.025
+ },
+ "infoPoints": [
+  {
+   "id": "kap05_europa",
+   "kind": "fakt",
+   "title": "Klöster, Städte und die Pest",
+   "short": "Karl der Große wurde im Jahr 800 zum Kaiser gekrönt. Klöster bewahrten Wissen, Städte wuchsen. Die Pest tötete von 1347 bis 1351 schätzungsweise ein Drittel bis die Hälfte der Menschen in Europa.",
+   "long": "Nach dem Ende des Weströmischen Reichs entstanden in Europa neue Königreiche. Der Frankenkönig Karl der Große wurde am Weihnachtstag des Jahres 800 in Rom zum Kaiser gekrönt. Er förderte Schulen und das Abschreiben alter Texte.\n\nDie Gesellschaft war in Stände gegliedert: Geistliche, Adel und die große Mehrheit der Bauern, von denen viele in Abhängigkeit von Grundherren lebten. Klöster waren Orte des Glaubens, der Bildung und der Landwirtschaft. Ab dem 11. Jahrhundert wuchsen Handel und Städte; ab dem späten 11. Jahrhundert entstanden die ersten Universitäten, etwa in Bologna und Paris.\n\nAb 1347 breitete sich die Pest, der „Schwarze Tod“, in Europa aus. Bis 1351 starben schätzungsweise ein Drittel bis die Hälfte der Bevölkerung. In ihrer Angst machten viele Menschen Minderheiten zu Sündenböcken: In zahlreichen Städten wurden jüdische Gemeinden verfolgt und ermordet."
+  },
+  {
+   "id": "kap13_karl",
+   "kind": "fakt",
+   "title": "Karl der Große und Aachen",
+   "short": "Karl der Große machte Aachen zu seinem wichtigsten Hof. Er förderte Bildung und eine neue, gut lesbare Schrift.",
+   "long": "Karl regierte ab 768 das Frankenreich und erweiterte es durch Kriege, unter anderem gegen die Sachsen, die er gewaltsam zum Christentum zwang.\n\nIn Aachen ließ er eine Pfalz mit einer prächtigen Kapelle bauen, die heute Teil des Aachener Doms ist. Gelehrte aus ganz Europa kamen an seinen Hof.\n\nDie karolingische Minuskel, eine klare Kleinbuchstabenschrift, ist ein Vorfahr unserer heutigen Druckbuchstaben."
+  },
+  {
+   "id": "kap13_wikinger",
+   "kind": "fakt",
+   "title": "Die Wikinger",
+   "short": "Ab 793 überfielen Wikinger aus Skandinavien Küsten Europas. Sie waren auch Händler, Siedler und Entdecker – um das Jahr 1000 erreichten sie Nordamerika.",
+   "long": "Der Überfall auf das Kloster Lindisfarne in England 793 gilt als Beginn der Wikingerzeit. Mit ihren schnellen Schiffen fuhren Wikinger über Meere und Flüsse bis nach Konstantinopel und Bagdad.\n\nSie gründeten Siedlungen in England, Irland, der Normandie und auf Island. Um das Jahr 1000 landete Leif Eriksson in Nordamerika; die Siedlung L'Anse aux Meadows in Neufundland ist archäologisch belegt.\n\nHörnerhelme trugen Wikinger übrigens nicht – das ist eine Erfindung des 19. Jahrhunderts."
+  },
+  {
+   "id": "kap13_lehnswesen",
+   "kind": "fakt",
+   "title": "Lehnswesen und Grundherrschaft",
+   "short": "Im Mittelalter vergaben Könige Land an Adlige, die ihnen dafür Treue und Kriegsdienst schuldeten. Die Bauern arbeiteten für ihre Grundherren.",
+   "long": "Der König gab einem Vasallen Land als Lehen. Der Vasall versprach Treue und Unterstützung im Krieg und konnte selbst Land an Untervasallen weitergeben.\n\nDie meisten Menschen waren Bauern. Viele waren vom Grundherrn abhängig: Sie mussten Abgaben leisten und Frondienste auf seinen Feldern verrichten.\n\nDie Gesellschaft wurde als Ordnung von drei Ständen beschrieben: die, die beten, die, die kämpfen, und die, die arbeiten."
+  },
+  {
+   "id": "kap13_burgen",
+   "kind": "fakt",
+   "title": "Burgen",
+   "short": "Burgen dienten Adligen als Wohnsitz, Verwaltungszentrum und Schutz. Allein im heutigen Deutschland gab es Tausende.",
+   "long": "Frühe Burgen bestanden aus Holz und Erdwällen. Ab dem 11. Jahrhundert entstanden steinerne Burgen mit Bergfried, Ringmauer und Graben.\n\nDas Leben auf einer Burg war oft weniger romantisch als gedacht: zugig, kalt und eng.\n\nMit dem Aufkommen von Kanonen im 15. Jahrhundert verloren Burgen ihren militärischen Wert; viele wurden zu Schlössern umgebaut oder verfielen."
+  },
+  {
+   "id": "kap13_kreuzzuege",
+   "kind": "fakt",
+   "title": "Die Kreuzzüge",
+   "short": "1095 rief Papst Urban II. zum Kreuzzug nach Jerusalem auf. Bis 1291 folgten mehrere Kreuzzüge mit großer Gewalt auf allen Seiten.",
+   "long": "1099 eroberten Kreuzfahrer Jerusalem und richteten unter der Bevölkerung, Muslimen und Juden, ein Blutbad an. 1187 eroberte Sultan Saladin die Stadt zurück.\n\nAuch in Europa kam es im Zusammenhang mit den Kreuzzügen zu Pogromen an jüdischen Gemeinden, etwa im Rheinland 1096. 1204 plünderten Kreuzfahrer sogar das christliche Konstantinopel.\n\n1291 fiel mit Akkon die letzte Kreuzfahrerstadt im Heiligen Land."
+  },
+  {
+   "id": "kap13_kathedralen",
+   "kind": "fakt",
+   "title": "Gotische Kathedralen",
+   "short": "Ab dem 12. Jahrhundert entstanden gotische Kathedralen mit hohen Gewölben und großen bunten Fenstern. Der Kölner Dom wurde 1248 begonnen und erst 1880 vollendet.",
+   "long": "Spitzbögen, Rippengewölbe und Strebepfeiler ermöglichten höhere Bauten mit dünneren Wänden und riesigen Fenstern. Das Licht sollte an das himmlische Jerusalem erinnern.\n\nDer Bau einer Kathedrale dauerte oft Generationen. Steinmetze, Glaser und Zimmerleute zogen von Baustelle zu Baustelle.\n\nDer Kölner Dom blieb jahrhundertelang unvollendet; ein mittelalterlicher Kran stand bis ins 19. Jahrhundert auf dem Südturm."
+  },
+  {
+   "id": "kap13_hanse",
+   "kind": "fakt",
+   "title": "Die Hanse",
+   "short": "Die Hanse war ein Bund von Kaufleuten und Städten wie Lübeck, Hamburg und Danzig. Sie beherrschte jahrhundertelang den Handel in Nord- und Ostsee.",
+   "long": "Hansekaufleute handelten mit Getreide, Holz, Pelzen, Salz, Heringen und Tuch. Ihre Schiffe, die Koggen, verbanden Städte von London bis Nowgorod.\n\nDie Hanse hatte keine Regierung im heutigen Sinn, setzte ihre Interessen aber mit Handelsboykotten und sogar Kriegen durch.\n\nViele Städte führen bis heute „Hansestadt“ im Namen – daher das „H“ in Autokennzeichen wie HH für Hamburg."
+  },
+  {
+   "id": "kap13_magna_carta",
+   "kind": "fakt",
+   "title": "Die Magna Carta",
+   "short": "1215 mussten englische Barone König Johann eine Urkunde abringen, die auch die Macht des Königs an Gesetze band: die Magna Carta.",
+   "long": "Die Magna Carta sicherte vor allem den Adligen Rechte zu. Ein berühmter Grundsatz besagt, dass kein freier Mann ohne rechtmäßiges Urteil bestraft werden darf.\n\nDie Urkunde wurde kurz nach ihrer Ausstellung vom Papst für ungültig erklärt, aber später mehrfach erneuert.\n\nIn späteren Jahrhunderten wurde sie zum Symbol dafür, dass auch Herrscher dem Recht unterstehen."
+  },
+  {
+   "id": "kap13_hildegard",
+   "kind": "fakt",
+   "title": "Hildegard von Bingen",
+   "short": "Hildegard von Bingen (1098–1179) war Äbtissin, Naturkundlerin, Komponistin und Ratgeberin von Kaisern und Päpsten.",
+   "long": "Hildegard gründete am Rhein das Kloster Rupertsberg. Sie schrieb über ihre Visionen, über Heilpflanzen und den menschlichen Körper.\n\nIhre Musik wird bis heute aufgeführt. Sie korrespondierte mit Kaiser Friedrich Barbarossa und kritisierte auch mächtige Männer offen.\n\n2012 wurde sie zur Kirchenlehrerin ernannt – eine der wenigen Frauen mit diesem Titel."
+  },
+  {
+   "id": "kap13_universitaeten",
+   "kind": "fakt",
+   "title": "Die ersten Universitäten",
+   "short": "Die Universität Bologna gilt als älteste Europas, traditionell auf 1088 datiert. Die älteste im heutigen Deutschland ist Heidelberg (1386).",
+   "long": "Universitäten entstanden als Gemeinschaften von Lehrenden und Studierenden. Gelehrt wurden die sieben freien Künste und darauf aufbauend Theologie, Recht und Medizin.\n\nGelehrt und geschrieben wurde auf Latein, sodass Studierende aus ganz Europa an jeder Universität lernen konnten.\n\nNach Bologna folgten Paris, Oxford, Salamanca und viele weitere; im Heiligen Römischen Reich Prag 1348, Wien 1365 und Heidelberg 1386."
+  },
+  {
+   "id": "kap13_hundert_jahre",
+   "kind": "fakt",
+   "title": "Der Hundertjährige Krieg",
+   "short": "Von 1337 bis 1453 kämpften England und Frankreich mit Unterbrechungen um die französische Krone. Jeanne d'Arc wurde zur Symbolfigur.",
+   "long": "Der Krieg zog sich über mehr als ein Jahrhundert und verwüstete weite Teile Frankreichs. Englische Langbogenschützen siegten in Schlachten wie Crécy und Azincourt.\n\nDas Bauernmädchen Jeanne d'Arc führte 1429 ein französisches Heer zur Befreiung von Orléans. 1431 wurde sie von einem englandfreundlichen Gericht als Ketzerin verbrannt.\n\nAm Ende blieb England fast nur noch die Stadt Calais auf dem Festland."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art13_siegel",
+   "title": "Wachssiegel einer Stadt",
+   "text": "Das Siegel einer Hansestadt mit einer Kogge darauf. Wer siegelte, garantierte mit seinem Namen."
+  },
+  {
+   "id": "art13_kettenhemd",
+   "title": "Ring eines Kettenhemds",
+   "text": "Zehntausende solcher Ringe, einzeln vernietet, ergaben ein Kettenhemd. Ein Schmied brauchte dafür Wochen."
+  },
+  {
+   "id": "art13_pilger",
+   "title": "Pilgerzeichen",
+   "text": "Ein kleines Abzeichen aus Zinn, gekauft an einem Wallfahrtsort. Andenken gab es schon im Mittelalter."
+  },
+  {
+   "id": "art13_glas",
+   "title": "Farbiges Kirchenfensterglas",
+   "text": "Ein Stück tiefblaues Glas. Im Sonnenlicht ließ es Bilder aus der Bibel leuchten – für Menschen, die nicht lesen konnten."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Gerlinde",
+  "role": "Bäuerin am Rhein, um 1200 (erfunden)",
+  "lines": [
+   "Drei Tage die Woche arbeite ich auf dem Feld des Grundherrn. Den Rest für uns. Wenn die Ernte schlecht ist, hungern wir zuerst.",
+   "Im Dorf erzählt man von Kreuzfahrern, Königen und Wundern. Ich habe in meinem Leben nur zwei Städte gesehen.",
+   "Aber im Frühjahr, wenn die Kirschbäume blühen, sind wir alle reich.",
+   "Schreib auch über uns, Hüter. Die Chroniken sind voll von Königen. Aber wir haben das Brot gemacht."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Welche Universität gilt als älteste Europas?",
+   "options": [
+    "Heidelberg",
+    "Bologna",
+    "Oxford"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wann wurde der Kölner Dom vollendet?",
+   "options": [
+    "1248",
+    "1500",
+    "1880"
+   ],
+   "correct": 2
+  },
+  {
+   "q": "Was war die Hanse?",
+   "options": [
+    "Ein Bund von Kaufleuten und Städten",
+    "Ein Ritterorden",
+    "Ein Königreich in Skandinavien"
+   ],
+   "correct": 0
+  }
+ ]
+}

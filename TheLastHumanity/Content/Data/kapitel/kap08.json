@@ -1,0 +1,188 @@
+{
+ "id": "kap08_griechenland",
+ "number": 8,
+ "title": "Das antike Griechenland",
+ "era": "etwa 2000 bis 146 v. Chr.",
+ "summary": "Von den Palästen Kretas über Athens Demokratie bis zu Alexander dem Großen und dem Hellenismus.",
+ "theme": {
+  "floor": [
+   0.82,
+   0.8,
+   0.76
+  ],
+  "wall": [
+   0.72,
+   0.7,
+   0.66
+  ],
+  "column": [
+   0.88,
+   0.86,
+   0.82
+  ],
+  "torch": [
+   1.0,
+   0.85,
+   0.6
+  ],
+  "columnShape": "rund",
+  "monument": "bogen",
+  "sunPitch": -50,
+  "sunIntensity": 9,
+  "fog": 0.006
+ },
+ "infoPoints": [
+  {
+   "id": "kap04_athen",
+   "kind": "fakt",
+   "title": "Die Demokratie in Athen",
+   "short": "Mit den Reformen des Kleisthenes um 508 v. Chr. entstand in Athen eine frühe Form der Demokratie. Mitbestimmen durften allerdings nur freie erwachsene Männer mit Bürgerrecht.",
+   "long": "Griechenland bestand in der Antike aus vielen unabhängigen Stadtstaaten, den Poleis. In Athen führte Kleisthenes um 508/507 v. Chr. Reformen durch, die die Macht vom Adel auf die Bürgerschaft verlagerten. Das Wort Demokratie bedeutet „Herrschaft des Volkes“.\n\nIn der Volksversammlung konnten die Bürger direkt über Gesetze, Krieg und Frieden abstimmen. Viele Ämter wurden ausgelost. Mit dem „Scherbengericht“ konnte ein Politiker für zehn Jahre verbannt werden, wenn zu viele ihn für gefährlich hielten.\n\nZum „Volk“ zählten jedoch nur freie, erwachsene Männer mit athenischem Bürgerrecht. Frauen, zugewanderte Menschen und die zahlreichen Sklavinnen und Sklaven waren ausgeschlossen. Die Athener Demokratie war also begrenzt – und doch ein Vorbild für spätere Ideen von Mitbestimmung."
+  },
+  {
+   "id": "kap04_philosophie",
+   "kind": "fakt",
+   "title": "Fragen nach dem Warum",
+   "short": "Griechische Denker wie Sokrates, Platon und Aristoteles suchten nach vernünftigen Erklärungen für die Welt. Eratosthenes berechnete um 240 v. Chr. erstaunlich genau den Umfang der Erde.",
+   "long": "Im antiken Griechenland begannen Menschen, die Welt nicht nur mit Mythen, sondern mit Beobachtung und Vernunft zu erklären. Sokrates (gestorben 399 v. Chr.) stellte unbequeme Fragen und wurde dafür in Athen zum Tode verurteilt. Sein Schüler Platon gründete eine Schule, die Akademie. Dessen Schüler Aristoteles schrieb über Logik, Politik, Biologie und vieles mehr.\n\nAuch die Mathematik und Naturkunde blühten auf. Eratosthenes, der Leiter der berühmten Bibliothek von Alexandria, verglich um 240 v. Chr. den Sonnenstand an zwei Orten in Ägypten und berechnete daraus den Erdumfang. Sein Ergebnis lag – je nach angenommener Länge seiner Maßeinheit – nahe am tatsächlichen Wert von rund 40.000 Kilometern.\n\nViele dieser Schriften wurden später in der arabischen Welt übersetzt und bewahrt."
+  },
+  {
+   "id": "kap08_minoer",
+   "kind": "fakt",
+   "title": "Die Minoer auf Kreta",
+   "short": "Auf Kreta blühte etwa von 2000 bis 1450 v. Chr. die minoische Kultur mit großen Palästen wie Knossos.",
+   "long": "Die Minoer bauten weitläufige Palastanlagen mit Lagerräumen, Wasserleitungen und farbenfrohen Wandmalereien von Delfinen, Pflanzen und Festen.\n\nIhre Schrift, Linear A, ist bis heute nicht entziffert. Den Namen „Minoer“ gab ihnen erst der Archäologe Arthur Evans nach dem sagenhaften König Minos.\n\nUm 1450 v. Chr. wurden viele Paläste zerstört; danach übernahmen Mykener die Herrschaft auf Kreta."
+  },
+  {
+   "id": "kap08_mykene",
+   "kind": "fakt",
+   "title": "Mykene",
+   "short": "Die mykenische Kultur auf dem griechischen Festland blühte etwa von 1600 bis 1200 v. Chr. Ihre Schrift Linear B wurde 1952 entziffert.",
+   "long": "Mykene war von gewaltigen Mauern aus riesigen Steinblöcken umgeben, durch das Löwentor betrat man die Burg. In Schachtgräbern fand Heinrich Schliemann 1876 goldene Totenmasken.\n\n1952 entzifferte der Architekt Michael Ventris die Schrift Linear B. Sie erwies sich als frühe Form des Griechischen und enthielt vor allem Verwaltungslisten.\n\nUm 1200 v. Chr. endete die Palastkultur – ein Teil des großen Zusammenbruchs der Bronzezeit."
+  },
+  {
+   "id": "kap08_homer",
+   "kind": "fakt",
+   "title": "Homer: Ilias und Odyssee",
+   "short": "Die Ilias und die Odyssee entstanden vermutlich im 8. Jahrhundert v. Chr. Sie gehören zu den ältesten Werken der europäischen Literatur.",
+   "long": "Die Ilias erzählt von einigen Wochen im Trojanischen Krieg, die Odyssee von der zehnjährigen Heimkehr des Odysseus. Beide Epen wurden lange mündlich vorgetragen, bevor sie aufgeschrieben wurden.\n\nOb ein Dichter namens Homer wirklich gelebt hat und ob er beide Werke schuf, ist umstritten.\n\nDie Epen prägten Bildung und Kunst in Griechenland und später in ganz Europa."
+  },
+  {
+   "id": "kap08_olympia",
+   "kind": "fakt",
+   "title": "Die Olympischen Spiele",
+   "short": "Der Überlieferung nach fanden 776 v. Chr. die ersten Olympischen Spiele statt. 1896 wurden sie in Athen wiederbelebt.",
+   "long": "Die Spiele zu Ehren des Zeus fanden alle vier Jahre im Heiligtum von Olympia statt. Es gab Laufwettbewerbe, Ringen, Wagenrennen und den Fünfkampf. Teilnehmen durften nur freie griechische Männer.\n\nWährend der Spiele galt eine heilige Waffenruhe, damit Sportler und Zuschauer sicher anreisen konnten.\n\nNach über tausend Jahren endeten die antiken Spiele Ende des 4. Jahrhunderts n. Chr. Die modernen Spiele begannen 1896 in Athen."
+  },
+  {
+   "id": "kap08_sparta",
+   "kind": "fakt",
+   "title": "Sparta",
+   "short": "Sparta war ein Stadtstaat, in dem das Leben der Bürger ganz auf das Militär ausgerichtet war. Die Arbeit verrichteten unfreie Heloten.",
+   "long": "Spartanische Jungen wurden ab etwa sieben Jahren in einer harten staatlichen Erziehung zu Soldaten ausgebildet. Die Bürger sollten sich ganz dem Kriegsdienst widmen.\n\nDie Felder bestellten die Heloten, eine unterdrückte, unfreie Bevölkerung, die die Spartaner zahlenmäßig weit übertraf.\n\nSpartanische Frauen hatten im Vergleich zu Athen mehr Freiheiten: Sie trieben Sport und verwalteten Besitz."
+  },
+  {
+   "id": "kap08_perserkriege",
+   "kind": "fakt",
+   "title": "Die Perserkriege",
+   "short": "Bei Marathon (490 v. Chr.) und Salamis (480 v. Chr.) besiegten griechische Stadtstaaten das mächtige Perserreich.",
+   "long": "490 v. Chr. besiegten die Athener ein persisches Heer bei Marathon. Der spätere Marathonlauf erinnert an diese Schlacht.\n\n480 v. Chr. kam der Perserkönig Xerxes mit einem riesigen Heer. Bei den Thermopylen hielt eine kleine Truppe um den Spartanerkönig Leonidas die Perser auf. In der Seeschlacht von Salamis siegte die griechische Flotte.\n\nDer Sieg stärkte Athens Selbstbewusstsein und leitete seine Blütezeit ein."
+  },
+  {
+   "id": "kap08_akropolis",
+   "kind": "fakt",
+   "title": "Die Akropolis",
+   "short": "Auf der Akropolis von Athen ließ Perikles im 5. Jahrhundert v. Chr. den Parthenon errichten, einen Tempel für die Göttin Athene.",
+   "long": "Der Parthenon wurde von 447 bis 432 v. Chr. aus weißem Marmor erbaut. Er war ursprünglich bunt bemalt und beherbergte eine riesige Statue der Athene aus Gold und Elfenbein.\n\nIn seiner Geschichte war der Parthenon Tempel, Kirche, Moschee und Pulverlager. 1687 wurde er bei einer Explosion schwer beschädigt.\n\nViele seiner Skulpturen befinden sich heute im British Museum in London; Griechenland fordert sie zurück."
+  },
+  {
+   "id": "kap08_theater",
+   "kind": "fakt",
+   "title": "Das Theater",
+   "short": "Im Athen des 5. Jahrhunderts v. Chr. entstanden Tragödie und Komödie. Viele Stücke werden bis heute aufgeführt.",
+   "long": "Bei den Festen für den Gott Dionysos traten Dichter mit ihren Stücken gegeneinander an. Die Zuschauer saßen in riesigen Freilichttheatern am Hang.\n\nDie Tragödiendichter Aischylos, Sophokles und Euripides schrieben über Schicksal, Schuld und Gerechtigkeit. Aristophanes verspottete in seinen Komödien Politiker und Philosophen.\n\nWörter wie „Theater“, „Drama“ und „Szene“ stammen aus dem Griechischen."
+  },
+  {
+   "id": "kap08_hippokrates",
+   "kind": "fakt",
+   "title": "Hippokrates und die Medizin",
+   "short": "Hippokrates von Kos lebte im 5. Jahrhundert v. Chr. Er und seine Schule erklärten Krankheiten mit natürlichen Ursachen statt mit dem Zorn der Götter.",
+   "long": "Hippokrates gilt als einer der Begründer der wissenschaftlichen Medizin. Seine Schule beobachtete Kranke genau und beschrieb den Verlauf von Krankheiten.\n\nNach der damaligen Lehre entstanden Krankheiten durch ein Ungleichgewicht von vier Körpersäften. Diese Vorstellung prägte die Medizin bis ins 19. Jahrhundert.\n\nDer berühmte „Eid des Hippokrates“ stammt wahrscheinlich nicht von ihm selbst, wurde aber zum Vorbild ärztlicher Ethik."
+  },
+  {
+   "id": "kap08_alexander",
+   "kind": "fakt",
+   "title": "Alexander der Große",
+   "short": "Alexander von Makedonien eroberte zwischen 334 und 323 v. Chr. ein Reich von Griechenland bis nach Indien.",
+   "long": "Alexander wurde 336 v. Chr. mit 20 Jahren König von Makedonien. Er besiegte das Perserreich und zog bis an den Indus. Zu seinen Lehrern gehörte Aristoteles.\n\nAlexander starb 323 v. Chr. mit nur 32 Jahren in Babylon. Sein Reich zerfiel unter seinen Generälen.\n\nDurch seine Eroberungen verbreiteten sich griechische Sprache und Kultur im ganzen Orient. Diese Epoche nennt man Hellenismus."
+  },
+  {
+   "id": "kap08_alexandria",
+   "kind": "fakt",
+   "title": "Alexandria und seine Bibliothek",
+   "short": "Das ägyptische Alexandria wurde zum Zentrum der Wissenschaft. Seine Bibliothek sollte alle Bücher der Welt sammeln.",
+   "long": "Alexander gründete 331 v. Chr. die Stadt Alexandria. Unter den Ptolemäern entstand dort das Museion, eine Forschungsstätte, mit einer riesigen Bibliothek.\n\nGelehrte wie der Mathematiker Euklid und der Geograf Eratosthenes arbeiteten hier. Schiffe, die im Hafen anlegten, mussten Bücher zum Abschreiben abgeben.\n\nDie Bibliothek ging nicht in einem einzigen Brand unter, sondern verfiel über Jahrhunderte."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art08_scherbe",
+   "title": "Ostrakon mit Namen",
+   "text": "Eine Tonscherbe mit einem eingeritzten Namen. Beim Scherbengericht stimmten Athener so über die Verbannung eines Politikers ab."
+  },
+  {
+   "id": "art08_maske",
+   "title": "Theatermaske",
+   "text": "Eine Maske mit weit offenem Mund. Im großen Freilichttheater mussten Gefühle auch in der letzten Reihe zu sehen sein."
+  },
+  {
+   "id": "art08_eule",
+   "title": "Silbermünze mit Eule",
+   "text": "Die Eule war das Zeichen Athenes und der Stadt Athen. Diese Münzen wurden im ganzen Mittelmeer angenommen."
+  },
+  {
+   "id": "art08_amphore",
+   "title": "Bemalte Amphore",
+   "text": "Schwarze Figuren auf rotem Ton: Läufer bei den Olympischen Spielen. Solche Gefäße waren auch Siegespreise."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Phaidra",
+  "role": "Töpferin in Athen, um 430 v. Chr. (erfunden)",
+  "lines": [
+   "Die Männer streiten auf der Versammlung über Krieg und Frieden. Ich darf nicht mitstimmen – aber meine Vasen reisen weiter als ihre Reden.",
+   "Gestern war ich im Theater. Ein Stück über eine Königin, die sich gegen den Willen der Götter auflehnte. Alle haben geweint.",
+   "Mein Bruder sagt, die Welt besteht aus kleinen, unteilbaren Teilchen. Ich sage, sie besteht aus Ton und Feuer.",
+   "Frag, Hüter. Frag immer weiter. Das haben wir hier erfunden."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Wann fanden der Überlieferung nach die ersten Olympischen Spiele statt?",
+   "options": [
+    "776 v. Chr.",
+    "476 n. Chr.",
+    "1896"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wer entzifferte 1952 die Schrift Linear B?",
+   "options": [
+    "Michael Ventris",
+    "Heinrich Schliemann",
+    "Howard Carter"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Bis wohin reichte das Reich Alexanders des Großen im Osten?",
+   "options": [
+    "Bis nach Indien",
+    "Bis nach China",
+    "Bis nach Japan"
+   ],
+   "correct": 0
+  }
+ ]
+}

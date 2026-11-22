@@ -1,0 +1,181 @@
+{
+ "id": "kap15_renaissance",
+ "number": 15,
+ "title": "Renaissance und Reformation",
+ "era": "etwa 1400 bis 1600",
+ "summary": "Florenz und die Kunst der Renaissance, der Buchdruck, die Reformation und die Glaubenskonflikte.",
+ "theme": {
+  "floor": [
+   0.62,
+   0.52,
+   0.42
+  ],
+  "wall": [
+   0.66,
+   0.58,
+   0.46
+  ],
+  "column": [
+   0.5,
+   0.4,
+   0.3
+  ],
+  "torch": [
+   1.0,
+   0.8,
+   0.5
+  ],
+  "columnShape": "rund",
+  "monument": "kugel",
+  "sunPitch": -44,
+  "sunIntensity": 8,
+  "fog": 0.01
+ },
+ "infoPoints": [
+  {
+   "id": "kap06_buchdruck",
+   "kind": "fakt",
+   "title": "Der Buchdruck",
+   "short": "Johannes Gutenberg entwickelte in Mainz den Buchdruck mit beweglichen Metalllettern; um 1454 entstand seine berühmte Bibel. Bewegliche Lettern gab es zuvor schon in China und Korea.",
+   "long": "Bevor Bücher gedruckt wurden, mussten sie von Hand abgeschrieben werden. Johannes Gutenberg entwickelte um die Mitte des 15. Jahrhunderts in Mainz ein Verfahren, mit dem sich einzelne Buchstaben aus Metall in großer Zahl gießen, zu Seiten zusammensetzen und mit einer Presse drucken ließen. Um 1454 war seine zweispaltige Bibel mit 42 Zeilen pro Seite fertig.\n\nGutenberg war nicht der Erste, der mit beweglichen Lettern druckte: In China gab es schon im 11. Jahrhundert Versuche mit Lettern aus Ton, und in Korea wurde 1377 ein Buch mit Metalllettern gedruckt. In Europa aber verbreitete sich die Technik rasend schnell. Um 1500 gab es bereits Druckereien in über 200 Städten.\n\nBücher, Flugblätter und Zeitungen wurden billiger. Wissen, Nachrichten und neue Ideen erreichten viel mehr Menschen – eine Voraussetzung für Reformation und Wissenschaft."
+  },
+  {
+   "id": "kap06_reformation",
+   "kind": "fakt",
+   "title": "Reformation und Glaubenskriege",
+   "short": "1517 veröffentlichte Martin Luther seine 95 Thesen gegen den Ablasshandel. Die Reformation spaltete die westliche Kirche. Der Dreißigjährige Krieg verwüstete Mitteleuropa und endete 1648.",
+   "long": "Der Mönch und Theologieprofessor Martin Luther kritisierte 1517 in seinen 95 Thesen den Verkauf von Ablassbriefen, mit denen sich Gläubige angeblich von Sündenstrafen freikaufen konnten. Dank des Buchdrucks verbreiteten sich seine Schriften schnell. Luther übersetzte die Bibel ins Deutsche, damit Menschen sie selbst lesen konnten.\n\nAus der Reformbewegung entstanden evangelische Kirchen; die westliche Christenheit spaltete sich. Religiöse und politische Konflikte führten zu Kriegen. Der Dreißigjährige Krieg (1618 bis 1648) verwüstete weite Teile Mitteleuropas; in manchen Regionen kam ein großer Teil der Bevölkerung durch Gewalt, Hunger und Seuchen ums Leben.\n\nDer Westfälische Friede von 1648, ausgehandelt in Münster und Osnabrück, beendete den Krieg und legte Regeln für das Zusammenleben der Konfessionen und Staaten fest."
+  },
+  {
+   "id": "kap15_florenz",
+   "kind": "fakt",
+   "title": "Florenz und die Medici",
+   "short": "Im 15. Jahrhundert wurde Florenz zum Zentrum der Renaissance. Die Bankiersfamilie Medici förderte Künstler und Gelehrte.",
+   "long": "„Renaissance“ bedeutet Wiedergeburt: Künstler und Gelehrte orientierten sich neu an der Antike und stellten den Menschen in den Mittelpunkt.\n\nDie reichen Medici finanzierten Bauten, Gemälde und Bibliotheken. Filippo Brunelleschi vollendete 1436 die gewaltige Kuppel des Florentiner Doms – ohne Lehrgerüst vom Boden aus.\n\nAuch die Zentralperspektive, mit der Maler räumliche Tiefe darstellen, wurde in Florenz entwickelt."
+  },
+  {
+   "id": "kap15_leonardo",
+   "kind": "fakt",
+   "title": "Leonardo da Vinci",
+   "short": "Leonardo da Vinci (1452–1519) war Maler, Erfinder, Ingenieur und Naturforscher. Er malte die Mona Lisa und füllte Tausende Notizbuchseiten.",
+   "long": "Leonardo malte das Abendmahl in Mailand und die Mona Lisa, die heute im Louvre hängt. In seinen Notizbüchern skizzierte er Flugmaschinen, Brücken, Wasserwerke und anatomische Studien.\n\nEr schrieb oft in Spiegelschrift, von rechts nach links.\n\nViele seiner Erfindungen wurden nie gebaut, zeigen aber seine außergewöhnliche Beobachtungsgabe."
+  },
+  {
+   "id": "kap15_michelangelo",
+   "kind": "fakt",
+   "title": "Michelangelo",
+   "short": "Michelangelo schuf die Statue des David (1504) und malte von 1508 bis 1512 die Decke der Sixtinischen Kapelle in Rom.",
+   "long": "Der David, über fünf Meter hoch, wurde aus einem einzigen Marmorblock gehauen, den andere Bildhauer als unbrauchbar aufgegeben hatten.\n\nFür die Decke der Sixtinischen Kapelle arbeitete Michelangelo vier Jahre lang auf einem Gerüst. Sie zeigt Szenen aus der Schöpfungsgeschichte, darunter die Erschaffung Adams.\n\nMichelangelo war auch Architekt: Er entwarf die Kuppel des Petersdoms."
+  },
+  {
+   "id": "kap15_humanismus",
+   "kind": "fakt",
+   "title": "Der Humanismus",
+   "short": "Humanisten wie Erasmus von Rotterdam lasen antike Texte im Original und forderten Bildung für einen mündigen Menschen.",
+   "long": "Die Humanisten studierten griechische und lateinische Texte und verbesserten fehlerhafte Abschriften. Bildung sollte den Menschen zu Tugend und Urteilskraft führen.\n\nErasmus von Rotterdam gab 1516 eine griechische Fassung des Neuen Testaments heraus und kritisierte Missstände in der Kirche mit Witz und Ironie.\n\nDer Humanismus bereitete den Boden für Reformation und moderne Wissenschaft."
+  },
+  {
+   "id": "kap15_gelehrte",
+   "kind": "fakt",
+   "title": "Gelehrte aus Byzanz",
+   "short": "Nach dem Fall Konstantinopels 1453 brachten byzantinische Gelehrte griechische Handschriften nach Italien.",
+   "long": "Schon vor 1453 lehrten byzantinische Gelehrte in Italien Griechisch. Nach der osmanischen Eroberung flohen weitere mit wertvollen Handschriften von Platon, Aristoteles und anderen.\n\nIn Venedig, Florenz und Rom entstanden Sammlungen griechischer Texte, die bald gedruckt wurden.\n\nSo trug das Ende von Byzanz dazu bei, antikes Wissen in Westeuropa zu verbreiten."
+  },
+  {
+   "id": "kap15_duerer",
+   "kind": "fakt",
+   "title": "Albrecht Dürer",
+   "short": "Der Nürnberger Albrecht Dürer (1471–1528) war einer der bedeutendsten Künstler der Renaissance nördlich der Alpen.",
+   "long": "Dürer reiste nach Italien und verband italienische Ideen mit deutscher Handwerkskunst. Berühmt sind sein Selbstbildnis im Pelzrock, der Feldhase und die Betenden Hände.\n\nMit Holzschnitten und Kupferstichen wurde er in ganz Europa bekannt – dank des Buchdrucks ließen sich Bilder in großer Zahl vervielfältigen.\n\nDürer schützte seine Werke mit seinem Monogramm, einem frühen Markenzeichen."
+  },
+  {
+   "id": "kap15_bauernkrieg",
+   "kind": "fakt",
+   "title": "Der Bauernkrieg",
+   "short": "1524 bis 1526 erhoben sich in Süd- und Mitteldeutschland Bauern gegen ihre Herren. Der Aufstand wurde blutig niedergeschlagen.",
+   "long": "Die Bauern forderten in den „Zwölf Artikeln“ von 1525 unter anderem die Abschaffung der Leibeigenschaft und gerechtere Abgaben. Sie beriefen sich auf die Bibel.\n\nDie Fürstenheere besiegten die schlecht bewaffneten Bauernhaufen. Schätzungsweise rund 70.000 Menschen kamen ums Leben.\n\nMartin Luther stellte sich gegen die Aufständischen und forderte die Fürsten zum harten Vorgehen auf."
+  },
+  {
+   "id": "kap15_augsburg",
+   "kind": "fakt",
+   "title": "Der Augsburger Religionsfrieden",
+   "short": "1555 einigten sich im Reich Katholiken und Lutheraner: Der Landesherr bestimmte die Konfession seines Gebiets.",
+   "long": "Nach Jahrzehnten von Konflikten wurde im Augsburger Religionsfrieden festgelegt, dass jeder Fürst wählen durfte, ob in seinem Land katholisch oder lutherisch geglaubt wurde. Später fasste man das als „Wessen Land, dessen Religion“ zusammen.\n\nUntertanen mit anderem Glauben durften auswandern. Reformierte und andere Gruppen waren nicht eingeschlossen.\n\nDer Frieden hielt mehrere Jahrzehnte, bis der Dreißigjährige Krieg ausbrach."
+  },
+  {
+   "id": "kap15_fugger",
+   "kind": "fakt",
+   "title": "Die Fugger und die Fuggerei",
+   "short": "Die Augsburger Kaufmannsfamilie Fugger war um 1500 eine der reichsten Europas. Die Fuggerei von 1521 ist die älteste bestehende Sozialsiedlung der Welt.",
+   "long": "Jakob Fugger handelte mit Textilien, Kupfer und Silber und lieh Kaisern und Päpsten Geld. Er finanzierte die Wahl Karls V. zum Kaiser.\n\n1521 stiftete er die Fuggerei: eine Siedlung für bedürftige Augsburger. Die Jahresmiete beträgt bis heute nominell weniger als einen Euro – dazu drei Gebete täglich für den Stifter.\n\nDie Fugger zeigen, wie eng Geld und Macht in der frühen Neuzeit verbunden waren."
+  },
+  {
+   "id": "kap15_hexen",
+   "kind": "fakt",
+   "title": "Hexenverfolgung",
+   "short": "Zwischen etwa 1450 und 1750 wurden in Europa schätzungsweise 40.000 bis 60.000 Menschen als „Hexen“ hingerichtet, die meisten davon Frauen.",
+   "long": "Die Hexenverfolgung war vor allem ein Phänomen der frühen Neuzeit, nicht des Mittelalters. Ihren Höhepunkt erreichte sie etwa zwischen 1560 und 1630; besonders viele Prozesse gab es im Heiligen Römischen Reich.\n\nUnter Folter gestanden Beschuldigte Taten, die sie nie begangen hatten, und nannten weitere Namen.\n\nKritiker wie der Jesuit Friedrich Spee prangerten die Folter schon 1631 an."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art15_letter",
+   "title": "Bleiletter",
+   "text": "Ein spiegelverkehrtes „A“ aus Blei. Tausende solcher Lettern, immer wieder neu zusammengesetzt, ergaben ganze Bücher."
+  },
+  {
+   "id": "art15_flugblatt",
+   "title": "Flugblatt der Reformation",
+   "text": "Ein Holzschnitt, ein paar deutliche Worte – und in Tagen in Hunderten Städten verbreitet. Die erste Medienrevolution."
+  },
+  {
+   "id": "art15_skizze",
+   "title": "Skizze einer Flugmaschine",
+   "text": "Eine Nachbildung aus Leonardos Notizbüchern. Fliegen konnte sie nie – träumen schon."
+  },
+  {
+   "id": "art15_muenze",
+   "title": "Silberner Taler",
+   "text": "Aus dem Silber von Joachimsthal geprägt. Vom „Taler“ leitet sich das Wort „Dollar“ ab."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Caterina",
+  "role": "Lehrling in einer Florentiner Werkstatt, um 1500 (erfunden)",
+  "lines": [
+   "Mein Meister sagt, ein Maler muss erst lernen zu sehen, dann zu malen. Ich zeichne Hände, seit Monaten nur Hände.",
+   "Draußen wird gestritten, ob Kunst eitel ist. Drinnen mischen wir Farben aus Eigelb und zerriebenen Steinen.",
+   "Man sagt, in Deutschland kann man jetzt Bücher mit Maschinen schreiben. Dann wird bald jeder lesen können!",
+   "Schau genau hin, Hüter. Die Welt ist schöner, wenn man sie wirklich ansieht."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Was bedeutet das Wort „Renaissance“?",
+   "options": [
+    "Wiedergeburt",
+    "Erfindung",
+    "Reformation"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Was ist die Fuggerei in Augsburg?",
+   "options": [
+    "Eine Bank",
+    "Die älteste bestehende Sozialsiedlung der Welt",
+    "Eine Kirche"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Was legte der Augsburger Religionsfrieden von 1555 fest?",
+   "options": [
+    "Der Landesherr bestimmt die Konfession seines Gebiets",
+    "Alle müssen katholisch werden",
+    "Die Kirche wird abgeschafft"
+   ],
+   "correct": 0
+  }
+ ]
+}

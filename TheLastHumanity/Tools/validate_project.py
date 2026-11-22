@@ -88,18 +88,21 @@ def validate_content() -> dict:
         errors.append(f"Inhaltsdatei ist kein gueltiges JSON: {exc}")
         return {}
     passed.append("Inhaltsdatei ist gueltiges UTF-8-JSON")
+    # Quelldateien und Gesamtdatei synchron?
+    kap_dir = ROOT / "Content" / "Data" / "kapitel"
+    if kap_dir.exists():
+        src = [json.loads(f.read_text(encoding="utf-8")) for f in sorted(kap_dir.glob("kap*.json"))]
+        same = [c["id"] for c in sorted(src, key=lambda c: c["number"])] == [c["id"] for c in data.get("chapters", [])] and \
+            sum(len(c["infoPoints"]) for c in src) == sum(len(c["infoPoints"]) for c in data.get("chapters", []))
+        check(same, "content_de.json entspricht den Kapiteldateien", "content_de.json veraltet - 'python3 Tools/merge_content.py' ausfuehren")
 
     check(isinstance(data.get("ui"), dict) and data["ui"], "Abschnitt 'ui' vorhanden", "Abschnitt 'ui' fehlt")
     chapters = data.get("chapters", [])
     check(isinstance(chapters, list) and chapters, f"{len(chapters)} Kapitel vorhanden", "Keine Kapitel")
 
-    hall = hall_constants()
-    hl, hw = hall.get("HalfLength", 0), hall.get("HalfWidth", 0)
-    cols = column_positions(hw)
-    start = start_location()
-
     ids: set[str] = set()
     numbers = []
+    content_errors_before = len(errors)
     for ch in chapters:
         cid = ch.get("id", "")
         for field in ("id", "title", "era", "summary"):
@@ -110,28 +113,23 @@ def validate_content() -> dict:
         ids.add(cid)
         numbers.append(ch.get("number"))
         points = ch.get("infoPoints", [])
-        if ch.get("available") and len(points) < 3:
-            errors.append(f"Kapitel {cid} ist spielbar, hat aber weniger als 3 Informationspunkte")
-        if len(points) > 7:
-            errors.append(f"Kapitel {cid}: hoechstens 7 Informationspunkte pro Halle (Abstaende)")
+        if ch.get("available") and not (12 <= len(points) <= 15):
+            errors.append(f"Kapitel {cid}: {len(points)} Erinnerungen, erwartet 12-15")
         for field in ("title", "era"):
             if not is_latin1(str(ch.get(field, ""))):
                 errors.append(f"Kapitel {cid}: '{field}' enthaelt Zeichen ausserhalb Latin-1 (3D-Schrift)")
         theme = ch.get("theme")
-        if ch.get("available"):
-            if not isinstance(theme, dict):
-                errors.append(f"Kapitel {cid}: 'theme' fehlt")
-            else:
-                for col in ("floor", "wall", "column", "torch"):
-                    v = theme.get(col)
-                    if not (isinstance(v, list) and len(v) == 3 and all(isinstance(x, (int, float)) and 0 <= x <= 1 for x in v)):
-                        errors.append(f"Kapitel {cid}: theme.{col} muss [r, g, b] mit Werten 0..1 sein")
-                if theme.get("monument") not in VALID_MONUMENTS:
-                    errors.append(f"Kapitel {cid}: theme.monument ungueltig ({theme.get('monument')})")
-                if theme.get("columnShape") not in ("rund", "eckig"):
-                    errors.append(f"Kapitel {cid}: theme.columnShape muss 'rund' oder 'eckig' sein")
-
-        locs = []
+        if not isinstance(theme, dict):
+            errors.append(f"Kapitel {cid}: 'theme' fehlt")
+        else:
+            for col in ("floor", "wall", "column", "torch"):
+                v = theme.get(col)
+                if not (isinstance(v, list) and len(v) == 3 and all(isinstance(x, (int, float)) and 0 <= x <= 1 for x in v)):
+                    errors.append(f"Kapitel {cid}: theme.{col} muss [r, g, b] mit Werten 0..1 sein")
+            if theme.get("monument") not in VALID_MONUMENTS:
+                errors.append(f"Kapitel {cid}: theme.monument ungueltig ({theme.get('monument')})")
+            if theme.get("columnShape") not in ("rund", "eckig"):
+                errors.append(f"Kapitel {cid}: theme.columnShape muss 'rund' oder 'eckig' sein")
         for p in points:
             pid = p.get("id", "")
             if pid in ids:
@@ -139,53 +137,51 @@ def validate_content() -> dict:
             ids.add(pid)
             for field in ("id", "title", "short", "long", "kind"):
                 if not str(p.get(field, "")).strip():
-                    errors.append(f"Infopunkt {pid or '?'}: Feld '{field}' fehlt/leer")
+                    errors.append(f"Erinnerung {pid or '?'}: Feld '{field}' fehlt/leer")
             if p.get("kind") not in ("fakt", "fiktion"):
-                errors.append(f"Infopunkt {pid}: 'kind' muss 'fakt' oder 'fiktion' sein")
+                errors.append(f"Erinnerung {pid}: 'kind' muss 'fakt' oder 'fiktion' sein")
             if len(p.get("short", "")) >= len(p.get("long", "")):
-                errors.append(f"Infopunkt {pid}: Kurzfassung ist nicht kuerzer als die ausfuehrliche Fassung")
+                errors.append(f"Erinnerung {pid}: Kurzfassung ist nicht kuerzer als die ausfuehrliche Fassung")
             if len(p.get("short", "")) > 260:
-                warnings.append(f"Infopunkt {pid}: Kurzfassung hat {len(p['short'])} Zeichen (Ziel <= 260)")
+                warnings.append(f"Erinnerung {pid}: Kurzfassung hat {len(p['short'])} Zeichen (Ziel <= 260)")
             if not is_latin1(p.get("title", "")):
-                errors.append(f"Infopunkt {pid}: Titel enthaelt Zeichen ausserhalb Latin-1 (3D-Schrift)")
-            loc = p.get("location")
-            if loc is None:
-                x, y = auto_location(points.index(p), len(points), hl)
-                loc = [x, y, 0.0]
-            elif not (isinstance(loc, list) and len(loc) == 3 and all(isinstance(v, (int, float)) for v in loc)):
-                errors.append(f"Infopunkt {pid}: 'location' muss [x, y, z] sein")
-                continue
-            x, y = loc[0], loc[1]
-            if math.hypot(x, y) < MONUMENT_RADIUS + 100:
-                errors.append(f"Infopunkt {pid}: zu nah am Monument in der Hallenmitte")
-            if math.hypot(x - hall.get("PortalX", 1800), y) < PORTAL_CLEARANCE:
-                errors.append(f"Infopunkt {pid}: zu nah am Portal")
-            if abs(x) > hl - 100 or abs(y) > hw - 100:
-                errors.append(f"Infopunkt {pid}: Position {loc} liegt ausserhalb/zu nah an der Hallenwand")
-            for cx, cy in cols:
-                if math.hypot(x - cx, y - cy) < 120:
-                    errors.append(f"Infopunkt {pid}: kollidiert mit Saeule bei ({cx}, {cy})")
-            if math.hypot(x - start[0], y - start[1]) < 150:
-                errors.append(f"Infopunkt {pid}: zu nah am Startpunkt")
-            locs.append((pid, x, y))
-
-        for i in range(len(locs)):
-            for j in range(i + 1, len(locs)):
-                d = math.hypot(locs[i][1] - locs[j][1], locs[i][2] - locs[j][2])
-                if d < 400:
-                    errors.append(f"Infopunkte {locs[i][0]} und {locs[j][0]} nur {d:.0f} cm auseinander (< 400)")
+                errors.append(f"Erinnerung {pid}: Titel enthaelt Zeichen ausserhalb Latin-1 (3D-Schrift)")
+        arts = ch.get("artifacts", [])
+        if len(arts) != 4:
+            errors.append(f"Kapitel {cid}: {len(arts)} Artefakte, erwartet 4")
+        for a in arts:
+            if a.get("id") in ids:
+                errors.append(f"Doppelte ID: {a.get('id')}")
+            ids.add(a.get("id"))
+            if not (a.get("title") and a.get("text")):
+                errors.append(f"Artefakt {a.get('id')}: Titel oder Text fehlt")
+        echo = ch.get("echo") or {}
+        if not (echo.get("name") and echo.get("role") and len(echo.get("lines", [])) >= 3):
+            errors.append(f"Kapitel {cid}: Zeitzeugen-Echo unvollstaendig (Name, Rolle, mind. 3 Zeilen)")
+        elif not is_latin1(echo["name"]):
+            errors.append(f"Kapitel {cid}: Echo-Name ausserhalb Latin-1 (3D-Schrift)")
+        quiz = ch.get("quiz", [])
+        if len(quiz) != 3:
+            errors.append(f"Kapitel {cid}: {len(quiz)} Wissensfragen, erwartet 3")
+        for q in quiz:
+            opts = q.get("options", [])
+            if not q.get("q") or len(opts) != 3 or not isinstance(q.get("correct"), int) or not (0 <= q["correct"] < len(opts)):
+                errors.append(f"Kapitel {cid}: Wissensfrage fehlerhaft: {q.get('q', '?')[:40]}")
+            if len(set(opts)) != len(opts):
+                errors.append(f"Kapitel {cid}: doppelte Antwortmoeglichkeit in '{q.get('q', '')[:40]}'")
+    if len(errors) == content_errors_before:
+        passed.append("Alle Kapitel: Pflichtfelder, Erinnerungen (12-15), Artefakte (4), Echo, Wissensfragen (3), Themen in Ordnung")
 
     ending = data.get("ending", {})
     check(bool(str(ending.get("title", "")).strip()) and bool(str(ending.get("text", "")).strip()),
           "Abspann (ending) vorhanden", "Abspann 'ending' mit 'title' und 'text' fehlt")
     total = sum(len(c.get("infoPoints", [])) for c in chapters)
-    passed.append(f"{total} Informationspunkte insgesamt")
+    passed.append(f"{total} Erinnerungen, {sum(len(c.get('artifacts', [])) for c in chapters)} Artefakte, "
+                  f"{sum(len(c.get('quiz', [])) for c in chapters)} Wissensfragen insgesamt")
     check(numbers == list(range(1, len(numbers) + 1)), "Kapitelnummern fortlaufend ab 1",
           f"Kapitelnummern nicht fortlaufend: {numbers}")
     check(any(c.get("available") for c in chapters), "Mindestens ein spielbares Kapitel",
           "Kein Kapitel ist spielbar ('available': true)")
-    if not any(e.startswith("Infopunkt") or e.startswith("Doppelte") or e.startswith("Kapitel ") for e in errors):
-        passed.append("Alle Infopunkte: Pflichtfelder, Kennzeichnung, Positionen und Abstaende in Ordnung")
     return data
 
 
@@ -251,6 +247,20 @@ def validate_story() -> None:
         n_pos = len(re.findall(r"\[-?\d+, -?\d+\]", m.group(1))) if m else -1
         check(n_pos == len(st.get("crystals", [])), f"Story: {n_pos} Kristallpositionen = {len(st.get('crystals', []))} Kristalltexte",
               f"Story: Kristallpositionen ({n_pos}) und Kristalltexte ({len(st.get('crystals', []))}) passen nicht zusammen")
+    sq = st.get("sidequests", [])
+    bad_sq = []
+    for q in sq:
+        t = q.get("task", {})
+        ok = q.get("giver") in chars and q.get("intro") and q.get("done") and t.get("type") in ("fetch", "deliver", "visit") and t.get("label")
+        if t.get("type") in ("fetch", "visit"):
+            ok = ok and isinstance(t.get("pos"), list) and len(t["pos"]) == 2 and (t["pos"][0] ** 2 + t["pos"][1] ** 2) ** 0.5 < 44
+        if t.get("type") == "deliver":
+            ok = ok and t.get("to") in chars and t.get("to") != q.get("giver")
+        for l in q.get("intro", []) + q.get("done", []):
+            ok = ok and l.get("who") in chars
+        if not ok:
+            bad_sq.append(q.get("id"))
+    check(sq and not bad_sq, f"Story: {len(sq)} Nebenquests vollstaendig", f"Story: fehlerhafte Nebenquests {bad_sq}")
     ids = [l["id"] for l in st.get("landmarks", [])]
     check(sorted(ids) == ["archivtor", "aussicht", "denkmal"], "Story: 3 Wahrzeichen", f"Story: Wahrzeichen {ids}")
 

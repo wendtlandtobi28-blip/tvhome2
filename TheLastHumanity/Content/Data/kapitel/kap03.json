@@ -1,0 +1,181 @@
+{
+ "id": "kap03_sesshaftigkeit",
+ "number": 3,
+ "title": "Sesshaftigkeit",
+ "era": "etwa 12.000 bis 3000 v. Chr.",
+ "summary": "Die ersten Dörfer, Ackerbau und Viehzucht – an mehreren Orten der Welt unabhängig voneinander.",
+ "theme": {
+  "floor": [
+   0.4,
+   0.36,
+   0.24
+  ],
+  "wall": [
+   0.48,
+   0.36,
+   0.26
+  ],
+  "column": [
+   0.3,
+   0.24,
+   0.18
+  ],
+  "torch": [
+   1.0,
+   0.62,
+   0.3
+  ],
+  "columnShape": "eckig",
+  "monument": "obelisk",
+  "sunPitch": -42,
+  "sunIntensity": 8,
+  "fog": 0.012
+ },
+ "infoPoints": [
+  {
+   "id": "kap02_goebekli_tepe",
+   "kind": "fakt",
+   "title": "Göbekli Tepe",
+   "short": "Auf einem Hügel in der heutigen Südosttürkei errichteten Menschen um 9500 v. Chr. Kreise aus bis zu mehreren Metern hohen, verzierten Steinpfeilern – noch bevor es Landwirtschaft im großen Stil gab.",
+   "long": "Göbekli Tepe liegt nahe der Stadt Şanlıurfa in der Südosttürkei. Ab etwa 9500 v. Chr. errichteten Menschen dort große runde und ovale Anlagen mit T-förmigen Steinpfeilern. Viele Pfeiler sind mit Reliefs von Füchsen, Schlangen, Wildschweinen und Vögeln verziert.\n\nDas Besondere: Die Erbauer lebten wohl noch überwiegend als Jäger und Sammler, auch wenn die Domestizierung von Pflanzen in der Region gerade begann. Lange glaubte man, dass erst Landwirtschaft solche Gemeinschaftsbauten möglich machte. Göbekli Tepe zeigt, dass es vielleicht auch umgekehrt war: Gemeinsame Feste und Rituale könnten Menschen zusammengeführt haben.\n\nWofür die Anlage genau diente, ist weiter Gegenstand der Forschung. Seit 2018 gehört Göbekli Tepe zum UNESCO-Welterbe."
+  },
+  {
+   "id": "kap02_ackerbau",
+   "kind": "fakt",
+   "title": "Die ersten Bauern",
+   "short": "Ab etwa 9500 v. Chr. begannen Menschen im Fruchtbaren Halbmond, Getreide anzubauen und Tiere zu halten. Unabhängig davon entstand Landwirtschaft auch in China, Amerika, Neuguinea und Afrika.",
+   "long": "Der Fruchtbare Halbmond reicht vom heutigen Israel und Jordanien über Syrien und die Südosttürkei bis in den Irak und den Westiran. Dort wurden ab etwa 9500 v. Chr. Einkorn, Emmer, Gerste, Linsen und Erbsen kultiviert. Wenig später wurden Schafe, Ziegen, Rinder und Schweine zu Haustieren.\n\nLandwirtschaft wurde nicht nur einmal erfunden. An mehreren Orten der Welt entstand sie unabhängig: In China wurden Reis und Hirse kultiviert, in Mittelamerika entwickelte sich aus einem Wildgras der Mais, in den Anden wurden Kartoffeln angebaut, in Neuguinea Bananen und Taro, in Afrika unter anderem Sorghum.\n\nDer Übergang war kein plötzlicher Umbruch, sondern dauerte Jahrtausende. Er brachte mehr Nahrung und mehr Menschen – aber auch harte Feldarbeit, neue Krankheiten durch das enge Zusammenleben mit Tieren und erstmals größere Vorräte, um die gestritten werden konnte."
+  },
+  {
+   "id": "kap02_catalhoeyuek",
+   "kind": "fakt",
+   "title": "Leben im Dorf: Çatalhöyük",
+   "short": "Çatalhöyük in Anatolien war um 7000 v. Chr. eine der größten Siedlungen der Welt. Tausende Menschen lebten dort in dicht aneinandergebauten Lehmhäusern, die man über das Dach betrat.",
+   "long": "Çatalhöyük in Zentralanatolien wurde etwa von 7100 bis 5950 v. Chr. bewohnt. Schätzungen zufolge lebten dort zeitweise mehrere tausend Menschen.\n\nDie Häuser aus Lehmziegeln standen so dicht, dass es kaum Gassen gab. Man stieg über Leitern durch Öffnungen im Dach in die Wohnräume. Innen fanden Archäologinnen und Archäologen Wandmalereien, Reliefs und Stierhörner, die in Wände eingesetzt waren. Verstorbene wurden oft unter dem Fußboden der Häuser bestattet.\n\nAuffällig ist, dass es keine Paläste oder deutlich größeren Häuser gibt. Viele Forschende schließen daraus, dass die Gemeinschaft vergleichsweise gleichberechtigt organisiert war. Seit 2012 ist Çatalhöyük UNESCO-Welterbe."
+  },
+  {
+   "id": "kap03_natufien",
+   "kind": "fakt",
+   "title": "Die Natufien-Kultur",
+   "short": "In der Levante lebten Menschen schon vor über 14.000 Jahren in festen Siedlungen und ernteten wildes Getreide – noch bevor sie es anbauten.",
+   "long": "Die Natufien-Kultur bestand etwa von 12.500 bis 9500 v. Chr. im Gebiet des heutigen Israel, Palästina, Jordanien und Syrien. Ihre Menschen bauten runde Häuser mit Steinfundamenten und blieben oft das ganze Jahr am selben Ort.\n\nSie ernteten wildes Getreide mit Sicheln aus Feuerstein und mahlten es auf Mahlsteinen. Angebaut wurde es aber noch nicht.\n\nDie Natufien-Kultur gilt als wichtiger Zwischenschritt zwischen dem Leben als Jäger und Sammler und der Landwirtschaft."
+  },
+  {
+   "id": "kap03_jericho",
+   "kind": "fakt",
+   "title": "Jericho",
+   "short": "Jericho gehört zu den ältesten dauerhaft bewohnten Orten der Welt. Ein steinerner Turm dort ist etwa 10.000 Jahre alt.",
+   "long": "An einer Quelle im Jordantal entstand vor über 10.000 Jahren eine Siedlung: Jericho. Um 8000 v. Chr. errichteten die Bewohner eine Mauer und einen massiven Steinturm von etwa 8,5 Metern Höhe mit einer Treppe im Inneren.\n\nWozu der Turm diente, ist umstritten – Schutz, Beobachtung oder ein Gemeinschaftsbau mit symbolischer Bedeutung.\n\nDer Bau zeigt, dass die Menschen schon so früh große Gemeinschaftsprojekte organisieren konnten."
+  },
+  {
+   "id": "kap03_haustiere",
+   "kind": "fakt",
+   "title": "Die ersten Nutztiere",
+   "short": "Ab etwa 8500 v. Chr. hielten Menschen im Vorderen Orient Ziegen und Schafe, bald auch Rinder und Schweine.",
+   "long": "Aus wilden Bezoarziegen, Mufflons, Auerochsen und Wildschweinen wurden über viele Generationen Nutztiere. Die ältesten Nachweise von Ziegen und Schafen als Haustiere stammen aus dem Vorderen Orient, etwa aus der Zeit um 8500 v. Chr.\n\nNutztiere lieferten Fleisch, Milch, Wolle, Leder und später auch Zugkraft für Pflug und Wagen.\n\nDas enge Zusammenleben mit Tieren hatte auch Schattenseiten: Manche Krankheiten sprangen vom Tier auf den Menschen über."
+  },
+  {
+   "id": "kap03_keramik",
+   "kind": "fakt",
+   "title": "Die ersten Tongefäße",
+   "short": "Die ältesten Tongefäße stammen aus Ostasien und sind etwa 20.000 Jahre alt – älter als die Landwirtschaft.",
+   "long": "Lange dachte man, Töpferei sei mit dem Ackerbau entstanden. Funde aus der Xianrendong-Höhle in China sind jedoch etwa 20.000 Jahre alt. Auch in Japan stellten Menschen sehr früh Keramik her.\n\nIm Vorderen Orient verbreiteten sich Tongefäße dagegen erst nach dem Beginn der Landwirtschaft, etwa ab 7000 v. Chr.\n\nGefäße machten es leichter, Vorräte zu lagern und Speisen zu kochen. Für Archäologen sind Scherben heute eine der wichtigsten Quellen zur Datierung."
+  },
+  {
+   "id": "kap03_reis",
+   "kind": "fakt",
+   "title": "Reis und Hirse in China",
+   "short": "In China wurden unabhängig vom Vorderen Orient Hirse im Norden und Reis am Jangtse zu Kulturpflanzen.",
+   "long": "Am Gelben Fluss im Norden Chinas bauten Menschen schon früh Hirse an. Am Jangtse im Süden wurde wilder Reis über Jahrtausende zur Kulturpflanze; voll domestizierter Reis ist etwa ab dem 7. bis 5. Jahrtausend v. Chr. belegt.\n\nIn der Hemudu-Kultur um 5000 v. Chr. lebten Menschen in Pfahlbauten und bauten Reis in feuchten Feldern an.\n\nReis ist bis heute das Grundnahrungsmittel für mehr als die Hälfte der Menschheit."
+  },
+  {
+   "id": "kap03_mais",
+   "kind": "fakt",
+   "title": "Mais aus einem Wildgras",
+   "short": "Mais entstand vor etwa 9000 Jahren in Mexiko aus einem unscheinbaren Wildgras namens Teosinte.",
+   "long": "Teosinte hat winzige Kolben mit nur wenigen harten Körnern. Über Jahrtausende wählten Bauern im Süden Mexikos immer die besten Pflanzen aus. So entstand der Mais mit großen Kolben und vielen Körnern.\n\nDie Domestizierung begann vor etwa 9000 Jahren im Tal des Balsas-Flusses. Zusammen mit Bohnen und Kürbissen wurde Mais zur Grundlage der Kulturen Mittelamerikas.\n\nHeute ist Mais nach Menge eine der am meisten angebauten Nutzpflanzen der Welt."
+  },
+  {
+   "id": "kap03_bandkeramik",
+   "kind": "fakt",
+   "title": "Die ersten Bauern in Mitteleuropa",
+   "short": "Um 5500 v. Chr. erreichte die Landwirtschaft Mitteleuropa. Die Bauern der Bandkeramik lebten in großen Langhäusern.",
+   "long": "Ackerbau und Viehzucht kamen über Südosteuropa nach Mitteleuropa. Die ersten Bauern hier werden nach den Bändern auf ihren Tongefäßen „Bandkeramiker“ genannt.\n\nSie bauten Langhäuser aus Holz von bis zu 40 Metern Länge, bauten Emmer und Einkorn an und hielten Rinder. Erbgutuntersuchungen zeigen, dass viele dieser Bauern aus Anatolien stammende Vorfahren hatten.\n\nAuch Gewalt gehörte zur Zeit: Massengräber wie in Talheim zeigen, dass es Konflikte zwischen Siedlungen gab."
+  },
+  {
+   "id": "kap03_megalithen",
+   "kind": "fakt",
+   "title": "Megalithen und Stonehenge",
+   "short": "Von etwa 4500 v. Chr. an errichteten Menschen in Westeuropa gewaltige Steinbauten. Der große Steinkreis von Stonehenge entstand um 2500 v. Chr.",
+   "long": "Großsteingräber und Steinreihen, sogenannte Megalithen, finden sich von Portugal bis Skandinavien. Die Steinreihen von Carnac in der Bretagne umfassen Tausende Steine.\n\nStonehenge in England wurde über Jahrhunderte ausgebaut. Die großen Sarsensteine wurden um 2500 v. Chr. aufgestellt; kleinere Blausteine stammen aus Wales, über 200 Kilometer entfernt. Die Achse ist auf den Sonnenaufgang zur Sommersonnenwende ausgerichtet.\n\nSolche Bauten erforderten Planung und die Arbeit vieler Menschen."
+  },
+  {
+   "id": "kap03_weberei",
+   "kind": "fakt",
+   "title": "Spinnen und Weben",
+   "short": "Mit dem Anbau von Flachs und der Haltung von Schafen entstanden gesponnene Fäden und gewebte Stoffe.",
+   "long": "Aus den Fasern der Flachspflanze ließ sich Leinen herstellen, später aus Schafwolle auch wärmere Stoffe. Spinnwirtel – kleine durchbohrte Scheiben aus Ton oder Stein – zeigen Archäologen, wo gesponnen wurde.\n\nSehr alte Gewebereste aus der Jungsteinzeit sind etwa aus der Höhle Nahal Hemar in Israel bekannt, rund 9000 Jahre alt.\n\nStoffherstellung war mühsam und zeitaufwendig. Kleidung war deshalb über Jahrtausende sehr wertvoll."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art03_sichel",
+   "title": "Sichel mit Feuersteinklinge",
+   "text": "Kleine Feuersteinsplitter, in ein Holz geklebt. Der Glanz an der Schneide stammt vom Schneiden unzähliger Getreidehalme."
+  },
+  {
+   "id": "art03_mahlstein",
+   "title": "Mahlstein",
+   "text": "Stundenlang wurde hier Korn zu Mehl gerieben. Viele Skelette dieser Zeit zeigen Abnutzung an Knien und Rücken."
+  },
+  {
+   "id": "art03_spinnwirtel",
+   "title": "Spinnwirtel aus Ton",
+   "text": "Eine kleine durchbohrte Scheibe. Auf einen Stab gesteckt, hielt sie ihn beim Spinnen in Schwung."
+  },
+  {
+   "id": "art03_figur",
+   "title": "Sitzende Tonfigur",
+   "text": "Eine kleine Figur aus gebranntem Ton, wie sie in Çatalhöyük gefunden wurde. Ob sie eine Göttin darstellt, ist umstritten."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Nesrin",
+  "role": "Bäuerin, um 7000 v. Chr. (erfunden)",
+  "lines": [
+   "Mein Großvater zog noch mit den Herden. Wir aber bleiben. Das Korn bindet uns an diesen Boden.",
+   "Die Arbeit hört nie auf: säen, jäten, ernten, mahlen. Aber im Winter haben wir Vorräte, wenn das Land schläft.",
+   "Wir bauen unsere Häuser Wand an Wand. Wer zu uns gehört, kommt über das Dach.",
+   "Erinnere dich an uns, wenn du Brot isst. Wir haben es als Erste gebacken – oder zumindest fast."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Was ist Göbekli Tepe?",
+   "options": [
+    "Eine Anlage mit Steinpfeilern aus der Zeit um 9500 v. Chr.",
+    "Eine römische Festung",
+    "Ein Vulkan in Anatolien"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Aus welchem Wildgras entstand der Mais?",
+   "options": [
+    "Emmer",
+    "Teosinte",
+    "Hirse"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wo stammen die ältesten bekannten Tongefäße her?",
+   "options": [
+    "Aus Ägypten",
+    "Aus Ostasien",
+    "Aus Skandinavien"
+   ],
+   "correct": 1
+  }
+ ]
+}

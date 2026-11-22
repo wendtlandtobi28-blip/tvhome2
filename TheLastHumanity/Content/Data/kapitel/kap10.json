@@ -1,0 +1,181 @@
+{
+ "id": "kap10_grossreiche_asien",
+ "number": 10,
+ "title": "Großreiche Asiens und Afrikas",
+ "era": "etwa 550 v. Chr. bis 600 n. Chr.",
+ "summary": "Persien, die Maurya und Gupta in Indien, das erste Kaiserreich Chinas, Aksum in Afrika und Teotihuacán in Amerika.",
+ "theme": {
+  "floor": [
+   0.52,
+   0.3,
+   0.22
+  ],
+  "wall": [
+   0.4,
+   0.2,
+   0.16
+  ],
+  "column": [
+   0.3,
+   0.14,
+   0.1
+  ],
+  "torch": [
+   1.0,
+   0.45,
+   0.25
+  ],
+  "columnShape": "eckig",
+  "monument": "turm",
+  "sunPitch": -36,
+  "sunIntensity": 7,
+  "fog": 0.012
+ },
+ "infoPoints": [
+  {
+   "id": "kap04_denker_asiens",
+   "kind": "fakt",
+   "title": "Lehren, die die Welt prägen",
+   "short": "Zwischen dem 6. und 4. Jahrhundert v. Chr. lehrten in Asien Konfuzius und Siddhartha Gautama, der Buddha. Ihre Gedanken prägen bis heute das Leben von Milliarden Menschen.",
+   "long": "In China lebte Konfuzius (traditionell 551 bis 479 v. Chr.). Er lehrte, dass eine gute Gesellschaft auf Bildung, Respekt, Pflichtbewusstsein und dem Vorbild gerechter Herrscher beruht. Seine Lehre wurde später zur Grundlage der chinesischen Beamtenausbildung.\n\nIm Norden Indiens lehrte etwa im 5. Jahrhundert v. Chr. Siddhartha Gautama, der „Buddha“ (der Erwachte). Seine genauen Lebensdaten sind unsicher. Er lehrte einen Weg, Leiden durch Einsicht, Mitgefühl und Achtsamkeit zu überwinden. Der indische Kaiser Ashoka förderte im 3. Jahrhundert v. Chr. die Verbreitung des Buddhismus.\n\nAuch andere Religionen und Lehren, die heute weltweit Bedeutung haben, entstanden in der Antike oder wurden in dieser Zeit aufgeschrieben – darunter wichtige Teile der Hebräischen Bibel, die in dieser Zeit aufgeschrieben wurden, und im 1. Jahrhundert n. Chr. das Christentum."
+  },
+  {
+   "id": "kap04_qin_han",
+   "kind": "fakt",
+   "title": "Das erste Kaiserreich Chinas",
+   "short": "221 v. Chr. vereinte der König von Qin China und nannte sich erster Kaiser. Unter der folgenden Han-Dynastie entstanden die Handelswege, die später Seidenstraße genannt wurden.",
+   "long": "Nach Jahrhunderten von Kriegen zwischen rivalisierenden Staaten vereinte der König von Qin 221 v. Chr. China. Als Qin Shi Huangdi („Erster Kaiser von Qin“) vereinheitlichte er Schrift, Maße, Gewichte und Münzen. Für sein Grab ließ er eine Armee aus Tausenden lebensgroßen Tonkriegern anfertigen, die 1974 bei Xi'an entdeckt wurde.\n\nDie Qin-Dynastie zerfiel bald nach seinem Tod. Die folgende Han-Dynastie (206 v. Chr. bis 220 n. Chr.) prägte China so stark, dass sich die größte Bevölkerungsgruppe Chinas bis heute „Han“ nennt. In dieser Zeit wurde auch Papier entwickelt.\n\nAb dem 2. Jahrhundert v. Chr. verbanden Handelsrouten China über Zentralasien mit Persien, Indien und dem Mittelmeer. Über sie wurden Seide, Gewürze, Ideen und Religionen ausgetauscht – aber auch Krankheiten. Den Namen „Seidenstraße“ prägte erst im 19. Jahrhundert der deutsche Geograf Ferdinand von Richthofen."
+  },
+  {
+   "id": "kap10_ashoka",
+   "kind": "fakt",
+   "title": "Ashoka und das Maurya-Reich",
+   "short": "Kaiser Ashoka regierte im 3. Jahrhundert v. Chr. fast ganz Indien. Nach einem blutigen Krieg wandte er sich dem Buddhismus zu.",
+   "long": "Das Maurya-Reich wurde um 321 v. Chr. von Chandragupta gegründet. Sein Enkel Ashoka eroberte um 260 v. Chr. das Reich Kalinga; dabei starben nach seinen eigenen Inschriften über hunderttausend Menschen.\n\nErschüttert bekannte sich Ashoka zum Buddhismus. Er ließ Edikte auf Felsen und Säulen meißeln, die zu Gewaltlosigkeit, Toleranz und Fürsorge aufriefen.\n\nDas Löwenkapitell einer seiner Säulen ist heute das Staatswappen Indiens."
+  },
+  {
+   "id": "kap10_terrakotta",
+   "kind": "fakt",
+   "title": "Die Terrakotta-Armee",
+   "short": "1974 entdeckten Bauern beim Brunnenbau die Tonkrieger des ersten chinesischen Kaisers. Geschätzt sind es etwa 8000 Figuren.",
+   "long": "Die lebensgroßen Krieger bewachen das Grab von Qin Shi Huangdi bei Xi'an. Jede Figur hat ein eigenes Gesicht. Ursprünglich waren sie bunt bemalt und trugen echte Waffen.\n\nNeben Kriegern gibt es Pferde, Wagen, Beamte und Musiker. Der eigentliche Grabhügel des Kaisers ist bis heute nicht geöffnet.\n\nDie Anlage gehört zum UNESCO-Welterbe und zieht Millionen Besucher an."
+  },
+  {
+   "id": "kap10_mauer",
+   "kind": "fakt",
+   "title": "Die Große Mauer",
+   "short": "Die Große Mauer besteht aus vielen Mauern aus über zwei Jahrtausenden. Die heute meistbesuchten Teile stammen aus der Ming-Zeit.",
+   "long": "Schon vor der Reichseinigung bauten chinesische Staaten Grenzmauern. Qin Shi Huangdi ließ Abschnitte verbinden. Spätere Dynastien bauten immer wieder neu.\n\nDie berühmten steinernen Abschnitte mit Wachtürmen entstanden vor allem unter der Ming-Dynastie (1368 bis 1644).\n\nDass man die Mauer mit bloßem Auge aus dem Weltraum sehen könne, ist ein Mythos – dafür ist sie zu schmal."
+  },
+  {
+   "id": "kap10_papier",
+   "kind": "fakt",
+   "title": "Die Erfindung des Papiers",
+   "short": "Papier wurde in China erfunden. Der Beamte Cai Lun verbesserte die Herstellung der Überlieferung nach im Jahr 105 n. Chr.",
+   "long": "Papier wurde aus Pflanzenfasern, Lumpen und Baumrinde hergestellt. Funde zeigen, dass es in China schon im 2. Jahrhundert v. Chr. Papier gab; Cai Lun machte die Herstellung besser und bekannter.\n\nPapier war billiger als Seide und leichter als Bambusstreifen. Es verbreitete sich über die islamische Welt nach Europa, wo im 12. Jahrhundert die ersten Papiermühlen entstanden.\n\nOhne Papier wären Buchdruck und Massenbildung kaum denkbar gewesen."
+  },
+  {
+   "id": "kap10_seidenstrasse",
+   "kind": "fakt",
+   "title": "Die Seidenstraße",
+   "short": "Die Seidenstraße war kein einzelner Weg, sondern ein Netz von Handelsrouten zwischen China und dem Mittelmeer.",
+   "long": "Um 138 v. Chr. schickte der Han-Kaiser den Gesandten Zhang Qian nach Westen. Danach entwickelte sich ein reger Handel mit Seide, Gewürzen, Glas, Pferden und Edelsteinen.\n\nKaum ein Händler reiste die ganze Strecke. Waren wechselten in Oasenstädten wie Samarkand oder Kaschgar von Hand zu Hand.\n\nÜber die Seidenstraße verbreiteten sich auch Religionen wie der Buddhismus, Erfindungen und Krankheiten."
+  },
+  {
+   "id": "kap10_gupta",
+   "kind": "fakt",
+   "title": "Das Gupta-Reich und die Null",
+   "short": "Im indischen Gupta-Reich (etwa 320–550 n. Chr.) blühten Wissenschaft und Kunst. In Indien entstand das Stellenwertsystem mit der Null.",
+   "long": "Die Gupta-Zeit gilt als klassische Epoche Indiens. Der Mathematiker Aryabhata berechnete um 499 n. Chr. die Kreiszahl Pi erstaunlich genau und erklärte, dass die Erde sich dreht.\n\nIndische Mathematiker entwickelten das Stellenwertsystem mit zehn Ziffern und der Null. Brahmagupta beschrieb 628 Rechenregeln für die Null.\n\nÜber die arabische Welt gelangten diese Ziffern nach Europa – wir nennen sie heute „arabische Ziffern“."
+  },
+  {
+   "id": "kap10_persepolis",
+   "kind": "fakt",
+   "title": "Persepolis",
+   "short": "Persepolis war die prächtige Residenz der persischen Großkönige. Alexander der Große ließ sie 330 v. Chr. niederbrennen.",
+   "long": "Dareios I. begann um 518 v. Chr. mit dem Bau von Persepolis im heutigen Iran. Gewaltige Säulenhallen und Treppen mit Reliefs zeigen Gesandte aus allen Teilen des Reiches, die Geschenke bringen.\n\nNach seinem Sieg über die Perser ließ Alexander die Stadt 330 v. Chr. in Brand setzen.\n\nDie Ruinen gehören heute zum UNESCO-Welterbe."
+  },
+  {
+   "id": "kap10_zarathustra",
+   "kind": "fakt",
+   "title": "Zarathustra",
+   "short": "Der Prophet Zarathustra begründete im alten Iran eine Religion, in der Gut und Böse miteinander ringen. Seine Lebenszeit ist unsicher.",
+   "long": "Der Zoroastrismus lehrt, dass der gute Gott Ahura Mazda gegen die Mächte des Bösen kämpft und jeder Mensch sich mit guten Gedanken, Worten und Taten für eine Seite entscheiden muss.\n\nWann Zarathustra lebte, ist umstritten; die Schätzungen reichen über viele Jahrhunderte.\n\nDer Zoroastrismus war Staatsreligion mehrerer persischer Reiche. Heute gibt es noch kleine Gemeinschaften, etwa die Parsen in Indien."
+  },
+  {
+   "id": "kap10_aksum",
+   "kind": "fakt",
+   "title": "Das Reich von Aksum",
+   "short": "Aksum im heutigen Äthiopien und Eritrea war in den ersten Jahrhunderten n. Chr. eine Großmacht mit eigener Schrift und eigenen Münzen.",
+   "long": "Aksum kontrollierte den Handel zwischen dem Römischen Reich, Arabien und Indien über das Rote Meer. Ein persischer Schriftsteller zählte es im 3. Jahrhundert zu den vier großen Reichen der Welt.\n\nKönig Ezana nahm im 4. Jahrhundert das Christentum an. Riesige Steinstelen, bis über 20 Meter hoch, erinnern an die Herrscher.\n\nDie Schrift Ge'ez wird in der äthiopischen Kirche bis heute verwendet."
+  },
+  {
+   "id": "kap10_teotihuacan",
+   "kind": "fakt",
+   "title": "Teotihuacán",
+   "short": "Teotihuacán in Mexiko war um 500 n. Chr. mit vielleicht 100.000 Einwohnern eine der größten Städte der Welt.",
+   "long": "Die Stadt lag nordöstlich des heutigen Mexiko-Stadt. Eine breite Prachtstraße, die „Straße der Toten“, verband riesige Pyramiden, darunter die Sonnenpyramide.\n\nWer die Stadt gründete und welche Sprache dort gesprochen wurde, ist unbekannt. Den Namen „Ort, an dem Götter entstehen“ gaben ihr erst die Azteken Jahrhunderte später.\n\nUm 550 n. Chr. wurde das Zentrum zerstört und die Stadt allmählich verlassen."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art10_ashoka_saeule",
+   "title": "Abguss eines Ashoka-Edikts",
+   "text": "„Alle Menschen sind meine Kinder“, ließ Ashoka verkünden. Worte, die auf Säulen quer durch Indien standen."
+  },
+  {
+   "id": "art10_papier",
+   "title": "Frühes Papierblatt",
+   "text": "Grob, faserig, gelblich – und doch eine Revolution. Erst Papier machte Wissen günstig."
+  },
+  {
+   "id": "art10_ziffern",
+   "title": "Tafel mit indischen Ziffern",
+   "text": "Zehn Zeichen und eine Null: Damit lässt sich jede Zahl schreiben. Die Welt rechnet bis heute so."
+  },
+  {
+   "id": "art10_obsidian",
+   "title": "Klinge aus Obsidian",
+   "text": "Vulkanglas aus der Gegend von Teotihuacán. Mit ihm wurde gehandelt, gearbeitet und geopfert."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Mei",
+  "role": "Kaufmannstochter an der Seidenstraße, um 100 n. Chr. (erfunden)",
+  "lines": [
+   "Mein Vater kauft Seide in Chang'an und verkauft sie in Kaschgar. Weiter reist er nicht – dort übernehmen andere.",
+   "Am Lagerfeuer der Karawane hört man ein Dutzend Sprachen. Man lernt schnell, mit Händen und Zahlen zu reden.",
+   "Ein Mönch aus Indien hat mir von einem Weisen erzählt, der das Leiden überwinden wollte. Seltsame, schöne Gedanken.",
+   "Die Waren kommen und gehen, Hüter. Aber die Geschichten bleiben hängen wie Staub an den Kleidern."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Wo entstand das Stellenwertsystem mit der Null?",
+   "options": [
+    "In Indien",
+    "In Rom",
+    "In Ägypten"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Kann man die Große Mauer mit bloßem Auge aus dem Weltraum sehen?",
+   "options": [
+    "Ja, ganz leicht",
+    "Nein, das ist ein Mythos",
+    "Nur nachts"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Was war die Seidenstraße?",
+   "options": [
+    "Eine einzige gepflasterte Straße",
+    "Ein Netz von Handelsrouten zwischen China und dem Mittelmeer",
+    "Eine Straße in Rom"
+   ],
+   "correct": 1
+  }
+ ]
+}

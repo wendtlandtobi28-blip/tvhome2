@@ -1,0 +1,188 @@
+{
+ "id": "kap09_rom",
+ "number": 9,
+ "title": "Das Römische Reich",
+ "era": "753 v. Chr. bis 476 n. Chr.",
+ "summary": "Von der Stadt am Tiber zur Weltmacht: Republik, Kaiserzeit, Recht, Straßen und das Ende Westroms.",
+ "theme": {
+  "floor": [
+   0.7,
+   0.6,
+   0.5
+  ],
+  "wall": [
+   0.62,
+   0.3,
+   0.24
+  ],
+  "column": [
+   0.82,
+   0.78,
+   0.7
+  ],
+  "torch": [
+   1.0,
+   0.7,
+   0.4
+  ],
+  "columnShape": "rund",
+  "monument": "bogen",
+  "sunPitch": -48,
+  "sunIntensity": 9,
+  "fog": 0.008
+ },
+ "infoPoints": [
+  {
+   "id": "kap04_rom",
+   "kind": "fakt",
+   "title": "Das Römische Reich",
+   "short": "Aus der Stadt Rom wurde ein Weltreich, das um 117 n. Chr. von Britannien bis nach Mesopotamien reichte. Das Weströmische Reich endete 476, das Oströmische bestand bis 1453.",
+   "long": "Rom war zunächst ein Königreich, ab etwa 509 v. Chr. eine Republik mit gewählten Beamten und einem Senat. Durch Eroberungen wuchs Rom zur beherrschenden Macht im Mittelmeerraum. Nach blutigen Bürgerkriegen wurde Augustus 27 v. Chr. der erste Kaiser.\n\nUnter Kaiser Trajan erreichte das Reich um 117 n. Chr. seine größte Ausdehnung. Straßen, Aquädukte, ein gemeinsames Recht und die lateinische Sprache verbanden die Provinzen. Auch das Gebiet des heutigen Deutschlands westlich des Rheins und südlich der Donau gehörte dazu; der Limes markierte lange die Grenze.\n\nIm Jahr 476 setzte der germanische Heerführer Odoaker den letzten weströmischen Kaiser ab. Das Oströmische oder Byzantinische Reich mit der Hauptstadt Konstantinopel bestand dagegen noch fast tausend Jahre bis 1453."
+  },
+  {
+   "id": "kap09_gruendung",
+   "kind": "fakt",
+   "title": "Romulus und Remus",
+   "short": "Der Sage nach gründete Romulus Rom im Jahr 753 v. Chr. Archäologisch gab es auf dem Palatin um diese Zeit tatsächlich schon Siedlungen.",
+   "long": "Die Legende erzählt von den Zwillingen Romulus und Remus, die von einer Wölfin gesäugt wurden. Romulus soll die Stadt gegründet und nach sich benannt haben.\n\nDie Römer zählten ihre Jahre später „ab der Gründung der Stadt“. Ausgrabungen zeigen Hütten auf dem Palatin-Hügel aus dem 8. Jahrhundert v. Chr.\n\nDie Kapitolinische Wölfin wurde zum Symbol Roms."
+  },
+  {
+   "id": "kap09_republik",
+   "kind": "fakt",
+   "title": "Die Römische Republik",
+   "short": "Ab etwa 509 v. Chr. regierten in Rom jährlich gewählte Beamte und der Senat. Um 450 v. Chr. wurde das Zwölftafelgesetz aufgeschrieben.",
+   "long": "An der Spitze der Republik standen zwei Konsuln, die jeweils nur ein Jahr im Amt waren. Der Senat aus erfahrenen Politikern hatte großen Einfluss.\n\nDie einfachen Bürger, die Plebejer, kämpften lange um Mitsprache gegen die adligen Patrizier. Ein Ergebnis war das Zwölftafelgesetz, das Recht für alle sichtbar aufschrieb.\n\nDas Wort „Republik“ kommt von res publica, „die öffentliche Sache“."
+  },
+  {
+   "id": "kap09_karthago",
+   "kind": "fakt",
+   "title": "Rom gegen Karthago",
+   "short": "In drei Punischen Kriegen kämpfte Rom gegen Karthago. Hannibal überquerte 218 v. Chr. mit Elefanten die Alpen; 146 v. Chr. wurde Karthago zerstört.",
+   "long": "Karthago im heutigen Tunesien war eine reiche Handelsmacht, gegründet von Phöniziern. Es rivalisierte mit Rom um die Vorherrschaft im westlichen Mittelmeer.\n\nIm Zweiten Punischen Krieg zog der Feldherr Hannibal mit einem Heer und Kriegselefanten über die Alpen nach Italien und brachte Rom an den Rand der Niederlage.\n\nAm Ende siegte Rom. 146 v. Chr. wurde Karthago vollständig zerstört."
+  },
+  {
+   "id": "kap09_caesar",
+   "kind": "fakt",
+   "title": "Julius Caesar",
+   "short": "Caesar überschritt 49 v. Chr. den Rubikon und löste einen Bürgerkrieg aus. Am 15. März 44 v. Chr. wurde er ermordet.",
+   "long": "Gaius Julius Caesar eroberte Gallien und wurde zum mächtigsten Mann Roms. Als der Senat ihn absetzen wollte, führte er sein Heer über den Grenzfluss Rubikon nach Italien.\n\nNach seinem Sieg ließ er sich zum Diktator auf Lebenszeit ernennen. Senatoren, die die Republik retten wollten, erstachen ihn an den Iden des März.\n\nCaesars Kalenderreform von 46 v. Chr. führte das Jahr mit 365 Tagen und einem Schalttag ein – der Julianische Kalender."
+  },
+  {
+   "id": "kap09_pax",
+   "kind": "fakt",
+   "title": "Die Pax Romana",
+   "short": "Mit Kaiser Augustus begann eine etwa 200 Jahre lange Zeit relativen Friedens im Inneren des Reiches, die Pax Romana.",
+   "long": "Augustus beendete die Bürgerkriege und herrschte ab 27 v. Chr. als erster Kaiser, auch wenn er die Fassade der Republik bewahrte.\n\nIn der folgenden Zeit blühten Handel und Städte. Waren, Menschen und Ideen bewegten sich von Britannien bis Syrien.\n\nFrieden bedeutete jedoch nicht Gewaltfreiheit: An den Grenzen wurde weiter gekämpft, Aufstände wurden blutig niedergeschlagen."
+  },
+  {
+   "id": "kap09_bauwerke",
+   "kind": "fakt",
+   "title": "Straßen, Aquädukte und Beton",
+   "short": "Die Römer bauten ein Straßennetz von Zehntausenden Kilometern, Wasserleitungen und Kuppeln aus Beton. Das Pantheon steht bis heute.",
+   "long": "Die Via Appia wurde ab 312 v. Chr. gebaut. Später verbanden gepflasterte Straßen alle Provinzen. Aquädukte brachten Frischwasser über viele Kilometer in die Städte.\n\nRömischer Beton machte gewaltige Bauten möglich. Die Kuppel des Pantheons in Rom, um 125 n. Chr. vollendet, ist bis heute die größte Kuppel aus unbewehrtem Beton.\n\nViele Brücken und Straßen aus römischer Zeit sind noch erhalten."
+  },
+  {
+   "id": "kap09_pompeji",
+   "kind": "fakt",
+   "title": "Pompeji",
+   "short": "Im Jahr 79 n. Chr. begrub ein Ausbruch des Vesuvs die Stadt Pompeji unter Asche – und bewahrte sie so für die Nachwelt.",
+   "long": "Der Ausbruch kam für die Bewohner überraschend. Asche und heiße Gaswolken töteten viele Menschen und bedeckten die Stadt meterhoch.\n\nSeit dem 18. Jahrhundert wird Pompeji ausgegraben. Häuser, Bäckereien, Wandmalereien und sogar Wahlwerbung an den Wänden geben einen einzigartigen Einblick in den römischen Alltag.\n\nHohlräume, die die Körper der Opfer in der Asche hinterließen, wurden mit Gips ausgegossen."
+  },
+  {
+   "id": "kap09_germanien",
+   "kind": "fakt",
+   "title": "Rom und Germanien",
+   "short": "Im Jahr 9 n. Chr. vernichteten Germanen unter Arminius drei römische Legionen. Rhein und Donau wurden zur Grenze des Reiches.",
+   "long": "In der Varusschlacht lockte der Cherusker Arminius, der selbst im römischen Heer gedient hatte, die Legionen des Varus in einen Hinterhalt. Funde bei Kalkriese in Niedersachsen werden mit der Schlacht in Verbindung gebracht.\n\nDanach gab Rom die Eroberung Germaniens bis zur Elbe auf. Der Limes, ein Grenzwall, sicherte später die Grenze; er ist heute UNESCO-Welterbe.\n\nStädte wie Köln, Trier, Mainz und Augsburg gehen auf römische Gründungen zurück."
+  },
+  {
+   "id": "kap09_kolosseum",
+   "kind": "fakt",
+   "title": "Brot und Spiele",
+   "short": "Das Kolosseum in Rom wurde 80 n. Chr. eingeweiht und bot Platz für rund 50.000 Zuschauer bei Gladiatorenkämpfen und Tierhetzen.",
+   "long": "Die Kaiser sicherten sich die Gunst der Bevölkerung mit Getreidespenden und prächtigen Spielen – „Brot und Spiele“, wie der Dichter Juvenal spottete.\n\nIm Kolosseum kämpften Gladiatoren, oft Sklaven oder Kriegsgefangene, wilde Tiere wurden zu Tausenden getötet. Im Circus Maximus fanden Wagenrennen vor über 100.000 Menschen statt.\n\nDie meisten Römer lebten in engen, mehrstöckigen Mietshäusern, den Insulae."
+  },
+  {
+   "id": "kap09_recht",
+   "kind": "fakt",
+   "title": "Das römische Recht",
+   "short": "Das römische Recht ist eine Grundlage vieler heutiger Rechtsordnungen. Kaiser Justinian ließ es im 6. Jahrhundert sammeln.",
+   "long": "Römische Juristen entwickelten Begriffe wie Vertrag, Eigentum und Erbe, die bis heute verwendet werden. Grundsätze wie „im Zweifel für den Angeklagten“ gehen auf diese Tradition zurück.\n\nUnter Kaiser Justinian wurde das Recht von 529 bis 534 n. Chr. in einer großen Sammlung zusammengefasst, später Corpus iuris civilis genannt.\n\nDas deutsche Bürgerliche Gesetzbuch und viele andere Gesetzbücher Europas bauen darauf auf."
+  },
+  {
+   "id": "kap09_sklaverei",
+   "kind": "fakt",
+   "title": "Sklaverei im Römischen Reich",
+   "short": "Ein großer Teil der Menschen im Römischen Reich lebte als Sklaven. 73 bis 71 v. Chr. führte Spartacus einen großen Aufstand an.",
+   "long": "Sklaven arbeiteten in Bergwerken, auf Landgütern, in Haushalten, aber auch als Lehrer oder Ärzte. Sie galten rechtlich als Besitz. Viele waren Kriegsgefangene.\n\nDer Gladiator Spartacus floh 73 v. Chr. aus einer Gladiatorenschule. Zehntausende schlossen sich ihm an, bis seine Bewegung 71 v. Chr. niedergeschlagen wurde. Rund 6000 Gefangene wurden gekreuzigt.\n\nManche Sklaven wurden freigelassen und konnten selbst zu Wohlstand kommen."
+  },
+  {
+   "id": "kap09_konstantin",
+   "kind": "fakt",
+   "title": "Konstantin und das Christentum",
+   "short": "Kaiser Konstantin erlaubte 313 n. Chr. das Christentum. Unter Theodosius wurde es 380 zur Staatsreligion.",
+   "long": "Christen waren im Römischen Reich lange verfolgt worden. Konstantin förderte das Christentum; die Mailänder Vereinbarung von 313 garantierte Religionsfreiheit.\n\n330 machte Konstantin die Stadt Byzanz unter dem Namen Konstantinopel zur neuen Hauptstadt.\n\nUnter Kaiser Theodosius wurde das Christentum 380 zur Staatsreligion, andere Kulte wurden zunehmend verboten."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art09_meilenstein",
+   "title": "Meilenstein",
+   "text": "Ein Stein am Straßenrand verrät die Entfernung bis zur nächsten Stadt. Alle Wege führen nach Rom – zumindest auf diesen Steinen."
+  },
+  {
+   "id": "art09_militaerdiplom",
+   "title": "Militärdiplom aus Bronze",
+   "text": "Nach 25 Jahren Dienst erhielt ein Hilfssoldat das römische Bürgerrecht – festgehalten auf einer kleinen Bronzetafel."
+  },
+  {
+   "id": "art09_oellampe",
+   "title": "Öllampe aus Ton",
+   "text": "Hunderttausende dieser kleinen Lampen erhellten römische Häuser. Manche tragen Bilder von Gladiatoren."
+  },
+  {
+   "id": "art09_graffito",
+   "title": "Graffito aus Pompeji (Abschrift)",
+   "text": "„Ich wundere mich, Wand, dass du nicht eingestürzt bist, wo du doch das Geschreibsel so vieler trägst.“"
+  }
+ ],
+ "echo": {
+  "name": "Echo: Lucius",
+  "role": "Legionär am Limes, um 150 n. Chr. (erfunden)",
+  "lines": [
+   "Ich komme aus Syrien und stehe hier im Regen am Rand der Welt. So groß ist das Reich.",
+   "Wir bauen Straßen, Brücken, Bäder. Selbst hier im Norden gibt es warmes Wasser – wenn man Glück hat.",
+   "Auf der anderen Seite der Grenze leben Menschen wie wir. Wir handeln mit ihnen, und manchmal kämpfen wir.",
+   "Wenn ich meine 25 Jahre hinter mir habe, werde ich Bürger. Dann kauf ich mir ein kleines Stück Land. Vielleicht genau hier."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Wann wurde Julius Caesar ermordet?",
+   "options": [
+    "Am 15. März 44 v. Chr.",
+    "Im Jahr 476 n. Chr.",
+    "Im Jahr 9 n. Chr."
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Was geschah im Jahr 79 n. Chr.?",
+   "options": [
+    "Der Vesuv begrub Pompeji",
+    "Rom wurde gegründet",
+    "Karthago wurde zerstört"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Welches Bauwerk hat bis heute die größte Kuppel aus unbewehrtem Beton?",
+   "options": [
+    "Das Kolosseum",
+    "Das Pantheon",
+    "Die Hagia Sophia"
+   ],
+   "correct": 1
+  }
+ ]
+}

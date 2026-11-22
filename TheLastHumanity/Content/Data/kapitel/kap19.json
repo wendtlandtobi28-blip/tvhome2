@@ -1,0 +1,181 @@
+{
+ "id": "kap19_extreme",
+ "number": 19,
+ "title": "Das Zeitalter der Extreme",
+ "era": "1914 bis 1991",
+ "summary": "Weltkriege, Diktaturen und Holocaust, Widerstand, Dekolonisation, Bürgerrechte, Kalter Krieg und europäische Einigung.",
+ "theme": {
+  "floor": [
+   0.35,
+   0.35,
+   0.36
+  ],
+  "wall": [
+   0.28,
+   0.28,
+   0.3
+  ],
+  "column": [
+   0.2,
+   0.2,
+   0.22
+  ],
+  "torch": [
+   0.8,
+   0.85,
+   1.0
+  ],
+  "columnShape": "eckig",
+  "monument": "obelisk",
+  "sunPitch": -15,
+  "sunIntensity": 3,
+  "fog": 0.03
+ },
+ "infoPoints": [
+  {
+   "id": "kap08_erster_weltkrieg",
+   "kind": "fakt",
+   "title": "Der Erste Weltkrieg",
+   "short": "Von 1914 bis 1918 führten die Großmächte einen Krieg mit Maschinengewehren, Giftgas und Panzern. Rund 17 Millionen Menschen starben. Danach zerfielen Kaiserreiche, auch das deutsche.",
+   "long": "Nach dem Attentat auf den österreichischen Thronfolger in Sarajevo im Juni 1914 brach durch Bündnisse und Machtpolitik ein Krieg aus, der bald die ganze Welt erfasste. An der Westfront erstarrte der Krieg in Schützengräben; in Schlachten wie bei Verdun und an der Somme starben Hunderttausende für wenige Kilometer Gelände.\n\nNeue Waffen – Maschinengewehre, schwere Artillerie, Giftgas, Panzer und Flugzeuge – machten den Krieg zu einem industriellen Massensterben. Insgesamt kamen schätzungsweise rund 17 Millionen Soldaten und Zivilisten ums Leben.\n\nDer Krieg endete im November 1918. Das deutsche, das österreichisch-ungarische, das russische und das osmanische Reich brachen zusammen. In Deutschland wurde die Weimarer Republik gegründet, die erste deutsche Demokratie; Frauen durften erstmals wählen."
+  },
+  {
+   "id": "kap08_zweiter_weltkrieg",
+   "kind": "fakt",
+   "title": "Diktatur und Zweiter Weltkrieg",
+   "short": "1933 kamen in Deutschland die Nationalsozialisten unter Adolf Hitler an die Macht. Mit dem Überfall auf Polen begann 1939 der Zweite Weltkrieg. Bis 1945 starben weltweit über 60 Millionen Menschen.",
+   "long": "Wirtschaftskrise, Arbeitslosigkeit und Feindschaft gegenüber der Demokratie schwächten die Weimarer Republik. Am 30. Januar 1933 wurde Adolf Hitler Reichskanzler. Die Nationalsozialisten schafften in kurzer Zeit Grundrechte, freie Presse und andere Parteien ab und verfolgten Andersdenkende.\n\nAm 1. September 1939 überfiel Deutschland Polen; damit begann der Zweite Weltkrieg in Europa. Ab 1941 führte Deutschland einen Vernichtungskrieg gegen die Sowjetunion. In Asien führte Japan Krieg gegen China und ab 1941 gegen die USA und Großbritannien.\n\nIn Europa endete der Krieg mit der bedingungslosen Kapitulation Deutschlands am 8. Mai 1945. Nach den Atombombenabwürfen auf Hiroshima und Nagasaki im August kapitulierte auch Japan. Mehr als 60 Millionen Menschen waren tot, die Mehrheit von ihnen Zivilisten."
+  },
+  {
+   "id": "kap08_holocaust",
+   "kind": "fakt",
+   "title": "Der Holocaust",
+   "short": "Die Nationalsozialisten ermordeten rund sechs Millionen europäische Jüdinnen und Juden. Sie ermordeten auch Hunderttausende Sinti und Roma, Menschen mit Behinderungen und viele andere Verfolgte.",
+   "long": "Der Holocaust, auf Hebräisch Schoah, war der von Deutschland geplante und durchgeführte Völkermord an den europäischen Jüdinnen und Juden. Er begann mit Ausgrenzung, Entrechtung und Gewalt, etwa den Novemberpogromen 1938, und führte zum systematischen Massenmord.\n\nRund sechs Millionen jüdische Kinder, Frauen und Männer wurden ermordet – durch Erschießungen, in Ghettos und in Vernichtungslagern wie Auschwitz-Birkenau, Treblinka und Sobibor. Die Nationalsozialisten ermordeten auch Hunderttausende Sinti und Roma, Menschen mit Behinderungen, politische Gegner, Homosexuelle, Zeugen Jehovas sowie Millionen Kriegsgefangene und Zivilisten in Osteuropa.\n\nAm 27. Januar 1945 befreiten sowjetische Soldaten das Lager Auschwitz. Dieser Tag ist heute internationaler Gedenktag. Die Erinnerung an die Opfer ist eine bleibende Verpflichtung: Nie wieder dürfen Menschen wegen ihrer Herkunft, ihres Glaubens oder ihrer Lebensweise entrechtet und verfolgt werden."
+  },
+  {
+   "id": "kap08_dekolonisation",
+   "kind": "fakt",
+   "title": "Vereinte Nationen und Dekolonisation",
+   "short": "1945 wurden die Vereinten Nationen gegründet, 1948 folgte die Allgemeine Erklärung der Menschenrechte. Indien wurde 1947 unabhängig, 1960 allein 17 afrikanische Staaten.",
+   "long": "Um künftige Kriege zu verhindern, gründeten 51 Staaten 1945 die Vereinten Nationen. 1948 verabschiedete die UN-Generalversammlung die Allgemeine Erklärung der Menschenrechte: „Alle Menschen sind frei und gleich an Würde und Rechten geboren.“\n\nNach dem Krieg verloren die Kolonialmächte an Kraft, und die Unabhängigkeitsbewegungen wurden stärker. Indien wurde 1947 nach einem langen, vor allem gewaltlosen Kampf unter Führung von Mahatma Gandhi unabhängig; die gleichzeitige Teilung in Indien und Pakistan war jedoch von Gewalt und Vertreibung begleitet. 1960 wurde als „Afrikanisches Jahr“ bekannt, weil 17 afrikanische Staaten unabhängig wurden.\n\nManche Kolonien erkämpften ihre Freiheit in langen Kriegen, etwa Algerien gegen Frankreich. In Südafrika bestand die Rassentrennung der Apartheid bis Anfang der 1990er-Jahre; 1994 wurde Nelson Mandela der erste demokratisch gewählte Präsident des Landes."
+  },
+  {
+   "id": "kap08_kalter_krieg",
+   "kind": "fakt",
+   "title": "Kalter Krieg, Mondlandung und Mauerfall",
+   "short": "Nach 1945 standen sich die USA und die Sowjetunion feindlich gegenüber; Deutschland war geteilt. 1969 betraten Menschen den Mond. 1989 fiel die Berliner Mauer, 1990 wurde Deutschland wiedervereinigt.",
+   "long": "Nach dem Zweiten Weltkrieg wurden die USA und die Sowjetunion zu Supermächten mit gegensätzlichen Systemen. Sie bekämpften sich nicht direkt, sondern durch Wettrüsten, Spionage und Stellvertreterkriege – daher der Name „Kalter Krieg“. Beide besaßen Atomwaffen, die die gesamte Menschheit hätten vernichten können; in der Kubakrise 1962 stand die Welt kurz vor einem Atomkrieg.\n\nDeutschland war in die Bundesrepublik und die DDR geteilt. Am 13. August 1961 begann die DDR mit dem Bau der Berliner Mauer. Der Wettlauf ins All führte 1957 zum ersten Satelliten Sputnik, 1961 flog Juri Gagarin als erster Mensch ins All, und am 20. Juli 1969 betraten Neil Armstrong und Buzz Aldrin als erste Menschen den Mond.\n\nFriedliche Proteste in der DDR und in Osteuropa führten am 9. November 1989 zur Öffnung der Mauer. Am 3. Oktober 1990 wurde Deutschland wiedervereinigt, im Dezember 1991 löste sich die Sowjetunion auf."
+  },
+  {
+   "id": "kap19_russland",
+   "kind": "fakt",
+   "title": "Die Russische Revolution",
+   "short": "1917 stürzte in Russland der Zar. Im Oktober übernahmen die Bolschewiki unter Lenin die Macht; 1922 entstand die Sowjetunion.",
+   "long": "Nach Kriegsniederlagen und Hungersnöten dankte Zar Nikolaus II. im März 1917 ab. Im Oktober (nach dem damals in Russland gültigen Kalender) stürzten die Bolschewiki die provisorische Regierung.\n\nEs folgte ein blutiger Bürgerkrieg. 1922 wurde die Sowjetunion gegründet.\n\nUnter Stalin wurden Millionen Menschen in Arbeitslager, den Gulag, verschleppt, hingerichtet oder starben bei Hungersnöten, etwa in der Ukraine 1932/33."
+  },
+  {
+   "id": "kap19_krise",
+   "kind": "fakt",
+   "title": "Die Weltwirtschaftskrise",
+   "short": "Der Börsenkrach in New York im Oktober 1929 löste eine weltweite Wirtschaftskrise mit Massenarbeitslosigkeit aus.",
+   "long": "Banken brachen zusammen, Fabriken schlossen, Millionen Menschen verloren ihre Arbeit. In Deutschland waren Anfang 1932 rund sechs Millionen Menschen offiziell arbeitslos.\n\nNot und Angst ließen viele Menschen an der Demokratie zweifeln. Extreme Parteien gewannen Zulauf.\n\nAus der Krise zogen viele Länder später Lehren: Staaten greifen seither in Krisen stärker ein, um Zusammenbrüche zu verhindern."
+  },
+  {
+   "id": "kap19_widerstand",
+   "kind": "fakt",
+   "title": "Widerstand gegen die NS-Diktatur",
+   "short": "Trotz Lebensgefahr leisteten Menschen Widerstand gegen das NS-Regime, etwa die Weiße Rose oder die Männer und Frauen des 20. Juli 1944.",
+   "long": "Die Studentengruppe Weiße Rose in München verteilte 1942/43 Flugblätter gegen das Regime. Sophie und Hans Scholl wurden im Februar 1943 verhaftet und hingerichtet.\n\nAm 20. Juli 1944 versuchte Claus Schenk Graf von Stauffenberg, Hitler mit einer Bombe zu töten. Das Attentat scheiterte; viele Beteiligte wurden ermordet.\n\nAuch viele andere – Arbeiterinnen, Christen, Juden, Kommunisten, Menschen, die Verfolgte versteckten – leisteten Widerstand."
+  },
+  {
+   "id": "kap19_atom",
+   "kind": "fakt",
+   "title": "Das Atomzeitalter",
+   "short": "Im August 1945 warfen die USA Atombomben auf Hiroshima und Nagasaki. Danach begann ein jahrzehntelanges atomares Wettrüsten.",
+   "long": "Die Bomben vom 6. und 9. August 1945 töteten bis Ende des Jahres schätzungsweise weit über 100.000 Menschen, viele weitere starben später an den Folgen der Strahlung.\n\n1949 zündete auch die Sowjetunion eine Atombombe. Beide Supermächte bauten Zehntausende Atomwaffen.\n\nVerträge zur Rüstungskontrolle haben die Zahl der Atomwaffen seit den 1980er-Jahren stark verringert, abgeschafft sind sie bis heute nicht."
+  },
+  {
+   "id": "kap19_china",
+   "kind": "fakt",
+   "title": "China im 20. Jahrhundert",
+   "short": "1949 rief Mao Zedong die Volksrepublik China aus. Der „Große Sprung nach vorn“ führte zu einer Hungersnot mit zig Millionen Toten.",
+   "long": "Nach Bürgerkrieg und japanischer Besatzung siegten die Kommunisten. Mit dem „Großen Sprung nach vorn“ ab 1958 sollte China in kürzester Zeit industrialisiert werden.\n\nDie Folge war eine der schlimmsten Hungersnöte der Geschichte; die Schätzungen der Todesopfer reichen von etwa 15 bis über 40 Millionen.\n\nIn der Kulturrevolution von 1966 bis 1976 wurden Millionen Menschen verfolgt. Ab 1978 öffnete sich China wirtschaftlich."
+  },
+  {
+   "id": "kap19_buergerrechte",
+   "kind": "fakt",
+   "title": "Die Bürgerrechtsbewegung",
+   "short": "In den USA kämpften Afroamerikanerinnen und Afroamerikaner gewaltfrei gegen Rassentrennung. 1964 wurde sie gesetzlich verboten.",
+   "long": "1955 weigerte sich Rosa Parks in Montgomery, ihren Sitzplatz im Bus für einen weißen Fahrgast zu räumen. Es folgte ein über einjähriger Busboykott.\n\n1963 hielt Martin Luther King vor über 200.000 Menschen in Washington seine Rede „I have a dream“. 1964 verbot der Civil Rights Act die Rassentrennung, 1965 sicherte ein weiteres Gesetz das Wahlrecht.\n\nKing wurde 1968 ermordet. Die Bewegung inspirierte Menschen weltweit."
+  },
+  {
+   "id": "kap19_europa",
+   "kind": "fakt",
+   "title": "Die europäische Einigung",
+   "short": "Aus den Trümmern des Krieges wuchs ein gemeinsames Europa: 1951 die Montanunion, 1957 die Römischen Verträge.",
+   "long": "Frankreich, Deutschland, Italien und die Beneluxstaaten legten 1951 ihre Kohle- und Stahlindustrie zusammen – die Grundstoffe der Rüstung. Krieg zwischen ihnen sollte unmöglich werden.\n\n1957 folgte mit den Römischen Verträgen die Europäische Wirtschaftsgemeinschaft. 1963 besiegelten Frankreich und Deutschland ihre Freundschaft im Élysée-Vertrag.\n\nAus diesen Anfängen entstand später die Europäische Union."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art19_feldpost",
+   "title": "Feldpostbrief",
+   "text": "„Liebe Mutter, mach dir keine Sorgen.“ Geschrieben im Schützengraben, 1916. Der Absender kam nicht zurück."
+  },
+  {
+   "id": "art19_flugblatt",
+   "title": "Flugblatt der Weißen Rose (Abschrift)",
+   "text": "„Wir schweigen nicht, wir sind euer böses Gewissen.“ Für solche Sätze riskierten junge Menschen ihr Leben."
+  },
+  {
+   "id": "art19_mauerstueck",
+   "title": "Stück der Berliner Mauer",
+   "text": "Bemalter Beton, der eine Stadt 28 Jahre lang teilte. Im November 1989 wurde er zum Souvenir der Freiheit."
+  },
+  {
+   "id": "art19_mondgestein",
+   "title": "Abguss einer Mondgesteinsprobe",
+   "text": "Ein grauer Stein, 384.000 Kilometer gereist. Gesammelt 1969 von den ersten Menschen auf dem Mond."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Hanna",
+  "role": "Zeitzeugin, geboren 1925 (erfunden)",
+  "lines": [
+   "Als ich ein Kind war, hingen Fahnen mit Hakenkreuzen an allen Häusern. Meine jüdische Freundin Ruth durfte bald nicht mehr in unsere Schule.",
+   "Eines Tages war ihre Familie fort. Niemand fragte laut, wohin. Dieses Schweigen verfolgt mich bis heute.",
+   "Nach dem Krieg haben wir Steine aus den Trümmern geklopft. Und gelernt, dass Demokratie nichts Selbstverständliches ist.",
+   "Erzähl es weiter, Hüter. Erinnerung ist kein Blick zurück. Sie ist eine Warnung nach vorn."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Was geschah am 20. Juli 1944?",
+   "options": [
+    "Ein Attentat auf Hitler scheiterte",
+    "Die Mondlandung",
+    "Die Gründung der Bundesrepublik"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wer weigerte sich 1955, ihren Sitzplatz im Bus zu räumen?",
+   "options": [
+    "Rosa Parks",
+    "Sophie Scholl",
+    "Marie Curie"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Was war die Montanunion von 1951?",
+   "options": [
+    "Ein Zusammenschluss der Kohle- und Stahlindustrie europäischer Staaten",
+    "Ein Militärbündnis gegen die USA",
+    "Eine Bergsteigervereinigung"
+   ],
+   "correct": 0
+  }
+ ]
+}

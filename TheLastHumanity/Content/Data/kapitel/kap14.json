@@ -1,0 +1,188 @@
+{
+ "id": "kap14_asien_amerika",
+ "number": 14,
+ "title": "Asien und Amerika im Mittelalter",
+ "era": "etwa 900 bis 1550",
+ "summary": "Erfindungen der Song-Zeit, Angkor, Samurai, die Mongolen, Zheng Hes Flotte und die Kulturen Amerikas vor 1492.",
+ "theme": {
+  "floor": [
+   0.34,
+   0.4,
+   0.3
+  ],
+  "wall": [
+   0.5,
+   0.3,
+   0.2
+  ],
+  "column": [
+   0.3,
+   0.2,
+   0.14
+  ],
+  "torch": [
+   1.0,
+   0.55,
+   0.3
+  ],
+  "columnShape": "eckig",
+  "monument": "zikkurat",
+  "sunPitch": -40,
+  "sunIntensity": 7,
+  "fog": 0.014
+ },
+ "infoPoints": [
+  {
+   "id": "kap05_mongolen",
+   "kind": "fakt",
+   "title": "Das Mongolenreich",
+   "short": "1206 vereinte Dschingis Khan die mongolischen Stämme. Seine Nachfolger schufen das größte zusammenhängende Landreich der Geschichte – mit furchtbaren Eroberungen, aber auch sicheren Handelswegen.",
+   "long": "Temüdschin vereinte 1206 die Stämme der mongolischen Steppe und erhielt den Titel Dschingis Khan. Mit schnellen Reiterheeren eroberten er und seine Nachfolger weite Teile Asiens und Osteuropas. Die Feldzüge waren extrem gewaltsam; viele Städte wurden zerstört und ihre Bewohner getötet.\n\nAuf seinem Höhepunkt im 13. Jahrhundert reichte das Mongolenreich von Korea bis nach Osteuropa. Es war das größte zusammenhängende Landreich der Geschichte. Unter mongolischer Herrschaft wurden die Handelswege zwischen China und Europa sicherer. Händler wie der Venezianer Marco Polo reisten bis an den Hof Kublai Khans in China.\n\nÜber dieselben Wege verbreitete sich vermutlich auch die Pest, die ab 1347 Europa erreichte."
+  },
+  {
+   "id": "kap05_amerika",
+   "kind": "fakt",
+   "title": "Maya, Azteken und Inka",
+   "short": "In Amerika entstanden eigenständige Hochkulturen: Die Maya hatten eine Schrift und genaue Kalender, die Azteken gründeten um 1325 Tenochtitlan, die Inka beherrschten im 15. Jahrhundert die Anden.",
+   "long": "Die Maya lebten im Süden Mexikos und in Mittelamerika. In ihrer klassischen Zeit (etwa 250 bis 900) bauten sie Stadtstaaten mit Pyramidentempeln. Sie entwickelten eine vollständige Schrift, genaue Kalender und kannten in ihrem Zahlensystem die Null.\n\nDie Azteken gründeten um 1325 ihre Hauptstadt Tenochtitlan auf einer Insel im Texcoco-See, wo heute Mexiko-Stadt liegt. Um 1500 war sie mit vermutlich weit über hunderttausend Einwohnern eine der größten Städte der Welt, verbunden durch Dämme und Kanäle.\n\nIn Südamerika errichteten die Inka im 15. Jahrhundert ein Reich entlang der Anden, das vom heutigen Ecuador bis nach Chile reichte. Ein Straßennetz von Zehntausenden Kilometern verband es. Zur Verwaltung nutzten die Inka Knotenschnüre, die Quipus. Bekannt ist die Bergstadt Machu Picchu aus der Mitte des 15. Jahrhunderts."
+  },
+  {
+   "id": "kap14_song",
+   "kind": "fakt",
+   "title": "Die Song-Dynastie",
+   "short": "Unter der Song-Dynastie (960–1279) war China eines der fortschrittlichsten Länder der Welt – mit Papiergeld, Kompass und Buchdruck.",
+   "long": "Die Song-Zeit war geprägt von wachsenden Städten, regem Handel und neuen Techniken. Im 11. Jahrhundert gab der Staat Papiergeld aus.\n\nDer Magnetkompass wurde zur Navigation auf See genutzt. Bi Sheng entwickelte um 1040 bewegliche Lettern aus Ton.\n\nAuch Landwirtschaft, Porzellanherstellung und Eisenverhüttung erreichten ein Niveau, das Europa erst Jahrhunderte später erreichte."
+  },
+  {
+   "id": "kap14_pulver",
+   "kind": "fakt",
+   "title": "Das Schießpulver",
+   "short": "Schießpulver wurde in China erfunden. Die älteste bekannte schriftliche Rezeptur stammt aus dem Jahr 1044.",
+   "long": "Ursprünglich suchten chinesische Alchemisten wohl nach einem Lebenselixier. Die Mischung aus Salpeter, Schwefel und Holzkohle erwies sich als explosiv.\n\nEin Militärhandbuch von 1044 beschreibt Rezepte für Brandwaffen. Bald folgten Raketen, Granaten und frühe Feuerrohre.\n\nÜber die Mongolen und den Handel gelangte das Wissen nach Westen. In Europa veränderten Kanonen ab dem 14. Jahrhundert die Kriegsführung."
+  },
+  {
+   "id": "kap14_angkor",
+   "kind": "fakt",
+   "title": "Angkor Wat",
+   "short": "Angkor Wat in Kambodscha wurde im frühen 12. Jahrhundert erbaut. Es ist das größte religiöse Bauwerk der Welt.",
+   "long": "Das Reich der Khmer beherrschte große Teile Südostasiens. König Suryavarman II. ließ Angkor Wat ursprünglich als hinduistischen Tempel für den Gott Vishnu errichten; später wurde es buddhistisch.\n\nDie Stadt Angkor war von einem ausgeklügelten System aus Kanälen und Wasserspeichern umgeben und gehörte zu den größten vorindustriellen Siedlungen.\n\nAngkor Wat ist auf der Flagge Kambodschas abgebildet."
+  },
+  {
+   "id": "kap14_samurai",
+   "kind": "fakt",
+   "title": "Samurai und Shogune",
+   "short": "Ab 1185 übernahmen in Japan Militärherrscher, die Shogune, die tatsächliche Macht. Die Samurai bildeten den Kriegeradel.",
+   "long": "Der Kaiser blieb offiziell Herrscher Japans, doch die Macht lag beim Shogun und seinen Vasallen. Das erste Shogunat wurde in Kamakura gegründet.\n\nSchon um das Jahr 1000 hatte die Hofdame Murasaki Shikibu die „Geschichte vom Prinzen Genji“ geschrieben, oft als einer der ersten Romane der Welt bezeichnet.\n\n1274 und 1281 scheiterten zwei mongolische Invasionsflotten – auch wegen schwerer Stürme, die später „Kamikaze“, göttlicher Wind, genannt wurden."
+  },
+  {
+   "id": "kap14_zheng_he",
+   "kind": "fakt",
+   "title": "Die Flotte des Zheng He",
+   "short": "Zwischen 1405 und 1433 führte der Admiral Zheng He sieben große Flottenexpeditionen bis nach Arabien und Ostafrika.",
+   "long": "Die Flotte der Ming-Dynastie bestand aus Hunderten Schiffen und Zehntausenden Seeleuten. Die größten „Schatzschiffe“ waren nach den Überlieferungen gewaltig, ihre genaue Größe ist aber umstritten.\n\nZheng He besuchte Indien, Persien, Arabien und die ostafrikanische Küste. Aus Malindi brachte die Flotte sogar eine Giraffe an den Kaiserhof.\n\nNach 1433 stellte China die großen Expeditionen ein und wandte sich nach innen."
+  },
+  {
+   "id": "kap14_hangeul",
+   "kind": "fakt",
+   "title": "Die koreanische Schrift Hangeul",
+   "short": "König Sejong ließ 1443 eine eigene, leicht erlernbare Schrift für das Koreanische entwickeln: Hangeul.",
+   "long": "Bis dahin schrieb man in Korea mit chinesischen Schriftzeichen, die nur wenige Gebildete beherrschten. König Sejong wollte, dass auch einfache Menschen lesen und schreiben lernen können.\n\nHangeul besteht aus wenigen Grundzeichen, die zu Silbenblöcken zusammengesetzt werden. Die Formen der Konsonanten bilden zum Teil die Stellung von Zunge und Mund nach.\n\nIn Südkorea wird am 9. Oktober der Hangeul-Tag gefeiert."
+  },
+  {
+   "id": "kap14_cahokia",
+   "kind": "fakt",
+   "title": "Cahokia",
+   "short": "Cahokia nahe dem heutigen St. Louis war um 1100 die größte Stadt nördlich von Mexiko, mit einem riesigen Erdhügel.",
+   "long": "Die Menschen der Mississippi-Kultur bauten in Cahokia über hundert Erdhügel. Der größte, Monks Mound, ist rund 30 Meter hoch und hat eine größere Grundfläche als die Cheops-Pyramide.\n\nZur Blütezeit lebten dort schätzungsweise 10.000 bis 20.000 Menschen. Mais war das wichtigste Nahrungsmittel.\n\nUm 1350 war die Stadt weitgehend verlassen. Heute ist sie UNESCO-Welterbe."
+  },
+  {
+   "id": "kap14_chinampas",
+   "kind": "fakt",
+   "title": "Die schwimmenden Gärten der Azteken",
+   "short": "Die Azteken legten im See um Tenochtitlan künstliche Beete an, die Chinampas. Sie lieferten mehrere Ernten im Jahr.",
+   "long": "Chinampas sind schmale, aufgeschüttete Felder zwischen Kanälen. Bäume an den Rändern hielten den Boden fest, Schlamm aus den Kanälen düngte die Beete.\n\nSo konnten die Azteken Mais, Bohnen, Kürbisse, Chili und Blumen in großen Mengen anbauen und eine Großstadt versorgen.\n\nIn Xochimilco am Rand von Mexiko-Stadt werden Chinampas bis heute genutzt."
+  },
+  {
+   "id": "kap14_machu_picchu",
+   "kind": "fakt",
+   "title": "Machu Picchu",
+   "short": "Machu Picchu wurde um 1450 als Anwesen des Inka-Herrschers Pachacútec in den Anden erbaut. 1911 machte Hiram Bingham es weltbekannt.",
+   "long": "Die Anlage liegt auf etwa 2400 Metern Höhe zwischen steilen Gipfeln. Die Mauern bestehen aus passgenau behauenen Steinen ohne Mörtel und überstanden viele Erdbeben.\n\nDie spanischen Eroberer fanden Machu Picchu nie. Einheimische Bauern kannten den Ort, aber erst durch den amerikanischen Forscher Hiram Bingham wurde er 1911 international bekannt.\n\nHeute ist Machu Picchu eines der berühmtesten Welterbestätten der Welt."
+  },
+  {
+   "id": "kap14_neuseeland",
+   "kind": "fakt",
+   "title": "Die Besiedlung Neuseelands",
+   "short": "Neuseeland wurde erst um 1250 bis 1300 von polynesischen Seefahrern besiedelt – als eine der letzten großen Landmassen der Erde.",
+   "long": "Die Vorfahren der Māori kamen mit großen Doppelrumpfkanus aus Ostpolynesien. Sie navigierten nach Sternen, Strömungen und Vogelflug.\n\nIn Neuseeland lebten riesige flugunfähige Vögel, die Moas. Sie starben nach der Ankunft der Menschen innerhalb von etwa zwei Jahrhunderten aus.\n\nDie Māori entwickelten eine eigene Kultur mit kunstvollen Schnitzereien, Tätowierungen und Versammlungshäusern."
+  },
+  {
+   "id": "kap14_delhi",
+   "kind": "fakt",
+   "title": "Das Sultanat von Delhi",
+   "short": "Von 1206 bis 1526 herrschten muslimische Sultane von Delhi aus über große Teile Nordindiens. Der Qutb Minar erinnert an diese Zeit.",
+   "long": "Das Sultanat von Delhi wurde von Heerführern türkischer Herkunft gegründet. Es wehrte im 13. Jahrhundert mehrfach mongolische Angriffe ab.\n\nDer Qutb Minar, ein 73 Meter hohes Minarett aus rotem Sandstein, wurde ab etwa 1200 erbaut.\n\nIn dieser Zeit mischten sich persische, türkische und indische Einflüsse in Sprache, Kunst und Architektur."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art14_kompass",
+   "title": "Löffelkompass (Nachbildung)",
+   "text": "Ein Löffel aus Magnetstein auf einer Bronzeplatte. Sein Stiel zeigt nach Süden – so sah man es in China."
+  },
+  {
+   "id": "art14_papiergeld",
+   "title": "Papiergeldschein der Song",
+   "text": "Ein bedrucktes Blatt, das so viel wert war wie Kupfermünzen. Fälscher drohte die Todesstrafe."
+  },
+  {
+   "id": "art14_quipu",
+   "title": "Quipu-Knotenschnur",
+   "text": "Bunte Schnüre mit Knoten. Die Inka hielten damit Zahlen fest – und vielleicht noch mehr."
+  },
+  {
+   "id": "art14_katana",
+   "title": "Tsuba eines Schwertes",
+   "text": "Das Stichblatt eines japanischen Schwertes, verziert mit Kirschblüten. Schönheit und Krieg lagen eng beieinander."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Itzel",
+  "role": "Händlerin in Tenochtitlan, um 1500 (erfunden)",
+  "lines": [
+   "Auf dem Markt von Tlatelolco gibt es alles: Kakao, Federn, Jade, Obsidian, Baumwolle. Zehntausende kommen jeden Tag.",
+   "Kakaobohnen sind unser Kleingeld. Ein Truthahn kostet viele Bohnen. Ein Schluck Schokolade ist ein Luxus.",
+   "Man sagt, im Osten seien fremde Männer an der Küste gesehen worden. Mit Häusern, die auf dem Wasser schwimmen.",
+   "Ich hoffe, es sind nur Gerüchte, Hüter."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Aus welchem Jahr stammt die älteste bekannte schriftliche Rezeptur für Schießpulver?",
+   "options": [
+    "1044",
+    "1492",
+    "1789"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wofür ließ König Sejong Hangeul entwickeln?",
+   "options": [
+    "Damit auch einfache Menschen lesen und schreiben lernen",
+    "Als Geheimschrift für das Militär",
+    "Für den Handel mit Europa"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Was sind Chinampas?",
+   "options": [
+    "Aztekische Felder zwischen Kanälen im See",
+    "Japanische Burgen",
+    "Indische Tempel"
+   ],
+   "correct": 0
+  }
+ ]
+}

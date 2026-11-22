@@ -1,0 +1,181 @@
+{
+ "id": "kap11_spaetantike",
+ "number": 11,
+ "title": "Spätantike und Umbruch",
+ "era": "etwa 300 bis 750",
+ "summary": "Völkerwanderung, das Ende Westroms, Byzanz, die Entstehung des Islams, das Tang-China und die klassische Maya-Zeit.",
+ "theme": {
+  "floor": [
+   0.36,
+   0.32,
+   0.3
+  ],
+  "wall": [
+   0.44,
+   0.36,
+   0.3
+  ],
+  "column": [
+   0.6,
+   0.5,
+   0.3
+  ],
+  "torch": [
+   1.0,
+   0.8,
+   0.45
+  ],
+  "columnShape": "rund",
+  "monument": "kugel",
+  "sunPitch": -30,
+  "sunIntensity": 6,
+  "fog": 0.02
+ },
+ "infoPoints": [
+  {
+   "id": "kap11_voelkerwanderung",
+   "kind": "fakt",
+   "title": "Die Völkerwanderung",
+   "short": "Ab dem späten 4. Jahrhundert zogen viele Völker in das Römische Reich. 410 plünderten die Westgoten Rom.",
+   "long": "Als die Hunnen um 375 aus dem Osten vordrangen, wichen andere Völker wie die Goten aus und drängten über die Grenzen des Römischen Reiches. Andere kamen als Verbündete und Soldaten ins Reich.\n\n410 plünderten die Westgoten unter Alarich die Stadt Rom – ein Schock für die damalige Welt. 455 folgten die Vandalen.\n\nDer Begriff „Völkerwanderung“ ist vereinfachend: Oft zogen nicht ganze Völker, sondern Kriegerverbände mit ihren Familien."
+  },
+  {
+   "id": "kap11_westrom",
+   "kind": "fakt",
+   "title": "Das Ende Westroms",
+   "short": "476 setzte der Heerführer Odoaker den letzten weströmischen Kaiser Romulus Augustulus ab. Das Oströmische Reich bestand weiter.",
+   "long": "Das Römische Reich war seit 395 in eine West- und eine Osthälfte geteilt. Der Westen wurde immer schwächer: Provinzen gingen verloren, Steuern blieben aus, Heerführer bestimmten die Politik.\n\n476 setzte Odoaker den jungen Kaiser ab und schickte die Kaiserinsignien nach Konstantinopel.\n\nFür die Menschen damals war das kaum ein großer Einschnitt. Erst später wurde das Jahr 476 zum Symbol für das Ende der Antike."
+  },
+  {
+   "id": "kap11_byzanz",
+   "kind": "fakt",
+   "title": "Byzanz",
+   "short": "Das Oströmische oder Byzantinische Reich mit der Hauptstadt Konstantinopel bestand noch fast tausend Jahre bis 1453.",
+   "long": "Die Byzantiner nannten sich selbst Römer, sprachen aber zunehmend Griechisch. Konstantinopel war mit seinen Mauern lange eine der größten und reichsten Städte der Welt.\n\nByzanz bewahrte viele antike Texte und prägte das orthodoxe Christentum, das sich nach Osteuropa und Russland verbreitete.\n\nByzantinische Kunst mit ihren goldenen Mosaiken und Ikonen ist bis heute berühmt."
+  },
+  {
+   "id": "kap11_hagia_sophia",
+   "kind": "fakt",
+   "title": "Die Hagia Sophia",
+   "short": "Die Hagia Sophia in Konstantinopel wurde 532 bis 537 unter Kaiser Justinian erbaut. Sie war fast tausend Jahre die größte Kirche der Christenheit.",
+   "long": "Die riesige Kuppel schien über dem Raum zu schweben. Justinian soll bei der Einweihung ausgerufen haben: „Salomo, ich habe dich übertroffen!“\n\nNach der osmanischen Eroberung 1453 wurde die Kirche zur Moschee. 1934 wurde sie Museum, 2020 wieder Moschee.\n\nDas Gebäude ist ein Symbol für die wechselvolle Geschichte der Stadt, die heute Istanbul heißt."
+  },
+  {
+   "id": "kap11_justinian",
+   "kind": "fakt",
+   "title": "Kaiser Justinian",
+   "short": "Justinian (527–565) wollte das alte Römische Reich wiederherstellen. Unter ihm brach 541 eine verheerende Pestwelle aus.",
+   "long": "Justinians Feldherren eroberten Nordafrika, Italien und Teile Spaniens zurück. Er ließ das römische Recht sammeln und die Hagia Sophia bauen. Seine Frau Theodora hatte großen politischen Einfluss.\n\n541 erreichte die Pest das Reich – die sogenannte Justinianische Pest. Sie kehrte in Wellen über zwei Jahrhunderte zurück und forderte sehr viele Opfer.\n\nDie Kriege und die Seuche schwächten das Reich erheblich."
+  },
+  {
+   "id": "kap11_chlodwig",
+   "kind": "fakt",
+   "title": "Chlodwig und die Franken",
+   "short": "Der Frankenkönig Chlodwig einte um 500 viele fränkische Gruppen und ließ sich taufen. Das Frankenreich wurde zur wichtigsten Macht im Westen.",
+   "long": "Chlodwig aus der Familie der Merowinger besiegte rivalisierende Herrscher und eroberte große Teile Galliens.\n\nUm 500 ließ er sich katholisch taufen. Damit gewann er die Unterstützung der Kirche und der römischstämmigen Bevölkerung.\n\nAus dem Frankenreich gingen später Frankreich und Deutschland hervor."
+  },
+  {
+   "id": "kap11_benedikt",
+   "kind": "fakt",
+   "title": "Benedikt und die Klöster",
+   "short": "Benedikt von Nursia gründete um 529 das Kloster Monte Cassino. Seine Regel prägte das Leben in Klöstern über Jahrhunderte.",
+   "long": "Die Regel des Benedikt ordnete den Tag der Mönche zwischen Gebet, Arbeit und Lesen. Später wurde sie mit dem Motto „ora et labora“ – „bete und arbeite“ – zusammengefasst.\n\nKlöster wurden zu Zentren von Bildung, Landwirtschaft und Krankenpflege. In ihren Schreibstuben wurden antike Texte abgeschrieben und so bewahrt.\n\nBis heute leben Benediktinerinnen und Benediktiner nach dieser Regel."
+  },
+  {
+   "id": "kap11_mohammed",
+   "kind": "fakt",
+   "title": "Mohammed und der Islam",
+   "short": "Mohammed wurde um 570 in Mekka geboren. Nach islamischem Glauben empfing er ab etwa 610 Offenbarungen, die im Koran gesammelt sind.",
+   "long": "In Mekka stieß Mohammed mit seiner Botschaft vom einen Gott zunächst auf Widerstand. 622 zog er mit seinen Anhängern nach Medina. Diese Auswanderung, die Hidschra, markiert den Beginn der islamischen Zeitrechnung.\n\nBei seinem Tod 632 war ein großer Teil der Arabischen Halbinsel islamisch geworden.\n\nDer Islam ist heute mit fast zwei Milliarden Gläubigen eine der großen Weltreligionen."
+  },
+  {
+   "id": "kap11_kalifat",
+   "kind": "fakt",
+   "title": "Die Ausbreitung der Kalifate",
+   "short": "In weniger als hundert Jahren nach Mohammeds Tod reichten die islamischen Reiche von Spanien bis Zentralasien.",
+   "long": "Die Nachfolger Mohammeds, die Kalifen, eroberten Syrien, Ägypten, Persien und Nordafrika. 711 setzten Truppen nach Spanien über.\n\nDie Umayyaden regierten von Damaskus aus, ab 750 die Abbasiden von Bagdad aus.\n\nIn den eroberten Gebieten lebten Christen und Juden oft weiter mit ihrem Glauben, mussten aber eine besondere Steuer zahlen."
+  },
+  {
+   "id": "kap11_tang",
+   "kind": "fakt",
+   "title": "Die Tang-Dynastie",
+   "short": "Unter der Tang-Dynastie (618–907) erlebte China eine Blütezeit. Die Hauptstadt Chang'an war eine der größten Städte der Welt.",
+   "long": "Chang'an, das heutige Xi'an, hatte schätzungsweise rund eine Million Einwohner. Kaufleute aus Persien, Arabien und Zentralasien lebten dort.\n\nDie Tang-Zeit gilt als goldenes Zeitalter der chinesischen Dichtung, mit Dichtern wie Li Bai und Du Fu. Beamte wurden zunehmend über schwierige Prüfungen ausgewählt.\n\nAuch der Buchdruck mit Holzblöcken verbreitete sich in dieser Zeit."
+  },
+  {
+   "id": "kap11_maya",
+   "kind": "fakt",
+   "title": "Die klassische Maya-Zeit",
+   "short": "Zwischen etwa 250 und 900 blühten die Maya-Städte wie Tikal und Palenque. Danach wurden viele Städte im Süden verlassen.",
+   "long": "Die Maya bauten Stadtstaaten mit Tempelpyramiden, Palästen und Ballspielplätzen. Inschriften berichten von Königen, Kriegen und Bündnissen.\n\nIn Palenque wurde 1952 das Grab des Königs K'inich Janaab Pakal entdeckt, der 683 starb – mit einer Jademaske.\n\nUm 800 bis 900 brachen viele Städte im Süden zusammen. Diskutiert werden Dürren, Kriege und Übernutzung der Umwelt. Die Maya selbst leben bis heute."
+  },
+  {
+   "id": "kap11_sutton_hoo",
+   "kind": "fakt",
+   "title": "Das Schiffsgrab von Sutton Hoo",
+   "short": "1939 fand man in England ein reich ausgestattetes Schiffsgrab aus dem 7. Jahrhundert mit einem berühmten Helm.",
+   "long": "Unter einem Hügel bei Sutton Hoo lag der Abdruck eines rund 27 Meter langen Schiffes. Das Holz war vergangen, aber die Grabbeigaben waren erhalten: Waffen, Goldschmuck, Silbergeschirr aus Byzanz und ein prächtiger Helm.\n\nVermutlich wurde hier ein angelsächsischer König bestattet, vielleicht Raedwald von East Anglia.\n\nDer Fund zeigte, dass das sogenannte „dunkle Zeitalter“ alles andere als arm an Kultur war."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art11_mosaik",
+   "title": "Goldenes Mosaiksteinchen",
+   "text": "Ein winziges Würfelchen aus Glas mit Blattgold. Millionen davon ließen die Kirchen von Byzanz leuchten."
+  },
+  {
+   "id": "art11_handschrift",
+   "title": "Seite einer Klosterhandschrift",
+   "text": "Von Hand abgeschrieben, mit verzierten Anfangsbuchstaben. Ein Mönch arbeitete oft monatelang an einem Buch."
+  },
+  {
+   "id": "art11_dinar",
+   "title": "Goldener Dinar",
+   "text": "Eine Münze der Umayyaden – statt Bildern trägt sie nur Schrift."
+  },
+  {
+   "id": "art11_jade",
+   "title": "Jadeperle der Maya",
+   "text": "Jade war für die Maya kostbarer als Gold. Grün wie der junge Mais, galt sie als Zeichen des Lebens."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Bruder Anselm",
+  "role": "Mönch und Schreiber, um 600 (erfunden)",
+  "lines": [
+   "Draußen zerfällt die alte Ordnung. Hier drinnen schreiben wir ab, was die Alten wussten – Buchstabe für Buchstabe.",
+   "Manchmal verstehe ich nicht, was ich kopiere. Griechische Philosophen, römische Dichter. Aber jemand nach mir wird es verstehen.",
+   "Meine Hand ist müde, meine Augen sind schwach. Aber jedes Buch, das ich fertigstelle, ist eine kleine Arche.",
+   "Genau wie dein Archiv, nicht wahr, Hüter?"
+  ]
+ },
+ "quiz": [
+  {
+   "q": "In welchem Jahr wurde der letzte weströmische Kaiser abgesetzt?",
+   "options": [
+    "410",
+    "476",
+    "1453"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Was markiert die Hidschra im Jahr 622?",
+   "options": [
+    "Den Beginn der islamischen Zeitrechnung",
+    "Den Bau der Hagia Sophia",
+    "Die Gründung Bagdads"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Wofür sind die Klöster der Benediktiner unter anderem bekannt?",
+   "options": [
+    "Sie schrieben antike Texte ab und bewahrten sie",
+    "Sie bauten Pyramiden",
+    "Sie erfanden das Rad"
+   ],
+   "correct": 0
+  }
+ ]
+}

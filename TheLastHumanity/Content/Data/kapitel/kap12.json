@@ -1,0 +1,181 @@
+{
+ "id": "kap12_islam_afrika",
+ "number": 12,
+ "title": "Die islamische Welt und Afrika",
+ "era": "etwa 750 bis 1500",
+ "summary": "Gelehrte in Bagdad und Córdoba, Reisende wie Ibn Battuta und die großen Reiche und Handelsstädte Afrikas.",
+ "theme": {
+  "floor": [
+   0.6,
+   0.5,
+   0.36
+  ],
+  "wall": [
+   0.2,
+   0.36,
+   0.4
+  ],
+  "column": [
+   0.7,
+   0.6,
+   0.4
+  ],
+  "torch": [
+   0.4,
+   0.9,
+   0.85
+  ],
+  "columnShape": "rund",
+  "monument": "kugel",
+  "sunPitch": -50,
+  "sunIntensity": 9,
+  "fog": 0.008
+ },
+ "infoPoints": [
+  {
+   "id": "kap05_bagdad",
+   "kind": "fakt",
+   "title": "Das Haus der Weisheit",
+   "short": "Nach der Entstehung des Islams im 7. Jahrhundert wurde Bagdad zu einem Zentrum der Wissenschaft. Gelehrte übersetzten antike Schriften und entwickelten Mathematik, Medizin und Astronomie weiter.",
+   "long": "Im 7. Jahrhundert entstand auf der Arabischen Halbinsel der Islam. Nach dem Tod des Propheten Mohammed 632 breitete sich in kurzer Zeit ein Reich von Spanien bis nach Zentralasien aus.\n\nDie Kalifen der Abbasiden gründeten 762 Bagdad. Dort und in anderen Städten übersetzten Gelehrte Schriften aus dem Griechischen, Persischen und Indischen ins Arabische. Der Mathematiker al-Chwarizmi schrieb um 820 ein Lehrbuch, von dessen Titel sich das Wort „Algebra“ ableitet; aus seinem Namen entstand das Wort „Algorithmus“. Über die arabische Welt gelangten auch die aus Indien stammenden Ziffern nach Europa, die wir heute benutzen.\n\nÄrzte wie Ibn Sina (Avicenna, gestorben 1037) schrieben medizinische Werke, die in Europa noch Jahrhunderte später gelehrt wurden."
+  },
+  {
+   "id": "kap05_mali",
+   "kind": "fakt",
+   "title": "Das Goldreich Mali",
+   "short": "Im 14. Jahrhundert war das Reich Mali in Westafrika eines der reichsten der Welt. Sein Herrscher Mansa Musa pilgerte 1324 nach Mekka; Timbuktu wurde ein berühmter Ort der Gelehrsamkeit.",
+   "long": "Westafrika war im Mittelalter durch den Handel über die Sahara mit Nordafrika und dem Mittelmeer verbunden. Gold, Salz, Bücher und Ideen wurden mit Kamelkarawanen transportiert. Nacheinander entstanden dort große Reiche wie Ghana, Mali und Songhai.\n\nMansa Musa, Herrscher von Mali, reiste 1324 auf seiner Pilgerfahrt nach Mekka durch Kairo. Er führte so viel Gold mit sich und verschenkte so großzügig davon, dass Berichte über seinen Reichtum bis nach Europa gelangten. Auf einer katalanischen Weltkarte von 1375 ist er mit einer Goldkugel abgebildet.\n\nIn Timbuktu entstanden Moscheen und Schulen, an denen Gelehrte unterrichteten. Tausende alte Handschriften aus der Region sind bis heute erhalten. Weiter im Süden Afrikas zeugen die Steinbauten von Groß-Simbabwe (etwa 11. bis 15. Jahrhundert) von einem weiteren mächtigen Handelszentrum."
+  },
+  {
+   "id": "kap12_cordoba",
+   "kind": "fakt",
+   "title": "Córdoba in al-Andalus",
+   "short": "Im 10. Jahrhundert war Córdoba in Spanien eine der größten und gebildetsten Städte Europas, mit einer berühmten Moschee.",
+   "long": "Al-Andalus hieß der muslimisch beherrschte Teil der Iberischen Halbinsel. Unter dem Kalifat von Córdoba blühten Wissenschaft, Philosophie und Handwerk.\n\nDie Mezquita, die große Moschee mit ihrem Wald aus rot-weißen Bögen, wurde nach der christlichen Eroberung 1236 zur Kathedrale umgewandelt.\n\nMuslime, Juden und Christen lebten nebeneinander – nicht immer gleichberechtigt und friedlich, aber mit regem kulturellem Austausch."
+  },
+  {
+   "id": "kap12_optik",
+   "kind": "fakt",
+   "title": "Ibn al-Haitham und das Licht",
+   "short": "Ibn al-Haitham erklärte um das Jahr 1000, dass wir sehen, weil Licht von Gegenständen in unsere Augen fällt – und prüfte das mit Experimenten.",
+   "long": "Viele Gelehrte der Antike glaubten, das Auge sende Sehstrahlen aus. Ibn al-Haitham, der in Kairo arbeitete, zeigte in seinem Buch über die Optik, dass Licht von Gegenständen ins Auge fällt.\n\nEr beschrieb die Lochkamera und betonte, dass Behauptungen durch Experimente überprüft werden müssen.\n\nSein Werk wurde ins Lateinische übersetzt und beeinflusste die Wissenschaft in Europa über Jahrhunderte."
+  },
+  {
+   "id": "kap12_sterne",
+   "kind": "fakt",
+   "title": "Sterne mit arabischen Namen",
+   "short": "Viele Sterne tragen bis heute arabische Namen, etwa Aldebaran, Beteigeuze oder Wega. Islamische Astronomen verbesserten das Astrolabium.",
+   "long": "Astronomie war in der islamischen Welt hoch angesehen – auch um die Gebetszeiten und die Richtung nach Mekka zu bestimmen. Sternwarten in Bagdad, Maragha und Samarkand erstellten genaue Sternkataloge.\n\nDas Astrolabium, ein Instrument zur Messung von Sternenhöhen, wurde weiterentwickelt und half bei Zeitbestimmung und Navigation.\n\nWörter wie „Zenit“, „Algorithmus“ und „Algebra“ stammen aus dem Arabischen."
+  },
+  {
+   "id": "kap12_ibn_battuta",
+   "kind": "fakt",
+   "title": "Ibn Battuta",
+   "short": "Der Gelehrte Ibn Battuta aus Marokko reiste ab 1325 fast 30 Jahre durch Afrika, Asien und Europa – oft wird eine Strecke von 120.000 Kilometern genannt.",
+   "long": "Ibn Battuta brach 1325 zur Pilgerreise nach Mekka auf und kehrte erst Jahrzehnte später zurück. Er besuchte Ostafrika, Persien, Indien, die Malediven, China und das Reich Mali.\n\nSeine Erlebnisse diktierte er einem Schreiber; der Reisebericht ist eine wertvolle Quelle zur Welt des 14. Jahrhunderts.\n\nSeine Reisen zeigen, wie vernetzt die islamische Welt damals war."
+  },
+  {
+   "id": "kap12_simbabwe",
+   "kind": "fakt",
+   "title": "Groß-Simbabwe",
+   "short": "Groß-Simbabwe war vom 11. bis 15. Jahrhundert das Zentrum eines reichen Handelsreiches im südlichen Afrika. Seine Mauern wurden ohne Mörtel gebaut.",
+   "long": "Die Steinmauern von Groß-Simbabwe sind bis zu elf Meter hoch und wurden aus passgenau geschichteten Granitblöcken ohne Mörtel errichtet.\n\nDie Stadt war durch den Handel mit Gold und Elfenbein reich, der über die Küste bis nach Arabien, Indien und China reichte. Dort fand man chinesisches Porzellan.\n\nEuropäische Kolonialherren wollten lange nicht glauben, dass Afrikaner die Anlage gebaut hatten. Der heutige Staat Simbabwe ist nach ihr benannt."
+  },
+  {
+   "id": "kap12_lalibela",
+   "kind": "fakt",
+   "title": "Die Felsenkirchen von Lalibela",
+   "short": "In Lalibela in Äthiopien wurden im 12. und 13. Jahrhundert elf Kirchen aus dem gewachsenen Fels gehauen.",
+   "long": "König Lalibela ließ die Kirchen der Überlieferung nach als „neues Jerusalem“ anlegen. Die Gebäude wurden nicht gebaut, sondern von oben aus dem Vulkangestein herausgemeißelt.\n\nDie berühmteste, die Georgskirche, hat die Form eines Kreuzes.\n\nDie Kirchen werden bis heute genutzt und sind ein bedeutender Pilgerort der äthiopisch-orthodoxen Kirche."
+  },
+  {
+   "id": "kap12_swahili",
+   "kind": "fakt",
+   "title": "Die Swahili-Küste",
+   "short": "An der Küste Ostafrikas blühten Handelsstädte wie Kilwa und Mombasa. Sie verbanden Afrika mit Arabien, Indien und China.",
+   "long": "Mit den Monsunwinden segelten Schiffe über den Indischen Ozean. In den Städten der Swahili-Küste wurden Gold, Elfenbein und Eisen gegen Stoffe, Perlen und Porzellan getauscht.\n\nDie Swahili-Kultur verbindet afrikanische, arabische und persische Einflüsse. Die Sprache Swahili ist heute eine der meistgesprochenen Sprachen Afrikas.\n\nIbn Battuta beschrieb Kilwa als eine der schönsten Städte der Welt."
+  },
+  {
+   "id": "kap12_timbuktu",
+   "kind": "fakt",
+   "title": "Die Handschriften von Timbuktu",
+   "short": "In Timbuktu wurden über Jahrhunderte Hunderttausende Handschriften gesammelt. 2012 retteten Bewohner viele vor der Zerstörung.",
+   "long": "Die Handschriften behandeln Religion, Recht, Astronomie, Medizin und Geschichte. Sie zeigen, dass Westafrika ein Zentrum der Gelehrsamkeit war.\n\nAls bewaffnete Gruppen 2012 die Stadt besetzten, wurden einige Schriften verbrannt. Viele Familien und Bibliothekare schmuggelten jedoch Hunderttausende Handschriften heimlich in Sicherheit.\n\nDie Geschichte zeigt, wie Menschen Wissen unter Lebensgefahr bewahren."
+  },
+  {
+   "id": "kap12_osmanen",
+   "kind": "fakt",
+   "title": "Der Aufstieg der Osmanen",
+   "short": "Das Osmanische Reich entstand um 1300 in Anatolien. 1453 eroberte Sultan Mehmed II. Konstantinopel.",
+   "long": "Die Osmanen dehnten ihre Herrschaft schnell über Anatolien und den Balkan aus. Mit großen Kanonen beschossen sie 1453 die Mauern Konstantinopels; die Stadt fiel nach rund sieben Wochen Belagerung.\n\nKonstantinopel wurde als Istanbul zur Hauptstadt eines Reiches, das auf seinem Höhepunkt von Ungarn bis Arabien und Nordafrika reichte.\n\nDas Osmanische Reich bestand bis 1922."
+  },
+  {
+   "id": "kap12_benin",
+   "kind": "fakt",
+   "title": "Das Königreich Benin",
+   "short": "Im Königreich Benin im heutigen Nigeria entstanden kunstvolle Bronzen. 1897 raubten britische Truppen Tausende davon.",
+   "long": "Benin City war eine große, planvoll angelegte Stadt mit Mauern und Gräben. Kunsthandwerker gossen Platten, Köpfe und Figuren aus Messing und Bronze, die die Geschichte des Hofes erzählen.\n\n1897 eroberten britische Truppen die Stadt und plünderten den Königspalast. Die Benin-Bronzen gelangten in Museen in Europa und Amerika.\n\nIn den letzten Jahren haben mehrere Länder, darunter Deutschland 2022, begonnen, Bronzen an Nigeria zurückzugeben."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art12_astrolab",
+   "title": "Astrolabium aus Messing",
+   "text": "Drehbare Scheiben, feine Gravuren. Mit diesem Instrument las man die Uhrzeit aus den Sternen."
+  },
+  {
+   "id": "art12_handschrift",
+   "title": "Handschrift aus Timbuktu",
+   "text": "Ein Blatt über Astronomie, mit Randnotizen eines Gelehrten. Gerettet in einem Reissack."
+  },
+  {
+   "id": "art12_porzellan",
+   "title": "Chinesische Porzellanscherbe",
+   "text": "Gefunden in Ostafrika, Tausende Kilometer von ihrem Herstellungsort. Ein stilles Zeugnis weltweiten Handels."
+  },
+  {
+   "id": "art12_bronzekopf",
+   "title": "Abguss eines Benin-Kopfes",
+   "text": "Ein Gedenkkopf für einen König. Das Original wurde 1897 geraubt."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Fatima",
+  "role": "Kopistin in Timbuktu, um 1500 (erfunden)",
+  "lines": [
+   "Hier kommen Karawanen mit Salz aus dem Norden und Gold aus dem Süden. Aber das Kostbarste sind die Bücher.",
+   "Mein Onkel hat ein Buch gegen drei Kamele getauscht. Die Familie hielt ihn für verrückt. Ich nicht.",
+   "Ich schreibe ab, was die Gelehrten diktieren: Sterne, Gesetze, Heilmittel. Wissen wird nicht weniger, wenn man es teilt.",
+   "Wenn je jemand diese Bücher verbrennen will, Hüter – versteck sie. So wie du dein Archiv versteckst."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Was erkannte Ibn al-Haitham über das Sehen?",
+   "options": [
+    "Das Auge sendet Strahlen aus",
+    "Licht fällt von Gegenständen ins Auge",
+    "Man sieht nur nachts"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wie wurden die Mauern von Groß-Simbabwe gebaut?",
+   "options": [
+    "Aus Beton",
+    "Aus Granitblöcken ohne Mörtel",
+    "Aus Holz"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wann eroberten die Osmanen Konstantinopel?",
+   "options": [
+    "1453",
+    "1066",
+    "1789"
+   ],
+   "correct": 0
+  }
+ ]
+}

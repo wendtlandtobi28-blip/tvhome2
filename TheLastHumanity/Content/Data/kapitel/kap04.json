@@ -1,0 +1,181 @@
+{
+ "id": "kap04_metall_staedte",
+ "number": 4,
+ "title": "Metall, Rad und erste Städte",
+ "era": "etwa 5000 bis 1500 v. Chr.",
+ "summary": "Kupfer, Bronze und das Rad verändern die Welt. In Mesopotamien entstehen die ersten Städte und die Schrift.",
+ "theme": {
+  "floor": [
+   0.58,
+   0.44,
+   0.3
+  ],
+  "wall": [
+   0.52,
+   0.38,
+   0.26
+  ],
+  "column": [
+   0.42,
+   0.28,
+   0.16
+  ],
+  "torch": [
+   1.0,
+   0.6,
+   0.25
+  ],
+  "columnShape": "eckig",
+  "monument": "zikkurat",
+  "sunPitch": -45,
+  "sunIntensity": 8,
+  "fog": 0.01
+ },
+ "infoPoints": [
+  {
+   "id": "kap02_oetzi",
+   "kind": "fakt",
+   "title": "Kupfer, Rad und der Mann aus dem Eis",
+   "short": "Ab dem 5. Jahrtausend v. Chr. lernten Menschen, Kupfer zu schmelzen. 1991 wurde in den Ötztaler Alpen eine rund 5300 Jahre alte Gletschermumie gefunden – mit einem Kupferbeil.",
+   "long": "Lange bestanden Werkzeuge aus Stein, Holz und Knochen. Im 5. Jahrtausend v. Chr. begannen Menschen in Südosteuropa und Vorderasien, Kupfer aus Erz zu schmelzen. Später entstand durch Mischen von Kupfer und Zinn die härtere Bronze. Etwa in der zweiten Hälfte des 4. Jahrtausends v. Chr. tauchen in Europa und Vorderasien auch die ersten Räder und Wagen auf.\n\nEin einzigartiger Zeuge dieser Zeit ist der Mann aus dem Eis, oft „Ötzi“ genannt. Er wurde 1991 am Tisenjoch in den Ötztaler Alpen gefunden und lebte vor etwa 5300 Jahren. Bei ihm lagen ein Beil mit Kupferklinge, ein Bogen, Pfeile, ein Feuerstein-Dolch und Reste seiner Kleidung. Eine Pfeilspitze in seiner Schulter zeigt, dass er gewaltsam ums Leben kam.\n\nHeute ist er im Südtiroler Archäologiemuseum in Bozen ausgestellt."
+  },
+  {
+   "id": "kap03_uruk_schrift",
+   "kind": "fakt",
+   "title": "Uruk und die Erfindung der Schrift",
+   "short": "In Uruk im heutigen Irak entstand um 3300 v. Chr. eine der ersten Schriften der Welt. Sie diente zuerst der Verwaltung: Man notierte Getreide, Vieh und Arbeitsleistungen.",
+   "long": "Uruk im Süden Mesopotamiens, im heutigen Irak, gilt als eine der ersten Städte der Welt. Um 3000 v. Chr. lebten dort vermutlich mehrere zehntausend Menschen.\n\nUm 3300 bis 3200 v. Chr. begannen Schreiber in Uruk, Zeichen in feuchte Tontafeln zu drücken. Die ersten Texte waren keine Geschichten, sondern Listen und Abrechnungen: Mengen von Gerste, Schafen oder Bier. Aus diesen Bildzeichen entwickelte sich die Keilschrift, benannt nach den keilförmigen Eindrücken des Schreibgriffels.\n\nDie Keilschrift wurde rund 3000 Jahre lang für viele Sprachen genutzt. Etwa zur selben Zeit entstanden in Ägypten die Hieroglyphen. Mit der Schrift beginnt im engeren Sinn die „Geschichte“, denn nun hinterließen Menschen schriftliche Zeugnisse."
+  },
+  {
+   "id": "kap04_varna",
+   "kind": "fakt",
+   "title": "Das Gold von Varna",
+   "short": "Im Gräberfeld von Varna in Bulgarien fand man Goldschmuck aus der Zeit um 4500 v. Chr. – das älteste bearbeitete Gold der Welt.",
+   "long": "1972 stießen Bauarbeiter bei Varna an der bulgarischen Schwarzmeerküste auf ein Gräberfeld aus der Kupferzeit, etwa 4600 bis 4200 v. Chr. alt.\n\nIn einigen Gräbern lagen Tausende Goldgegenstände: Armreifen, Perlen, Zepter. Es ist das älteste bearbeitete Gold, das bisher bekannt ist.\n\nDie ungleiche Verteilung der Beigaben zeigt, dass es schon damals deutliche Unterschiede zwischen Arm und Reich gab."
+  },
+  {
+   "id": "kap04_staedte",
+   "kind": "fakt",
+   "title": "Warum die ersten Städte entstanden",
+   "short": "Bewässerung, Überschüsse und Arbeitsteilung machten in Mesopotamien die ersten Städte möglich. Nicht mehr alle mussten Bauern sein.",
+   "long": "Im Süden Mesopotamiens regnet es kaum. Mit Kanälen leiteten die Menschen Wasser aus Euphrat und Tigris auf die Felder. Die Ernten waren so reich, dass Überschüsse entstanden.\n\nDadurch konnten sich manche Menschen anderen Aufgaben widmen: Handwerker, Händler, Priester, Schreiber und Soldaten. Die Zusammenarbeit vieler Menschen musste organisiert werden – Verwaltung und Herrschaft entstanden.\n\nIm 4. Jahrtausend v. Chr. wuchsen Orte wie Uruk zu Städten mit Tausenden Einwohnern, Tempeln und Mauern."
+  },
+  {
+   "id": "kap04_rad",
+   "kind": "fakt",
+   "title": "Das Rad",
+   "short": "Das Rad tauchte um 3500 v. Chr. auf. Das älteste erhaltene Holzrad mit Achse stammt aus Slowenien und ist über 5000 Jahre alt.",
+   "long": "Ob das Rad in Mesopotamien, in Osteuropa oder an mehreren Orten zugleich erfunden wurde, ist offen. Sicher ist: Um 3500 v. Chr. erscheinen Räder und Wagen in einem großen Gebiet zwischen Vorderasien und Mitteleuropa.\n\nIm Moor von Ljubljana in Slowenien wurde ein Holzrad mit Achse gefunden, etwa 5150 Jahre alt – das älteste bekannte seiner Art.\n\nDas Rad diente zuerst für Transportwagen, die von Rindern gezogen wurden, später auch für Streitwagen und die Töpferscheibe."
+  },
+  {
+   "id": "kap04_pflug",
+   "kind": "fakt",
+   "title": "Pflug und Zugtiere",
+   "short": "Ab dem 4. Jahrtausend v. Chr. zogen Rinder einfache Pflüge. So konnten Bauern viel größere Felder bestellen.",
+   "long": "Der frühe Pflug, Hakenpflug genannt, ritzte den Boden auf, statt ihn umzuwenden. Gezogen von Ochsen, ersetzte er die mühsame Arbeit mit Grabstock und Hacke.\n\nMit mehr Feldern ließ sich mehr ernten. Überschüsse ermöglichten es, dass nicht mehr alle Menschen in der Landwirtschaft arbeiten mussten.\n\nForschende sprechen von einer „Revolution der Sekundärprodukte“: Tiere wurden nicht nur für Fleisch gehalten, sondern auch für Milch, Wolle und Zugkraft."
+  },
+  {
+   "id": "kap04_bronze",
+   "kind": "fakt",
+   "title": "Die Bronzezeit",
+   "short": "Bronze ist eine Mischung aus Kupfer und Zinn. Sie ist härter als reines Kupfer und gab einer ganzen Epoche ihren Namen.",
+   "long": "Im Vorderen Orient wurde Bronze ab etwa 3300 v. Chr. hergestellt, in Mitteleuropa begann die Bronzezeit um 2200 v. Chr.\n\nZinn war selten. Es musste oft über weite Strecken gehandelt werden, etwa aus Gebieten im heutigen Afghanistan, aus Cornwall oder dem Erzgebirge. So entstanden Handelsnetze über Hunderte Kilometer.\n\nWerkzeuge, Waffen und Schmuck aus Bronze zeigten Wohlstand und Macht."
+  },
+  {
+   "id": "kap04_himmelsscheibe",
+   "kind": "fakt",
+   "title": "Die Himmelsscheibe von Nebra",
+   "short": "Die Himmelsscheibe aus Sachsen-Anhalt ist etwa 3600 Jahre alt und gilt als älteste bekannte konkrete Darstellung des Himmels.",
+   "long": "1999 fanden Raubgräber auf dem Mittelberg bei Nebra eine Bronzescheibe mit Goldauflagen: Sonne oder Vollmond, eine Mondsichel und Sterne, darunter vermutlich die Plejaden. Die Scheibe wurde 2002 sichergestellt.\n\nSie wurde um 1600 v. Chr. vergraben und diente wohl auch als Hilfe, um Zeitpunkte im Jahr zu bestimmen. Seit 2013 gehört sie zum UNESCO-Weltdokumentenerbe.\n\nZu sehen ist sie im Landesmuseum für Vorgeschichte in Halle."
+  },
+  {
+   "id": "kap04_zikkurat",
+   "kind": "fakt",
+   "title": "Tempel und Zikkurat",
+   "short": "In den Städten Mesopotamiens standen gewaltige Stufentempel, die Zikkurats. Die Zikkurat von Ur entstand um 2100 v. Chr.",
+   "long": "Eine Zikkurat ist ein gestufter Tempelturm aus Lehmziegeln. Auf der obersten Stufe stand ein Heiligtum für den Stadtgott.\n\nDie Zikkurat von Ur im heutigen Irak wurde unter König Ur-Nammu um 2100 v. Chr. erbaut und ist teilweise erhalten.\n\nDie Tempel waren nicht nur religiöse Orte. Sie verwalteten auch Felder, Vorräte und Arbeitskräfte – Wirtschaft und Glaube waren eng verbunden."
+  },
+  {
+   "id": "kap04_zahlen",
+   "kind": "fakt",
+   "title": "Warum die Stunde 60 Minuten hat",
+   "short": "Die Sumerer rechneten im Sechzigersystem. Davon stammen bis heute die 60 Minuten einer Stunde und die 360 Grad eines Kreises.",
+   "long": "Die Sumerer und später die Babylonier nutzten ein Zahlensystem mit der Basis 60. Die Zahl 60 lässt sich durch viele Zahlen ohne Rest teilen: 2, 3, 4, 5, 6, 10, 12, 15, 20 und 30.\n\nDie Babylonier entwickelten damit eine erstaunlich fortgeschrittene Mathematik und Astronomie.\n\nNoch heute teilen wir Stunden in 60 Minuten, Minuten in 60 Sekunden und den Kreis in 360 Grad – ein Erbe, das über 4000 Jahre alt ist."
+  },
+  {
+   "id": "kap04_gilgamesch",
+   "kind": "fakt",
+   "title": "Das Gilgamesch-Epos",
+   "short": "Das Gilgamesch-Epos gehört zu den ältesten Werken der Weltliteratur. Es erzählt von Freundschaft, Tod und der Suche nach Unsterblichkeit.",
+   "long": "Gilgamesch war der Überlieferung nach ein König von Uruk. Erste Erzählungen über ihn entstanden auf Sumerisch, die bekannteste Fassung auf Akkadisch wurde auf Tontafeln überliefert.\n\nDas Epos erzählt von Gilgameschs Freundschaft mit Enkidu, von dessen Tod und von Gilgameschs vergeblicher Suche nach ewigem Leben. Eine Episode schildert eine große Flut – mit Ähnlichkeiten zur späteren Sintflutgeschichte der Bibel.\n\nViele Tafeln wurden im 19. Jahrhundert in der Bibliothek des Assyrerkönigs Assurbanipal in Ninive gefunden."
+  },
+  {
+   "id": "kap04_handel",
+   "kind": "fakt",
+   "title": "Lapislazuli: Handel über Tausende Kilometer",
+   "short": "Der blaue Stein Lapislazuli kam aus dem heutigen Afghanistan und wurde schon vor 4500 Jahren bis nach Mesopotamien und Ägypten gehandelt.",
+   "long": "Lapislazuli ist ein tiefblauer Schmuckstein. Die wichtigsten Vorkommen lagen in den Bergen von Badakhshan im heutigen Afghanistan.\n\nIn den Königsgräbern von Ur, rund 4500 Jahre alt, fand man prächtigen Schmuck aus Lapislazuli, Gold und Karneol. Auch in Ägypten war der Stein begehrt.\n\nDer Stein reiste über Handelsrouten von Hand zu Hand – ein frühes Beispiel für Fernhandel über Tausende Kilometer."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art04_tontafel",
+   "title": "Tontafel mit Keilschrift",
+   "text": "Eine Abrechnung über Gerste und Arbeitstage. Die meisten frühen Texte der Menschheit sind keine Gedichte, sondern Buchhaltung."
+  },
+  {
+   "id": "art04_siegel",
+   "title": "Rollsiegel",
+   "text": "Ein kleiner Steinzylinder mit eingeschnittenen Bildern. Über feuchten Ton gerollt, wurde er zur Unterschrift seines Besitzers."
+  },
+  {
+   "id": "art04_beil",
+   "title": "Kupferbeil",
+   "text": "Ähnlich dem Beil des Mannes aus dem Eis. Ein solches Werkzeug war ein kleines Vermögen wert."
+  },
+  {
+   "id": "art04_radnabe",
+   "title": "Holzrad (Nachbildung)",
+   "text": "Aus mehreren Brettern zusammengesetzt, mit einem Loch für die Achse. Diese einfache Form veränderte Transport und Handel für immer."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Schreiber Lugal",
+  "role": "Tempelschreiber in Uruk, um 3000 v. Chr. (erfunden)",
+  "lines": [
+   "Du willst wissen, was ich schreibe? Gerste. Schafe. Bier. Wer wie viel bekommt und wer wie viel schuldet.",
+   "Früher hat man sich alles gemerkt. Aber die Stadt ist zu groß geworden für das Gedächtnis eines Menschen.",
+   "Mein Griffel drückt Keile in den Ton. Was ich heute schreibe, kann man in tausend Jahren noch lesen – wenn der Ton gebrannt wird.",
+   "Vielleicht schreibt eines Tages jemand Geschichten damit. Das wäre schön."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Woraus besteht Bronze?",
+   "options": [
+    "Aus Eisen und Kohle",
+    "Aus Kupfer und Zinn",
+    "Aus Gold und Silber"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wofür wurde die frühe Keilschrift vor allem genutzt?",
+   "options": [
+    "Für Liebesgedichte",
+    "Für Verwaltung und Abrechnungen",
+    "Für Landkarten"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Welches Erbe der Sumerer nutzen wir bis heute?",
+   "options": [
+    "Die 60 Minuten einer Stunde",
+    "Das Dezimalsystem",
+    "Den Kalender mit 12 Wochentagen"
+   ],
+   "correct": 0
+  }
+ ]
+}

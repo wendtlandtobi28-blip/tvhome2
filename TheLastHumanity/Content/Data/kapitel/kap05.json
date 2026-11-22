@@ -1,0 +1,188 @@
+{
+ "id": "kap05_aegypten",
+ "number": 5,
+ "title": "Das Alte Ägypten",
+ "era": "etwa 3100 bis 30 v. Chr.",
+ "summary": "Pharaonen, Pyramiden und Hieroglyphen: drei Jahrtausende Hochkultur am Nil.",
+ "theme": {
+  "floor": [
+   0.74,
+   0.62,
+   0.42
+  ],
+  "wall": [
+   0.66,
+   0.54,
+   0.36
+  ],
+  "column": [
+   0.5,
+   0.4,
+   0.25
+  ],
+  "torch": [
+   1.0,
+   0.75,
+   0.35
+  ],
+  "columnShape": "eckig",
+  "monument": "obelisk",
+  "sunPitch": -58,
+  "sunIntensity": 10,
+  "fog": 0.006
+ },
+ "infoPoints": [
+  {
+   "id": "kap03_aegypten",
+   "kind": "fakt",
+   "title": "Das Reich am Nil",
+   "short": "Um 3100 v. Chr. wurde Ägypten zu einem Reich vereint. Die Pyramiden von Gizeh entstanden um 2600 bis 2500 v. Chr.; die größte, die Cheops-Pyramide, war ursprünglich etwa 146 Meter hoch.",
+   "long": "Der Nil machte Ägypten fruchtbar: Seine jährliche Überschwemmung brachte Wasser und nährstoffreichen Schlamm auf die Felder. Um 3100 v. Chr. wurden Ober- und Unterägypten zu einem Reich unter einem König vereint, später Pharao genannt.\n\nIm Alten Reich entstanden die großen Pyramiden als Grabmäler der Könige. Die Cheops-Pyramide in Gizeh wurde um 2560 v. Chr. fertiggestellt und war ursprünglich etwa 146 Meter hoch. Sie blieb fast 4000 Jahre lang das höchste von Menschen errichtete Bauwerk. Gebaut wurde sie nach heutigem Wissen nicht von Sklaven, sondern von organisierten Arbeitertrupps, die versorgt und bezahlt wurden.\n\nDie ägyptische Kultur bestand mit Unterbrechungen fast 3000 Jahre. Ihre Hieroglyphen konnten erst 1822 durch Jean-François Champollion mithilfe des Steins von Rosette entziffert werden."
+  },
+  {
+   "id": "kap05_nil",
+   "kind": "fakt",
+   "title": "Das Geschenk des Nils",
+   "short": "Ohne den Nil gäbe es kein Altes Ägypten. Seine jährliche Überschwemmung machte einen schmalen Streifen Wüste fruchtbar.",
+   "long": "Der griechische Geschichtsschreiber Herodot nannte Ägypten ein „Geschenk des Nils“. Jedes Jahr im Sommer trat der Fluss über die Ufer und hinterließ fruchtbaren Schlamm.\n\nDie Ägypter teilten ihr Jahr in drei Jahreszeiten: Überschwemmung, Aussaat und Ernte. Ein großer Teil der Bevölkerung lebte in einem schmalen grünen Band entlang des Flusses.\n\nSeit dem Bau des Assuan-Staudamms im 20. Jahrhundert gibt es die jährliche Überschwemmung nicht mehr."
+  },
+  {
+   "id": "kap05_hieroglyphen",
+   "kind": "fakt",
+   "title": "Hieroglyphen und Papyrus",
+   "short": "Hieroglyphen sind Bild- und Lautzeichen zugleich. Geschrieben wurde auf Stein und auf Papyrus, einem Vorläufer des Papiers.",
+   "long": "Die ägyptische Schrift entstand um 3200 v. Chr. Manche Zeichen stehen für ganze Wörter, andere für Laute. Neben den kunstvollen Hieroglyphen gab es schnellere Schreibschriften für den Alltag.\n\nPapyrus wurde aus dem Mark einer Sumpfpflanze hergestellt: Streifen wurden kreuzweise gelegt, gepresst und getrocknet. Das Wort „Papier“ geht auf Papyrus zurück.\n\nSchreiber genossen hohes Ansehen. Schreiben zu können, öffnete den Weg in die Verwaltung."
+  },
+  {
+   "id": "kap05_pharao",
+   "kind": "fakt",
+   "title": "Der Pharao",
+   "short": "Der Pharao galt als Mittler zwischen Göttern und Menschen. Er sollte die Weltordnung, Ma'at, bewahren.",
+   "long": "Der ägyptische König galt als göttlich legitimiert. Seine Aufgabe war es, die Ma'at aufrechtzuerhalten – Ordnung, Wahrheit und Gerechtigkeit – gegen das Chaos.\n\nDie Palette des Narmer, um 3100 v. Chr., zeigt einen König mit den Kronen von Ober- und Unterägypten. Sie gilt als frühes Zeugnis der Reichseinigung.\n\nDer Begriff „Pharao“ bedeutet ursprünglich „großes Haus“ und bezeichnete zunächst den Palast."
+  },
+  {
+   "id": "kap05_mumien",
+   "kind": "fakt",
+   "title": "Mumien und das Jenseits",
+   "short": "Die Ägypter glaubten an ein Leben nach dem Tod. Damit der Körper erhalten blieb, wurde er aufwendig mumifiziert.",
+   "long": "Bei der Mumifizierung wurden die inneren Organe entnommen, der Körper mit Natronsalz getrocknet und in Leinenbinden gewickelt. Der ganze Vorgang dauerte etwa 70 Tage.\n\nGrabbeigaben, Texte und Bilder sollten den Verstorbenen im Jenseits helfen. Das sogenannte Totenbuch enthielt Sprüche für die Reise durch die Unterwelt.\n\nAuch Tiere wie Katzen, Ibisse und Krokodile wurden zu Millionen mumifiziert."
+  },
+  {
+   "id": "kap05_arbeiter",
+   "kind": "fakt",
+   "title": "Die Arbeiter von Deir el-Medina",
+   "short": "In Deir el-Medina lebten die Handwerker, die die Königsgräber bauten. Von dort stammt der älteste schriftlich überlieferte Streik.",
+   "long": "Das Dorf Deir el-Medina bei Theben war die Heimat der Arbeiter, die die Gräber im Tal der Könige anlegten. Sie waren gut ausgebildete, bezahlte Fachleute.\n\nUnzählige beschriebene Tonscherben erzählen von ihrem Alltag: Arbeitszeiten, Krankmeldungen, Streit unter Nachbarn.\n\nUnter Ramses III., um 1157 v. Chr., legten die Arbeiter die Arbeit nieder, weil ihre Getreiderationen ausblieben – der älteste bekannte Streik der Geschichte."
+  },
+  {
+   "id": "kap05_hatschepsut",
+   "kind": "fakt",
+   "title": "Hatschepsut",
+   "short": "Hatschepsut regierte um 1479 bis 1458 v. Chr. als Pharaonin. Sie ließ Handelsexpeditionen ausrüsten und prächtige Tempel bauen.",
+   "long": "Hatschepsut war zunächst Regentin für ihren jungen Stiefsohn Thutmosis III. und ließ sich dann selbst zum Pharao krönen. Auf Darstellungen trägt sie oft die Insignien eines männlichen Königs, sogar den Zeremonialbart.\n\nUnter ihrer Herrschaft fuhr eine Expedition in das ferne Land Punt, von wo Weihrauch und Myrrhe kamen. Ihr Totentempel in Deir el-Bahari gehört zu den schönsten Bauten Ägyptens.\n\nNach ihrem Tod wurden viele ihrer Bilder entfernt – warum, wird bis heute diskutiert."
+  },
+  {
+   "id": "kap05_echnaton",
+   "kind": "fakt",
+   "title": "Echnaton und Nofretete",
+   "short": "Pharao Echnaton stellte um 1350 v. Chr. einen einzigen Gott, Aton, in den Mittelpunkt. Seine Frau Nofretete ist durch eine berühmte Büste bekannt.",
+   "long": "Echnaton verehrte die Sonnenscheibe Aton als wichtigsten Gott und gründete eine neue Hauptstadt, Achet-Aton, heute Amarna. Auch die Kunst wurde lebendiger und persönlicher.\n\nNach seinem Tod kehrte Ägypten zu den alten Göttern zurück, und sein Name wurde aus vielen Listen getilgt.\n\nDie Büste seiner Frau Nofretete wurde 1912 von einer deutschen Grabung gefunden und steht heute im Neuen Museum in Berlin. Ägypten fordert sie zurück."
+  },
+  {
+   "id": "kap05_tutanchamun",
+   "kind": "fakt",
+   "title": "Tutanchamun",
+   "short": "Das Grab des jungen Königs Tutanchamun wurde 1922 nahezu unberührt entdeckt – mit über 5000 Gegenständen.",
+   "long": "Tutanchamun regierte nur etwa zehn Jahre und starb um 1323 v. Chr. mit etwa 19 Jahren. Politisch war er eher unbedeutend.\n\nBerühmt wurde er, weil Howard Carter 1922 sein Grab im Tal der Könige fand, das Grabräuber kaum angetastet hatten. Darin lagen Wagen, Möbel, Schmuck und die goldene Totenmaske.\n\nDie Funde gaben einen einzigartigen Einblick in die Ausstattung eines Königsgrabes."
+  },
+  {
+   "id": "kap05_ramses",
+   "kind": "fakt",
+   "title": "Ramses II. und der Frieden mit den Hethitern",
+   "short": "Nach der Schlacht bei Kadesch um 1274 v. Chr. schlossen Ägypten und die Hethiter einen der ältesten erhaltenen Friedensverträge.",
+   "long": "Ramses II. regierte rund 66 Jahre. Um 1274 v. Chr. kämpfte er bei Kadesch im heutigen Syrien gegen das Reich der Hethiter. Die Schlacht endete ohne klaren Sieger, auch wenn Ramses sie als Triumph darstellen ließ.\n\nEtwa 15 Jahre später schlossen beide Reiche einen Friedensvertrag. Fassungen sind auf ägyptischer und hethitischer Seite erhalten.\n\nEine Nachbildung des Vertrags hängt heute im Hauptgebäude der Vereinten Nationen in New York."
+  },
+  {
+   "id": "kap05_medizin",
+   "kind": "fakt",
+   "title": "Medizin am Nil",
+   "short": "Ägyptische Papyri beschreiben Krankheiten, Verletzungen und Heilmittel. Der Papyrus Ebers ist rund 3500 Jahre alt.",
+   "long": "Der Papyrus Ebers aus der Zeit um 1550 v. Chr. enthält Hunderte Rezepte und Beschreibungen von Krankheiten. Der Papyrus Edwin Smith beschreibt Verletzungen und ihre Behandlung erstaunlich nüchtern und genau.\n\nNeben wirksamen Mitteln wie Honig zur Wundbehandlung gehörten auch Zaubersprüche zur Therapie.\n\nÄgyptische Ärzte waren in der Antike weithin bekannt und angesehen."
+  },
+  {
+   "id": "kap05_kusch",
+   "kind": "fakt",
+   "title": "Das Reich Kusch",
+   "short": "Südlich von Ägypten lag das Reich Kusch im heutigen Sudan. Um 750 v. Chr. eroberten kuschitische Könige sogar Ägypten.",
+   "long": "Kusch, auch Nubien genannt, war über Jahrtausende Nachbar, Handelspartner und Rivale Ägyptens. Es war reich an Gold.\n\nIm 8. Jahrhundert v. Chr. eroberten Könige aus Kusch Ägypten und regierten als 25. Dynastie rund ein Jahrhundert lang.\n\nIn Meroë entstanden später zahlreiche steile Pyramiden – im heutigen Sudan stehen mehr Pyramiden als in Ägypten."
+  },
+  {
+   "id": "kap05_kleopatra",
+   "kind": "fakt",
+   "title": "Kleopatra und das Ende des alten Ägypten",
+   "short": "Kleopatra VII. war die letzte Herrscherin des unabhängigen Ägypten. Nach ihrem Tod 30 v. Chr. wurde Ägypten römische Provinz.",
+   "long": "Seit Alexander dem Großen regierte in Ägypten eine griechischsprachige Dynastie, die Ptolemäer. Kleopatra VII. soll als Einzige ihrer Familie auch Ägyptisch gesprochen haben.\n\nSie verbündete sich mit den Römern Julius Caesar und später Marcus Antonius. Nach der Niederlage gegen Octavian, den späteren Kaiser Augustus, nahm sie sich 30 v. Chr. das Leben.\n\nDamit endeten rund drei Jahrtausende eigenständiger ägyptischer Geschichte."
+  }
+ ],
+ "artifacts": [
+  {
+   "id": "art05_skarabaeus",
+   "title": "Skarabäus-Amulett",
+   "text": "Der Mistkäfer rollt eine Kugel vor sich her – für die Ägypter ein Sinnbild der Sonne, die jeden Morgen neu aufgeht."
+  },
+  {
+   "id": "art05_papyrus",
+   "title": "Papyrusrolle",
+   "text": "Gepresste Streifen einer Sumpfpflanze. Auf solchen Rollen wurden Briefe, Rechnungen und Totenbücher geschrieben."
+  },
+  {
+   "id": "art05_ostrakon",
+   "title": "Beschriftete Tonscherbe",
+   "text": "Ein Ostrakon aus Deir el-Medina: Ein Arbeiter entschuldigt sich darin – er sei krank gewesen."
+  },
+  {
+   "id": "art05_uschebti",
+   "title": "Uschebti-Figur",
+   "text": "Eine kleine Dienerfigur fürs Grab. Sie sollte im Jenseits die Feldarbeit für den Verstorbenen übernehmen."
+  }
+ ],
+ "echo": {
+  "name": "Echo: Meret",
+  "role": "Schreiberin in Theben, um 1200 v. Chr. (erfunden)",
+  "lines": [
+   "Siehst du den Fluss? Er gibt uns alles. Und wenn er zu hoch oder zu niedrig steigt, nimmt er es wieder.",
+   "Mein Vater wollte, dass ich weben lerne. Ich habe heimlich die Zeichen gelernt. Heute zähle ich die Ernte des Tempels.",
+   "Die Pyramiden waren schon alt, als meine Großmutter geboren wurde. So alt ist unsere Geschichte.",
+   "Wer seinen Namen aufschreiben lässt, lebt weiter. Darum: Sprich meinen Namen. Meret."
+  ]
+ },
+ "quiz": [
+  {
+   "q": "Warum nannte Herodot Ägypten ein „Geschenk des Nils“?",
+   "options": [
+    "Weil der Nil Gold mit sich führte",
+    "Weil die Überschwemmung das Land fruchtbar machte",
+    "Weil der Nil die Wüste kühlte"
+   ],
+   "correct": 1
+  },
+  {
+   "q": "Wer entdeckte 1922 das Grab des Tutanchamun?",
+   "options": [
+    "Howard Carter",
+    "Jean-François Champollion",
+    "Heinrich Schliemann"
+   ],
+   "correct": 0
+  },
+  {
+   "q": "Was geschah nach dem Tod Kleopatras im Jahr 30 v. Chr.?",
+   "options": [
+    "Ägypten wurde römische Provinz",
+    "Ägypten wurde von Persien erobert",
+    "Die Pyramiden wurden gebaut"
+   ],
+   "correct": 0
+  }
+ ]
+}

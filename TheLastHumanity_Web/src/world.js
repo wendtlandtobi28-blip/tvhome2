@@ -12,7 +12,7 @@ export const HUB = {
   landmarks: { aussicht: { x: 0, z: 41 }, denkmal: { x: -12, z: 14 }, archivtor: { x: 30, z: 4 } },
   crystals: [[-30, -24], [22, -26], [24, 32], [-28, 26], [14, 29], [-20, 34], [6, -8], [-27, 6], [24, -6], [-6, 22]]
 };
-export const SECTOR = { HL: 20, HW: 9, WH: 8, PORTAL_X: 18, start: { x: -17, z: 0, yaw: Math.PI / 2 } };
+export const SECTOR = { HL: 45, HW: 11, WH: 8, PORTAL_X: 42, start: { x: -42, z: 0, yaw: Math.PI / 2 }, quiz: { x: 37.5, z: -4.2 }, echo: { x: 0, z: 4.0 }, partitions: [-15, 15], door: 3.2 };
 
 // --------------------------------------------------------------------- Bausteine
 
@@ -338,7 +338,7 @@ export function buildHub(assets, story, quality) {
       const tag = labelSprite(ch ? ch.name : id, 2.4, opts.quest ? '#ffd27a' : '#dbe8f5');
       tag.position.y = 2.35 * (opts.scale || 1);
       c.root.add(tag);
-      const marker = new THREE.Mesh(new THREE.OctahedronGeometry(0.16, 0), new THREE.MeshBasicMaterial({ color: 0xffb640 }));
+      const marker = new THREE.Mesh(new THREE.OctahedronGeometry(0.16, 0), new THREE.MeshBasicMaterial({ color: 0xffb640, fog: false }));
       marker.position.y = 2.75 * (opts.scale || 1);
       marker.visible = false;
       c.root.add(marker);
@@ -354,6 +354,11 @@ export function buildHub(assets, story, quality) {
   npc('archivar', 26, 12, -Math.PI / 2, palettes[4], { talk: true });
   npc('pilot', 6, 40, Math.PI, palettes[0], { talk: true });
   npc('kind', -6, 28, Math.PI * 0.8, palettes[3], { talk: true, scale: 0.62 });
+  npc('gaertnerin', -18, 23, Math.PI * 0.7, palettes[3], { talk: true });
+  npc('aerztin', 16, -11, -Math.PI * 0.2, { Ruestung: 0xd8dde4, Akzent: 0x2a7a9a, Anzug: 0x9aa4b0, glow: 0x80e0ff }, { talk: true });
+  npc('haendler', 9, 17, Math.PI * 1.1, palettes[1], { talk: true });
+  npc('musikerin', -10, -26, Math.PI * 0.1, palettes[4], { talk: true, cape: true, capeColors: ['#3a2a5a', '#120a1e'] });
+  npc('wache', 19, 28, Math.PI * 1.2, { Ruestung: 0x2a2e36, Akzent: 0x8a6a2a, Anzug: 0x101114 }, { talk: true, cape: true, capeColors: ['#5a1a1a', '#1a0505'] });
   const walkPaths = [
     [[-10, -12], [10, -12], [10, 8], [-10, 8]], [[-24, 18], [-6, 36], [12, 24]], [[18, -20], [24, 0], [16, 20], [4, 10]],
     [[-18, -26], [-30, 16], [-16, 0]], [[0, -34], [18, -30], [8, -16]], [[-4, 38], [10, 34], [20, 28], [4, 22]]
@@ -392,6 +397,7 @@ export function buildHub(assets, story, quality) {
     const lm = story.landmarks.find((l) => l.id === id);
     b.interactables.push({ kind: 'landmark', id, pos: new THREE.Vector3(p.x, 1.5, p.z), label: lm ? lm.title : id, range: 7, auto: true });
   });
+  const questItems = {};
   const crystals = HUB.crystals.map(([x, z], i) => makeCrystal(b, story.crystals[i] ? story.crystals[i].id : 'kr' + i, x, z));
 
   return {
@@ -400,7 +406,41 @@ export function buildHub(assets, story, quality) {
     env: assets.env.sunset, envIntensity: 0.55,
     fog: new THREE.FogExp2(0x3a2a3a, quality === 'niedrig' ? 0.0028 : 0.0022),
     update(dt, t) { b.updaters.forEach((u) => u(dt, t)); },
-    setQuestMarker(npcId, on) { npcs.forEach((n) => { if (n.marker) n.marker.visible = n.id === npcId && on; }); },
+    setMarkers(map) {
+      npcs.forEach((n) => {
+        if (!n.marker) return;
+        const c = map[n.id];
+        n.marker.visible = !!c;
+        if (c) n.marker.material.color.setHex(c);
+      });
+    },
+    spawnQuestItem(id, label, x, z) {
+      if (questItems[id]) return questItems[id];
+      const g = new THREE.Group();
+      g.position.set(x, 0, z);
+      const boxM = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.4, 0.5), new THREE.MeshStandardMaterial({ color: 0x2a3550, metalness: 0.7, roughness: 0.3, emissive: 0x3fa0ff, emissiveIntensity: 0.6 }));
+      boxM.position.y = 0.2;
+      g.add(boxM);
+      const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 4, 8, 1, true), new THREE.MeshBasicMaterial({ color: 0x7fd0ff, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false }));
+      beam.position.y = 2.2;
+      g.add(beam);
+      const tag = labelSprite(label, 1.8, '#bfe6ff');
+      tag.position.y = 1.0;
+      g.add(tag);
+      b.group.add(g);
+      const item = { kind: 'questitem', id, label, pos: new THREE.Vector3(x, 0.6, z), obj: g, range: 2.2 };
+      b.interactables.push(item);
+      questItems[id] = item;
+      return item;
+    },
+    removeQuestItem(id) {
+      const it = questItems[id];
+      if (!it) return;
+      b.group.remove(it.obj);
+      const i = b.interactables.indexOf(it);
+      if (i >= 0) b.interactables.splice(i, 1);
+      delete questItems[id];
+    },
     mapShapes() {
       return {
         circle: R,
@@ -413,15 +453,36 @@ export function buildHub(assets, story, quality) {
 
 // --------------------------------------------------------------------- Archivsektor
 
-export function autoLocation(i, n) {
-  const sx = -SECTOR.HL + 6, ex = SECTOR.HL - 8;
-  const step = n > 1 ? (ex - sx) / (n - 1) : 0;
-  return { x: sx + i * step, z: (i % 2 === 0) ? -4.5 : 4.5 };
+/** Verteilt n Erinnerungen auf drei Kammern, abwechselnd an beiden Seitenwaenden. */
+export function sectorLayout(n) {
+  const { HL, HW, partitions } = SECTOR;
+  const rooms = [[-HL + 7, partitions[0] - 4], [partitions[0] + 4, partitions[1] - 4], [partitions[1] + 4, HL - 9]];
+  const per = [Math.ceil(n / 3), Math.ceil((n - Math.ceil(n / 3)) / 2)];
+  per.push(n - per[0] - per[1]);
+  const out = [];
+  rooms.forEach(([x0, x1], r) => {
+    const k = per[r];
+    for (let i = 0; i < k; i++) {
+      const t = k > 1 ? i / (k - 1) : 0.5;
+      out.push({ x: x0 + (x1 - x0) * t, z: (out.length % 2 === 0 ? -1 : 1) * (HW - 2.6) });
+    }
+  });
+  return out;
+}
+
+export function artifactLayout(n) {
+  const { HL, HW, partitions } = SECTOR;
+  const spots = [
+    { x: partitions[0] - 1.6, z: HW - 1.4 }, { x: partitions[0] + 1.6, z: -(HW - 1.4) },
+    { x: partitions[1] - 1.6, z: -(HW - 1.4) }, { x: partitions[1] + 1.6, z: HW - 1.4 },
+    { x: -HL + 2, z: HW - 1.6 }, { x: HL - 3, z: HW - 1.6 }
+  ];
+  return spots.slice(0, n);
 }
 
 export function buildSector(assets, chapter, quality) {
   const b = new Builder();
-  const { HL, HW, WH, PORTAL_X } = SECTOR;
+  const { HL, HW, WH, PORTAL_X, partitions, door } = SECTOR;
   const theme = chapter.theme || {};
   const tc = theme.torch || [0.4, 0.8, 1.0];
   const accent = new THREE.Color().setRGB(tc[0], tc[1], tc[2]);
@@ -438,7 +499,7 @@ export function buildSector(assets, chapter, quality) {
     g.globalAlpha = 0.25; g.lineWidth = 1;
     g.beginPath(); g.moveTo(w / 2, 0); g.lineTo(w / 2, h); g.moveTo(0, h / 2); g.lineTo(w, h / 2); g.stroke();
   }, false);
-  gridTex.repeat.set(HL * 2 / 2, HW * 2 / 2);
+  gridTex.repeat.set(HL, HW);
   const floorMat = new THREE.MeshStandardMaterial({ color: 0x0b0d12, metalness: 0.8, roughness: 0.25, emissive: accent, emissiveMap: gridTex, emissiveIntensity: 0.35, normalMap: assets.normals.metal });
   b.box(0, -0.3, 0, HL * 2, 0.6, HW * 2, floorMat, { shadow: false });
   const wallMat = new THREE.MeshStandardMaterial({ color: 0x1a1d25, metalness: 0.75, roughness: 0.4, normalMap: assets.normals.panels });
@@ -449,28 +510,39 @@ export function buildSector(assets, chapter, quality) {
     b.box(0, 0.25, s * (HW - 0.05), HL * 2, 0.06, 0.08, stripMat, { shadow: false });
     b.box(0, WH - 0.4, s * (HW - 0.05), HL * 2, 0.06, 0.08, stripMat, { shadow: false });
   });
-  // Saeulen mit Lichtband
+  // Trennwaende zwischen den Kammern mit Durchgang in der Mitte
+  partitions.forEach((px) => {
+    const seg = HW - door;
+    [-1, 1].forEach((s) => {
+      b.box(px, WH / 2, s * (door + seg / 2), 0.8, WH, seg, wallMat, { collide: true, block: true });
+      b.box(px - 0.42, WH / 2, s * (door + 0.1), 0.06, WH * 0.85, 0.12, stripMat, { shadow: false });
+      b.box(px + 0.42, WH / 2, s * (door + 0.1), 0.06, WH * 0.85, 0.12, stripMat, { shadow: false });
+    });
+    b.box(px, WH - 1, 0, 0.8, 2, door * 2, wallMat, { block: true });
+  });
+  // Saeulen mit Lichtband (zwischen Mittelweg und Terminals)
   const colMat = new THREE.MeshStandardMaterial({ color: 0x23262f, metalness: 0.85, roughness: 0.3 });
   const round = theme.columnShape !== 'eckig';
-  for (let i = -3; i <= 3; i++) {
+  for (let cx = -HL + 5; cx <= HL - 5; cx += 7.5) {
+    if (partitions.some((p) => Math.abs(cx - p) < 2.5)) continue;
     [-1, 1].forEach((s) => {
-      const cx = i * 5.5 + 2.75, cz = s * (HW - 2.2);
-      if (round) b.cyl(cx, WH / 2, cz, 0.45, 0.45, WH, colMat, { collide: true });
-      else b.box(cx, WH / 2, cz, 0.8, WH, 0.8, colMat, { collide: true });
-      b.box(cx, WH / 2, cz - s * (round ? 0.44 : 0.41), 0.08, WH * 0.8, 0.04, stripMat, { shadow: false });
+      const cz = s * 5.4;
+      if (round) b.cyl(cx, WH / 2, cz, 0.4, 0.4, WH, colMat, { collide: true });
+      else b.box(cx, WH / 2, cz, 0.7, WH, 0.7, colMat, { collide: true });
+      b.box(cx, WH / 2, cz - s * (round ? 0.39 : 0.36), 0.08, WH * 0.8, 0.04, stripMat, { shadow: false });
     });
   }
-  // Lichter
-  [-11, 0, 11].forEach((x) => b.light(x, 5.5, 0, accent, 25, 20));
+  // Lichter (zwei je Kammer)
+  [-34, -22, -6, 6, 22, 34].forEach((x) => b.light(x, 5.5, 0, accent, 25, 18));
   b.group.add(new THREE.HemisphereLight(0x8090c0, 0x101015, 0.6));
   const moon = new THREE.DirectionalLight(0xb0c8ff, 1.2);
-  moon.position.set(-20, 40, 30);
+  moon.position.set(-30, 50, 30);
   moon.castShadow = quality !== 'niedrig';
   moon.shadow.mapSize.set(1024, 1024);
-  Object.assign(moon.shadow.camera, { left: -26, right: 26, top: 26, bottom: -26, near: 1, far: 120 });
+  Object.assign(moon.shadow.camera, { left: -50, right: 50, top: 50, bottom: -50, near: 1, far: 160 });
   b.group.add(moon, moon.target);
 
-  // Holografisches Monument
+  // Holografisches Monument in der mittleren Kammer
   const holoMat = new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false });
   const edgeMat = new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending });
   const holo = new THREE.Group();
@@ -493,28 +565,32 @@ export function buildSector(assets, chapter, quality) {
   b.group.add(holo);
   b.updaters.push((dt, t) => { holo.rotation.y += dt * 0.15; holoMat.opacity = 0.14 + Math.sin(t * 3) * 0.04; });
 
-  // Inschrift (holografisch) an der Stirnwand
+  // Inschrift an der Stirnwand
   const insTex = canvasTex(2048, 400, (g, w, h) => {
     g.textAlign = 'center'; g.textBaseline = 'middle';
     g.shadowColor = accentHex; g.shadowBlur = 24;
     g.fillStyle = '#eaf6ff';
-    g.font = '700 120px "Rajdhani", "Exo 2", Arial, sans-serif';
-    g.fillText((chapter.number + '. ' + chapter.title).toUpperCase(), w / 2, h * 0.38);
+    let size = 120;
+    const title = (chapter.number + '. ' + chapter.title).toUpperCase();
+    do { g.font = `700 ${size}px "Rajdhani", "Exo 2", Arial, sans-serif`; size -= 6; } while (g.measureText(title).width > w * 0.94 && size > 40);
+    g.fillText(title, w / 2, h * 0.38);
     g.font = '500 64px "Rajdhani", "Exo 2", Arial, sans-serif';
     g.fillStyle = accentHex;
     g.fillText(chapter.era, w / 2, h * 0.75);
   });
   insTex.wrapS = insTex.wrapT = THREE.ClampToEdgeWrapping;
-  const ins = new THREE.Mesh(new THREE.PlaneGeometry(15, 15 * 400 / 2048), new THREE.MeshBasicMaterial({ map: insTex, transparent: true, depthWrite: false }));
+  const ins = new THREE.Mesh(new THREE.PlaneGeometry(16, 16 * 400 / 2048), new THREE.MeshBasicMaterial({ map: insTex, transparent: true, depthWrite: false }));
   ins.position.set(HL - 0.05, 6.2, 0);
   ins.rotation.y = -Math.PI / 2;
   b.group.add(ins);
 
-  // Datenterminals (Erinnerungen)
+  // Datenterminals (Erinnerungen); zwei davon sind verrauscht
   const points = [];
   const n = chapter.infoPoints.length;
+  const layout = sectorLayout(n);
+  const noisyIdx = n >= 6 ? [Math.floor(n * 0.3), Math.floor(n * 0.7)] : [];
   chapter.infoPoints.forEach((entry, idx) => {
-    const loc = Array.isArray(entry.location) ? { x: entry.location[0] / 100, z: entry.location[1] / 100 } : autoLocation(idx, n);
+    const loc = layout[idx];
     const g = new THREE.Group();
     g.position.set(loc.x, 0, loc.z);
     const ped = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.45, 1.0, 6), new THREE.MeshStandardMaterial({ color: 0x1b1e26, metalness: 0.85, roughness: 0.3 }));
@@ -528,6 +604,10 @@ export function buildSector(assets, chapter, quality) {
     const core = new THREE.Mesh(new THREE.OctahedronGeometry(0.2, 0), coreMat);
     core.position.y = 1.45; core.scale.y = 1.5;
     g.add(core);
+    const noise = new THREE.Mesh(new THREE.IcosahedronGeometry(0.62, 1), new THREE.MeshBasicMaterial({ color: 0xff3355, wireframe: true, transparent: true, opacity: 0.55 }));
+    noise.position.y = 1.45;
+    noise.visible = false;
+    g.add(noise);
     const pl = new THREE.PointLight(0xffffff, 8, 6, 2);
     pl.position.y = 1.8;
     g.add(pl);
@@ -536,7 +616,8 @@ export function buildSector(assets, chapter, quality) {
     g.add(label);
     b.group.add(g);
     b.colliders.push({ t: 'c', x: loc.x, z: loc.z, r: 0.48 });
-    const item = { kind: 'memory', id: entry.id, label: entry.title, pos: new THREE.Vector3(loc.x, 1.45, loc.z), core, coreMat, ringM, light: pl, discovered: false, focused: false, phase: idx * 1.3 };
+    const item = { kind: 'memory', id: entry.id, label: entry.title, pos: new THREE.Vector3(loc.x, 1.45, loc.z), core, coreMat, ringM, light: pl, noiseObj: noise,
+      noisy: noisyIdx.includes(idx), discovered: false, focused: false, phase: idx * 1.3 };
     b.interactables.push(item);
     points.push(item);
   });
@@ -546,8 +627,68 @@ export function buildSector(assets, chapter, quality) {
       p.core.position.y = 1.45 + Math.sin(t * 1.8 + p.phase) * 0.06;
       p.core.scale.setScalar((p.focused ? 1.3 : 1));
       p.core.scale.y *= 1.5;
+      if (p.noiseObj.visible) { p.noiseObj.rotation.y += dt * 3; p.noiseObj.rotation.x += dt * 2.1; p.noiseObj.scale.setScalar(1 + Math.sin(t * 17 + p.phase) * 0.08); }
     });
   });
+
+  // Artefakte (versteckte Fundstuecke in den Ecken)
+  const artifacts = [];
+  artifactLayout((chapter.artifacts || []).length).forEach((loc, i) => {
+    const a = chapter.artifacts[i];
+    const g = new THREE.Group();
+    g.position.set(loc.x, 0, loc.z);
+    const mat = new THREE.MeshStandardMaterial({ color: 0xe8c070, emissive: 0xc08020, emissiveIntensity: 1.6, metalness: 0.8, roughness: 0.25 });
+    const gem = new THREE.Mesh(new THREE.TorusKnotGeometry(0.16, 0.05, 64, 8), mat);
+    gem.position.y = 0.9;
+    g.add(gem);
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.28, 0.1, 8), new THREE.MeshStandardMaterial({ color: 0x1c2230, metalness: 0.8, roughness: 0.3 }));
+    base.position.y = 0.05;
+    g.add(base);
+    b.group.add(g);
+    const item = { kind: 'artifact', id: a.id, label: a.title, pos: new THREE.Vector3(loc.x, 0.9, loc.z), obj: g, range: 2.4, collected: false };
+    item.setCollected = (c) => { item.collected = c; g.visible = !c; };
+    b.updaters.push((dt, t) => { gem.rotation.y += dt * 1.5; gem.position.y = 0.9 + Math.sin(t * 2 + i) * 0.06; });
+    b.interactables.push(item);
+    artifacts.push(item);
+  });
+
+  // Zeitzeugen-Echo (Hologramm einer Person)
+  let echo = null;
+  if (chapter.echo) {
+    const c = createCharacter(assets, { cape: false });
+    const hmat = new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.45, blending: THREE.AdditiveBlending, depthWrite: false });
+    c.model.traverse((o) => { if (o.isMesh) { o.material = hmat; o.castShadow = false; } });
+    c.root.position.set(SECTOR.echo.x, 0, SECTOR.echo.z);
+    c.root.rotation.y = -Math.PI / 2;
+    b.group.add(c.root);
+    const tag = labelSprite(chapter.echo.name, 2.6, accentHex);
+    tag.position.y = 2.3;
+    c.root.add(tag);
+    b.updaters.push((dt, t) => { c.update(dt, 0, true); hmat.opacity = 0.35 + Math.sin(t * 6) * 0.08 + (Math.random() < 0.02 ? -0.2 : 0); });
+    b.colliders.push({ t: 'c', x: SECTOR.echo.x, z: SECTOR.echo.z, r: 0.45 });
+    echo = { kind: 'echo', id: 'echo_' + chapter.id, label: chapter.echo.name, pos: new THREE.Vector3(SECTOR.echo.x, 1.6, SECTOR.echo.z), range: 3.2, char: c };
+    b.interactables.push(echo);
+  }
+
+  // Wissensterminal vor dem Sektortor
+  const qt = new THREE.Group();
+  qt.position.set(SECTOR.quiz.x, 0, SECTOR.quiz.z);
+  const qBase = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.1, 0.7), new THREE.MeshStandardMaterial({ color: 0x1d2230, metalness: 0.85, roughness: 0.3 }));
+  qBase.position.y = 0.55;
+  qt.add(qBase);
+  const qScreenMat = new THREE.MeshBasicMaterial({ color: 0xffb640, transparent: true, opacity: 0.8 });
+  const qScreen = new THREE.Mesh(new THREE.PlaneGeometry(1.1, 0.7), qScreenMat);
+  qScreen.position.set(0, 1.55, 0.2);
+  qScreen.rotation.x = -0.35;
+  qt.add(qScreen);
+  const qTag = labelSprite('Wissensterminal', 2.2, '#ffd27a');
+  qTag.position.y = 2.4;
+  qt.add(qTag);
+  b.group.add(qt);
+  b.colliders.push({ t: 'b', x0: SECTOR.quiz.x - 0.6, x1: SECTOR.quiz.x + 0.6, z0: SECTOR.quiz.z - 0.35, z1: SECTOR.quiz.z + 0.35 });
+  const quizItem = { kind: 'quiz', id: 'quiz_' + chapter.id, label: 'Wissensterminal', pos: new THREE.Vector3(SECTOR.quiz.x, 1.4, SECTOR.quiz.z), range: 3.0, passed: false };
+  quizItem.setPassed = (p) => { quizItem.passed = p; qScreenMat.color.setHex(p ? 0x55d0ff : 0xffb640); };
+  b.interactables.push(quizItem);
 
   // Sektortor (Rueckweg)
   const portal = new THREE.Group();
@@ -578,15 +719,16 @@ export function buildSector(assets, chapter, quality) {
 
   return {
     kind: 'sector', chapterId: chapter.id, group: b.group, colliders: b.colliders, blockers: b.blockers, interactables: b.interactables,
-    points, portal: portalItem, start: SECTOR.start,
+    points, artifacts, echo, quiz: quizItem, portal: portalItem, start: SECTOR.start,
     bounds: { x: HL, z: HW },
     env: assets.env.night, envIntensity: 0.6,
-    fog: new THREE.FogExp2(0x060810, 0.012),
+    fog: new THREE.FogExp2(0x060810, 0.008),
     update(dt, t) { b.updaters.forEach((u) => u(dt, t)); },
-    setMemoryState(item, discovered, focused) {
+    setMemoryState(item, discovered, focused, noisy) {
       item.discovered = discovered;
       item.focused = focused;
-      const c = discovered ? 0x55d0ff : 0xffb640;
+      item.noiseObj.visible = !!noisy;
+      const c = noisy ? 0xff3355 : (discovered ? 0x55d0ff : 0xffb640);
       item.coreMat.color.setHex(c);
       item.coreMat.emissive.setHex(c);
       item.ringM.color.setHex(c);
