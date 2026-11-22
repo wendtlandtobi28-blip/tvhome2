@@ -13,7 +13,9 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const URL = process.argv[2];
+// Kopflose Testbrowser liefern bei eingefangener Maus keine sinnvollen Bewegungswerte;
+// deshalb wird das Umsehen per Ziehen (Rueckfall ohne Zeigersperre) getestet.
+const URL = process.argv[2] + (process.argv[2].includes('?') ? '&' : '?') + 'zeiger=aus';
 const OUT = process.argv[3] || '.';
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -117,7 +119,7 @@ function check(cond, label, detail) {
 
   async function usePortal(chapterNo) {
     const portal = await ev(() => TLH.portal());
-    const reached = await walkTo(portal.x - 1.2, 0, 0.5);
+    const reached = await walkTo(portal.x - 1.6, 0, 1.0);
     await ev(([tx, tz]) => TLH.face(tx, tz), [portal.x, 0]);
     await wait(250);
     const foc = await ev(() => TLH.focused());
@@ -227,7 +229,7 @@ function check(cond, label, detail) {
   check(pts1.length === 5, 'Kapitel 1 hat 5 Informationspunkte', pts1.length);
   // Tor vor Abschluss
   const portal = await ev(() => TLH.portal());
-  await walkTo(portal.x - 1.2, 0, 0.5);
+  await walkTo(portal.x - 1.6, 0, 1.0);
   await ev(([tx]) => TLH.face(tx, 0), [portal.x]);
   await wait(250);
   check(await ev(() => TLH.focused()) === 'portal', 'Tor wird fokussiert');

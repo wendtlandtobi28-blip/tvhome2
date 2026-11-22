@@ -1091,7 +1091,8 @@
 
   // ====================================================================== Maus / Zeigersperre
 
-  var lockSupported = 'requestPointerLock' in canvas;
+  // ?zeiger=aus schaltet das Einfangen der Maus ab (Umsehen dann mit gedrueckter Maustaste)
+  var lockSupported = ('requestPointerLock' in canvas) && !/[?&]zeiger=aus/.test(window.location.search);
 
   function requestLock() {
     if (!lockSupported || document.pointerLockElement === canvas) { return; }
