@@ -1,6 +1,6 @@
 # Entwicklungsstand – THE LAST HUMANITY
 
-Letzte Aktualisierung: 22.11.2026 · **Version 2.0.0 (Browser, Science-Fiction) / 0.9.0 (Unreal)** · Branch `claude/last-humanity-game-dev-l0fii0`
+Letzte Aktualisierung: 22.11.2026 · **Version 3.0.0 (Browser, grober 45-Stunden-Entwurf) / 0.9.0 (Unreal)** · Branch `claude/last-humanity-game-dev-l0fii0`
 
 ## Statusbegriffe
 
@@ -11,7 +11,24 @@ Letzte Aktualisierung: 22.11.2026 · **Version 2.0.0 (Browser, Science-Fiction) 
 | ❌ Fehlgeschlagen | Test durchgeführt, Fehler offen |
 | ⬜ Nicht implementiert | Noch nicht begonnen |
 
-## Browser-Version 2.0.0 – Science-Fiction-Story-Modus (`../TheLastHumanity_Web/`)
+## Browser-Version 3.0.0 – grober Entwurf für 45 Spielstunden (`../TheLastHumanity_Web/`)
+
+Umsetzung der Entscheidung vom 22.11.2026 (`GAME_DESIGN.md`, Abschnitt 12) mit der bisherigen Grafik. **Komplett durchspielbar, automatisch durchgespielt: 239 von 239 Prüfungen** (`TESTS.md`, Abschnitt E).
+
+| Bereich | Umfang | Status |
+|---|---|---|
+| Archivsektoren | 20 Kapitel, je drei Kammern | ✅ getestet |
+| Erinnerungen | 246 (12–15 je Sektor), Kurz- und Langtext | ✅ alle im Test geöffnet · Texte: Entwurf, fachliche Prüfung offen |
+| Datenrauschen (E halten) | 40 Stellen (2 je Sektor) | ✅ getestet |
+| Artefakte | 80 (4 je Sektor), im Kodex | ✅ getestet |
+| Zeitzeugen-Echo | 20 Gespräche | ✅ getestet |
+| Wissensprüfung | 20 × 3 Fragen, falsche Antwort → erneut versuchen | ✅ getestet |
+| Nebenaufgaben | 25 (bringen, holen, besuchen), 10 Bewohner | ✅ alle im Test erledigt |
+| Station, Kristalle, Fähigkeiten, Menüs, Speichern | wie Version 2 | ✅ getestet |
+| Spielzeit | **nicht gemessen.** Schätzung für den Entwurf: ca. 12–18 Stunden bei gründlichem Lesen (246 Texte à ca. 2–3 min, dazu Wege, Prüfungen, Nebenaufgaben). Für 45 Stunden fehlen v. a. größere, gestaltete Sektoren, Story-Szenen und mehr Stationsinhalte | ⬜ Messung durch Projektinhaber |
+| Grafik | unverändert (Version 2) | – |
+
+## Browser-Version 2.0.0 (ersetzt durch 3.0.0) – Science-Fiction-Story-Modus (`../TheLastHumanity_Web/`)
 
 Neue Richtung nach Vorgabe des Projektinhabers (Bildvorlage): Raumstation MNEMOSYNE, dritte Person, eigenes Emblem, HUD wie in der Vorlage. Komplette Geschichte spielbar (Station → 10 Archivsektoren → Abspann), **im Browser automatisch komplett durchgespielt** (`TESTS.md`, Abschnitt D: 86/86 bis zum Abspann in zwei Läufen, Menü-Teiltest 14/14).
 

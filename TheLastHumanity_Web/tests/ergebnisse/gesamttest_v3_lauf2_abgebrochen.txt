@@ -1,0 +1,112 @@
+
+A1. Laden, Hauptmenue, Namenseingabe
+  [OK]     Spiel laedt, Hauptmenue erscheint  (10396 ms)
+  [OK]     "Fortsetzen" ohne Spielstand deaktiviert
+  [OK]     Einleitung erscheint
+  [OK]     Spiel startet mit eigenem Namen
+  [OK]     Spiel enthaelt ueber 240 Erinnerungen  (246)
+
+A2. Steuerung, Kamera, Kollision
+  [OK]     W: vorwaerts gehen  (2.07 m)
+  [OK]     D: nach rechts (kamerarelativ)
+  [OK]     Sprinten verbraucht Ausdauer
+  [OK]     Springen und landen
+  [OK]     Maus dreht die Kamera (rechts, oben)
+  [OK]     Esc oeffnet das Menue
+  [OK]     Pausenmenue: "Optionen" sichtbar (640 px Hoehe)
+
+A3. Station: Gespraech, Erkundung, Kristalle, Faehigkeiten, Menues
+  [OK]     Archivtor anfangs versiegelt
+  [OK]     Gespraech mit der Kommandantin, Quest weiter  ({"ok":true,"foc":"npc:kommandantin","lines":4,"reached":true})
+  [OK]     Erkundet: aussicht
+  [OK]     Erkundet: denkmal
+  [OK]     Erkundet: archivtor
+  [OK]     Quest: Archivtor betreten
+  [OK]     Alle 10 Datenkristalle eingesammelt
+  [OK]     Faehigkeit Scan-Puls
+  [OK]     Faehigkeit Rueckruf
+  [OK]     Menue journal (J)
+  [OK]     Menue codex (I)
+  [OK]     Menue skills (K)
+  [OK]     Menue map (M)
+
+A4. Nebenquests zu Fuss
+  [OK]     Nebenquest nq01 (fetch) erledigt  (1 gesamt)
+  [OK]     Nebenquest nq02 (fetch) erledigt  (2 gesamt)
+
+A5. Sektor 1 komplett zu Fuss
+  [OK]     Archivtor fuehrt in Sektor 1
+  [OK]     Sektor 1: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 1: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 1: Datenrauschen beseitigt  (2 Stellen)
+  [FEHLER] Sektor 1: alle 4 Artefakte gefunden  (3/4)
+  [FEHLER] Sektor 1: Gespraech mit dem Zeitzeugen-Echo  (0 Zeilen)
+  [OK]     Sektor 1: Wissenspruefung bestanden (nach einer falschen Antwort), Tor offen
+  [OK]     Sektor 1: Rueckkehr zur Station
+  [OK]     Quest: Bericht an die Kommandantin
+  [OK]     Bericht inkl. Ankuendigung des naechsten Sektors  (3 Zeilen)
+
+A6. Speichern und Laden
+  [OK]     Nach Neuladen alles wiederhergestellt  ({"d":13,"a":3,"s":2,"q":1,"st":"gate","xp":3075})
+
+B. Sektoren 2 bis 20 (beschleunigt) mit Nebenquests
+  [OK]     Archivtor fuehrt in Sektor 2
+  [OK]     Sektor 2: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 2: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 2: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 2: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 2: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 2: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 2: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 2
+  [OK]     Nebenquest nq03 (deliver) erledigt  (3 gesamt)
+  [OK]     Nebenquest nq04 (fetch) erledigt  (4 gesamt)
+  [OK]     Nebenquest nq05 (fetch) erledigt  (5 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 3
+  [OK]     Sektor 3: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 3: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 3: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 3: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 3: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 3: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 3: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 3
+  [OK]     Nebenquest nq06 (deliver) erledigt  (6 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 4
+  [OK]     Sektor 4: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 4: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 4: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 4: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 4: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 4: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 4: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 4
+  [OK]     Nebenquest nq07 (fetch) erledigt  (7 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 5
+  [OK]     Sektor 5: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 5: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 5: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 5: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 5: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 5: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 5: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 5
+  [OK]     Nebenquest nq08 (visit) erledigt  (8 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 6
+  [OK]     Sektor 6: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [FEHLER] Sektor 6: alle 12 Erinnerungen gelesen  (11/12)
+  [FEHLER] Sektor 6: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 6: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 6: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [FEHLER] Sektor 6: Wissenspruefung bestanden, Tor offen
+  [FEHLER] Sektor 6: Rueckkehr zur Station
+  [FEHLER] Bericht nach Sektor 6
+  [FEHLER] Archivtor fuehrt in Sektor 7
+  [OK]     Sektor 7: alle 19 Ziele erreichbar (Wegsuche)  ()
+ABBRUCH: page.waitForTimeout: Target page, context or browser has been closed
+    at wait (/home/user/tvhome2/TheLastHumanity_Web/tests/e2e_test.js:40:29)
+    at standAt (/home/user/tvhome2/TheLastHumanity_Web/tests/e2e_test.js:72:11)
+    at async completeSector (/home/user/tvhome2/TheLastHumanity_Web/tests/e2e_test.js:113:12)
+    at async /home/user/tvhome2/TheLastHumanity_Web/tests/e2e_test.js:285:5 {
+  log: []
+}

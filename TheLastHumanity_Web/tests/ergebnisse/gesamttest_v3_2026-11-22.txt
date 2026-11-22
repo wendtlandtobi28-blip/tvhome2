@@ -1,0 +1,257 @@
+
+A1. Laden, Hauptmenue, Namenseingabe
+  [OK]     Spiel laedt, Hauptmenue erscheint  (9476 ms)
+  [OK]     "Fortsetzen" ohne Spielstand deaktiviert
+  [OK]     Einleitung erscheint
+  [OK]     Spiel startet mit eigenem Namen
+  [OK]     Spiel enthaelt ueber 240 Erinnerungen  (246)
+
+A2. Steuerung, Kamera, Kollision
+  [OK]     W: vorwaerts gehen  (2.07 m)
+  [OK]     D: nach rechts (kamerarelativ)
+  [OK]     Sprinten verbraucht Ausdauer
+  [OK]     Springen und landen
+  [OK]     Maus dreht die Kamera (rechts, oben)
+  [OK]     Esc oeffnet das Menue
+  [OK]     Pausenmenue: "Optionen" sichtbar (640 px Hoehe)
+
+A3. Station: Gespraech, Erkundung, Kristalle, Faehigkeiten, Menues
+  [OK]     Archivtor anfangs versiegelt
+  [OK]     Gespraech mit der Kommandantin, Quest weiter  ({"ok":true,"foc":"npc:kommandantin","lines":4,"reached":true})
+  [OK]     Erkundet: aussicht
+  [OK]     Erkundet: denkmal
+  [OK]     Erkundet: archivtor
+  [OK]     Quest: Archivtor betreten
+  [OK]     Alle 10 Datenkristalle eingesammelt
+  [OK]     Faehigkeit Scan-Puls
+  [OK]     Faehigkeit Rueckruf
+  [OK]     Menue journal (J)
+  [OK]     Menue codex (I)
+  [OK]     Menue skills (K)
+  [OK]     Menue map (M)
+
+A4. Nebenquests zu Fuss
+  [OK]     Nebenquest nq01 (fetch) erledigt  (1 gesamt)
+  [OK]     Nebenquest nq02 (fetch) erledigt  (2 gesamt)
+
+A5. Sektor 1 komplett zu Fuss
+  [OK]     Archivtor fuehrt in Sektor 1
+  [OK]     Sektor 1: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 1: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 1: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 1: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 1: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 1: Wissenspruefung bestanden (nach einer falschen Antwort), Tor offen
+  [OK]     Sektor 1: Rueckkehr zur Station
+  [OK]     Quest: Bericht an die Kommandantin
+  [OK]     Bericht inkl. Ankuendigung des naechsten Sektors  (3 Zeilen)
+
+A6. Speichern und Laden
+  [OK]     Nach Neuladen alles wiederhergestellt  ({"d":13,"a":4,"s":2,"q":1,"st":"gate","xp":3225})
+
+B. Sektoren 2 bis 20 (beschleunigt) mit Nebenquests
+  [OK]     Archivtor fuehrt in Sektor 2
+  [OK]     Sektor 2: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 2: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 2: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 2: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 2: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 2: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 2: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 2
+  [OK]     Nebenquest nq03 (deliver) erledigt  (3 gesamt)
+  [OK]     Nebenquest nq04 (fetch) erledigt  (4 gesamt)
+  [OK]     Nebenquest nq05 (fetch) erledigt  (5 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 3
+  [OK]     Sektor 3: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 3: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 3: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 3: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 3: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 3: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 3: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 3
+  [OK]     Nebenquest nq06 (deliver) erledigt  (6 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 4
+  [OK]     Sektor 4: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 4: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 4: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 4: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 4: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 4: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 4: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 4
+  [OK]     Nebenquest nq07 (fetch) erledigt  (7 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 5
+  [OK]     Sektor 5: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 5: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 5: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 5: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 5: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 5: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 5: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 5
+  [OK]     Nebenquest nq08 (visit) erledigt  (8 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 6
+  [OK]     Sektor 6: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 6: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 6: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 6: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 6: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 6: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 6: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 6
+  [OK]     Nebenquest nq09 (visit) erledigt  (9 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 7
+  [OK]     Sektor 7: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 7: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 7: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 7: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 7: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 7: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 7: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 7
+  [OK]     Nebenquest nq10 (fetch) erledigt  (10 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 8
+  [OK]     Sektor 8: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 8: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 8: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 8: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 8: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 8: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 8: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 8
+  [OK]     Nebenquest nq11 (deliver) erledigt  (11 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 9
+  [OK]     Sektor 9: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 9: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 9: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 9: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 9: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 9: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 9: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 9
+  [OK]     Nebenquest nq12 (fetch) erledigt  (12 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 10
+  [OK]     Sektor 10: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 10: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 10: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 10: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 10: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 10: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 10: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 10
+  [OK]     Nebenquest nq13 (fetch) erledigt  (13 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 11
+  [OK]     Sektor 11: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 11: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 11: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 11: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 11: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 11: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 11: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 11
+  [OK]     Nebenquest nq14 (visit) erledigt  (14 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 12
+  [OK]     Sektor 12: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 12: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 12: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 12: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 12: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 12: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 12: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 12
+  [OK]     Nebenquest nq15 (deliver) erledigt  (15 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 13
+  [OK]     Sektor 13: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 13: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 13: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 13: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 13: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 13: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 13: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 13
+  [OK]     Nebenquest nq16 (fetch) erledigt  (16 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 14
+  [OK]     Sektor 14: alle 20 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 14: alle 13 Erinnerungen gelesen  (13/13)
+  [OK]     Sektor 14: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 14: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 14: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 14: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 14: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 14
+  [OK]     Nebenquest nq17 (visit) erledigt  (17 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 15
+  [OK]     Sektor 15: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 15: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 15: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 15: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 15: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 15: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 15: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 15
+  [OK]     Nebenquest nq18 (deliver) erledigt  (18 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 16
+  [OK]     Sektor 16: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 16: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 16: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 16: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 16: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 16: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 16: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 16
+  [OK]     Nebenquest nq19 (visit) erledigt  (19 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 17
+  [OK]     Sektor 17: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 17: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 17: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 17: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 17: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 17: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 17: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 17
+  [OK]     Nebenquest nq20 (fetch) erledigt  (20 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 18
+  [OK]     Sektor 18: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 18: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 18: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 18: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 18: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 18: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 18: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 18
+  [OK]     Nebenquest nq21 (deliver) erledigt  (21 gesamt)
+  [OK]     Nebenquest nq22 (deliver) erledigt  (22 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 19
+  [OK]     Sektor 19: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 19: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 19: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 19: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 19: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 19: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 19: Rueckkehr zur Station
+  [OK]     Bericht nach Sektor 19
+  [OK]     Nebenquest nq23 (visit) erledigt  (23 gesamt)
+  [OK]     Nebenquest nq24 (deliver) erledigt  (24 gesamt)
+  [OK]     Nebenquest nq25 (deliver) erledigt  (25 gesamt)
+  [OK]     Archivtor fuehrt in Sektor 20
+  [OK]     Sektor 20: alle 19 Ziele erreichbar (Wegsuche)  ()
+  [OK]     Sektor 20: alle 12 Erinnerungen gelesen  (12/12)
+  [OK]     Sektor 20: Datenrauschen beseitigt  (2 Stellen)
+  [OK]     Sektor 20: alle 4 Artefakte gefunden  (4/4)
+  [OK]     Sektor 20: Gespraech mit dem Zeitzeugen-Echo  (4 Zeilen)
+  [OK]     Sektor 20: Wissenspruefung bestanden, Tor offen
+  [OK]     Sektor 20: Rueckkehr zur Station
+  [OK]     Alle Sektoren abgeschlossen: letzte Quest
+  [OK]     Alle 25 Nebenquests erledigt  (25)
+  [OK]     Abschlussgespraech und Abspann
+  [OK]     Abspann: 246 von 246 Erinnerungen  (Du hast 246 von 246 Erkenntnissen archiviert. · 10/10 Datenkristalle · Stufe 62)
+  [OK]     Alle 80 Artefakte gefunden  (80)
+
+C. Optionen, schmaler Bildschirm
+  [OK]     Optionen wirken sofort
+  [OK]     Kein waagerechtes Scrollen bei 390 px
+  [OK]     Keine JavaScript-Fehler  ()
+
+=== 239 bestanden, 0 fehlgeschlagen · Dauer 54 min ===

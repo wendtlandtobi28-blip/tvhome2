@@ -75,3 +75,18 @@ Umgebung: Chromium (Playwright), 3D per Software ohne Grafikkarte, 1024 × 640, 
 **V2-04:** Alle 8 Knöpfe des Pausenmenüs bei 1024 × 640 vollständig sichtbar · Optionen (Empfindlichkeit, Sichtfeld, Lautstärke, Y-Achse, Grafikqualität) wirken sofort und bleiben nach dem Neuladen erhalten · kein waagerechtes Scrollen bei 390 px · keine JavaScript-Fehler.
 
 **Nicht automatisch prüfbar:** Kamera mit eingefangener Maus (kopflose Testbrowser liefern keine echten Mauswerte; gleiche Logik wie das getestete Ziehen) · Klang (wird erzeugt, ist aber im Test nicht hörbar) · Bildrate und Aussehen auf einem echten PC mit Grafikkarte → bitte beim eigenen Spielen beurteilen.
+
+## E. Browser-Version 3 (grober Entwurf, 20 Kapitel) – im Browser getestet
+
+Umgebung wie Abschnitt D (Chromium/Playwright, Software-3D, 1024 × 640, Grafikstufe „niedrig“). Test: `TheLastHumanity_Web/tests/e2e_test.js` (neu geschrieben für 20 Kapitel). Protokolle: `TheLastHumanity_Web/tests/ergebnisse/gesamttest_v3_*`. Bilder: `TheLastHumanity_Web/docs/bilder/v3_*`.
+
+| ID | Datum | Test | Ergebnis |
+|---|---|---|---|
+| V3-01 | 22.11.2026 | Statische Prüfung `validate_project.py` (inkl. neuer Regeln: 12–15 Erinnerungen, 4 Artefakte, Echo, 3 Quizfragen, Nebenaufgaben) | ✅ 24 bestanden, 0 Fehler |
+| V3-02 | 22.11.2026 | Gesamtlauf 1 | abgebrochen von mir (5 Nebenaufgaben ergänzt, neu gestartet) |
+| V3-03 | 22.11.2026 | Gesamtlauf 2 | ❌ (a) Sektor 1 zu Fuß: Testfigur lief gerade gegen die Trennwände (Artefakt 2, Echo) → **Fehler im Testskript**, Test geht jetzt durch die Türen. (b) **Echter Spielfehler** in Sektor 6: Datenrauschen wurde nicht beseitigt, weil auf der sehr langsamen Testmaschine während des Haltens kein Bild berechnet wurde → Spiel prüft jetzt beim Loslassen von E die echte Haltedauer. Folgefehler ab Sektor 6, Lauf abgebrochen |
+| V3-04 | 22.11.2026 | **Gesamtlauf 3** | ✅ **239 von 239 Prüfungen bestanden**, keine JavaScript-Fehler, Dauer 54 min |
+
+**Was V3-04 geprüft hat** (alle ✅): Laden, Hauptmenü, Namenseingabe, Einleitung, 246 Erinnerungen vorhanden · Gehen, Sprinten/Ausdauer, Springen, Kamera, Esc-Menü („Optionen“ sichtbar bei 640 px) · Archivtor versiegelt, Kommandantin, 3 Orte erkundet, 10 Datenkristalle, Fähigkeiten 1 und 5, Journal/Kodex/Fähigkeiten/Karte · 2 Nebenaufgaben zu Fuß · **Sektor 1 komplett zu Fuß**: Wegsuche (alle 20 Ziele erreichbar), 13 Erinnerungen gelesen, 2 Rauschstellen beseitigt, 4 Artefakte, Echo-Gespräch (4 Zeilen), Wissensprüfung mit absichtlich falscher Antwort und Wiederholung, Sektortor, Bericht · F5, Neuladen, Fortsetzen: alles wiederhergestellt · **Sektoren 2–20 beschleunigt** (Figur wird neben jedes Ziel gesetzt, Bedienung per Tastendruck; vorher Wegsuche, dass jedes Ziel zu Fuß erreichbar ist): in jedem Sektor alle Erinnerungen, Rauschstellen, Artefakte, Echo, Wissensprüfung, Rückkehr, Bericht · **alle 25 Nebenaufgaben** · Abschlussgespräch und Abspann („246 von 246“, Stufe 62) · **alle 80 Artefakte** · Optionen wirken sofort · kein waagerechtes Scrollen bei 390 px.
+
+**Einschränkungen dieses Tests:** Sektoren 2–20 wurden nicht zu Fuß abgelaufen, sondern über Wegsuche + Versetzen geprüft. Gelesen hat der Test die Texte nicht – Inhalt, Verständlichkeit und Spielzeit kann nur ein Mensch beurteilen. Kamera mit eingefangener Maus, Klang, Bildrate und Aussehen auf einem echten PC: bitte beim eigenen Spielen prüfen.

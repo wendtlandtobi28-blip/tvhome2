@@ -2,12 +2,15 @@
 
 ## Priorität 1: 45 Spielstunden (Entscheidung vom 22.11.2026, siehe GAME_DESIGN.md Abschnitt 12)
 
-- [ ] 20 Archivsektoren mit je 12–15 Erinnerungen (grober Entwurf → danach fachliche Prüfung)
-- [ ] Wissensprüfung (3 Fragen) pro Sektor
-- [ ] 4 Artefakte pro Sektor
-- [ ] 2 Rauschstellen pro Sektor
-- [ ] 1 Zeitzeugen-Echo pro Sektor
-- [ ] ca. 25 Nebenaufgaben auf der Station
+- [x] 20 Archivsektoren mit je 12–15 Erinnerungen (grober Entwurf, 246 Erinnerungen) – fachliche Prüfung offen
+- [x] Wissensprüfung (3 Fragen) pro Sektor
+- [x] 4 Artefakte pro Sektor
+- [x] 2 Rauschstellen pro Sektor
+- [x] 1 Zeitzeugen-Echo pro Sektor
+- [x] 25 Nebenaufgaben auf der Station (grob)
+- [ ] Story-Szenen zwischen den Kapiteln, weitere Stationsbereiche
+- [ ] Sektoren abwechslungsreicher gestalten (Epochen-Ausstattung statt gleicher drei Kammern)
+- [ ] Spielzeit des Entwurfs durch den Projektinhaber messen lassen und Umfang nachsteuern
 - [ ] Ein Kapitel in Endqualität bauen und die echte Spielzeit messen
 - [ ] Unreal Engine 5 auf dem PC des Projektinhabers einrichten (RTX 3080, 32 GB) und die Grafik dort ausbauen
 

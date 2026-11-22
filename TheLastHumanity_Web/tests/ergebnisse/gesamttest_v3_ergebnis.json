@@ -1,0 +1,1203 @@
+{
+  "url": "http://127.0.0.1:8123/index.html?zeiger=aus&grafik=niedrig",
+  "passed": 239,
+  "failed": 0,
+  "minutes": 54,
+  "results": [
+    {
+      "ok": true,
+      "label": "Spiel laedt, Hauptmenue erscheint",
+      "detail": "9476 ms"
+    },
+    {
+      "ok": true,
+      "label": "\"Fortsetzen\" ohne Spielstand deaktiviert",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Einleitung erscheint",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Spiel startet mit eigenem Namen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Spiel enthaelt ueber 240 Erinnerungen",
+      "detail": "246"
+    },
+    {
+      "ok": true,
+      "label": "W: vorwaerts gehen",
+      "detail": "2.07 m"
+    },
+    {
+      "ok": true,
+      "label": "D: nach rechts (kamerarelativ)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sprinten verbraucht Ausdauer",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Springen und landen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Maus dreht die Kamera (rechts, oben)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Esc oeffnet das Menue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Pausenmenue: \"Optionen\" sichtbar (640 px Hoehe)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Archivtor anfangs versiegelt",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Gespraech mit der Kommandantin, Quest weiter",
+      "detail": "{\"ok\":true,\"foc\":\"npc:kommandantin\",\"lines\":4,\"reached\":true}"
+    },
+    {
+      "ok": true,
+      "label": "Erkundet: aussicht",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Erkundet: denkmal",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Erkundet: archivtor",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Quest: Archivtor betreten",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Alle 10 Datenkristalle eingesammelt",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Faehigkeit Scan-Puls",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Faehigkeit Rueckruf",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Menue journal (J)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Menue codex (I)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Menue skills (K)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Menue map (M)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq01 (fetch) erledigt",
+      "detail": "1 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq02 (fetch) erledigt",
+      "detail": "2 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 1",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1: alle 20 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1: alle 13 Erinnerungen gelesen",
+      "detail": "13/13"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1: Wissenspruefung bestanden (nach einer falschen Antwort), Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Quest: Bericht an die Kommandantin",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht inkl. Ankuendigung des naechsten Sektors",
+      "detail": "3 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Nach Neuladen alles wiederhergestellt",
+      "detail": "{\"d\":13,\"a\":4,\"s\":2,\"q\":1,\"st\":\"gate\",\"xp\":3225}"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 2",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 2: alle 20 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 2: alle 13 Erinnerungen gelesen",
+      "detail": "13/13"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 2: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 2: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 2: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 2: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 2: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 2",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq03 (deliver) erledigt",
+      "detail": "3 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq04 (fetch) erledigt",
+      "detail": "4 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq05 (fetch) erledigt",
+      "detail": "5 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 3",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 3: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 3: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 3: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 3: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 3: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 3: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 3: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 3",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq06 (deliver) erledigt",
+      "detail": "6 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 4",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 4: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 4: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 4: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 4: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 4: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 4: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 4: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 4",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq07 (fetch) erledigt",
+      "detail": "7 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 5",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 5: alle 20 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 5: alle 13 Erinnerungen gelesen",
+      "detail": "13/13"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 5: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 5: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 5: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 5: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 5: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 5",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq08 (visit) erledigt",
+      "detail": "8 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 6",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 6: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 6: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 6: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 6: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 6: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 6: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 6: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 6",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq09 (visit) erledigt",
+      "detail": "9 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 7",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 7: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 7: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 7: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 7: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 7: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 7: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 7: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 7",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq10 (fetch) erledigt",
+      "detail": "10 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 8",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 8: alle 20 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 8: alle 13 Erinnerungen gelesen",
+      "detail": "13/13"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 8: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 8: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 8: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 8: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 8: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 8",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq11 (deliver) erledigt",
+      "detail": "11 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 9",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 9: alle 20 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 9: alle 13 Erinnerungen gelesen",
+      "detail": "13/13"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 9: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 9: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 9: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 9: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 9: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 9",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq12 (fetch) erledigt",
+      "detail": "12 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 10",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 10: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 10: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 10: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 10: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 10: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 10: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 10: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 10",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq13 (fetch) erledigt",
+      "detail": "13 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 11",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 11: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 11: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 11: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 11: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 11: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 11: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 11: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 11",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq14 (visit) erledigt",
+      "detail": "14 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 12",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 12: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 12: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 12: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 12: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 12: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 12: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 12: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 12",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq15 (deliver) erledigt",
+      "detail": "15 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 13",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 13: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 13: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 13: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 13: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 13: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 13: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 13: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 13",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq16 (fetch) erledigt",
+      "detail": "16 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 14",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 14: alle 20 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 14: alle 13 Erinnerungen gelesen",
+      "detail": "13/13"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 14: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 14: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 14: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 14: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 14: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 14",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq17 (visit) erledigt",
+      "detail": "17 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 15",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 15: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 15: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 15: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 15: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 15: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 15: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 15: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 15",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq18 (deliver) erledigt",
+      "detail": "18 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 16",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 16: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 16: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 16: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 16: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 16: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 16: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 16: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 16",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq19 (visit) erledigt",
+      "detail": "19 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 17",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 17: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 17: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 17: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 17: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 17: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 17: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 17: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 17",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq20 (fetch) erledigt",
+      "detail": "20 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 18",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 18: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 18: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 18: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 18: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 18: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 18: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 18: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 18",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq21 (deliver) erledigt",
+      "detail": "21 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq22 (deliver) erledigt",
+      "detail": "22 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 19",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 19: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 19: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 19: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 19: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 19: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 19: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 19: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bericht nach Sektor 19",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq23 (visit) erledigt",
+      "detail": "23 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq24 (deliver) erledigt",
+      "detail": "24 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Nebenquest nq25 (deliver) erledigt",
+      "detail": "25 gesamt"
+    },
+    {
+      "ok": true,
+      "label": "Archivtor fuehrt in Sektor 20",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 20: alle 19 Ziele erreichbar (Wegsuche)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 20: alle 12 Erinnerungen gelesen",
+      "detail": "12/12"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 20: Datenrauschen beseitigt",
+      "detail": "2 Stellen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 20: alle 4 Artefakte gefunden",
+      "detail": "4/4"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 20: Gespraech mit dem Zeitzeugen-Echo",
+      "detail": "4 Zeilen"
+    },
+    {
+      "ok": true,
+      "label": "Sektor 20: Wissenspruefung bestanden, Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 20: Rueckkehr zur Station",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Alle Sektoren abgeschlossen: letzte Quest",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Alle 25 Nebenquests erledigt",
+      "detail": "25"
+    },
+    {
+      "ok": true,
+      "label": "Abschlussgespraech und Abspann",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Abspann: 246 von 246 Erinnerungen",
+      "detail": "Du hast 246 von 246 Erkenntnissen archiviert. · 10/10 Datenkristalle · Stufe 62"
+    },
+    {
+      "ok": true,
+      "label": "Alle 80 Artefakte gefunden",
+      "detail": "80"
+    },
+    {
+      "ok": true,
+      "label": "Optionen wirken sofort",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kein waagerechtes Scrollen bei 390 px",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Keine JavaScript-Fehler",
+      "detail": ""
+    }
+  ]
+}
