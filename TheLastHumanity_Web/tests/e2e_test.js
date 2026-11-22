@@ -290,8 +290,8 @@ function check(cond, label, detail) {
     }
   }
   check(await ev(() => TLH.stage()) === 'final', 'Alle Sektoren abgeschlossen: letzte Quest');
-  await doSideQuests(false, 5);
-  check(await ev(() => TLH.sideDone()) === 20, 'Alle 20 Nebenquests erledigt', await ev(() => TLH.sideDone()));
+  await doSideQuests(false, 8);
+  check(await ev(() => TLH.sideDone()) === 25, 'Alle 25 Nebenquests erledigt', await ev(() => TLH.sideDone()));
   const fin = await talkToNpc('kommandantin', false);
   await wait(300);
   check(fin.ok && await state() === 'ending', 'Abschlussgespraech und Abspann');

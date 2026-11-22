@@ -825,6 +825,129 @@
         }
       ],
       "xp": 250
+    },
+    {
+      "id": "nq21",
+      "giver": "haendler",
+      "unlockAfter": 18,
+      "title": "Ersatzteile für den Gleiter",
+      "intro": [
+        {
+          "who": "haendler",
+          "text": "Der Pilot sucht seit Wochen eine Steuerdüse. Ich habe endlich eine gefunden. Bringst du sie ihm?"
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Steuerdüse",
+        "to": "pilot"
+      },
+      "done": [
+        {
+          "who": "pilot",
+          "text": "Eine echte Steuerdüse! Damit fliegt der alte Gleiter wieder. Sag dem Händler, ich schulde ihm was."
+        }
+      ],
+      "xp": 200
+    },
+    {
+      "id": "nq22",
+      "giver": "musikerin",
+      "unlockAfter": 18,
+      "title": "Ein Lied für das Kind",
+      "intro": [
+        {
+          "who": "musikerin",
+          "text": "Ich habe ein Wiegenlied aus dem Archiv neu aufgeschrieben. Gib die Notenfolie bitte dem Kind."
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Notenfolie",
+        "to": "kind"
+      },
+      "done": [
+        {
+          "who": "kind",
+          "text": "Das summe ich heute Abend! Ist das wirklich so alt wie die Pyramiden? Na gut, vielleicht nicht ganz."
+        }
+      ],
+      "xp": 200
+    },
+    {
+      "id": "nq23",
+      "giver": "wache",
+      "unlockAfter": 19,
+      "title": "Letzte Runde",
+      "intro": [
+        {
+          "who": "wache",
+          "text": "Bevor das Archiv ganz erwacht, will ich sicher sein, dass vorne an der Aussicht alles ruhig ist. Gehst du für mich nachsehen?"
+        }
+      ],
+      "task": {
+        "type": "visit",
+        "label": "Aussichtsplattform",
+        "pos": [
+          0,
+          40
+        ]
+      },
+      "done": [
+        {
+          "who": "wache",
+          "text": "Alles ruhig? Gut. Zum ersten Mal seit Jahren habe ich das Gefühl, dass wir etwas zu beschützen haben."
+        }
+      ],
+      "xp": 200
+    },
+    {
+      "id": "nq24",
+      "giver": "aerztin",
+      "unlockAfter": 19,
+      "title": "Medizin aus dem Garten",
+      "intro": [
+        {
+          "who": "aerztin",
+          "text": "Aus den alten Aufzeichnungen weiß ich jetzt, welche Pflanzen heilen. Bring der Gärtnerin bitte diese Liste."
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Pflanzenliste",
+        "to": "gaertnerin"
+      },
+      "done": [
+        {
+          "who": "gaertnerin",
+          "text": "Kamille, Weidenrinde, Thymian … Das Wissen der Menschheit wächst bald wieder in unseren Beeten."
+        }
+      ],
+      "xp": 200
+    },
+    {
+      "id": "nq25",
+      "giver": "pilot",
+      "unlockAfter": 19,
+      "title": "Ein Gruß an die Kommandozentrale",
+      "intro": [
+        {
+          "who": "pilot",
+          "text": "Ich habe vom Gleiter aus ein Signal empfangen. Der Archivar soll es entschlüsseln. Bringst du ihm die Aufzeichnung?"
+        }
+      ],
+      "task": {
+        "type": "deliver",
+        "label": "Signalaufzeichnung",
+        "to": "archivar"
+      },
+      "done": [
+        {
+          "who": "archivar",
+          "text": "Das ist … ein Echo unseres eigenen Archivs, zurückgeworfen von Tethys. Wir senden. Endlich senden wir wieder."
+        }
+      ],
+      "xp": 250
     }
   ]
 }
