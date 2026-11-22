@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "language": "de",
+  "_hinweis": "Rahmenhandlung (Fiktion) fuer die Raumstation MNEMOSYNE. Historische Inhalte stehen in content_de.json.",
+  "station": {
+    "name": "Raumstation MNEMOSYNE",
+    "hubLocation": "Raumstation · Zentrum",
+    "sectorLocation": "Archivsektor {0}",
+    "intro": "Im Orbit des Gasriesen Tethys treibt MNEMOSYNE – die letzte Arche der Menschheit. In ihrem Herzen liegt das Archiv: die Erinnerung an alles, was Menschen je waren. Doch das Archiv ist verstummt. Du bist aus dem Kälteschlaf erwacht. Man nennt dich: Hüter."
+  },
+  "characters": {
+    "kommandantin": { "name": "Kommandantin Aris Velan", "role": "Leitung der Station" },
+    "technikerin": { "name": "Technikerin Mara Okoye", "role": "Energie und Archivtechnik" },
+    "archivar": { "name": "Archivar Jonas Reth", "role": "Hüter der Datenkerne" },
+    "pilot": { "name": "Pilot Ilan Sato", "role": "Hangar und Flugverkehr" },
+    "kind": { "name": "Lio", "role": "geboren auf der Station" }
+  },
+  "dialogues": {
+    "kommandantin_start": [
+      { "who": "kommandantin", "text": "Du bist wach. Gut. Wir hatten fast die Hoffnung aufgegeben." },
+      { "who": "kommandantin", "text": "Vor drei Wochen ist das Archiv verstummt. Die Erinnerungen der Menschheit – Geschichte, Wissen, Kultur – liegen noch in den Datenkernen, aber niemand kann sie mehr lesen." },
+      { "who": "kommandantin", "text": "Nur die Hüter sind mit dem Archiv verbunden. Du bist der letzte. Erwecke die Erinnerungen, Sektor für Sektor." },
+      { "who": "kommandantin", "text": "Sieh dich erst auf der Station um: die Aussichtsplattform, das Denkmal der Gründer und der Zugang zum Archiv. Dann melde dich am Archivtor." }
+    ],
+    "kommandantin_wait": [
+      { "who": "kommandantin", "text": "Das Archiv wartet. Jede Erinnerung, die du erweckst, macht uns stärker." }
+    ],
+    "kommandantin_report": [
+      { "who": "kommandantin", "text": "Die Anzeigen im Kommandozentrum leuchten wieder. Ein weiterer Sektor ist erwacht." },
+      { "who": "kommandantin", "text": "Ich habe das Archivtor auf den nächsten Sektor ausgerichtet. Wir zählen auf dich, Hüter." }
+    ],
+    "kommandantin_final": [
+      { "who": "kommandantin", "text": "Alle Sektoren leuchten. Das Archiv lebt wieder." },
+      { "who": "kommandantin", "text": "Was immer da draußen auf uns wartet – wir wissen jetzt wieder, wer wir sind." }
+    ],
+    "technikerin": [
+      { "who": "technikerin", "text": "Die Hauptenergie reicht gerade so für das Archiv. Wenn du einen Sektor erweckst, springen bei mir die Anzeigen auf Grün." },
+      { "who": "technikerin", "text": "Tipp: Mit dem Scan-Puls (Taste 1) siehst du verborgene Erinnerungen auf Kompass und Karte." }
+    ],
+    "archivar": [
+      { "who": "archivar", "text": "Jeder Datenkern enthält eine Epoche. Ich habe sie mein Leben lang gehütet, aber lesen kann ich sie nicht – das kannst nur du." },
+      { "who": "archivar", "text": "Auf der Station liegen verstreute Datenkristalle. Bring sie zurück ins Archiv, sie enthalten Fragmente aus der Geschichte der Station." }
+    ],
+    "pilot": [
+      { "who": "pilot", "text": "Siehst du die Kreuzer da draußen? Leer. Wir fliegen sie nur, damit die Triebwerke nicht einrosten." },
+      { "who": "pilot", "text": "Eines Tages landen wir wieder irgendwo. Dann sollten wir wissen, woher wir kommen." }
+    ],
+    "kind": [
+      { "who": "kind", "text": "Bist du wirklich ein Hüter? Meine Mutter sagt, auf der Erde gab es Meere, so groß, dass man kein Ende sehen konnte." },
+      { "who": "kind", "text": "Erzählst du mir irgendwann, was in den Erinnerungen steht?" }
+    ]
+  },
+  "landmarks": [
+    { "id": "aussicht", "title": "Aussichtsplattform", "text": "Unter dir die Ringstadt, über dir Tethys. Hier begreift man, wie klein die letzte Menschheit geworden ist." },
+    { "id": "denkmal", "title": "Denkmal der Gründer", "text": "Das Denkmal ehrt die ersten Hüter von MNEMOSYNE. Auf dem Sockel steht: „Wer sich erinnert, ist nie ganz verloren.“" },
+    { "id": "archivtor", "title": "Archivtor", "text": "Das Tor zum Archiv. Dahinter liegen die Sektoren mit den Erinnerungen der Menschheit." }
+  ],
+  "quests": {
+    "main_title": "Die letzte Hoffnung",
+    "step_talk": "Sprich mit der Kommandantin",
+    "step_explore": "Erkunde die Raumstation ({0}/{1})",
+    "step_gate": "Betritt das Archivtor",
+    "step_sector": "Erwecke alle Erinnerungen in Sektor {0} ({1}/{2})",
+    "step_return": "Kehre durch das Sektortor zurück",
+    "step_report": "Erstatte der Kommandantin Bericht",
+    "step_final": "Sprich ein letztes Mal mit der Kommandantin",
+    "done": "Das Archiv ist vollständig erwacht",
+    "side_title": "Datenkristalle",
+    "side_step": "Sammle Datenkristalle ({0}/{1})"
+  },
+  "crystals": [
+    { "id": "kr01", "text": "Logbuch, Jahr 1 der Station: Die Arche ist bemannt. 4.112 Menschen an Bord. Möge das Archiv uns tragen." },
+    { "id": "kr02", "text": "Logbuch, Jahr 12: Die ersten Kinder, die nie einen Planeten gesehen haben, lernen heute lesen – mit Texten aus dem Archiv." },
+    { "id": "kr03", "text": "Technischer Vermerk: Die Ringstadt dreht sich alle 94 Sekunden einmal. So entsteht die künstliche Schwerkraft." },
+    { "id": "kr04", "text": "Notiz eines Gärtners: Die Weizenfelder auf Deck 7 tragen zum dritten Mal in diesem Jahr. Die Erde wäre stolz." },
+    { "id": "kr05", "text": "Logbuch, Jahr 40: Das Denkmal der Gründer wurde eingeweiht. Die Inschrift stammt von einem Kind." },
+    { "id": "kr06", "text": "Nachricht ohne Absender: „Wenn ihr das hier findet, vergesst nicht zu singen. Auch Lieder sind Erinnerung.“" },
+    { "id": "kr07", "text": "Technischer Vermerk: Jeder Archivsektor speichert eine Epoche in mehrfach gesicherten Kristallgittern." },
+    { "id": "kr08", "text": "Tagebuch der Kommandantin: Ich träume oft von Regen. Wir haben ihn auf Deck 3 nachgebaut, aber es ist nicht dasselbe." },
+    { "id": "kr09", "text": "Logbuch, Jahr 77: Der letzte Kontakt zu anderen Archen liegt 30 Jahre zurück. Wir senden weiter, jeden Tag." },
+    { "id": "kr10", "text": "Kinderzeichnung, eingescannt: Ein Haus, ein Baum, eine Sonne. Darunter: „Unser Zuhause irgendwann.“" }
+  ],
+  "abilities": [
+    { "key": "1", "id": "scan", "name": "Scan-Puls", "desc": "Zeigt für 20 Sekunden alle unentdeckten Erinnerungen und Datenkristalle auf Kompass und Karte.", "energy": 30, "cooldown": 6 },
+    { "key": "2", "id": "dash", "name": "Schub", "desc": "Kurzer, schneller Vorstoß in Blickrichtung.", "energy": 20, "cooldown": 2 },
+    { "key": "3", "id": "light", "name": "Leuchtfeuer", "desc": "Ein Lichtorb begleitet dich 40 Sekunden lang.", "energy": 15, "cooldown": 4 },
+    { "key": "4", "id": "echo", "name": "Zeitecho", "desc": "Markiert die nächste unentdeckte Erinnerung als Wegpunkt.", "energy": 25, "cooldown": 5 },
+    { "key": "5", "id": "regen", "name": "Regeneration", "desc": "Stellt Lebenskraft vollständig wieder her.", "energy": 40, "cooldown": 20 },
+    { "key": "6", "id": "locked", "name": "Gesperrt", "desc": "Diese Fähigkeit schaltest du später frei (ab Stufe 10).", "energy": 0, "cooldown": 0, "unlockLevel": 10 }
+  ]
+}

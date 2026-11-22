@@ -1,54 +1,66 @@
-# THE LAST HUMANITY – Browser-Version
+# THE LAST HUMANITY – Browser-Version 2
 
-Das komplette Spiel läuft im Browser, ohne Installation: 10 Hallen, 48 Erkenntnisse, Tore, Kapitelübersicht, Optionen, Speichern und Abspann. Die Inhalte sind dieselben wie im Unreal-Engine-Projekt (`../TheLastHumanity`).
+Science-Fiction-Erkundungsspiel in der dritten Person. Im Orbit des Gasriesen Tethys treibt die Raumstation **MNEMOSYNE**, die letzte Arche der Menschheit. Als Hüterin oder Hüter erweckst du das verstummte Archiv: 10 Archivsektoren mit 48 Erinnerungen aus der Geschichte der Menschheit, eingebettet in eine Rahmenhandlung auf der Station.
 
 ## Spielen
 
-**Möglichkeit 1: Doppelklick.** `index.html` im Ordner `TheLastHumanity_Web` doppelt anklicken. Das Spiel öffnet sich im Standardbrowser und funktioniert auch ohne Internet. Ohne Internet fehlen nur die besonderen Schriftarten.
-
-**Möglichkeit 2: Online-Link** (privat, nur für den Projektinhaber, teilbar über „Share“): https://claude.ai/artifact/BwbfxSFqcD5b14Q8nPtaSH
-
-Empfohlen: aktueller **Chrome, Edge oder Firefox** an einem PC oder Laptop mit Tastatur und Maus.
+- **Doppelklick** auf `index.html`. Das Spiel läuft offline, alles steckt in `js/game.bundle.js`. Ohne Internet fehlen nur die Schriftarten.
+- **Online-Link:** siehe `../TheLastHumanity/PROGRESS.md`.
+- Empfohlen: aktueller Chrome, Edge oder Firefox an einem PC mit Tastatur und Maus. Ruckelt das Bild, stellst du in den Optionen „Grafikqualität: Mittel“ oder „Niedrig“ ein und lädst die Seite neu.
 
 ## Steuerung
 
 | Taste | Funktion |
 |---|---|
-| W A S D / Pfeiltasten | Gehen |
-| Maus | Umsehen (nach dem ersten Klick ins Bild wird die Maus „eingefangen“) |
-| Shift | Laufen |
+| W A S D | Gehen (relativ zur Kamera) |
+| Maus | Kamera drehen (vorher einmal ins Bild klicken) · Mausrad: Kameraabstand |
+| Shift | Sprinten (verbraucht Ausdauer, roter Balken) |
 | Leertaste | Springen |
-| E | Untersuchen / Tor benutzen / Textfenster schließen |
-| Tab oder K | Kapitelübersicht |
-| Esc oder P | Pausenmenü. Esc gibt auch die Maus frei. |
-| F5 | Schnellspeichern (lädt die Seite **nicht** neu) |
+| E | Sprechen, untersuchen, Tor benutzen, Dialog weiter |
+| 1–6 | Fähigkeiten (verbrauchen Energie, blauer Balken): Scan-Puls, Schub, Leuchtfeuer, Zeitecho, Rückruf, ab Stufe 10 gesperrt |
+| J oder Tab | Journal (Quests, Archivsektoren, Erinnerungen erneut lesen) |
+| I | Kodex (Datenkristalle, Orte, Personen) |
+| K | Fähigkeiten |
+| M | Karte |
+| Esc oder P | Menü |
+| F5 | Schnellspeichern |
 
-Kann der Browser die Maus nicht einfangen, kannst du dich mit **gedrückter linker Maustaste** umsehen.
+## Geschichte und Ablauf
 
-## Speicherstand
+1. Neues Spiel: Du gibst deinen Namen ein und erwachst auf der Station.
+2. Du sprichst mit Kommandantin Aris Velan.
+3. Du erkundest drei Orte: Aussichtsplattform, Denkmal der Gründer, Archivtor.
+4. Durch das Archivtor betrittst du Sektor 1 und erweckst alle Erinnerungen an den Datenterminals.
+5. Durch das Sektortor kehrst du zurück und erstattest der Kommandantin Bericht.
+6. Das wiederholt sich für alle 10 Sektoren, danach folgen das Abschlussgespräch und der Abspann.
 
-Spielstand und Einstellungen werden im Browser gespeichert (`localStorage`). Sie gelten also nur in diesem Browser auf diesem Gerät. Ein privates Fenster speichert nichts dauerhaft. Das Spiel zeigt dann einen Hinweis.
+Nebenbei findest du 10 Datenkristalle mit Geschichten der Station und sprichst mit weiteren Bewohnern. Mit wachsender Erfahrung steigt deine Stufe.
 
 ## Aufbau
 
-| Datei | Inhalt |
+| Datei / Ordner | Inhalt |
 |---|---|
-| `page.html` | Seite und Gestaltung (Quelle) |
-| `index.html` | Daraus erzeugte vollständige Seite (nicht von Hand bearbeiten) |
-| `js/game.js` | Spiellogik, 3D-Welt, Steuerung, Oberfläche, Speichern |
-| `js/content_de.js` | Erzeugt aus `../TheLastHumanity/Content/Data/content_de.json` (einzige Inhaltsquelle) |
-| `vendor/three.min.js` | three.js 0.149.0 (3D-Bibliothek, MIT-Lizenz, `vendor/THREE_LICENSE.txt`) |
-| `tools/build.py` | Erzeugt `js/content_de.js` und `index.html` |
-| `tests/e2e_test.js` | Automatischer Gesamttest: spielt das ganze Spiel im Browser durch |
+| `page.html` | Seite, HUD und Gestaltung (Quelle) |
+| `index.html` | Daraus erzeugt (nicht von Hand bearbeiten) |
+| `src/` | Spielcode: `main.js` (Logik, Kamera, Quests, Menüs), `world.js` (Station, Sektoren), `character.js` (Figur, Animation, Umhang), `sky.js` (Gasriese, Ringstadt, Schiffe), `assets.js`, `audio.js`, `util.js` |
+| `js/game.bundle.js` | Gebündeltes Spiel (erzeugt) |
+| `assets/models/*.glb` | Eigene 3D-Modelle, erzeugt mit `tools/blender_models.py` (Blender als Python-Modul) |
+| `assets/emblem.svg` | Eigenes Emblem „Flamme der Erinnerung“ |
+| `../TheLastHumanity/Content/Data/content_de.json` | Geschichtsinhalte (gemeinsam mit der Unreal-Version) |
+| `../TheLastHumanity/Content/Data/story_de.json` | Rahmenhandlung: Personen, Dialoge, Quests, Kristalle, Fähigkeiten |
+| `tests/e2e_test.js` | Automatischer Gesamttest (spielt das ganze Spiel durch) |
+| `THIRD_PARTY_LICENSES.md` | Lizenzen der verwendeten Fremdbestandteile |
 
-### Nach Änderungen an Texten oder Seite
+### Bauen
 ```
-python3 tools/build.py
+npm install
+npm run build                       # erzeugt js/game.bundle.js und index.html
 python3 ../TheLastHumanity/Tools/validate_project.py
 ```
+Modelle neu erzeugen (optional, braucht `pip install bpy`): `python tools/blender_models.py`
 
-### Gesamttest ausführen (Node.js + Playwright)
+### Gesamttest
 ```
-python3 -m http.server 8123 --bind 127.0.0.1      # im Ordner TheLastHumanity_Web
-node tests/e2e_test.js http://127.0.0.1:8123/index.html ./testergebnis
+python3 -m http.server 8123 --bind 127.0.0.1
+node tests/e2e_test.js http://127.0.0.1:8123/index.html ./testergebnis niedrig
 ```

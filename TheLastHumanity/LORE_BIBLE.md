@@ -11,7 +11,16 @@
 
 Die Rahmenhandlung darf historische Fakten **nie verändern oder erfinden**.
 
-## 2. Universum (Rahmenhandlung)
+## 2a. Rahmenhandlung der Browser-Version 2 (Science-Fiction)
+
+- **MNEMOSYNE** ist eine Raumstation im Orbit des Gasriesen **Tethys**, die letzte bekannte Arche der Menschheit. Eine Ringstadt mit Türmen dreht sich um eine zentrale Megastruktur, Kreuzer und Shuttles fliegen Patrouille.
+- **Das Archiv** speichert die Geschichte der Menschheit in 10 Sektoren. Vor drei Wochen ist es verstummt. Nur die **Hüter** sind mit ihm verbunden. Die Spielfigur (Name frei wählbar) ist die letzte Hüterin oder der letzte Hüter und erwacht aus dem Kälteschlaf.
+- **Personen:** Kommandantin Aris Velan (Leitung), Technikerin Mara Okoye (Energie), Archivar Jonas Reth (Datenkerne), Pilot Ilan Sato (Hangar), das Stationskind Lio. Alle Figuren sind frei erfunden.
+- **Datenkristalle** erzählen in kurzen Logbuch-Einträgen die Geschichte der Station (Jahr 1 bis Jahr 77).
+- **Ende:** Alle Sektoren leuchten wieder, das Archiv lebt. Der Abspann „Solange sich jemand erinnert“ bleibt offen und hoffnungsvoll.
+- Alle Texte dazu stehen in `Content/Data/story_de.json`.
+
+## 2. Universum (Rahmenhandlung, ursprüngliche Archiv-Version)
 
 - **Das Archiv MNEMOSYNE**, benannt nach der griechischen Göttin der Erinnerung: ein Bauwerk unbekannter Zeit und Lage, in dem die Erinnerung der Menschheit in Hallen geordnet ist, eine Halle pro Epoche.
 - **Die Hüterin / der Hüter** (Spielfigur, Geschlecht wählbar bzw. offen): erwacht ohne Erinnerung an die eigene Herkunft. Ob sie oder er tatsächlich der letzte Mensch ist, bleibt zunächst offen. Das ist die zentrale Frage des Spiels.

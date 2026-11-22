@@ -1,5 +1,7 @@
 # Game Design – THE LAST HUMANITY
 
+> **Neue Richtung (22.11.2026, Vorgabe des Projektinhabers):** Optik und Aufbau orientieren sich an einem vom Projektinhaber gezeigten Science-Fiction-Bild: Raumstation im Abendlicht, Gasriese am Himmel, Ringstadt, Spielfigur in Rüstung mit Umhang, Spiel in der dritten Person, HUD mit Porträt, Questanzeige, Kompass, Minikarte, Protokoll und Fähigkeitenleiste. Ziel für den fertigen Story-Modus: **etwa 60 Spielstunden**. Umgesetzt in der Browser-Version 2 (siehe Abschnitt 11). Die Abschnitte 1–10 beschreiben die ursprüngliche Archiv-Version.
+
 > **Hinweis zum Status:** Der ursprüngliche Projektauftrag „THE LAST HUMANITY – DIE GESCHICHTE DER MENSCHHEIT“ lag bei der Erstellung dieses Dokuments nicht vor, nur der technische Arbeitszusatz. Dieses Konzept ist deshalb ein **Entwurf**, abgeleitet aus Titel und Prototyp-Anforderungen. Sobald der Auftrag vorliegt, wird das Dokument daran angepasst.
 
 ## 1. Kurzbeschreibung
@@ -73,3 +75,29 @@ Ein Spielstand-Slot (Phase 1). Automatische Speicherung bei jeder neuen Erkenntn
 - Zeitleiste/Kodex mit allen gefundenen Erkenntnissen
 - Optionen: Textgröße, Kontrast, Untertitel, Mausempfindlichkeit, Tastenbelegung
 - Quellenangaben je Informationspunkt im Spiel
+
+## 11. Browser-Version 2: Science-Fiction-Story-Modus
+
+**Schauplatz:** Raumstation MNEMOSYNE im Orbit des Gasriesen Tethys, die letzte Arche der Menschheit (Fiktion). Die Geschichtsinhalte (48 Erinnerungen in 10 Kapiteln) liegen in den Archivsektoren der Station.
+
+**Eigenes Design:** Emblem „Flamme der Erinnerung“ (offener Ring, Flamme, Stern). Es verwendet bewusst keine Totenköpfe, Adler oder anderen Motive bekannter Marken. Rot-goldene Banner, dunkle Rüstung mit goldenen Kanten und blauen Leuchtstreifen.
+
+**Spielschleife:**
+1. Auf der Station mit Personen sprechen und Quests annehmen
+2. Orte erkunden, Datenkristalle sammeln
+3. Durch das Archivtor einen Sektor betreten und alle Erinnerungen an den Datenterminals erwecken
+4. Durch das Sektortor zurückkehren und der Kommandantin Bericht erstatten
+5. Erfahrung und Stufen sammeln, Fähigkeit 6 schaltet sich ab Stufe 10 frei
+
+**Systeme (umgesetzt):** Steuerung in der dritten Person mit Kamera, die nicht durch Wände greift · Ausdauer (Sprint) und Energie (Fähigkeiten) · 6 Fähigkeiten · Quest- und Dialogsystem · Kompass mit Questmarkierung · Minikarte und große Karte · Journal, Kodex, Fähigkeitenübersicht · Erfahrung und Stufen · Stationszeit mit Tageszähler · Speichern und Laden · Grafikstufen · prozeduraler Klang.
+
+**Weg zu 60 Stunden (geplant, Reihenfolge nach Absprache):**
+
+| Ausbaustufe | Inhalt | Geschätzte Spielzeit |
+|---|---|---|
+| Stand Version 2 | 10 Sektoren, 48 Erinnerungen, Station mit 5 Personen, 10 Kristalle | ca. 1–2 h |
+| Kapitel vertiefen | 15 statt 5 Erinnerungen pro Sektor, Kapitel 2–10 mit eigener Rahmenszene | +8 h |
+| Mehr Epochen | 20 statt 10 Sektoren (feinere Epochen, außereuropäische Schwerpunkte) | +10 h |
+| Aufgaben und Rätsel | Zeitleisten ordnen, Fundstücke zusammensetzen, Karten zuordnen, Wissensprüfung an Sektortoren | +15 h |
+| Station ausbauen | weitere Decks (Hangar, Gärten, Kommandozentrum innen), Nebenquests der Bewohner | +15 h |
+| Gefahren | „Datenrauschen“ in beschädigten Sektoren, das mit Fähigkeiten beseitigt wird (ohne Waffen) | +10 h |

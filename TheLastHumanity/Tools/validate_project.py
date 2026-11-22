@@ -196,20 +196,15 @@ def validate_ui_keys(data: dict) -> None:
     key_re = re.compile(r'TEXT\("([a-z]+\.[a-z_]+)"\)')
     for f in SRC.rglob("*.cpp"):
         used |= set(key_re.findall(f.read_text(encoding="utf-8")))
-    web_js = ROOT.parent / "TheLastHumanity_Web" / "js" / "game.js"
-    if web_js.exists():
-        web_used = set(re.findall(r"T\('([a-z]+\.[a-z_]+)'", web_js.read_text(encoding="utf-8")))
+    web_src = ROOT.parent / "TheLastHumanity_Web" / "src"
+    if web_src.exists():
+        web_used = set()
+        for f in web_src.glob("*.js"):
+            web_used |= set(re.findall(r"T\('([a-z]+\.[a-z_]+)'", f.read_text(encoding="utf-8")))
         web_missing = sorted(web_used - set(ui))
         check(not web_missing, f"Browser-Version: alle {len(web_used)} verwendeten UI-Schluessel existieren",
               f"Browser-Version: UI-Schluessel fehlen: {web_missing}")
         used |= web_used
-        generated = ROOT.parent / "TheLastHumanity_Web" / "js" / "content_de.js"
-        if generated.exists():
-            text = generated.read_text(encoding="utf-8")
-            start = text.index("window.TLH_CONTENT = ") + len("window.TLH_CONTENT = ")
-            same = json.loads(text[start:text.rindex(";")]) == data
-            check(same, "Browser-Version: js/content_de.js ist aktuell",
-                  "Browser-Version: js/content_de.js veraltet - 'python3 tools/build.py' ausfuehren")
     missing = sorted(used - set(ui))
     unused = sorted(set(ui) - used)
     check(not missing, f"Alle {len(used)} im Code verwendeten UI-Schluessel existieren",
@@ -230,6 +225,34 @@ def validate_ui_keys(data: dict) -> None:
     for key in ("portal.label_next", "portal.label_end"):
         if key in ui and not is_latin1(ui[key]):
             errors.append(f"UI-Text {key} wird als 3D-Schrift gezeigt und muss Latin-1 sein")
+
+
+# ---------------------------------------------------------------- 2b. Story (Browser-Version)
+def validate_story() -> None:
+    p = ROOT / "Content" / "Data" / "story_de.json"
+    if not p.exists():
+        return
+    try:
+        st = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"story_de.json ist kein gueltiges JSON: {exc}")
+        return
+    chars = st.get("characters", {})
+    bad = [(k, l.get("who")) for k, lines in st.get("dialogues", {}).items() for l in lines if l.get("who") not in chars or not l.get("text")]
+    check(not bad, f"Story: {sum(len(v) for v in st.get('dialogues', {}).values())} Dialogzeilen mit bekannten Sprechern",
+          f"Story: Dialogzeilen mit unbekanntem Sprecher/leerem Text: {bad[:5]}")
+    for key in ("kommandantin_start", "kommandantin_wait", "kommandantin_report", "kommandantin_final"):
+        if key not in st.get("dialogues", {}):
+            errors.append(f"Story: Dialog '{key}' fehlt")
+    check(len(st.get("abilities", [])) == 6, "Story: 6 Faehigkeiten definiert", "Story: es muessen genau 6 Faehigkeiten sein")
+    world = ROOT.parent / "TheLastHumanity_Web" / "src" / "world.js"
+    if world.exists():
+        m = re.search(r"crystals: \[(.*?)\]\s*\n", world.read_text(encoding="utf-8"))
+        n_pos = len(re.findall(r"\[-?\d+, -?\d+\]", m.group(1))) if m else -1
+        check(n_pos == len(st.get("crystals", [])), f"Story: {n_pos} Kristallpositionen = {len(st.get('crystals', []))} Kristalltexte",
+              f"Story: Kristallpositionen ({n_pos}) und Kristalltexte ({len(st.get('crystals', []))}) passen nicht zusammen")
+    ids = [l["id"] for l in st.get("landmarks", [])]
+    check(sorted(ids) == ["archivtor", "aussicht", "denkmal"], "Story: 3 Wahrzeichen", f"Story: Wahrzeichen {ids}")
 
 
 # ---------------------------------------------------------------- 3. C++
@@ -309,6 +332,7 @@ def main() -> int:
     data = validate_content()
     if data:
         validate_ui_keys(data)
+    validate_story()
     validate_cpp()
     validate_project_files()
 

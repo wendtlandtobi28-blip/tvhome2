@@ -65,13 +65,11 @@
     "ending.continue": "Weiter im Archiv umsehen",
     "ending.mainmenu": "Zum Hauptmenü",
     "web.webgl_error": "Dein Browser kann keine 3D-Grafik (WebGL) anzeigen. Bitte verwende einen aktuellen Chrome, Edge oder Firefox und aktiviere dort die Hardwarebeschleunigung.",
-    "web.lock_hint": "Klicke ins Bild, um dich mit der Maus umzusehen.",
     "web.storage_off": "Dieser Browser erlaubt hier kein Speichern. Dein Fortschritt geht beim Schließen der Seite verloren.",
     "web.touch_hint": "THE LAST HUMANITY wird mit Tastatur und Maus gespielt – am besten an einem PC oder Laptop.",
     "web.confirm_new": "Der vorhandene Spielstand wird überschrieben. Wirklich neu beginnen?",
     "web.confirm_yes": "Ja, neu beginnen",
-    "web.confirm_no": "Abbrechen",
-    "web.esc_note": "Tipp: Esc gibt die Maus frei und öffnet das Menü."
+    "web.confirm_no": "Abbrechen"
   },
   "ending": {
     "title": "Solange sich jemand erinnert",

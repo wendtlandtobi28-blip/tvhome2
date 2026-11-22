@@ -1,21 +1,22 @@
 /*
- * THE LAST HUMANITY - automatischer Gesamttest der Browser-Version (Playwright + Chromium).
+ * THE LAST HUMANITY - automatischer Gesamttest der Browser-Version 2 (Playwright + Chromium).
  *
- * Spielt das Spiel wie ein Mensch mit Tastatur und Maus: Startmenue, Laufen, Umsehen,
- * Kollision, alle 48 Erkenntnisse in allen 10 Hallen ablaufen und lesen, Tore,
- * Kapiteluebersicht, Optionen, Speichern/Laden nach Neuladen, Abspann, Handy-Breite.
+ * Spielt die komplette Geschichte wie ein Mensch mit Tastatur und Maus:
+ * Hauptmenue mit Namenseingabe, Einleitung, Laufen/Sprinten/Springen, Kamera, Kollision,
+ * Gespraeche, Erkundung, Datenkristalle, alle Faehigkeiten, Archivtor, alle 10 Archivsektoren
+ * mit allen 48 Erinnerungen, Bericht bei der Kommandantin, Abspann, Journal/Kodex/Faehigkeiten/Karte,
+ * Optionen, Speichern und Laden nach Neuladen, schmaler Bildschirm.
  *
- * Aufruf:  node tests/e2e_test.js <URL zur index.html> <Ordner fuer Screenshots>
- * Beispiel: node tests/e2e_test.js http://localhost:8123/index.html /tmp/shots
+ * Aufruf:  node tests/e2e_test.js <URL zur index.html> <Ordner fuer Ergebnisse> [grafik]
  * Exitcode 0 = alle Pruefungen bestanden.
  */
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-// Kopflose Testbrowser liefern bei eingefangener Maus keine sinnvollen Bewegungswerte;
-// deshalb wird das Umsehen per Ziehen (Rueckfall ohne Zeigersperre) getestet.
-const URL = process.argv[2] + (process.argv[2].includes('?') ? '&' : '?') + 'zeiger=aus';
+const QUALITY = process.argv[4] || 'niedrig';
+// Kopflose Testbrowser liefern bei eingefangener Maus keine echten Bewegungswerte -> Umsehen per Ziehen testen
+const URL = process.argv[2] + (process.argv[2].includes('?') ? '&' : '?') + 'zeiger=aus&grafik=' + QUALITY;
 const OUT = process.argv[3] || '.';
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -23,361 +24,315 @@ const results = [];
 let failed = 0;
 function check(cond, label, detail) {
   results.push({ ok: !!cond, label, detail: detail === undefined ? '' : String(detail) });
-  if (!cond) { failed++; }
+  if (!cond) failed++;
   console.log((cond ? '  [OK]     ' : '  [FEHLER] ') + label + (detail !== undefined ? '  (' + detail + ')' : ''));
 }
 
 (async () => {
   const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
-  const context = await browser.newContext({ viewport: { width: 1024, height: 640 } });
-  const page = await context.newPage();
+  const page = await browser.newPage({ viewport: { width: 1024, height: 640 } });
   const errors = [];
-  page.on('console', m => { if (m.type() === 'error') { errors.push(m.text()); } });
-  page.on('pageerror', e => errors.push('pageerror: ' + e.message));
+  page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+  page.on('pageerror', (e) => errors.push('pageerror: ' + e.message));
 
   const ev = (fn, arg) => page.evaluate(fn, arg);
   const state = () => ev(() => TLH.state());
-  const wait = ms => page.waitForTimeout(ms);
-  async function waitState(s, timeout) {
-    await page.waitForFunction(x => window.TLH && TLH.state() === x, s, { timeout: timeout || 15000 });
-  }
-  async function press(key) { await page.keyboard.press(key); await wait(120); }
+  const wait = (ms) => page.waitForTimeout(ms);
+  const shot = (name) => page.screenshot({ path: path.join(OUT, name + '.jpg'), type: 'jpeg', quality: 72 });
+  async function waitState(s, timeout) { await page.waitForFunction((x) => window.TLH && TLH.state() === x, s, { timeout: timeout || 20000 }); }
+  async function press(key) { await page.keyboard.press(key); await wait(150); }
   async function hold(combo, ms) {
     const parts = combo.split('+');
-    for (const k of parts) { await page.keyboard.down(k); }
+    for (const k of parts) await page.keyboard.down(k);
     await wait(ms);
-    for (const k of parts.reverse()) { await page.keyboard.up(k); }
+    for (const k of parts.reverse()) await page.keyboard.up(k);
   }
-  async function clickButton(text) {
-    await page.locator('.screen:not([hidden]) button', { hasText: text }).first().click();
-    await wait(150);
-  }
+  async function click(text) { await page.locator('.screen:not([hidden]) button', { hasText: text }).first().click(); await wait(200); }
 
-  /** Laeuft mit W zum Ziel (dreht sich vorher hin). true, wenn Abstand <= stopDist erreicht. */
+  /** Laeuft mit W (und Shift auf langen Strecken) zum Ziel. */
   async function walkTo(x, z, stopDist) {
     let last = Infinity, stuck = 0;
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 120; i++) {
       const p = await ev(() => TLH.player());
       const d = Math.hypot(p.x - x, p.z - z);
-      if (d <= stopDist) { return true; }
-      if (last - d < 0.05) { stuck++; } else { stuck = 0; }
-      if (stuck > 4) { return false; }
+      if (d <= stopDist) return true;
+      if (last - d < 0.05) stuck++; else stuck = 0;
+      if (stuck > 5) return false;
       last = d;
       await ev(([tx, tz]) => TLH.face(tx, tz), [x, z]);
-      await hold(d > 4 ? 'Shift+KeyW' : 'KeyW', d > 4 ? 450 : 220);
+      await hold(d > 6 ? 'Shift+KeyW' : 'KeyW', d > 6 ? 500 : 220);
     }
     return false;
   }
 
-  /** Geht zur Erkenntnis, prueft Fokus/Hinweis, liest sie (kurz + lang) und schliesst. */
-  async function discover(pt, chapterNo, opts) {
-    const reached = await walkTo(pt.x, pt.z, 1.7);
-    await ev(([tx, tz]) => TLH.face(tx, tz), [pt.x, pt.z]);
+  async function talkThrough() {
+    let n = 0;
+    while (await state() === 'dialog' && n < 12) { await press('KeyE'); n++; }
+    return n;
+  }
+
+  async function talkToCommander(label) {
+    const c = await ev(() => TLH.npc('kommandantin'));
+    const ok = await walkTo(c.x, c.z, 2.2);
+    await ev(([tx, tz]) => TLH.face(tx, tz), [c.x, c.z]);
     await wait(250);
     const foc = await ev(() => TLH.focused());
-    const ok = reached && foc === pt.id;
-    if (!ok || opts.verbose) {
-      check(ok, `Kap. ${chapterNo}: ${pt.id} erreichbar und fokussiert`, `erreicht=${reached}, Fokus=${foc}`);
-    }
-    if (!ok) { return false; }
     await press('KeyE');
     const st = await state();
-    if (opts.verbose) {
-      check(st === 'info', 'E oeffnet das Informationsfenster', st);
-      const title = await page.locator('#info h2').textContent();
-      check(title && title.length > 2, 'Titel wird angezeigt', title);
-      const shortLen = (await page.locator('#info .reading').textContent()).length;
-      await clickButton('Ausführlich lesen');
-      const longLen = (await page.locator('#info .reading').textContent()).length;
-      check(longLen > shortLen, 'Ausfuehrliche Fassung ist laenger als die Kurzfassung', `${shortLen} -> ${longLen} Zeichen`);
-      check((await page.locator('#info .mode').textContent()).includes('Ausführlich'), 'Anzeige "Ausführliche Fassung"');
-      await page.screenshot({ path: path.join(OUT, `info_${pt.id}.png`) });
-      await clickButton('Kurzfassung zeigen');
-      check((await page.locator('#info .mode').textContent()).includes('Kurzfassung'), 'Zurueck zur Kurzfassung');
-      await clickButton('Schließen');
-    } else {
-      if (st !== 'info') { check(false, `Kap. ${chapterNo}: ${pt.id} oeffnet Fenster`, st); return false; }
-      await press('KeyE'); // E schliesst
-    }
-    const after = await state();
-    if (after !== 'playing') { check(false, `Kap. ${chapterNo}: Fenster schliesst`, after); return false; }
-    return true;
+    const lines = await talkThrough();
+    check(ok && foc === 'npc:kommandantin' && st === 'dialog' && lines > 0, label, `erreicht=${ok}, Fokus=${foc}, Zeilen=${lines}`);
   }
 
-  async function completeChapter(chapterNo, verbose) {
+  async function completeSector(no, verbose) {
     const pts = await ev(() => TLH.points());
-    let all = true;
+    let ok = true;
     for (const pt of pts) {
-      if (pt.discovered) { continue; }
-      const ok = await discover(pt, chapterNo, { verbose: verbose && pt === pts.find(p => !p.discovered) });
-      all = all && ok;
+      if (pt.discovered) continue;
+      const reached = await walkTo(pt.x, pt.z, 1.8);
+      await ev(([tx, tz]) => TLH.face(tx, tz), [pt.x, pt.z]);
+      await wait(200);
+      const foc = await ev(() => TLH.focused());
+      if (!reached || foc !== 'memory:' + pt.id) { check(false, `Sektor ${no}: ${pt.id} erreichbar`, `erreicht=${reached}, Fokus=${foc}`); ok = false; continue; }
+      await press('KeyE');
+      if (await state() !== 'info') { check(false, `Sektor ${no}: ${pt.id} oeffnet Text`); ok = false; continue; }
+      if (verbose && pt === pts[0]) {
+        const shortLen = (await page.locator('#info .reading').textContent()).length;
+        await click('Ausführlich lesen');
+        const longLen = (await page.locator('#info .reading').textContent()).length;
+        check(longLen > shortLen, 'Ausfuehrliche Fassung ist laenger als die Kurzfassung', `${shortLen} -> ${longLen}`);
+        await shot('info_ausfuehrlich');
+        await click('Kurzfassung zeigen');
+      }
+      await press('KeyE');
+      if (await state() !== 'playing') { check(false, `Sektor ${no}: Text schliesst`); ok = false; }
     }
-    const left = (await ev(() => TLH.points())).filter(p => !p.discovered).length;
-    check(all && left === 0, `Kapitel ${chapterNo}: alle ${pts.length} Erkenntnisse gefunden und gelesen`, `offen: ${left}`);
-    return all && left === 0;
+    const left = (await ev(() => TLH.points())).filter((p) => !p.discovered).length;
+    check(ok && left === 0, `Sektor ${no}: alle ${pts.length} Erinnerungen gefunden und gelesen`, `offen: ${left}`);
+    return left === 0;
   }
 
-  async function usePortal(chapterNo) {
+  async function leaveSector(no) {
     const portal = await ev(() => TLH.portal());
-    const reached = await walkTo(portal.x - 1.6, 0, 1.0);
-    await ev(([tx, tz]) => TLH.face(tx, tz), [portal.x, 0]);
-    await wait(250);
+    const reached = await walkTo(portal.x - 1.8, 0, 1.0);
+    await ev(([tx]) => TLH.face(tx, 0), [portal.x]);
+    await wait(200);
     const foc = await ev(() => TLH.focused());
     const open = await ev(() => TLH.portalOpen());
-    check(reached && foc === 'portal' && open, `Kapitel ${chapterNo}: Tor erreichbar und offen`, `erreicht=${reached}, Fokus=${foc}, offen=${open}`);
     await press('KeyE');
     await wait(400);
+    const area = await ev(() => TLH.area());
+    check(reached && foc === 'portal:sektortor' && open && area === 'hub', `Sektor ${no}: Sektortor offen, Rueckkehr zur Station`, `erreicht=${reached}, Fokus=${foc}, offen=${open}, Bereich=${area}`);
   }
 
-  // =================================================================== 1. Start
-  console.log('\n1. Laden und Hauptmenue');
+  async function enterGate(expectChapter) {
+    const g = await ev(() => TLH.gate());
+    const reached = await walkTo(g.x - 2.5, g.z, 1.2);
+    await ev(([tx, tz]) => TLH.face(tx, tz), [g.x + 2, g.z]);
+    await wait(200);
+    const foc = await ev(() => TLH.focused());
+    await press('KeyE');
+    await wait(400);
+    const ch = await ev(() => TLH.chapter());
+    const area = await ev(() => TLH.area());
+    check(reached && foc === 'gate:archivtor' && area === 'sector' && ch === expectChapter, `Archivtor fuehrt in ${expectChapter}`, `erreicht=${reached}, Fokus=${foc}, Bereich=${area}, Kapitel=${ch}`);
+  }
+
+  // ================================================================ 1. Start
+  console.log('\n1. Laden, Hauptmenue, Namenseingabe, Einleitung');
+  const t0 = Date.now();
   await page.goto(URL);
-  await waitState('mainmenu', 30000);
+  await waitState('mainmenu', 120000);
   await ev(() => localStorage.clear());
   await page.reload();
-  await waitState('mainmenu', 30000);
-  await wait(800);
-  check(true, 'Seite laedt, Hauptmenue erscheint');
-  check(await page.locator('#boot').isHidden(), 'Ladebildschirm verschwindet');
-  check(await page.locator('#menu button', { hasText: 'Fortsetzen' }).isDisabled(), '"Fortsetzen" ist ohne Spielstand deaktiviert');
-  await page.screenshot({ path: path.join(OUT, '01_hauptmenue.png') });
+  await waitState('mainmenu', 120000);
+  check(true, 'Spiel laedt, Hauptmenue erscheint', `${Date.now() - t0} ms`);
+  check(await page.locator('#menu button', { hasText: 'Fortsetzen' }).isDisabled(), '"Fortsetzen" ohne Spielstand deaktiviert');
+  await shot('01_hauptmenue');
+  await click('Neues Spiel');
+  check(await page.locator('#heroname').isVisible(), 'Namenseingabe erscheint');
+  await page.locator('#heroname').fill('Testhüterin');
+  await click('Erwachen');
+  check(await state() === 'intro', 'Einleitungstext erscheint');
+  await press('KeyE');
+  check(await state() === 'playing', 'Spiel startet auf der Station');
+  check((await page.locator('#pname').textContent()) === 'Testhüterin', 'Eigener Name im HUD', await page.locator('#pname').textContent());
+  check((await ev(() => TLH.questLines()))[0].includes('Kommandantin'), 'Erste Quest: Sprich mit der Kommandantin');
+  await wait(400);
+  await shot('02_station');
 
-  // Kapiteluebersicht aus dem Hauptmenue
-  await clickButton('Kapitelübersicht');
-  check(await state() === 'overview', 'Kapiteluebersicht aus dem Hauptmenue');
-  check(await page.locator('#overview .card').count() === 10, '10 Kapitel werden aufgelistet');
-  check(await page.locator('#overview .card.locked').count() === 9, 'Kapitel 2-10 sind anfangs gesperrt');
-  await clickButton('Zurück');
-  check(await state() === 'mainmenu', 'Zurueck zum Hauptmenue');
-
-  // =================================================================== 2. Neues Spiel, Steuerung
-  console.log('\n2. Neues Spiel und Steuerung');
-  await clickButton('Neues Spiel');
-  await waitState('playing');
-  check(await ev(() => TLH.chapter()) === 'kap01_urspruenge', 'Neues Spiel startet in Kapitel 1');
-  check((await page.locator('#chapterLine').textContent()).includes('Kapitel 1'), 'HUD zeigt Kapitel und Fortschritt', await page.locator('#chapterLine').textContent());
-  await wait(500);
-  await page.screenshot({ path: path.join(OUT, '02_start_kapitel1.png') });
-
-  let p0 = await ev(() => TLH.player());
-  await hold('KeyW', 800);
-  let p1 = await ev(() => TLH.player());
-  check(p1.x - p0.x > 0.5, 'W: vorwaerts gehen', `dx=${(p1.x - p0.x).toFixed(2)} m`);
-  await hold('KeyA', 600);
-  let p2 = await ev(() => TLH.player());
-  check(p2.z - p1.z < -0.3, 'A: nach links gehen', `dz=${(p2.z - p1.z).toFixed(2)} m`);
+  // ================================================================ 2. Steuerung
+  console.log('\n2. Steuerung, Kamera, Kollision');
+  await ev(() => TLH.face(0, 30));
+  let a = await ev(() => TLH.player());
+  await hold('KeyW', 900);
+  let b = await ev(() => TLH.player());
+  check(b.z - a.z > 1, 'W: vorwaerts gehen', `dz=${(b.z - a.z).toFixed(2)} m`);
   await hold('KeyD', 600);
-  await hold('ArrowDown', 500);
-  let p3 = await ev(() => TLH.player());
-  check(p3.x < p2.x, 'Pfeiltaste: rueckwaerts gehen', `dx=${(p3.x - p2.x).toFixed(2)} m`);
-  // Geschwindigkeit ueber Spielzeit messen (unabhaengig von der Bildrate der Testmaschine)
-  async function speed(combo) {
-    await ev(() => TLH.face(30, -0.4));
-    const a = await ev(() => ({ p: TLH.player(), t: performance.now() }));
-    await hold(combo, 1500);
-    const b = await ev(() => ({ p: TLH.player(), t: performance.now() }));
-    return Math.hypot(b.p.x - a.p.x, b.p.z - a.p.z) / ((b.t - a.t) / 1000);
-  }
-  await ev(() => TLH.standBefore(-16, -0.4, 0.01));
-  const vWalk = await speed('KeyW');
-  await ev(() => TLH.standBefore(-16, -0.4, 0.01));
-  const vRun = await speed('Shift+KeyW');
-  const tWalk0 = { x: 0 }, tWalk1 = { x: vWalk }, tWalk2 = { x: vWalk + vRun };
-  check(vRun > vWalk * 1.4, 'Shift: laufen ist schneller als gehen',
-    `gehen ${vWalk.toFixed(2)} m/s, laufen ${vRun.toFixed(2)} m/s`);
-  await page.keyboard.down('Space');
-  await wait(150);
-  const jumpY = (await ev(() => TLH.player())).y;
-  await page.keyboard.up('Space');
-  await wait(900);
-  check(jumpY > 0.1 && (await ev(() => TLH.player())).y === 0, 'Leertaste: springen und landen', `Hoehe ${jumpY.toFixed(2)} m`);
-
-  // Maus: Ziehen (Fallback ohne Zeigersperre)
+  const c1 = await ev(() => TLH.player());
+  check(c1.x - b.x < -0.5, 'D: nach rechts gehen (Kamera-relativ)', `dx=${(c1.x - b.x).toFixed(2)} m`);
+  const s0 = (await ev(() => TLH.player())).stamina;
+  await ev(() => TLH.face(0, 40));
+  await hold('Shift+KeyW', 1200);
+  const s1 = await ev(() => TLH.player());
+  check(s1.stamina < s0 - 5, 'Shift: Sprinten verbraucht Ausdauer (roter Balken)', `${s0.toFixed(0)} -> ${s1.stamina.toFixed(0)}`);
+  await page.keyboard.down('Space'); await wait(150);
+  const jy = (await ev(() => TLH.player())).y;
+  await page.keyboard.up('Space'); await wait(1000);
+  check(jy > 0.1 && (await ev(() => TLH.player())).y === 0, 'Leertaste: springen und landen', `Hoehe ${jy.toFixed(2)} m`);
   const y0 = await ev(() => TLH.player());
-  await page.mouse.move(640, 400);
-  await page.mouse.down();
-  await page.mouse.move(740, 350, { steps: 5 });
-  await page.mouse.up();
+  await page.mouse.move(512, 320); await page.mouse.down(); await page.mouse.move(612, 280, { steps: 5 }); await page.mouse.up();
   const y1 = await ev(() => TLH.player());
-  check(y1.yaw < y0.yaw, 'Maus nach rechts: Blick dreht nach rechts', `yaw ${y0.yaw.toFixed(2)} -> ${y1.yaw.toFixed(2)}`);
-  check(y1.pitch > y0.pitch, 'Maus nach oben: Blick nach oben', `pitch ${y0.pitch.toFixed(2)} -> ${y1.pitch.toFixed(2)}`);
-
-  // Kollision: Laufen gegen die Seitenwand und das Monument
-  await ev(() => TLH.face(-5, -40));
-  await hold('Shift+KeyW', 2500);
-  const wallP = await ev(() => TLH.player());
-  check(wallP.z >= -9 + 0.34, 'Kollision: Seitenwand haelt die Figur auf', `z=${wallP.z.toFixed(2)}`);
-  await walkTo(-4, 0, 0.6);
-  await ev(() => TLH.face(0, 0));
-  await hold('KeyW', 2500);
-  const monP = await ev(() => TLH.player());
-  check(Math.hypot(monP.x, monP.z) >= 1.7 + 0.34, 'Kollision: Feuerstelle in der Mitte ist nicht begehbar', `Abstand ${Math.hypot(monP.x, monP.z).toFixed(2)} m`);
-
-  // Escape / P (ohne Zeigersperre)
+  check(y1.camYaw < y0.camYaw, 'Maus: Kamera dreht nach rechts', `${y0.camYaw.toFixed(2)} -> ${y1.camYaw.toFixed(2)}`);
+  check(y1.pitch < y0.pitch, 'Maus nach oben: Kamera schaut nach oben', `${y0.pitch.toFixed(2)} -> ${y1.pitch.toFixed(2)}`);
+  // bis zum Rand laufen, bis sich die Position nicht mehr aendert
+  let prevD = -1, edge = null;
+  for (let i = 0; i < 40; i++) {
+    await ev(() => TLH.face(0, 200));
+    await hold('Shift+KeyW', 800);
+    edge = await ev(() => TLH.player());
+    const dd = Math.hypot(edge.x, edge.z);
+    if (Math.abs(dd - prevD) < 0.05) break;
+    prevD = dd;
+  }
+  check(Math.hypot(edge.x, edge.z) <= 44.5 && Math.hypot(edge.x, edge.z) > 43, 'Kollision: Gelaender am Plattformrand haelt die Figur auf', `Abstand zur Mitte ${Math.hypot(edge.x, edge.z).toFixed(1)} m`);
   await press('Escape');
   check(await state() === 'pause', 'Esc oeffnet das Pausenmenue');
   await press('Escape');
   check(await state() === 'playing', 'Esc schliesst das Pausenmenue');
-  await press('KeyP');
-  check(await state() === 'pause', 'P oeffnet das Pausenmenue');
-  await clickButton('Weiterspielen');
-  check(await state() === 'playing', '"Weiterspielen" setzt fort');
 
-  // =================================================================== 3. Erkenntnisse, Tor gesperrt
-  console.log('\n3. Informationspunkte und Tor in Kapitel 1');
-  const pts1 = await ev(() => TLH.points());
-  check(pts1.length === 5, 'Kapitel 1 hat 5 Informationspunkte', pts1.length);
-  // Tor vor Abschluss
-  const portal = await ev(() => TLH.portal());
-  await walkTo(portal.x - 1.6, 0, 1.0);
-  await ev(([tx]) => TLH.face(tx, 0), [portal.x]);
-  await wait(250);
-  check(await ev(() => TLH.focused()) === 'portal', 'Tor wird fokussiert');
-  check(!(await ev(() => TLH.portalOpen())), 'Tor ist vor Abschluss gesperrt');
-  check((await ev(() => TLH.prompt())).includes('verschlossen'), 'Hinweis: Tor verschlossen', await ev(() => TLH.prompt()));
-  await press('KeyE');
-  check(await ev(() => TLH.chapter()) === 'kap01_urspruenge', 'Gesperrtes Tor wechselt nicht das Kapitel');
-  await page.screenshot({ path: path.join(OUT, '03_tor_gesperrt.png') });
-
-  // erster Punkt ausfuehrlich
-  const first = pts1[0];
-  await discover(first, 1, { verbose: true });
-  check(await ev(() => TLH.discoveredCount()) === 1, 'Erkenntnis wird gezaehlt');
-  check(await ev(() => !!localStorage.getItem('tlh.spielstand.v2')), 'Automatische Speicherung nach neuer Erkenntnis');
-  await ev(([tx, tz]) => TLH.face(tx, tz), [first.x, first.z]);
+  // ================================================================ 3. Geschichte auf der Station
+  console.log('\n3. Gespraech, Erkundung, Kristalle, Faehigkeiten');
+  // Archivtor ist anfangs versiegelt
+  const g = await ev(() => TLH.gate());
+  await walkTo(g.x - 2.5, g.z, 1.2);
+  await ev(([tx, tz]) => TLH.face(tx, tz), [g.x + 2, g.z]);
   await wait(200);
-  check((await ev(() => TLH.prompt())).includes('Erneut lesen'), 'Bekannter Punkt: Hinweis "Erneut lesen"', await ev(() => TLH.prompt()));
+  check((await ev(() => TLH.prompt())).includes('versiegelt'), 'Archivtor vor dem Gespraech versiegelt', await ev(() => TLH.prompt()));
+  await talkToCommander('Gespraech mit der Kommandantin (4 Zeilen)');
+  await shot('03_nach_gespraech');
+  check(await ev(() => TLH.stage()) === 'explore', 'Quest weiter: Erkunde die Raumstation');
+  const marks = await ev(() => TLH.landmarks());
+  for (const [id, p] of Object.entries(marks)) {
+    const ok = await walkTo(p.x, p.z, id === 'aussicht' ? 3 : 4);
+    check(ok, `Erkundet: ${id}`);
+  }
+  check(await ev(() => TLH.stage()) === 'gate', 'Nach drei Orten: Quest "Betritt das Archivtor"');
+  // Kristalle
+  const crystals = await ev(() => TLH.crystals());
+  let got = 0;
+  for (const cr of crystals.slice(0, 10)) {
+    if (await walkTo(cr.x, cr.z, 1.0)) got++;
+  }
+  check(await ev(() => TLH.crystalCount()) === 10, 'Alle 10 Datenkristalle eingesammelt', `${await ev(() => TLH.crystalCount())}/10, erreicht ${got}`);
+  await press('KeyI');
+  check(await state() === 'codex' && (await page.locator('#codex .codex li:not(.unknown)').count()) >= 10, 'Kodex (I) zeigt gefundene Kristalltexte');
+  await shot('04_kodex');
+  await press('KeyI');
+  // Faehigkeiten
+  await wait(2500);
+  const e0 = (await ev(() => TLH.player())).energy;
+  await press('Digit1');
+  const e1 = (await ev(() => TLH.player())).energy;
+  check(e1 < e0 - 20, 'Faehigkeit 1 (Scan-Puls) verbraucht Energie', `${e0.toFixed(0)} -> ${e1.toFixed(0)}`);
+  await ev(() => TLH.face(0, 0));
+  const d0 = await ev(() => TLH.player());
+  await press('Digit2'); await wait(700);
+  const d1 = await ev(() => TLH.player());
+  check(Math.hypot(d1.x - d0.x, d1.z - d0.z) > 1.5, 'Faehigkeit 2 (Schub) bewegt die Figur', `${Math.hypot(d1.x - d0.x, d1.z - d0.z).toFixed(2)} m`);
+  await wait(3500);
+  await press('Digit3');
+  check((await page.locator('#toast').textContent()).length > 0, 'Faehigkeit 3 (Leuchtfeuer) ausloesbar');
+  await press('Digit5');
+  const r1 = await ev(() => TLH.player());
+  check(Math.abs(r1.x) < 0.5 && Math.abs(r1.z + 22) < 0.5, 'Faehigkeit 5 (Rueckruf) zum Startpunkt', `${r1.x.toFixed(1)}/${r1.z.toFixed(1)}`);
+  await press('Digit6');
+  check((await page.locator('#toast').textContent()).includes('Stufe'), 'Faehigkeit 6 ist bis Stufe 10 gesperrt');
+  await press('KeyK');
+  check(await state() === 'skills', 'Faehigkeiten-Uebersicht (K)');
+  await press('KeyK');
+  await press('KeyM');
+  check(await state() === 'map', 'Karte (M)');
+  await shot('05_karte');
+  await press('KeyM');
+  await press('KeyJ');
+  check(await state() === 'journal', 'Journal (J)');
+  await shot('06_journal');
+  await press('KeyJ');
 
-  // restliche Punkte, dann Tor
-  await completeChapter(1, false);
-  check(await ev(() => TLH.portalOpen()), 'Nach allen Erkenntnissen ist das Tor offen');
-  await page.screenshot({ path: path.join(OUT, '04_kapitel1_fertig.png') });
-  await usePortal(1);
-  check(await ev(() => TLH.chapter()) === 'kap02_sesshaftigkeit', 'Tor fuehrt in Kapitel 2');
-  const startP = await ev(() => TLH.player());
-  check(Math.abs(startP.x + 17) < 0.1, 'Spieler steht am Eingang der neuen Halle', `x=${startP.x.toFixed(2)}`);
+  // ================================================================ 4. Erster Sektor
+  console.log('\n4. Archivsektor 1');
+  await enterGate('kap01_urspruenge');
+  await shot('07_sektor1');
+  check((await ev(() => TLH.questLines()))[0].includes('Sektor 1'), 'Quest: Erinnerungen in Sektor 1 erwecken');
+  const portal = await ev(() => TLH.portal());
+  await walkTo(portal.x - 1.8, 0, 1.0);
+  await ev(([tx]) => TLH.face(tx, 0), [portal.x]);
+  await wait(200);
+  check(!(await ev(() => TLH.portalOpen())), 'Sektortor vor Abschluss gesperrt');
+  await press('Digit4');
+  check((await page.locator('#toast').textContent()).includes('Zeitecho') || (await page.locator('#toast').textContent()).includes('Energie'), 'Faehigkeit 4 (Zeitecho) setzt Wegpunkt');
+  await completeSector(1, true);
+  await leaveSector(1);
+  check(await ev(() => TLH.stage()) === 'report', 'Quest: Bericht an die Kommandantin');
+  await talkToCommander('Bericht nach Sektor 1');
+  check(await ev(() => TLH.stage()) === 'gate', 'Danach: naechster Sektor ueber das Archivtor');
 
-  // =================================================================== 4. Uebersicht, Speichern, Optionen, Laden
-  console.log('\n4. Kapiteluebersicht, Speichern, Optionen, Laden');
-  await press('Tab');
-  check(await state() === 'overview', 'Tab oeffnet die Kapiteluebersicht');
-  check(await page.locator('#overview .card.here').count() === 1, 'Aktuelles Kapitel ist markiert');
-  check(await page.locator('#overview .card.done').count() === 1, 'Kapitel 1 ist als abgeschlossen markiert');
-  check((await page.locator('#overview .total').textContent()).includes('5 von 48'), 'Gesamtfortschritt 5 von 48', await page.locator('#overview .total').textContent());
-  await page.screenshot({ path: path.join(OUT, '05_kapiteluebersicht.png') });
-  await page.locator('#overview button[data-action="read"]').first().click();
-  await wait(150);
-  check(await state() === 'info', 'Entdeckte Erkenntnis aus der Uebersicht erneut lesen');
-  await clickButton('Schließen');
-  check(await state() === 'overview', 'Schliessen fuehrt zurueck zur Uebersicht');
-  await press('Tab');
-  check(await state() === 'playing', 'Tab schliesst die Uebersicht');
-
-  await hold('KeyW', 700);
+  // Speichern und Laden
+  console.log('\n5. Speichern und Laden');
   await press('F5');
-  check((await page.locator('#toast').textContent()).includes('gespeichert'), 'F5 speichert (Meldung)', await page.locator('#toast').textContent());
-  const savedPos = await ev(() => TLH.player());
-
-  await press('KeyP');
-  await clickButton('Optionen');
-  check(await state() === 'options', 'Optionen aus dem Pausenmenue');
-  await page.locator('#opt-sens').fill('4.2');
-  await page.locator('#opt-fov').fill('85');
-  await page.locator('#opt-invert').check();
-  const st1 = await ev(() => TLH.settings());
-  check(Math.abs(st1.sensitivity - 4.2) < 0.01 && st1.fov === 85 && st1.invertY === true, 'Optionen wirken sofort', JSON.stringify(st1));
-  await page.screenshot({ path: path.join(OUT, '06_optionen.png') });
-  await clickButton('Speichern und zurück');
-  check(await state() === 'pause', 'Zurueck ins Pausenmenue');
-  await clickButton('Weiterspielen');
-  // Invertierte Maus pruefen
-  const iv0 = await ev(() => TLH.player());
-  await page.mouse.move(640, 400); await page.mouse.down(); await page.mouse.move(640, 340, { steps: 4 }); await page.mouse.up();
-  const iv1 = await ev(() => TLH.player());
-  check(iv1.pitch < iv0.pitch, 'Y-Achse umgekehrt: Maus hoch = Blick runter', `${iv0.pitch.toFixed(2)} -> ${iv1.pitch.toFixed(2)}`);
-
-  // Neu laden: Spielstand + Einstellungen
+  check((await page.locator('#toast').textContent()).includes('gespeichert'), 'F5 speichert');
+  const before = { d: await ev(() => TLH.discoveredCount()), c: await ev(() => TLH.crystalCount()), xp: await ev(() => TLH.xp()), stage: await ev(() => TLH.stage()) };
   await page.reload();
-  await waitState('mainmenu', 30000);
-  await wait(500);
-  check(!(await page.locator('#menu button', { hasText: 'Fortsetzen' }).isDisabled()), 'Nach Neuladen: "Fortsetzen" ist aktiv');
-  const st2 = await ev(() => TLH.settings());
-  check(Math.abs(st2.sensitivity - 4.2) < 0.01 && st2.fov === 85 && st2.invertY, 'Einstellungen bleiben nach Neuladen erhalten');
-  await clickButton('Fortsetzen');
+  await waitState('mainmenu', 120000);
+  await click('Fortsetzen');
   await waitState('playing');
-  const lp = await ev(() => TLH.player());
-  check(await ev(() => TLH.chapter()) === 'kap02_sesshaftigkeit', 'Laden: richtiges Kapitel');
-  check(await ev(() => TLH.discoveredCount()) === 5, 'Laden: entdeckte Erkenntnisse');
-  check(Math.hypot(lp.x - savedPos.x, lp.z - savedPos.z) < 0.05, 'Laden: Position wiederhergestellt', `${lp.x.toFixed(2)}/${lp.z.toFixed(2)}`);
-  // Einstellungen zuruecksetzen fuer den Rest
-  await press('KeyP'); await clickButton('Optionen');
-  await page.locator('#opt-invert').uncheck();
-  await page.locator('#opt-sens').fill('2.5');
-  await clickButton('Speichern und zurück'); await clickButton('Weiterspielen');
+  const after = { d: await ev(() => TLH.discoveredCount()), c: await ev(() => TLH.crystalCount()), xp: await ev(() => TLH.xp()), stage: await ev(() => TLH.stage()) };
+  check(JSON.stringify(before) === JSON.stringify(after), 'Nach Neuladen: Fortschritt, Kristalle, Erfahrung, Quest wiederhergestellt', JSON.stringify(after));
 
-  // =================================================================== 5. Komplettes Durchspielen Kapitel 2-10
-  console.log('\n5. Kapitel 2 bis 10 komplett durchspielen');
-  for (let ch = 2; ch <= 10; ch++) {
-    await wait(300);
-    await page.screenshot({ path: path.join(OUT, `halle_${String(ch).padStart(2, '0')}.png`), type: 'jpeg', quality: 70 });
-    const okCh = await completeChapter(ch, ch === 10);
-    if (!okCh) { break; }
-    await usePortal(ch);
-    if (ch < 10) {
-      const expect = await ev(n => TLH_CONTENT.chapters[n].id, ch);
-      check(await ev(() => TLH.chapter()) === expect, `Tor fuehrt in Kapitel ${ch + 1}`);
+  // ================================================================ 6. Sektoren 2-10
+  console.log('\n6. Archivsektoren 2 bis 10 und Abspann');
+  const ids = await ev(() => TLH.chapterIds());
+  for (let n = 2; n <= 10; n++) {
+    await enterGate(ids[n - 1]);
+    await wait(250);
+    await shot('sektor_' + String(n).padStart(2, '0'));
+    const ok = await completeSector(n, false);
+    if (!ok) break;
+    await leaveSector(n);
+    if (n < 10) {
+      await talkToCommander(`Bericht nach Sektor ${n}`);
     }
   }
-
-  // =================================================================== 6. Abspann
-  console.log('\n6. Abspann');
-  check(await state() === 'ending', 'Letztes Tor zeigt den Abspann');
-  check((await page.locator('#ending .stats').textContent()).includes('48 von 48'), 'Abspann-Statistik 48 von 48', await page.locator('#ending .stats').textContent());
-  await page.screenshot({ path: path.join(OUT, '07_abspann.png') });
-  await clickButton('Weiter im Archiv umsehen');
-  check(await state() === 'playing', 'Nach dem Abspann weiter erkunden');
-  await press('KeyP');
-  await clickButton('Zum Hauptmenü');
-  check(await state() === 'mainmenu', 'Zum Hauptmenue');
-
-  // =================================================================== 7. Neues Spiel mit Rueckfrage, alle Kapitel freischalten
-  console.log('\n7. Rueckfrage bei "Neues Spiel" und Option "Alle Kapitel freischalten"');
-  await clickButton('Neues Spiel');
-  check(await page.locator('#menu .confirm').isVisible(), 'Rueckfrage vor dem Ueberschreiben des Spielstands');
-  await clickButton('Abbrechen');
-  check(await page.locator('#menu .confirm').count() === 0, 'Abbrechen schliesst die Rueckfrage');
-  await clickButton('Neues Spiel');
-  await clickButton('Ja, neu beginnen');
-  await waitState('playing');
-  check(await ev(() => TLH.discoveredCount()) === 0 && await ev(() => TLH.chapter()) === 'kap01_urspruenge', 'Neues Spiel setzt den Fortschritt zurueck');
-  await press('KeyP'); await clickButton('Optionen');
-  await page.locator('#opt-unlock').check();
-  await clickButton('Speichern und zurück');
-  await clickButton('Kapitelübersicht');
-  check(await page.locator('#overview .card.locked').count() === 0, 'Alle Kapitel freigeschaltet');
-  await page.locator('#overview button[data-action="enter"][data-id="kap07_industrie"]').click();
+  check(await ev(() => TLH.stage()) === 'final', 'Alle Sektoren erweckt: letzte Quest');
+  await talkToCommander('Letztes Gespraech mit der Kommandantin');
   await wait(300);
-  check(await ev(() => TLH.chapter()) === 'kap07_industrie' && await state() === 'playing', '"Halle betreten" springt direkt in Kapitel 7');
-  check(await ev(() => TLH.portalOpen()), 'Bei freigeschalteten Kapiteln ist das Tor offen');
-  await press('KeyP'); await clickButton('Optionen');
-  await page.locator('#opt-unlock').uncheck();
-  await clickButton('Speichern und zurück'); await clickButton('Weiterspielen');
+  check(await state() === 'ending', 'Abspann erscheint');
+  check((await page.locator('#ending .stats').textContent()).includes('48 von 48'), 'Abspann: 48 von 48 Erinnerungen', await page.locator('#ending .stats').textContent());
+  await shot('08_abspann');
+  check(await ev(() => TLH.level()) >= 10, 'Stufe 10 erreicht', 'Stufe ' + await ev(() => TLH.level()));
+  await click('Weiter auf der Station umsehen');
+  check(await state() === 'playing', 'Nach dem Abspann weiter spielen');
 
-  // =================================================================== 8. Handy-Breite
-  console.log('\n8. Darstellung bei schmalem Bildschirm');
-  await press('KeyP'); await clickButton('Zum Hauptmenü');
+  // ================================================================ 7. Optionen und schmaler Bildschirm
+  console.log('\n7. Optionen, schmaler Bildschirm');
+  await press('Escape');
+  await click('Optionen');
+  await page.locator('#opt-sens').fill('4.0');
+  await page.locator('#opt-invert').check();
+  const st = await ev(() => TLH.settings());
+  check(Math.abs(st.sensitivity - 4) < 0.01 && st.invertY, 'Optionen wirken sofort', JSON.stringify(st));
+  await click('Speichern und zurück');
+  await click('Zum Hauptmenü');
   await page.setViewportSize({ width: 390, height: 780 });
   await wait(400);
-  const overflow = await ev(() => document.documentElement.scrollWidth - window.innerWidth);
-  check(overflow <= 0, 'Kein waagerechtes Scrollen bei 390 px Breite', `Ueberstand ${overflow} px`);
-  await page.screenshot({ path: path.join(OUT, '08_schmal.png') });
+  const overflow = await ev(() => document.documentElement.scrollWidth - innerWidth);
+  check(overflow <= 0, 'Kein waagerechtes Scrollen bei 390 px', `${overflow} px`);
+  await shot('09_schmal');
 
-  // =================================================================== Ergebnis
-  check(errors.length === 0, 'Keine JavaScript-Fehler in der Konsole', errors.join(' | ').slice(0, 300));
+  check(errors.length === 0, 'Keine JavaScript-Fehler', errors.join(' | ').slice(0, 300));
   await browser.close();
-
-  const passed = results.filter(r => r.ok).length;
-  console.log(`\n=== ${passed} bestanden, ${failed} fehlgeschlagen ===`);
+  const passed = results.filter((r) => r.ok).length;
+  console.log(`\n=== ${passed} bestanden, ${failed} fehlgeschlagen (Grafik: ${QUALITY}) ===`);
   fs.writeFileSync(path.join(OUT, 'ergebnis.json'), JSON.stringify({ url: URL, passed, failed, results }, null, 2));
   process.exit(failed ? 1 : 0);
-})().catch(e => { console.error('ABBRUCH:', e); process.exit(2); });
+})().catch((e) => { console.error('ABBRUCH:', e); process.exit(2); });

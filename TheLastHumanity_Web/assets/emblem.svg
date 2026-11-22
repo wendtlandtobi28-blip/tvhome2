@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- "Flamme der Erinnerung" - Emblem von THE LAST HUMANITY (eigenes Design, frei von Fremdmarken) -->
+  <!-- offener Ring: Archiv / Kreislauf der Erinnerung, unten geoeffnet -->
+  <path d="M62 168 A78 78 0 1 1 138 168" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+  <path d="M74 150 A58 58 0 1 1 126 150" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <!-- Flamme aus drei Zungen: das erste Feuer der Menschheit -->
+  <path d="M100 52 C84 78 70 94 72 120 C74 142 88 154 100 156 C112 154 126 142 128 120 C130 94 116 78 100 52 Z" fill="currentColor"/>
+  <path d="M100 92 C92 106 86 116 88 130 C90 142 96 148 100 148 C104 148 110 142 112 130 C114 116 108 106 100 92 Z" fill="#000" fill-opacity="0.55"/>
+  <path d="M100 112 C96 120 94 126 95 133 C96 139 98 142 100 142 C102 142 104 139 105 133 C106 126 104 120 100 112 Z" fill="currentColor"/>
+  <!-- Stern: Hoffnung / Orientierung -->
+  <path d="M100 18 L104 30 L116 34 L104 38 L100 50 L96 38 L84 34 L96 30 Z" fill="currentColor"/>
+  <!-- Sockel-Balken -->
+  <path d="M70 176 H130" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+  <path d="M84 188 H116" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+</svg>

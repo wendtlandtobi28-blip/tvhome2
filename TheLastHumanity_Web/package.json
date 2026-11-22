@@ -1,0 +1,14 @@
+{
+  "name": "the-last-humanity-web",
+  "version": "2.0.0",
+  "private": true,
+  "description": "THE LAST HUMANITY - Browser-Version",
+  "scripts": {
+    "build": "node tools/bundle.mjs"
+  },
+  "devDependencies": {
+    "@pmndrs/assets": "1.7.0",
+    "esbuild": "0.24.2",
+    "three": "0.170.0"
+  }
+}
