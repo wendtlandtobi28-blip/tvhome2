@@ -1,9 +1,13 @@
 # Offene Aufgaben – THE LAST HUMANITY
 
+## Browser-Version
+
+- [ ] Eigenes Durchspielen durch den Projektinhaber am PC (Rückmeldung zu Steuerung, Darstellung, Texten)
+- [ ] Optional: Ton (Musik, Geräusche), Gamepad- und Touch-Steuerung
+
 ## Blockiert: Voraussetzung bzw. Entscheidung durch den Projektinhaber
 
-- [ ] **Windows-PC mit Unreal Engine 5.4+ und Visual Studio 2022** (Anleitung `README.md`). Ohne diesen Schritt kann das Spiel weder kompiliert noch als .exe erstellt werden.
-- [ ] **GitHub-Zugriff reparieren:** Das Hochladen auf den Branch scheitert mit Fehler 403. GitHub unter https://claude.ai/connect-github neu verbinden und die Claude-GitHub-App für `tvhome2` installieren.
+- [ ] (Nur für die Unreal-Version) **Windows-PC mit Unreal Engine 5.4+ und Visual Studio 2022** (Anleitung `README.md`). Ohne diesen Schritt kann das Spiel weder kompiliert noch als .exe erstellt werden.
 - [ ] Ursprünglichen Projektauftrag bereitstellen (Abgleich von `GAME_DESIGN.md` und `LORE_BIBLE.md`).
 - [ ] Entscheiden, ob das Projekt in ein eigenes Repository umziehen soll.
 

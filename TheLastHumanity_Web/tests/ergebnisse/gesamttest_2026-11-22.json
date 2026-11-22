@@ -1,0 +1,517 @@
+{
+  "url": "http://127.0.0.1:8123/index.html?zeiger=aus",
+  "passed": 102,
+  "failed": 0,
+  "results": [
+    {
+      "ok": true,
+      "label": "Seite laedt, Hauptmenue erscheint",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Ladebildschirm verschwindet",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "\"Fortsetzen\" ist ohne Spielstand deaktiviert",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapiteluebersicht aus dem Hauptmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "10 Kapitel werden aufgelistet",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 2-10 sind anfangs gesperrt",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Zurueck zum Hauptmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Neues Spiel startet in Kapitel 1",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "HUD zeigt Kapitel und Fortschritt",
+      "detail": "Kapitel 1 · Die Ursprünge   (0/5)"
+    },
+    {
+      "ok": true,
+      "label": "W: vorwaerts gehen",
+      "detail": "dx=3.08 m"
+    },
+    {
+      "ok": true,
+      "label": "A: nach links gehen",
+      "detail": "dz=-2.48 m"
+    },
+    {
+      "ok": true,
+      "label": "Pfeiltaste: rueckwaerts gehen",
+      "detail": "dx=-2.31 m"
+    },
+    {
+      "ok": true,
+      "label": "Shift: laufen ist schneller als gehen",
+      "detail": "gehen 2.75 m/s, laufen 4.16 m/s"
+    },
+    {
+      "ok": true,
+      "label": "Leertaste: springen und landen",
+      "detail": "Hoehe 0.61 m"
+    },
+    {
+      "ok": true,
+      "label": "Maus nach rechts: Blick dreht nach rechts",
+      "detail": "yaw -1.57 -> -1.85"
+    },
+    {
+      "ok": true,
+      "label": "Maus nach oben: Blick nach oben",
+      "detail": "pitch -0.08 -> 0.06"
+    },
+    {
+      "ok": true,
+      "label": "Kollision: Seitenwand haelt die Figur auf",
+      "detail": "z=-8.65"
+    },
+    {
+      "ok": true,
+      "label": "Kollision: Feuerstelle in der Mitte ist nicht begehbar",
+      "detail": "Abstand 2.05 m"
+    },
+    {
+      "ok": true,
+      "label": "Esc oeffnet das Pausenmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Esc schliesst das Pausenmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "P oeffnet das Pausenmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "\"Weiterspielen\" setzt fort",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 1 hat 5 Informationspunkte",
+      "detail": "5"
+    },
+    {
+      "ok": true,
+      "label": "Tor wird fokussiert",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Tor ist vor Abschluss gesperrt",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Hinweis: Tor verschlossen",
+      "detail": "Das Tor ist verschlossen. Erkunde zuerst alle Erkenntnisse dieser Halle (0 von 5)."
+    },
+    {
+      "ok": true,
+      "label": "Gesperrtes Tor wechselt nicht das Kapitel",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kap. 1: kap01_archiv erreichbar und fokussiert",
+      "detail": "erreicht=true, Fokus=kap01_archiv"
+    },
+    {
+      "ok": true,
+      "label": "E oeffnet das Informationsfenster",
+      "detail": "info"
+    },
+    {
+      "ok": true,
+      "label": "Titel wird angezeigt",
+      "detail": "Das letzte Archiv"
+    },
+    {
+      "ok": true,
+      "label": "Ausfuehrliche Fassung ist laenger als die Kurzfassung",
+      "detail": "164 -> 777 Zeichen"
+    },
+    {
+      "ok": true,
+      "label": "Anzeige \"Ausführliche Fassung\"",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Zurueck zur Kurzfassung",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Erkenntnis wird gezaehlt",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Automatische Speicherung nach neuer Erkenntnis",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bekannter Punkt: Hinweis \"Erneut lesen\"",
+      "detail": "[E]  Erneut lesen: Das letzte Archiv"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 1: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Nach allen Erkenntnissen ist das Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 1: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 2",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Spieler steht am Eingang der neuen Halle",
+      "detail": "x=-17.00"
+    },
+    {
+      "ok": true,
+      "label": "Tab oeffnet die Kapiteluebersicht",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Aktuelles Kapitel ist markiert",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 1 ist als abgeschlossen markiert",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Gesamtfortschritt 5 von 48",
+      "detail": "Archiviert: 5 von 48 Erkenntnissen"
+    },
+    {
+      "ok": true,
+      "label": "Entdeckte Erkenntnis aus der Uebersicht erneut lesen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Schliessen fuehrt zurueck zur Uebersicht",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Tab schliesst die Uebersicht",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "F5 speichert (Meldung)",
+      "detail": "Spiel gespeichert."
+    },
+    {
+      "ok": true,
+      "label": "Optionen aus dem Pausenmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Optionen wirken sofort",
+      "detail": "{\"sensitivity\":4.2,\"invertY\":true,\"fov\":85,\"showHint\":true,\"unlockAll\":false}"
+    },
+    {
+      "ok": true,
+      "label": "Zurueck ins Pausenmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Y-Achse umgekehrt: Maus hoch = Blick runter",
+      "detail": "0.00 -> -0.28"
+    },
+    {
+      "ok": true,
+      "label": "Nach Neuladen: \"Fortsetzen\" ist aktiv",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Einstellungen bleiben nach Neuladen erhalten",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Laden: richtiges Kapitel",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Laden: entdeckte Erkenntnisse",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Laden: Position wiederhergestellt",
+      "detail": "-14.45/-0.00"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 2: alle 4 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 2: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 3",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 3: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 3: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 4",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 4: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 4: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 5",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 5: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 5: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 6",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 6: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 6: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 7",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 7: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 7: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 8",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 8: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 8: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 9",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 9: alle 5 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 9: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Tor fuehrt in Kapitel 10",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kap. 10: kap10_huetende erreichbar und fokussiert",
+      "detail": "erreicht=true, Fokus=kap10_huetende"
+    },
+    {
+      "ok": true,
+      "label": "E oeffnet das Informationsfenster",
+      "detail": "info"
+    },
+    {
+      "ok": true,
+      "label": "Titel wird angezeigt",
+      "detail": "Die Hüterinnen und Hüter"
+    },
+    {
+      "ok": true,
+      "label": "Ausfuehrliche Fassung ist laenger als die Kurzfassung",
+      "detail": "155 -> 653 Zeichen"
+    },
+    {
+      "ok": true,
+      "label": "Anzeige \"Ausführliche Fassung\"",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Zurueck zur Kurzfassung",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 10: alle 4 Erkenntnisse gefunden und gelesen",
+      "detail": "offen: 0"
+    },
+    {
+      "ok": true,
+      "label": "Kapitel 10: Tor erreichbar und offen",
+      "detail": "erreicht=true, Fokus=portal, offen=true"
+    },
+    {
+      "ok": true,
+      "label": "Letztes Tor zeigt den Abspann",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Abspann-Statistik 48 von 48",
+      "detail": "Du hast 48 von 48 Erkenntnissen archiviert."
+    },
+    {
+      "ok": true,
+      "label": "Nach dem Abspann weiter erkunden",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Zum Hauptmenue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Rueckfrage vor dem Ueberschreiben des Spielstands",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Abbrechen schliesst die Rueckfrage",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Neues Spiel setzt den Fortschritt zurueck",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Alle Kapitel freigeschaltet",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "\"Halle betreten\" springt direkt in Kapitel 7",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Bei freigeschalteten Kapiteln ist das Tor offen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Kein waagerechtes Scrollen bei 390 px Breite",
+      "detail": "Ueberstand 0 px"
+    },
+    {
+      "ok": true,
+      "label": "Keine JavaScript-Fehler in der Konsole",
+      "detail": ""
+    }
+  ]
+}

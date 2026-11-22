@@ -13,7 +13,9 @@ Letzte Aktualisierung: 22.11.2026 · **Version 1.0.0 (Browser) / 0.9.0 (Unreal)*
 
 ## Browser-Version 1.0.0 (`../TheLastHumanity_Web/`)
 
-Auf Wunsch des Projektinhabers (22.11.2026, „Plan B“) gibt es das komplette Spiel zusätzlich als Browser-Version (three.js/WebGL). Sie hat dieselben Inhalte, Kapitel, Tore, Optionen, das Speichern und den Abspann wie das Unreal-Projekt, braucht keine Installation und **wurde in dieser Umgebung in einem echten Browser (Chromium) automatisch komplett durchgespielt** (siehe `TESTS.md`, Abschnitt C).
+Auf Wunsch des Projektinhabers (22.11.2026, „Plan B“) gibt es das komplette Spiel zusätzlich als Browser-Version (three.js/WebGL). Sie hat dieselben Inhalte, Kapitel, Tore, Optionen, das Speichern und den Abspann wie das Unreal-Projekt, braucht keine Installation und **wurde in dieser Umgebung in einem echten Browser (Chromium) automatisch komplett durchgespielt** (siehe `TESTS.md`, Abschnitt C: **102 von 102 Prüfungen bestanden**).
+
+- Spielen: `TheLastHumanity_Web/index.html` doppelt anklicken oder online: https://claude.ai/artifact/BwbfxSFqcD5b14Q8nPtaSH
 
 ## Wichtigste Einschränkung (Unreal-Version)
 

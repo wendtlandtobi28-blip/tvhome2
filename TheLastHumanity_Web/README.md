@@ -6,7 +6,7 @@ Das komplette Spiel läuft im Browser, ohne Installation: 10 Hallen, 48 Erkenntn
 
 **Möglichkeit 1: Doppelklick.** `index.html` im Ordner `TheLastHumanity_Web` doppelt anklicken. Das Spiel öffnet sich im Standardbrowser und funktioniert auch ohne Internet. Ohne Internet fehlen nur die besonderen Schriftarten.
 
-**Möglichkeit 2: Online-Link.** Den veröffentlichten Link öffnen (siehe `../TheLastHumanity/PROGRESS.md`).
+**Möglichkeit 2: Online-Link** (privat, nur für den Projektinhaber, teilbar über „Share“): https://claude.ai/artifact/BwbfxSFqcD5b14Q8nPtaSH
 
 Empfohlen: aktueller **Chrome, Edge oder Firefox** an einem PC oder Laptop mit Tastatur und Maus.
 

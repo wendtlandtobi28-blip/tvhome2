@@ -43,3 +43,18 @@ Es sind nur Ergebnisse eingetragen, die tatsächlich ermittelt wurden. Nicht dur
 | T-28 | Gepackte Version | .exe startet; Texte werden geladen; Grundformen sichtbar | ⬜ |
 | T-29 | Gepackte Version auf zweitem PC | Ordner kopiert, startet ohne installierte Engine | ⬜ |
 | T-30 | Durchspielen | Kapitel 1–10 bis zum Abspann ohne Absturz | ⬜ |
+
+## C. Browser-Version (`../TheLastHumanity_Web/`) – tatsächlich im Browser getestet
+
+Umgebung: Chromium (Playwright) ohne Grafikkarte, 3D-Darstellung per Software (SwiftShader), 1024 × 640 Pixel; lokaler Webserver. Automatischer Gesamttest `TheLastHumanity_Web/tests/e2e_test.js`; Protokoll: `TheLastHumanity_Web/tests/ergebnisse/gesamttest_2026-11-22.txt`; Bilder: `TheLastHumanity_Web/docs/bilder/`.
+
+| ID | Datum | Test | Ergebnis |
+|---|---|---|---|
+| W-01 | 22.11.2026 | 1. Gesamtlauf | ❌ 100/102. Gefunden und behoben: (a) **Maus-Sprung** nach dem Einfangen der Maus (Blick drehte sich um ~140°); die Browser-Version filtert solche Ausreißer jetzt. (b) Messung „Laufen schneller als Gehen“ auf der langsamen Testmaschine zu kurz → Test misst jetzt Geschwindigkeit pro Sekunde. Davor behoben: Ladebildschirm blieb stehen (CSS); Bewegung auf sehr langsamen Rechnern zu langsam → Bewegungsberechnung in Teilschritten. |
+| W-02 | 22.11.2026 | 2. Gesamtlauf | ❌ 98/102. Spiel komplett durchgespielt; Fehler nur im Testaufbau: kopfloser Browser liefert bei eingefangener Maus keine echten Bewegungswerte (→ Test nutzt Umsehen per Ziehen, Schalter `?zeiger=aus`); Laufroutine pendelte vor dem Tor in Kapitel 4 (Tor war fokussiert und offen) → Zielzone vergrößert. |
+| W-03 | 22.11.2026 | **3. Gesamtlauf** | ✅ **102 von 102 Prüfungen bestanden**, keine JavaScript-Fehler |
+| W-04 | 22.11.2026 | Start per Doppelklick (`file://`) | ✅ Spiel startet, Gehen, F5-Speichern, keine Fehler |
+
+**Was W-03 im Einzelnen geprüft hat** (alle ✅): Laden, Ladebildschirm verschwindet, Hauptmenü, „Fortsetzen“ ohne Spielstand gesperrt, Kapitelübersicht aus dem Hauptmenü (10 Kapitel, 9 gesperrt) · Neues Spiel, HUD · Gehen mit W/A/D/Pfeilen, Laufen mit Shift, Springen und Landen · Umsehen mit der Maus (rechts/oben) · Kollision mit Seitenwand und Feuerstelle · Esc und P öffnen/schließen das Pausenmenü, „Weiterspielen“ · Tor vor Abschluss gesperrt (Hinweis, kein Kapitelwechsel) · Informationsfenster: Titel, Kurzfassung, ausführliche Fassung (länger), zurück, Schließen, Zählung, automatische Speicherung, „Erneut lesen“ · **alle 48 Erkenntnisse in allen 10 Hallen zu Fuß erreicht, fokussiert, geöffnet und gelesen** · jedes Tor erreichbar, öffnet sich nach Abschluss, führt ins nächste Kapitel, Spieler am Halleneingang · Kapitelübersicht: aktuelles/abgeschlossenes Kapitel, Gesamtfortschritt, erneutes Lesen mit Rückkehr, Tab schließt · F5 speichert · Optionen: Empfindlichkeit, Sichtfeld, Y-Achse umkehren wirken sofort · nach **Neuladen der Seite**: Einstellungen erhalten, „Fortsetzen“ aktiv, richtiges Kapitel, Erkenntnisse und Position wiederhergestellt · **Abspann** nach Kapitel 10 mit „48 von 48“, weiter erkunden, zum Hauptmenü · Rückfrage vor dem Überschreiben des Spielstands (Abbrechen/Ja) · „Alle Kapitel freischalten“ und direkter Sprung in Kapitel 7 · kein waagerechtes Scrollen bei 390 px Breite.
+
+**Nicht automatisch prüfbar:** Umsehen mit eingefangener Maus (Zeigersperre) – kopflose Testbrowser liefern dabei keine echten Mauswerte. Die Logik dahinter ist dieselbe wie beim getesteten Umsehen per Ziehen. Darstellungsqualität und Bildrate auf einem echten PC mit Grafikkarte: bitte beim eigenen Durchspielen beurteilen.

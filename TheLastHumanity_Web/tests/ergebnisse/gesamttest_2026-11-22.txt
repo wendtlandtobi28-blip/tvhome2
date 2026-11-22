@@ -1,0 +1,120 @@
+
+1. Laden und Hauptmenue
+  [OK]     Seite laedt, Hauptmenue erscheint
+  [OK]     Ladebildschirm verschwindet
+  [OK]     "Fortsetzen" ist ohne Spielstand deaktiviert
+  [OK]     Kapiteluebersicht aus dem Hauptmenue
+  [OK]     10 Kapitel werden aufgelistet
+  [OK]     Kapitel 2-10 sind anfangs gesperrt
+  [OK]     Zurueck zum Hauptmenue
+
+2. Neues Spiel und Steuerung
+  [OK]     Neues Spiel startet in Kapitel 1
+  [OK]     HUD zeigt Kapitel und Fortschritt  (Kapitel 1 · Die Ursprünge   (0/5))
+  [OK]     W: vorwaerts gehen  (dx=3.08 m)
+  [OK]     A: nach links gehen  (dz=-2.48 m)
+  [OK]     Pfeiltaste: rueckwaerts gehen  (dx=-2.31 m)
+  [OK]     Shift: laufen ist schneller als gehen  (gehen 2.75 m/s, laufen 4.16 m/s)
+  [OK]     Leertaste: springen und landen  (Hoehe 0.61 m)
+  [OK]     Maus nach rechts: Blick dreht nach rechts  (yaw -1.57 -> -1.85)
+  [OK]     Maus nach oben: Blick nach oben  (pitch -0.08 -> 0.06)
+  [OK]     Kollision: Seitenwand haelt die Figur auf  (z=-8.65)
+  [OK]     Kollision: Feuerstelle in der Mitte ist nicht begehbar  (Abstand 2.05 m)
+  [OK]     Esc oeffnet das Pausenmenue
+  [OK]     Esc schliesst das Pausenmenue
+  [OK]     P oeffnet das Pausenmenue
+  [OK]     "Weiterspielen" setzt fort
+
+3. Informationspunkte und Tor in Kapitel 1
+  [OK]     Kapitel 1 hat 5 Informationspunkte  (5)
+  [OK]     Tor wird fokussiert
+  [OK]     Tor ist vor Abschluss gesperrt
+  [OK]     Hinweis: Tor verschlossen  (Das Tor ist verschlossen. Erkunde zuerst alle Erkenntnisse dieser Halle (0 von 5).)
+  [OK]     Gesperrtes Tor wechselt nicht das Kapitel
+  [OK]     Kap. 1: kap01_archiv erreichbar und fokussiert  (erreicht=true, Fokus=kap01_archiv)
+  [OK]     E oeffnet das Informationsfenster  (info)
+  [OK]     Titel wird angezeigt  (Das letzte Archiv)
+  [OK]     Ausfuehrliche Fassung ist laenger als die Kurzfassung  (164 -> 777 Zeichen)
+  [OK]     Anzeige "Ausführliche Fassung"
+  [OK]     Zurueck zur Kurzfassung
+  [OK]     Erkenntnis wird gezaehlt
+  [OK]     Automatische Speicherung nach neuer Erkenntnis
+  [OK]     Bekannter Punkt: Hinweis "Erneut lesen"  ([E]  Erneut lesen: Das letzte Archiv)
+  [OK]     Kapitel 1: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Nach allen Erkenntnissen ist das Tor offen
+  [OK]     Kapitel 1: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 2
+  [OK]     Spieler steht am Eingang der neuen Halle  (x=-17.00)
+
+4. Kapiteluebersicht, Speichern, Optionen, Laden
+  [OK]     Tab oeffnet die Kapiteluebersicht
+  [OK]     Aktuelles Kapitel ist markiert
+  [OK]     Kapitel 1 ist als abgeschlossen markiert
+  [OK]     Gesamtfortschritt 5 von 48  (Archiviert: 5 von 48 Erkenntnissen)
+  [OK]     Entdeckte Erkenntnis aus der Uebersicht erneut lesen
+  [OK]     Schliessen fuehrt zurueck zur Uebersicht
+  [OK]     Tab schliesst die Uebersicht
+  [OK]     F5 speichert (Meldung)  (Spiel gespeichert.)
+  [OK]     Optionen aus dem Pausenmenue
+  [OK]     Optionen wirken sofort  ({"sensitivity":4.2,"invertY":true,"fov":85,"showHint":true,"unlockAll":false})
+  [OK]     Zurueck ins Pausenmenue
+  [OK]     Y-Achse umgekehrt: Maus hoch = Blick runter  (0.00 -> -0.28)
+  [OK]     Nach Neuladen: "Fortsetzen" ist aktiv
+  [OK]     Einstellungen bleiben nach Neuladen erhalten
+  [OK]     Laden: richtiges Kapitel
+  [OK]     Laden: entdeckte Erkenntnisse
+  [OK]     Laden: Position wiederhergestellt  (-14.45/-0.00)
+
+5. Kapitel 2 bis 10 komplett durchspielen
+  [OK]     Kapitel 2: alle 4 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 2: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 3
+  [OK]     Kapitel 3: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 3: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 4
+  [OK]     Kapitel 4: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 4: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 5
+  [OK]     Kapitel 5: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 5: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 6
+  [OK]     Kapitel 6: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 6: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 7
+  [OK]     Kapitel 7: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 7: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 8
+  [OK]     Kapitel 8: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 8: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 9
+  [OK]     Kapitel 9: alle 5 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 9: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+  [OK]     Tor fuehrt in Kapitel 10
+  [OK]     Kap. 10: kap10_huetende erreichbar und fokussiert  (erreicht=true, Fokus=kap10_huetende)
+  [OK]     E oeffnet das Informationsfenster  (info)
+  [OK]     Titel wird angezeigt  (Die Hüterinnen und Hüter)
+  [OK]     Ausfuehrliche Fassung ist laenger als die Kurzfassung  (155 -> 653 Zeichen)
+  [OK]     Anzeige "Ausführliche Fassung"
+  [OK]     Zurueck zur Kurzfassung
+  [OK]     Kapitel 10: alle 4 Erkenntnisse gefunden und gelesen  (offen: 0)
+  [OK]     Kapitel 10: Tor erreichbar und offen  (erreicht=true, Fokus=portal, offen=true)
+
+6. Abspann
+  [OK]     Letztes Tor zeigt den Abspann
+  [OK]     Abspann-Statistik 48 von 48  (Du hast 48 von 48 Erkenntnissen archiviert.)
+  [OK]     Nach dem Abspann weiter erkunden
+  [OK]     Zum Hauptmenue
+
+7. Rueckfrage bei "Neues Spiel" und Option "Alle Kapitel freischalten"
+  [OK]     Rueckfrage vor dem Ueberschreiben des Spielstands
+  [OK]     Abbrechen schliesst die Rueckfrage
+  [OK]     Neues Spiel setzt den Fortschritt zurueck
+  [OK]     Alle Kapitel freigeschaltet
+  [OK]     "Halle betreten" springt direkt in Kapitel 7
+  [OK]     Bei freigeschalteten Kapiteln ist das Tor offen
+
+8. Darstellung bei schmalem Bildschirm
+  [OK]     Kein waagerechtes Scrollen bei 390 px Breite  (Ueberstand 0 px)
+  [OK]     Keine JavaScript-Fehler in der Konsole  ()
+
+=== 102 bestanden, 0 fehlgeschlagen ===
