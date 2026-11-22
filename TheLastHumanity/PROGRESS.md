@@ -1,6 +1,6 @@
 # Entwicklungsstand – THE LAST HUMANITY
 
-Letzte Aktualisierung: 22.11.2026 · **Version 0.9.0** · Branch `claude/last-humanity-game-dev-l0fii0`
+Letzte Aktualisierung: 22.11.2026 · **Version 1.0.0 (Browser) / 0.9.0 (Unreal)** · Branch `claude/last-humanity-game-dev-l0fii0`
 
 ## Statusbegriffe
 
@@ -11,7 +11,11 @@ Letzte Aktualisierung: 22.11.2026 · **Version 0.9.0** · Branch `claude/last-hu
 | ❌ Fehlgeschlagen | Test durchgeführt, Fehler offen |
 | ⬜ Nicht implementiert | Noch nicht begonnen |
 
-## Wichtigste Einschränkung
+## Browser-Version 1.0.0 (`../TheLastHumanity_Web/`)
+
+Auf Wunsch des Projektinhabers (22.11.2026, „Plan B“) gibt es das komplette Spiel zusätzlich als Browser-Version (three.js/WebGL). Sie hat dieselben Inhalte, Kapitel, Tore, Optionen, das Speichern und den Abspann wie das Unreal-Projekt, braucht keine Installation und **wurde in dieser Umgebung in einem echten Browser (Chromium) automatisch komplett durchgespielt** (siehe `TESTS.md`, Abschnitt C).
+
+## Wichtigste Einschränkung (Unreal-Version)
 
 **Die bisherige Entwicklungsumgebung (Linux-Cloud-Container ohne Grafikkarte) enthält keine Unreal Engine und kein Windows.** Der C++-Code wurde deshalb **weder kompiliert noch gestartet**. Alle Spielfunktionen sind „🟡 Implementiert, nicht getestet“. Mit Kompilierfehlern beim ersten Build ist zu rechnen; sie werden nach Rückmeldung behoben. Getestet wurde nur, was ohne Engine prüfbar ist (siehe `TESTS.md`).
 

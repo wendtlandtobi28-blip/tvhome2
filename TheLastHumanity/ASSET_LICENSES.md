@@ -14,6 +14,17 @@ Stand: Version 0.9.0. Dieses Dokument wird bei jeder neuen Ressource ergänzt.
 
 Es sind **keine** Bilder, Modelle, Texturen, Klänge, Musik oder Schriftarten Dritter im Projektordner enthalten.
 
+## 1a. Browser-Version (`TheLastHumanity_Web/`)
+
+| Ressource | Pfad / Quelle | Herkunft | Lizenz |
+|---|---|---|---|
+| Spiellogik, Seite, Gestaltung, Tests, Build-Skript | `js/game.js`, `page.html`, `index.html`, `tests/`, `tools/` | Für dieses Projekt neu geschrieben | Eigentum des Projektinhabers |
+| three.js 0.149.0 (3D-Bibliothek) | `vendor/three.min.js`, Lizenztext `vendor/THREE_LICENSE.txt`; bezogen über npm (Paket `three`) | three.js authors | MIT License |
+| Schrift „Cinzel“ (Überschriften) | Google Fonts, zur Laufzeit geladen (nicht im Projekt gespeichert) | Natanael Gama | SIL Open Font License 1.1 |
+| Schrift „Alegreya Sans“ (Text) | Google Fonts, zur Laufzeit geladen (nicht im Projekt gespeichert) | Juan Pablo del Peral / Huerta Tipográfica | SIL Open Font License 1.1 |
+
+Alle 3D-Formen, Farben, Himmel und Lichter der Browser-Version werden im Programm erzeugt; es gibt keine Bild-, Modell- oder Tondateien.
+
 ## 2. Zur Laufzeit genutzte Bestandteile der Unreal Engine
 
 Diese Dateien liegen nicht im Projekt, sondern werden aus der installierten Engine verwendet und beim Packen mitgeliefert:

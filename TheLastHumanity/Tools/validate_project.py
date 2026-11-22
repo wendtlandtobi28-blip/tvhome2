@@ -196,6 +196,20 @@ def validate_ui_keys(data: dict) -> None:
     key_re = re.compile(r'TEXT\("([a-z]+\.[a-z_]+)"\)')
     for f in SRC.rglob("*.cpp"):
         used |= set(key_re.findall(f.read_text(encoding="utf-8")))
+    web_js = ROOT.parent / "TheLastHumanity_Web" / "js" / "game.js"
+    if web_js.exists():
+        web_used = set(re.findall(r"T\('([a-z]+\.[a-z_]+)'", web_js.read_text(encoding="utf-8")))
+        web_missing = sorted(web_used - set(ui))
+        check(not web_missing, f"Browser-Version: alle {len(web_used)} verwendeten UI-Schluessel existieren",
+              f"Browser-Version: UI-Schluessel fehlen: {web_missing}")
+        used |= web_used
+        generated = ROOT.parent / "TheLastHumanity_Web" / "js" / "content_de.js"
+        if generated.exists():
+            text = generated.read_text(encoding="utf-8")
+            start = text.index("window.TLH_CONTENT = ") + len("window.TLH_CONTENT = ")
+            same = json.loads(text[start:text.rindex(";")]) == data
+            check(same, "Browser-Version: js/content_de.js ist aktuell",
+                  "Browser-Version: js/content_de.js veraltet - 'python3 tools/build.py' ausfuehren")
     missing = sorted(used - set(ui))
     unused = sorted(set(ui) - used)
     check(not missing, f"Alle {len(used)} im Code verwendeten UI-Schluessel existieren",
