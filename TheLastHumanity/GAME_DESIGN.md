@@ -101,3 +101,25 @@ Ein Spielstand-Slot (Phase 1). Automatische Speicherung bei jeder neuen Erkenntn
 | Aufgaben und Rätsel | Zeitleisten ordnen, Fundstücke zusammensetzen, Karten zuordnen, Wissensprüfung an Sektortoren | +15 h |
 | Station ausbauen | weitere Decks (Hangar, Gärten, Kommandozentrum innen), Nebenquests der Bewohner | +15 h |
 | Gefahren | „Datenrauschen“ in beschädigten Sektoren, das mit Fähigkeiten beseitigt wird (ohne Waffen) | +10 h |
+
+## 12. Verbindliche Entscheidung vom 22.11.2026: Ziel 45 Spielstunden
+
+**Priorität Nummer 1:** Story-Modus mit **etwa 45 Stunden** (untere Grenze nach Vorgabe des Projektinhabers). **Keine Rätsel.** Stattdessen einfache, wiederverwendbare Bausteine:
+
+| Baustein | So spielt es sich |
+|---|---|
+| Wissensprüfung am Sektortor | 3 Fragen mit Antwortauswahl zu den Erinnerungen des Sektors; richtig beantwortet öffnet sich das Tor |
+| Artefakte | 3–5 versteckte Fundstücke pro Sektor mit kurzem Text (wie die Datenkristalle) |
+| Datenrauschen beseitigen | Beschädigte Terminals: E gedrückt halten, dann wird die Erinnerung lesbar |
+| Zeitzeugen-Echo | Pro Sektor ein holografisches Gespräch mit einer erfundenen Person der Epoche |
+| Nebenaufgaben auf der Station | Kleine Aufträge der Bewohner (bringen, finden, sprechen) |
+
+**Umfang für 45 Stunden:**
+
+| Teil | Umfang | Spielzeit (ca.) |
+|---|---|---|
+| 20 Archivsektoren | je 12–15 Erinnerungen, 4 Artefakte, 2 Rauschstellen, 1 Echo, 1 Wissensprüfung | ca. 37 h |
+| Station | mehr Bereiche, ca. 25 Nebenaufgaben, Story-Szenen zwischen den Kapiteln | ca. 6 h |
+| Sammeln und Kodex | optionale Extras | ca. 2 h |
+
+**Vorgehen:** Zuerst ein vollständiger, durchspielbarer grober Entwurf mit der vorhandenen Grafik (Browser-Version). Die Grafik wird später auf dem PC des Projektinhabers (i7-10700K, RTX 3080, 32 GB RAM) mit Unreal Engine 5 verbessert. Ein Kapitel in Endqualität wird gemessen und die Planung danach angepasst.

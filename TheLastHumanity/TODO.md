@@ -1,5 +1,16 @@
 # Offene Aufgaben – THE LAST HUMANITY
 
+## Priorität 1: 45 Spielstunden (Entscheidung vom 22.11.2026, siehe GAME_DESIGN.md Abschnitt 12)
+
+- [ ] 20 Archivsektoren mit je 12–15 Erinnerungen (grober Entwurf → danach fachliche Prüfung)
+- [ ] Wissensprüfung (3 Fragen) pro Sektor
+- [ ] 4 Artefakte pro Sektor
+- [ ] 2 Rauschstellen pro Sektor
+- [ ] 1 Zeitzeugen-Echo pro Sektor
+- [ ] ca. 25 Nebenaufgaben auf der Station
+- [ ] Ein Kapitel in Endqualität bauen und die echte Spielzeit messen
+- [ ] Unreal Engine 5 auf dem PC des Projektinhabers einrichten (RTX 3080, 32 GB) und die Grafik dort ausbauen
+
 ## Browser-Version
 
 - [ ] Eigenes Durchspielen durch den Projektinhaber am PC (Rückmeldung zu Steuerung, Darstellung, Texten)
