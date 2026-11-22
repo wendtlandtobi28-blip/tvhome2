@@ -85,7 +85,10 @@ function check(cond, label, detail) {
   }
   async function dialogThrough() { let n = 0; while (await state() === 'dialog' && n < 14) { await press('KeyE'); n++; } return n; }
   async function holdNoiseIfNeeded(id) {
-    if ((await ev(() => TLH.noisy())).includes(id)) { await page.keyboard.down('KeyE'); await wait(1900); await page.keyboard.up('KeyE'); await wait(120); }
+    for (let t = 0; t < 3 && (await ev(() => TLH.noisy())).includes(id); t++) {
+      if (t) console.log('    Rauschen: neuer Versuch', id, await ev(() => TLH.focused()));
+      await page.keyboard.down('KeyE'); await wait(1900); await page.keyboard.up('KeyE'); await wait(200);
+    }
     return !(await ev(() => TLH.noisy())).includes(id);
   }
   async function talkToNpc(id, walk) {
@@ -124,9 +127,9 @@ function check(cond, label, detail) {
       if (walk) { await walkSector(p.x, p.z + (p.z > 0 ? -1.5 : 1.5), 0.8); await ev(([x, z]) => TLH.face(x, z), [p.x, p.z]); await wait(150); }
       else await standAt(p.x, p.z, 1.3);
       if ((await ev(() => TLH.focused())) !== 'memory:' + p.id) { console.log('    kein Fokus', p.id, await ev(() => TLH.focused())); continue; }
-      await holdNoiseIfNeeded(p.id);
+      if (!(await holdNoiseIfNeeded(p.id))) console.log('    Rauschen bleibt', p.id, await ev(() => TLH.focused()), await ev(() => TLH.prompt()));
       await press('KeyE');
-      if (await state() === 'info') { memOk++; await press('KeyE'); }
+      if (await state() === 'info') { memOk++; await press('KeyE'); } else console.log('    nicht geoeffnet', p.id, await state(), await ev(() => TLH.prompt()));
     }
     check(memOk === pts.length, `Sektor ${no}: alle ${pts.length} Erinnerungen gelesen`, `${memOk}/${pts.length}`);
     check(noisyBefore >= 2 && (await ev(() => TLH.noisy())).length === 0, `Sektor ${no}: Datenrauschen beseitigt`, `${noisyBefore} Stellen`);

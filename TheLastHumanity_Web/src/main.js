@@ -1303,7 +1303,11 @@ addEventListener('keydown', (ev) => {
   const m = code.match(/^Digit([1-6])$/);
   if (m && state === 'playing') useAbility(parseInt(m[1], 10));
 });
-addEventListener('keyup', (ev) => { keys[ev.code] = false; });
+addEventListener('keyup', (ev) => {
+  // Datenrauschen: auch bei sehr niedriger Bildrate zaehlt die echte Haltedauer
+  if (ev.code === 'KeyE' && noise.active && state === 'playing' && isNoisy(focused) && performance.now() - noise.start >= 1500) clearNoise(focused);
+  keys[ev.code] = false;
+});
 addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
 
 // ===================================================================== Schleife
