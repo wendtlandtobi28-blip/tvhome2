@@ -63,6 +63,18 @@ function check(cond, label, detail) {
     }
     return false;
   }
+  /** Im Sektor: geht ueber die Tueren der Trennwaende (x = -15 / 15, z = 0) statt gerade durch die Wand. */
+  async function walkSector(x, z, stopDist) {
+    const p = await ev(() => TLH.player());
+    for (const px of (x > p.x ? [-15, 15] : [15, -15])) {
+      if ((p.x - px) * (x - px) < 0) {
+        const s = Math.sign(x - px);
+        await walkTo(px - s * 2.5, 0, 0.8);
+        await walkTo(px + s * 2.5, 0, 0.8);
+      }
+    }
+    return walkTo(x, z, stopDist);
+  }
   /** Stellt die Figur neben ein Ziel (beschleunigter Modus) und dreht sie hin. */
   async function standAt(x, z, off) {
     await ev(([tx, tz, o]) => {
@@ -109,7 +121,7 @@ function check(cond, label, detail) {
     const pts = await ev(() => TLH.points());
     const noisyBefore = (await ev(() => TLH.noisy())).length;
     for (const p of pts) {
-      if (walk) { await walkTo(p.x, p.z + (p.z > 0 ? -1.5 : 1.5), 0.8); await ev(([x, z]) => TLH.face(x, z), [p.x, p.z]); await wait(150); }
+      if (walk) { await walkSector(p.x, p.z + (p.z > 0 ? -1.5 : 1.5), 0.8); await ev(([x, z]) => TLH.face(x, z), [p.x, p.z]); await wait(150); }
       else await standAt(p.x, p.z, 1.3);
       if ((await ev(() => TLH.focused())) !== 'memory:' + p.id) { console.log('    kein Fokus', p.id, await ev(() => TLH.focused())); continue; }
       await holdNoiseIfNeeded(p.id);
@@ -121,13 +133,13 @@ function check(cond, label, detail) {
     let artOk = 0;
     const arts = await ev(() => TLH.artifacts());
     for (const a of arts) {
-      if (walk) { await walkTo(a.x, a.z + (a.z > 0 ? -1.4 : 1.4), 0.9); await ev(([x, z]) => TLH.face(x, z), [a.x, a.z]); await wait(150); }
+      if (walk) { await walkSector(a.x, a.z + (a.z > 0 ? -1.4 : 1.4), 0.9); await ev(([x, z]) => TLH.face(x, z), [a.x, a.z]); await wait(150); }
       else await standAt(a.x, a.z, 1.3);
       if ((await ev(() => TLH.focused())) === 'artifact:' + a.id) { await press('KeyE'); artOk++; }
     }
     check(artOk === arts.length, `Sektor ${no}: alle ${arts.length} Artefakte gefunden`, `${artOk}/${arts.length}`);
     const e = await ev(() => TLH.echo());
-    if (walk) await walkTo(e.x - 2.2, e.z, 0.8); else await ev(([x, z]) => TLH.teleport(x - 2, z), [e.x, e.z]);
+    if (walk) await walkSector(e.x - 2.2, e.z, 0.8); else await ev(([x, z]) => TLH.teleport(x - 2, z), [e.x, e.z]);
     await ev(([x, z]) => TLH.face(x, z), [e.x, e.z]);
     await wait(150);
     const efoc = await ev(() => TLH.focused());
@@ -135,7 +147,7 @@ function check(cond, label, detail) {
     const el = await dialogThrough();
     check(efoc && efoc.startsWith('echo:') && el >= 3, `Sektor ${no}: Gespraech mit dem Zeitzeugen-Echo`, `${el} Zeilen`);
     const q = await ev(() => TLH.quizPos());
-    if (walk) await walkTo(q.x - 2.2, q.z, 0.8); else await ev(([x, z]) => TLH.teleport(x - 2, z), [q.x, q.z]);
+    if (walk) await walkSector(q.x - 2.2, q.z, 0.8); else await ev(([x, z]) => TLH.teleport(x - 2, z), [q.x, q.z]);
     await ev(([x, z]) => TLH.face(x, z), [q.x, q.z]);
     await wait(150);
     await press('KeyE');
@@ -151,7 +163,7 @@ function check(cond, label, detail) {
     const passed = (await ev(() => TLH.quizPassed())).includes(await ev(() => TLH.chapter()));
     check(quizOk && passed && await ev(() => TLH.portalOpen()), `Sektor ${no}: Wissenspruefung bestanden${walk ? ' (nach einer falschen Antwort)' : ''}, Tor offen`);
     const portal = await ev(() => TLH.portal());
-    if (walk) await walkTo(portal.x - 2, 0, 1.0); else await ev(([x]) => TLH.teleport(x - 2, 0), [portal.x]);
+    if (walk) await walkSector(portal.x - 2, 0, 1.0); else await ev(([x]) => TLH.teleport(x - 2, 0), [portal.x]);
     await ev(([x]) => TLH.face(x, 0), [portal.x]);
     await wait(150);
     await press('KeyE');
