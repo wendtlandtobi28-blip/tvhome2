@@ -14,16 +14,20 @@ Stand: Version 0.9.0. Dieses Dokument wird bei jeder neuen Ressource ergänzt.
 
 Es sind **keine** Bilder, Modelle, Texturen, Klänge, Musik oder Schriftarten Dritter im Projektordner enthalten.
 
-## 1a. Browser-Version (`TheLastHumanity_Web/`)
+## 1a. Browser-Version 2 (`TheLastHumanity_Web/`)
 
 | Ressource | Pfad / Quelle | Herkunft | Lizenz |
 |---|---|---|---|
-| Spiellogik, Seite, Gestaltung, Tests, Build-Skript | `js/game.js`, `page.html`, `index.html`, `tests/`, `tools/` | Für dieses Projekt neu geschrieben | Eigentum des Projektinhabers |
-| three.js 0.149.0 (3D-Bibliothek) | `vendor/three.min.js`, Lizenztext `vendor/THREE_LICENSE.txt`; bezogen über npm (Paket `three`) | three.js authors | MIT License |
-| Schrift „Cinzel“ (Überschriften) | Google Fonts, zur Laufzeit geladen (nicht im Projekt gespeichert) | Natanael Gama | SIL Open Font License 1.1 |
-| Schrift „Alegreya Sans“ (Text) | Google Fonts, zur Laufzeit geladen (nicht im Projekt gespeichert) | Juan Pablo del Peral / Huerta Tipográfica | SIL Open Font License 1.1 |
+| Spielcode, Seite, HUD, Tests, Build-Skripte | `src/`, `page.html`, `index.html`, `tests/`, `tools/` | Für dieses Projekt neu geschrieben | Eigentum des Projektinhabers |
+| 3D-Modelle Spielfigur, Shuttle, Kreuzer | `assets/models/*.glb`, erzeugt mit `tools/blender_models.py` | Für dieses Projekt per Skript neu erstellt | Eigentum des Projektinhabers |
+| Emblem „Flamme der Erinnerung“ | `assets/emblem.svg` | Für dieses Projekt neu gestaltet; enthält bewusst keine Motive fremder Marken (kein Totenkopf, kein Adler) | Eigentum des Projektinhabers |
+| Rahmenhandlung, Dialoge, Kristalltexte | `Content/Data/story_de.json` | Neu geschrieben, frei erfunden | Eigentum des Projektinhabers |
+| Klänge | im Programm erzeugt (`src/audio.js`), keine Audiodateien | Neu | Eigentum des Projektinhabers |
+| three.js 0.170.0 | im Bündel `js/game.bundle.js`, über npm | three.js authors | MIT License |
+| HDRIs „sunset“, „night“ und Normalen-Texturen 0008, 0016, 0025 | npm-Paket `@pmndrs/assets` 1.7.0 (HDRIs ursprünglich von Poly Haven) | Poimandres / Poly Haven | CC0 1.0 |
+| Schriften „Rajdhani“, „Exo 2“ | Google Fonts, zur Laufzeit geladen | Indian Type Foundry / Natanael Gama | SIL Open Font License 1.1 |
 
-Alle 3D-Formen, Farben, Himmel und Lichter der Browser-Version werden im Programm erzeugt; es gibt keine Bild-, Modell- oder Tondateien.
+Werkzeuge (nicht im Spiel enthalten): Blender 5.3 als Python-Modul `bpy` (GPL, betrifft nicht die erzeugten Modelle), esbuild (MIT). Details: `TheLastHumanity_Web/THIRD_PARTY_LICENSES.md`.
 
 ## 2. Zur Laufzeit genutzte Bestandteile der Unreal Engine
 
