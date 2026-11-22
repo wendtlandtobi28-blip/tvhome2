@@ -1,4 +1,5 @@
 #include "Core/TLHCharacter.h"
+#include "Core/TLHTypes.h"
 
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -32,6 +33,13 @@ void ATLHCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindKey(EKeys::SpaceBar, IE_Pressed, this, &ATLHCharacter::OnJumpPressed);
 	PlayerInputComponent->BindKey(EKeys::SpaceBar, IE_Released, this, &ATLHCharacter::OnJumpReleased);
+}
+
+void ATLHCharacter::ApplySettings(const FTLHSettings& Settings)
+{
+	MouseSensitivity = Settings.MouseSensitivity;
+	bInvertMouseY = Settings.bInvertY;
+	Camera->SetFieldOfView(Settings.FieldOfView);
 }
 
 void ATLHCharacter::OnJumpPressed()

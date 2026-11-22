@@ -1,37 +1,29 @@
 # Offene Aufgaben – THE LAST HUMANITY
 
-## Blockiert: Entscheidung bzw. Voraussetzung durch den Projektinhaber nötig
+## Blockiert: Voraussetzung bzw. Entscheidung durch den Projektinhaber
 
-- [ ] **Windows-Entwicklungsrechner mit Unreal Engine 5.4+ und Visual Studio 2022** bereitstellen. Möglichkeiten:
-  1. Eigener Windows-PC (empfohlen: aktuelle GPU, ≥ 32 GB RAM, ≥ 100 GB SSD frei). Mit der Claude-Desktop-App lässt sich der Projektordner über Remote Control freigeben; dann kann direkt dort kompiliert und getestet werden.
-  2. Gemieteter Windows-Cloud-Rechner mit GPU. **Kostenpflichtig**, nur nach ausdrücklicher Zustimmung.
-- [ ] Ursprünglichen Projektauftrag „THE LAST HUMANITY – DIE GESCHICHTE DER MENSCHHEIT“ bereitstellen, damit `GAME_DESIGN.md` und `LORE_BIBLE.md` daran angepasst werden.
-- [ ] Entscheiden, ob THE LAST HUMANITY in ein **eigenes Repository** umziehen soll (derzeit im Ordner `TheLastHumanity/` im Repository `tvhome2`).
+- [ ] **Windows-PC mit Unreal Engine 5.4+ und Visual Studio 2022** (Anleitung `README.md`). Ohne diesen Schritt kann das Spiel weder kompiliert noch als .exe erstellt werden.
+- [ ] **GitHub-Zugriff reparieren:** Das Hochladen auf den Branch scheitert mit Fehler 403. GitHub unter https://claude.ai/connect-github neu verbinden und die Claude-GitHub-App für `tvhome2` installieren.
+- [ ] Ursprünglichen Projektauftrag bereitstellen (Abgleich von `GAME_DESIGN.md` und `LORE_BIBLE.md`).
+- [ ] Entscheiden, ob das Projekt in ein eigenes Repository umziehen soll.
 
-## Phase 1 abschließen (sobald Unreal verfügbar)
+## Nach dem ersten Build auf Windows
 
-- [ ] T-10: Kompilieren, Fehler beheben
-- [ ] T-11 bis T-21 durchführen und in `TESTS.md` eintragen
-- [ ] Mausempfindlichkeit und Bewegungsgeschwindigkeit abstimmen
-- [ ] Eigene Karte `/Game/Maps/L_Prototyp` anlegen, in `DefaultEngine.ini` als `GameDefaultMap` und `EditorStartupMap` setzen
-- [ ] Erste gepackte Windows-Version erzeugen und archivieren
+- [ ] Kompilierfehler beheben (T-10)
+- [ ] Tests T-11 bis T-30 durchführen und in `TESTS.md` eintragen
+- [ ] Mausempfindlichkeit, Gehgeschwindigkeit und Lichtstärken abstimmen
+- [ ] Eigene Karte `/Game/Maps/L_Archiv` anlegen und in `DefaultEngine.ini` eintragen (statt `/Engine/Maps/Entry`)
+- [ ] Spiel-Symbol (Icon) für die .exe
+- [ ] Shipping-Build statt Development (`-clientconfig=Shipping`)
 
-## Phase 2 (geplant)
+## Verbesserungen (optional)
 
-- [ ] Umstellung auf Enhanced-Input-Assets (frei belegbare Tasten, Gamepad)
-- [ ] Freischaltung von Kapitel 2, sobald alle Erkenntnisse aus Kapitel 1 gefunden sind
-- [ ] Übergang zwischen Hallen (Tür/Portal, Level-Streaming)
-- [ ] Kapitel 2 „Sesshaftigkeit“: Texte, Halle, 5–8 Informationspunkte
-- [ ] Optionsmenü (Mausempfindlichkeit, Y-Achse umkehren, Textgröße, Grafikqualität, Lautstärke)
-- [ ] Mehrere Speicherplätze, Anzeige von Datum/Uhrzeit des Spielstands
-- [ ] Texte über String Tables lokalisierbar machen
-- [ ] Quellenangabe je Informationspunkt im Spiel anzeigen
-
-## Später
-
-- [ ] Kapitel 3–10, Rahmenhandlung „Das letzte Kapitel“
-- [ ] Gestaltete Umgebungen statt Grundformen (lizenzgeprüfte Assets, siehe `ASSET_LICENSES.md`)
-- [ ] Ton: Musik, Umgebung, deutsche Erzählerstimme
-- [ ] Umstellung der Oberfläche auf UMG/CommonUI
-- [ ] Automatisierter Build (Skript mit `RunUAT BuildCookRun`, optional self-hosted Runner)
+- [ ] Ton: Musik je Epoche, Umgebungsgeräusche, deutsche Sprecherstimme (lizenzgeprüft)
+- [ ] Gestaltete Hallen mit lizenzgeprüften 3D-Modellen (z. B. Fab/Quixel) statt Grundformen
+- [ ] Enhanced Input (frei belegbare Tasten, Gamepad)
+- [ ] Mehrere Speicherplätze; Bestätigungsdialog bei „Neues Spiel“
+- [ ] Textgröße und Kontrast in den Optionen
+- [ ] Quellenangaben je Erkenntnis im Spiel
+- [ ] Lokalisierung über String Tables (weitere Sprachen)
 - [ ] Fachliche Prüfung aller Texte durch eine Historikerin oder einen Historiker
+- [ ] Oberfläche auf UMG/CommonUI umstellen

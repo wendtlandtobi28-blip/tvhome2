@@ -6,7 +6,7 @@
 class ATLHPlayerController;
 
 /**
- * Slate-Oberflaeche des Prototyps (rein in C++, ohne UMG-Assets).
+ * Slate-Oberflaeche (rein in C++, ohne UMG-Assets).
  * Alle sichtbaren Texte kommen aus dem Abschnitt "ui" der Inhaltsdatei.
  */
 namespace TLHWidgets
@@ -15,4 +15,6 @@ namespace TLHWidgets
 	TSharedRef<SWidget> MakeMenu(ATLHPlayerController* PC, bool bPauseMenu);
 	TSharedRef<SWidget> MakeInfoPanel(ATLHPlayerController* PC, FName InfoId);
 	TSharedRef<SWidget> MakeChapterOverview(ATLHPlayerController* PC);
+	TSharedRef<SWidget> MakeOptions(ATLHPlayerController* PC);
+	TSharedRef<SWidget> MakeEnding(ATLHPlayerController* PC);
 }

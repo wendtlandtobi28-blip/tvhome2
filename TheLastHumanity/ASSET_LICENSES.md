@@ -1,6 +1,6 @@
 # Herkunft und Lizenzen der Ressourcen
 
-Stand: Phase 1. Dieses Dokument wird bei jeder neuen Ressource ergänzt.
+Stand: Version 0.9.0. Dieses Dokument wird bei jeder neuen Ressource ergänzt.
 
 ## 1. Im Projekt enthaltene Dateien
 
@@ -9,6 +9,8 @@ Stand: Phase 1. Dieses Dokument wird bei jeder neuen Ressource ergänzt.
 | C++-Quelltexte, Konfiguration, Projektdatei | `Source/`, `Config/`, `TheLastHumanity.uproject` | Für dieses Projekt neu geschrieben | Eigentum des Projektinhabers |
 | Spieltexte (Deutsch) | `Content/Data/content_de.json` | Für dieses Projekt neu geschrieben; Fakten nach den in `LORE_BIBLE.md` genannten Quellen, eigene Formulierungen | Eigentum des Projektinhabers |
 | Prüfwerkzeug | `Tools/validate_project.py` | Neu geschrieben | Eigentum des Projektinhabers |
+| Windows-Skripte | `1_Editor_starten.bat`, `2_Windows_Spiel_erstellen.bat`, `Tools/ue_find_engine.bat` | Neu geschrieben | Eigentum des Projektinhabers |
+| Abspann- und Rahmenhandlungstexte | `Content/Data/content_de.json` (`ending`, Kapitel 10) | Neu geschrieben, frei erfunden | Eigentum des Projektinhabers |
 
 Es sind **keine** Bilder, Modelle, Texturen, Klänge, Musik oder Schriftarten Dritter im Projektordner enthalten.
 
@@ -18,7 +20,7 @@ Diese Dateien liegen nicht im Projekt, sondern werden aus der installierten Engi
 
 | Ressource | Engine-Pfad | Lizenz |
 |---|---|---|
-| Grundformen Würfel, Zylinder, Kugel | `/Engine/BasicShapes/` | Unreal Engine EULA (Nutzung in mit UE erstellten Produkten erlaubt) |
+| Grundformen Würfel, Zylinder, Kugel (Hallen, Monumente, Tore, Sockel) | `/Engine/BasicShapes/` | Unreal Engine EULA (Nutzung in mit UE erstellten Produkten erlaubt) |
 | Material `BasicShapeMaterial` | `/Engine/BasicShapes/` | Unreal Engine EULA |
 | Leere Trägerkarte | `/Engine/Maps/Entry` | Unreal Engine EULA |
 | Standardschrift der Oberfläche (Slate, Roboto) | Engine-Fonts | Roboto: Apache License 2.0; Auslieferung als Teil der Engine |

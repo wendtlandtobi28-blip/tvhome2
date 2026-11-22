@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "language": "de",
   "ui": {
     "menu.title": "THE LAST HUMANITY",
@@ -11,13 +11,21 @@
     "menu.save": "Spiel speichern",
     "menu.load": "Letzten Spielstand laden",
     "menu.chapters": "Kapitelübersicht",
+    "menu.options": "Optionen",
     "menu.mainmenu": "Zum Hauptmenü",
     "menu.quit": "Spiel beenden",
     "menu.controls": "W A S D / Pfeiltasten: Gehen   ·   Maus: Umsehen   ·   Shift: Laufen   ·   Leertaste: Springen\nE: Untersuchen / Schließen   ·   Tab oder K: Kapitelübersicht   ·   Esc oder P: Menü   ·   F5: Schnellspeichern",
     "menu.nosave_hint": "Noch kein Spielstand vorhanden.",
+    "menu.newgame_warning": "Hinweis: „Neues Spiel“ überschreibt den vorhandenen Spielstand beim nächsten Speichern.",
     "hud.controls": "E Untersuchen · Tab Kapitel · Esc/P Menü · F5 Speichern",
+    "hud.chapter": "Kapitel {0} · {1}   ({2}/{3})",
     "hud.interact": "[E]  Untersuchen: {0}",
     "hud.interact_again": "[E]  Erneut lesen: {0}",
+    "hud.portal_locked": "Das Tor ist verschlossen. Erkunde zuerst alle Erkenntnisse dieser Halle ({0} von {1}).",
+    "hud.portal_next": "[E]  Durch das Tor: Kapitel {0} · {1}",
+    "hud.portal_ending": "[E]  Durch das letzte Tor gehen",
+    "portal.label_next": "Kapitel {0} · {1}",
+    "portal.label_end": "Das Ende des Archivs",
     "info.chapter": "Kapitel {0} · {1}",
     "info.kind_fact": "HISTORISCHER BEFUND",
     "info.kind_fiction": "RAHMENHANDLUNG (FIKTION)",
@@ -27,16 +35,39 @@
     "info.toggle_short": "Kurzfassung zeigen",
     "info.close": "Schließen  [E]",
     "chapters.title": "Kapitelübersicht",
+    "chapters.total": "Archiviert: {0} von {1} Erkenntnissen",
     "chapters.heading": "Kapitel {0} · {1}",
     "chapters.discovered": "{0} von {1} Erkenntnissen entdeckt",
-    "chapters.locked": "Noch nicht verfügbar",
+    "chapters.complete": "Abgeschlossen ({0}/{1})",
+    "chapters.locked": "Gesperrt – schließe zuerst Kapitel {0} ab",
+    "chapters.unavailable": "Noch nicht verfügbar",
+    "chapters.current": "Du bist hier",
+    "chapters.enter": "Halle betreten",
     "chapters.back": "Zurück",
+    "options.title": "Optionen",
+    "options.sensitivity": "Mausempfindlichkeit",
+    "options.fov": "Sichtfeld (Grad)",
+    "options.invert_y": "Maus-Y-Achse umkehren",
+    "options.controls_hint": "Steuerungshinweis anzeigen",
+    "options.unlock_all": "Alle Kapitel freischalten",
+    "options.unlock_all_hint": "Damit kannst du jede Halle sofort über die Kapitelübersicht betreten, ohne die vorherigen Kapitel abzuschließen – praktisch für den Unterricht oder zum Testen.",
+    "options.back": "Speichern und zurück",
     "toast.newgame": "Kapitel 1 · Die Ursprünge – Gehe zu den leuchtenden Sockeln.",
     "toast.loaded": "Spielstand geladen.",
     "toast.nosave": "Es ist noch kein Spielstand vorhanden.",
     "toast.saved": "Spiel gespeichert.",
     "toast.save_failed": "Speichern fehlgeschlagen!",
-    "toast.discovered": "Neue Erkenntnis archiviert · automatisch gespeichert"
+    "toast.discovered": "Neue Erkenntnis archiviert · automatisch gespeichert",
+    "toast.chapter_complete": "Alle Erkenntnisse dieser Halle archiviert – das Tor am Ende der Halle ist offen!",
+    "toast.chapter": "Kapitel {0} · {1}",
+    "toast.portal_locked": "Das Tor öffnet sich erst, wenn alle Erkenntnisse dieser Halle archiviert sind.",
+    "ending.stats": "Du hast {0} von {1} Erkenntnissen archiviert.",
+    "ending.continue": "Weiter im Archiv umsehen",
+    "ending.mainmenu": "Zum Hauptmenü"
+  },
+  "ending": {
+    "title": "Solange sich jemand erinnert",
+    "text": "Das letzte Tor öffnet sich, und dahinter liegt keine weitere Halle, sondern Morgenlicht.\n\nDu hast die Geschichte der Menschheit wiedererweckt: die ersten Feuer, die ersten Felder, Schrift und Städte, Reiche und Revolutionen, Kriege und Versöhnung, Entdeckungen, Irrtümer und Neuanfänge. Es ist keine Geschichte ohne Schuld – aber auch keine ohne Mut, Neugier und Mitgefühl.\n\nMNEMOSYNE wurde nicht gebaut, um die Vergangenheit einzuschließen. Es wurde gebaut, damit sie weitergegeben werden kann.\n\nOb draußen noch andere Menschen leben, weißt du nicht. Aber du weißt jetzt, woher sie kamen – und was sie gemeinsam erreichen konnten.\n\nDie Geschichte der Menschheit ist nicht zu Ende, solange sich jemand an sie erinnert.\n\n\nTHE LAST HUMANITY\nEin Spiel über die Geschichte der Menschheit.\nDanke fürs Spielen."
   },
   "chapters": [
     {
@@ -46,6 +77,7 @@
       "title": "Die Ursprünge",
       "era": "vor etwa 300.000 bis 12.000 Jahren",
       "summary": "Die frühesten Spuren unserer Art, die Beherrschung des Feuers, die Ausbreitung über die Kontinente und die ersten Kunstwerke.",
+      "theme": { "floor": [0.55, 0.47, 0.36], "wall": [0.32, 0.29, 0.25], "column": [0.16, 0.15, 0.13], "torch": [1.0, 0.55, 0.25], "columnShape": "rund", "monument": "feuer", "sunPitch": -38, "sunIntensity": 7, "fog": 0.015 },
       "infoPoints": [
         {
           "id": "kap01_archiv",
@@ -53,7 +85,7 @@
           "title": "Das letzte Archiv",
           "location": [-1350.0, 420.0, 0.0],
           "short": "Du erwachst im Archiv MNEMOSYNE – dem letzten Ort, an dem die Erinnerung der Menschheit bewahrt wird. Jeder leuchtende Sockel hält ein Stück dieser Geschichte fest.",
-          "long": "Du erwachst im Archiv MNEMOSYNE. Wie lange du geschlafen hast, weiß niemand mehr. Draußen ist es still geworden; hier drinnen aber ist die Geschichte der Menschheit in Hallen geordnet, Kapitel für Kapitel, von den ersten Feuerstellen bis zur letzten Nachricht.\n\nDeine Aufgabe als Hüterin oder Hüter des Archivs ist es, diese Erinnerungen wieder zu erwecken. Gehe zu den leuchtenden Sockeln und untersuche sie. Goldene Lichter zeigen Erkenntnisse, die du noch nicht kennst; blaue Lichter solche, die bereits archiviert sind.\n\nHinweis: Dieser Text gehört zur erfundenen Rahmenhandlung des Spiels. Alle Sockel mit der Kennzeichnung „Historischer Befund“ beschreiben dagegen den Stand der Forschung."
+          "long": "Du erwachst im Archiv MNEMOSYNE. Wie lange du geschlafen hast, weiß niemand mehr. Draußen ist es still geworden; hier drinnen aber ist die Geschichte der Menschheit in Hallen geordnet, Kapitel für Kapitel, von den ersten Feuerstellen bis zur letzten Nachricht.\n\nDeine Aufgabe als Hüterin oder Hüter des Archivs ist es, diese Erinnerungen wieder zu erwecken. Gehe zu den leuchtenden Sockeln und untersuche sie. Goldene Lichter zeigen Erkenntnisse, die du noch nicht kennst; blaue Lichter solche, die bereits archiviert sind. Sind alle Erkenntnisse einer Halle archiviert, öffnet sich das Tor am Ende der Halle.\n\nHinweis: Dieser Text gehört zur erfundenen Rahmenhandlung des Spiels. Alle Sockel mit der Kennzeichnung „Historischer Befund“ beschreiben dagegen den Stand der Forschung."
         },
         {
           "id": "kap01_homo_sapiens",
@@ -92,83 +124,402 @@
     {
       "id": "kap02_sesshaftigkeit",
       "number": 2,
-      "available": false,
+      "available": true,
       "title": "Sesshaftigkeit",
-      "era": "ab etwa 10.000 v. Chr.",
-      "summary": "Ackerbau, Viehzucht und die ersten Dörfer: die Neolithische Revolution im Fruchtbaren Halbmond und anderswo.",
-      "infoPoints": []
+      "era": "etwa 10.000 bis 3000 v. Chr.",
+      "summary": "Ackerbau, Viehzucht und die ersten Dörfer: die Neolithische Revolution im Fruchtbaren Halbmond und an vielen anderen Orten der Welt.",
+      "theme": { "floor": [0.40, 0.36, 0.24], "wall": [0.48, 0.36, 0.26], "column": [0.30, 0.24, 0.18], "torch": [1.0, 0.62, 0.30], "columnShape": "eckig", "monument": "obelisk", "sunPitch": -42, "sunIntensity": 8, "fog": 0.012 },
+      "infoPoints": [
+        {
+          "id": "kap02_goebekli_tepe",
+          "kind": "fakt",
+          "title": "Göbekli Tepe",
+          "short": "Auf einem Hügel in der heutigen Südosttürkei errichteten Menschen um 9500 v. Chr. Kreise aus bis zu mehreren Metern hohen, verzierten Steinpfeilern – noch bevor es Landwirtschaft im großen Stil gab.",
+          "long": "Göbekli Tepe liegt nahe der Stadt Şanlıurfa in der Südosttürkei. Ab etwa 9500 v. Chr. errichteten Menschen dort große runde und ovale Anlagen mit T-förmigen Steinpfeilern. Viele Pfeiler sind mit Reliefs von Füchsen, Schlangen, Wildschweinen und Vögeln verziert.\n\nDas Besondere: Die Erbauer lebten wohl noch überwiegend als Jäger und Sammler, auch wenn die Domestizierung von Pflanzen in der Region gerade begann. Lange glaubte man, dass erst Landwirtschaft solche Gemeinschaftsbauten möglich machte. Göbekli Tepe zeigt, dass es vielleicht auch umgekehrt war: Gemeinsame Feste und Rituale könnten Menschen zusammengeführt haben.\n\nWofür die Anlage genau diente, ist weiter Gegenstand der Forschung. Seit 2018 gehört Göbekli Tepe zum UNESCO-Welterbe."
+        },
+        {
+          "id": "kap02_ackerbau",
+          "kind": "fakt",
+          "title": "Die ersten Bauern",
+          "short": "Ab etwa 9500 v. Chr. begannen Menschen im Fruchtbaren Halbmond, Getreide anzubauen und Tiere zu halten. Unabhängig davon entstand Landwirtschaft auch in China, Amerika, Neuguinea und Afrika.",
+          "long": "Der Fruchtbare Halbmond reicht vom heutigen Israel und Jordanien über Syrien und die Südosttürkei bis in den Irak und den Westiran. Dort wurden ab etwa 9500 v. Chr. Einkorn, Emmer, Gerste, Linsen und Erbsen kultiviert. Wenig später wurden Schafe, Ziegen, Rinder und Schweine zu Haustieren.\n\nLandwirtschaft wurde nicht nur einmal erfunden. An mehreren Orten der Welt entstand sie unabhängig: In China wurden Reis und Hirse kultiviert, in Mittelamerika entwickelte sich aus einem Wildgras der Mais, in den Anden wurden Kartoffeln angebaut, in Neuguinea Bananen und Taro, in Afrika unter anderem Sorghum.\n\nDer Übergang war kein plötzlicher Umbruch, sondern dauerte Jahrtausende. Er brachte mehr Nahrung und mehr Menschen – aber auch harte Feldarbeit, neue Krankheiten durch das enge Zusammenleben mit Tieren und erstmals größere Vorräte, um die gestritten werden konnte."
+        },
+        {
+          "id": "kap02_catalhoeyuek",
+          "kind": "fakt",
+          "title": "Leben im Dorf: Çatalhöyük",
+          "short": "Çatalhöyük in Anatolien war um 7000 v. Chr. eine der größten Siedlungen der Welt. Tausende Menschen lebten dort in dicht aneinandergebauten Lehmhäusern, die man über das Dach betrat.",
+          "long": "Çatalhöyük in Zentralanatolien wurde etwa von 7100 bis 5950 v. Chr. bewohnt. Schätzungen zufolge lebten dort zeitweise mehrere tausend Menschen.\n\nDie Häuser aus Lehmziegeln standen so dicht, dass es kaum Gassen gab. Man stieg über Leitern durch Öffnungen im Dach in die Wohnräume. Innen fanden Archäologinnen und Archäologen Wandmalereien, Reliefs und Stierhörner, die in Wände eingesetzt waren. Verstorbene wurden oft unter dem Fußboden der Häuser bestattet.\n\nAuffällig ist, dass es keine Paläste oder deutlich größeren Häuser gibt. Viele Forschende schließen daraus, dass die Gemeinschaft vergleichsweise gleichberechtigt organisiert war. Seit 2012 ist Çatalhöyük UNESCO-Welterbe."
+        },
+        {
+          "id": "kap02_oetzi",
+          "kind": "fakt",
+          "title": "Kupfer, Rad und der Mann aus dem Eis",
+          "short": "Ab dem 5. Jahrtausend v. Chr. lernten Menschen, Kupfer zu schmelzen. 1991 wurde in den Ötztaler Alpen eine rund 5300 Jahre alte Gletschermumie gefunden – mit einem Kupferbeil.",
+          "long": "Lange bestanden Werkzeuge aus Stein, Holz und Knochen. Im 5. Jahrtausend v. Chr. begannen Menschen in Südosteuropa und Vorderasien, Kupfer aus Erz zu schmelzen. Später entstand durch Mischen von Kupfer und Zinn die härtere Bronze. Etwa in der zweiten Hälfte des 4. Jahrtausends v. Chr. tauchen in Europa und Vorderasien auch die ersten Räder und Wagen auf.\n\nEin einzigartiger Zeuge dieser Zeit ist der Mann aus dem Eis, oft „Ötzi“ genannt. Er wurde 1991 am Tisenjoch in den Ötztaler Alpen gefunden und lebte vor etwa 5300 Jahren. Bei ihm lagen ein Beil mit Kupferklinge, ein Bogen, Pfeile, ein Feuerstein-Dolch und Reste seiner Kleidung. Eine Pfeilspitze in seiner Schulter zeigt, dass er gewaltsam ums Leben kam.\n\nHeute ist er im Südtiroler Archäologiemuseum in Bozen ausgestellt."
+        }
+      ]
     },
     {
       "id": "kap03_hochkulturen",
       "number": 3,
-      "available": false,
+      "available": true,
       "title": "Die ersten Hochkulturen",
       "era": "etwa 3500 bis 1200 v. Chr.",
       "summary": "Städte, Schrift und Staaten in Mesopotamien, Ägypten, im Industal und in China.",
-      "infoPoints": []
+      "theme": { "floor": [0.70, 0.58, 0.40], "wall": [0.62, 0.50, 0.34], "column": [0.45, 0.35, 0.22], "torch": [1.0, 0.70, 0.35], "columnShape": "eckig", "monument": "zikkurat", "sunPitch": -55, "sunIntensity": 9, "fog": 0.008 },
+      "infoPoints": [
+        {
+          "id": "kap03_uruk_schrift",
+          "kind": "fakt",
+          "title": "Uruk und die Erfindung der Schrift",
+          "short": "In Uruk im heutigen Irak entstand um 3300 v. Chr. eine der ersten Schriften der Welt. Sie diente zuerst der Verwaltung: Man notierte Getreide, Vieh und Arbeitsleistungen.",
+          "long": "Uruk im Süden Mesopotamiens, im heutigen Irak, gilt als eine der ersten Städte der Welt. Um 3000 v. Chr. lebten dort vermutlich mehrere zehntausend Menschen.\n\nUm 3300 bis 3200 v. Chr. begannen Schreiber in Uruk, Zeichen in feuchte Tontafeln zu drücken. Die ersten Texte waren keine Geschichten, sondern Listen und Abrechnungen: Mengen von Gerste, Schafen oder Bier. Aus diesen Bildzeichen entwickelte sich die Keilschrift, benannt nach den keilförmigen Eindrücken des Schreibgriffels.\n\nDie Keilschrift wurde rund 3000 Jahre lang für viele Sprachen genutzt. Etwa zur selben Zeit entstanden in Ägypten die Hieroglyphen. Mit der Schrift beginnt im engeren Sinn die „Geschichte“, denn nun hinterließen Menschen schriftliche Zeugnisse."
+        },
+        {
+          "id": "kap03_aegypten",
+          "kind": "fakt",
+          "title": "Das Reich am Nil",
+          "short": "Um 3100 v. Chr. wurde Ägypten zu einem Reich vereint. Die Pyramiden von Gizeh entstanden um 2600 bis 2500 v. Chr.; die größte, die Cheops-Pyramide, war ursprünglich etwa 146 Meter hoch.",
+          "long": "Der Nil machte Ägypten fruchtbar: Seine jährliche Überschwemmung brachte Wasser und nährstoffreichen Schlamm auf die Felder. Um 3100 v. Chr. wurden Ober- und Unterägypten zu einem Reich unter einem König vereint, später Pharao genannt.\n\nIm Alten Reich entstanden die großen Pyramiden als Grabmäler der Könige. Die Cheops-Pyramide in Gizeh wurde um 2560 v. Chr. fertiggestellt und war ursprünglich etwa 146 Meter hoch. Sie blieb fast 4000 Jahre lang das höchste von Menschen errichtete Bauwerk. Gebaut wurde sie nach heutigem Wissen nicht von Sklaven, sondern von organisierten Arbeitertrupps, die versorgt und bezahlt wurden.\n\nDie ägyptische Kultur bestand mit Unterbrechungen fast 3000 Jahre. Ihre Hieroglyphen konnten erst 1822 durch Jean-François Champollion mithilfe des Steins von Rosette entziffert werden."
+        },
+        {
+          "id": "kap03_hammurabi",
+          "kind": "fakt",
+          "title": "Gesetze in Stein: Hammurabi",
+          "short": "König Hammurabi von Babylon ließ um 1754 v. Chr. eine Sammlung von rund 280 Rechtssätzen auf eine Steinsäule meißeln. Sie gehört zu den bekanntesten Gesetzessammlungen des Altertums.",
+          "long": "Hammurabi regierte etwa von 1792 bis 1750 v. Chr. in Babylon und vereinte große Teile Mesopotamiens. Gegen Ende seiner Regierungszeit ließ er Rechtssätze auf eine über zwei Meter hohe Stele aus schwarzem Stein schreiben. Sie regeln Handel, Familie, Erbschaft, Arbeit und Strafen.\n\nViele Bestimmungen folgen dem Prinzip der Vergeltung („Auge um Auge“). Die Strafen hingen jedoch vom Stand ab: Für Freie, Abhängige und Sklaven galten unterschiedliche Regeln. Neu war die Idee, dass Recht öffentlich aufgeschrieben und für alle sichtbar ist.\n\nHammurabis Sammlung war nicht die erste ihrer Art – ältere Gesetzestexte sind bekannt –, aber sie ist die vollständigste erhaltene. Die Stele wurde 1901 in Susa im heutigen Iran gefunden und steht heute im Louvre in Paris."
+        },
+        {
+          "id": "kap03_indus",
+          "kind": "fakt",
+          "title": "Die Städte am Indus",
+          "short": "Im Industal im heutigen Pakistan und Nordwestindien blühte etwa von 2600 bis 1900 v. Chr. eine Kultur mit geplanten Städten und Abwasserkanälen. Ihre Schrift ist bis heute nicht entziffert.",
+          "long": "Die Indus- oder Harappa-Kultur war eine der flächenmäßig größten Kulturen ihrer Zeit. Ihre wichtigsten Städte, Harappa und Mohenjo-Daro, hatten rechtwinklig angelegte Straßen, Häuser aus genormten gebrannten Ziegeln, Brunnen und überdachte Abwasserkanäle – eine Stadtplanung, die für die Zeit außergewöhnlich war.\n\nDie Menschen am Indus trieben Handel bis nach Mesopotamien. Sie nutzten einheitliche Gewichte und kleine Siegel mit Tierbildern und Schriftzeichen. Diese Schrift konnte jedoch bis heute niemand entziffern; wir kennen deshalb weder Namen von Herrschern noch die Sprache.\n\nAb etwa 1900 v. Chr. wurden die großen Städte nach und nach aufgegeben. Als Gründe werden unter anderem Klimaveränderungen und veränderte Flussläufe diskutiert."
+        },
+        {
+          "id": "kap03_shang",
+          "kind": "fakt",
+          "title": "Orakelknochen der Shang",
+          "short": "In China herrschte etwa von 1600 bis 1046 v. Chr. die Shang-Dynastie. Auf Knochen und Schildkrötenpanzern hinterließ sie die ältesten bekannten Zeugnisse der chinesischen Schrift.",
+          "long": "Die Shang-Dynastie regierte im Gebiet des Gelben Flusses in Nordchina. Ihre letzte Hauptstadt lag bei Anyang. Die Shang beherrschten den Bronzeguss meisterhaft und fertigten große, kunstvoll verzierte Ritualgefäße.\n\nUm Fragen an die Ahnen zu stellen – etwa zu Ernte, Krieg oder Krankheit –, ritzten Wahrsager Fragen in Rinderknochen oder Schildkrötenpanzer und erhitzten sie. Aus den entstehenden Rissen lasen sie die Antwort. Diese Orakelinschriften aus der Zeit um 1250 v. Chr. sind die ältesten bekannten Texte in chinesischer Schrift. Viele Zeichen lassen sich mit heutigen chinesischen Schriftzeichen in Verbindung bringen.\n\nUm 1200 v. Chr. gerieten auch im Mittelmeerraum viele Reiche in eine schwere Krise. Dieser „Zusammenbruch der Bronzezeit“ beendet unser Kapitel."
+        }
+      ]
     },
     {
       "id": "kap04_antike",
       "number": 4,
-      "available": false,
+      "available": true,
       "title": "Die Antike",
       "era": "etwa 800 v. Chr. bis 500 n. Chr.",
-      "summary": "Griechische Stadtstaaten, das Römische Reich, Philosophie und Weltreligionen.",
-      "infoPoints": []
+      "summary": "Griechische Stadtstaaten und Philosophie, das Römische Reich, große Denker Asiens und das erste chinesische Kaiserreich.",
+      "theme": { "floor": [0.82, 0.80, 0.76], "wall": [0.72, 0.70, 0.66], "column": [0.88, 0.86, 0.82], "torch": [1.0, 0.82, 0.55], "columnShape": "rund", "monument": "bogen", "sunPitch": -50, "sunIntensity": 9, "fog": 0.006 },
+      "infoPoints": [
+        {
+          "id": "kap04_athen",
+          "kind": "fakt",
+          "title": "Die Demokratie in Athen",
+          "short": "Mit den Reformen des Kleisthenes um 508 v. Chr. entstand in Athen eine frühe Form der Demokratie. Mitbestimmen durften allerdings nur freie erwachsene Männer mit Bürgerrecht.",
+          "long": "Griechenland bestand in der Antike aus vielen unabhängigen Stadtstaaten, den Poleis. In Athen führte Kleisthenes um 508/507 v. Chr. Reformen durch, die die Macht vom Adel auf die Bürgerschaft verlagerten. Das Wort Demokratie bedeutet „Herrschaft des Volkes“.\n\nIn der Volksversammlung konnten die Bürger direkt über Gesetze, Krieg und Frieden abstimmen. Viele Ämter wurden ausgelost. Mit dem „Scherbengericht“ konnte ein Politiker für zehn Jahre verbannt werden, wenn zu viele ihn für gefährlich hielten.\n\nZum „Volk“ zählten jedoch nur freie, erwachsene Männer mit athenischem Bürgerrecht. Frauen, zugewanderte Menschen und die zahlreichen Sklavinnen und Sklaven waren ausgeschlossen. Die Athener Demokratie war also begrenzt – und doch ein Vorbild für spätere Ideen von Mitbestimmung."
+        },
+        {
+          "id": "kap04_philosophie",
+          "kind": "fakt",
+          "title": "Fragen nach dem Warum",
+          "short": "Griechische Denker wie Sokrates, Platon und Aristoteles suchten nach vernünftigen Erklärungen für die Welt. Eratosthenes berechnete um 240 v. Chr. erstaunlich genau den Umfang der Erde.",
+          "long": "Im antiken Griechenland begannen Menschen, die Welt nicht nur mit Mythen, sondern mit Beobachtung und Vernunft zu erklären. Sokrates (gestorben 399 v. Chr.) stellte unbequeme Fragen und wurde dafür in Athen zum Tode verurteilt. Sein Schüler Platon gründete eine Schule, die Akademie. Dessen Schüler Aristoteles schrieb über Logik, Politik, Biologie und vieles mehr.\n\nAuch die Mathematik und Naturkunde blühten auf. Eratosthenes, der Leiter der berühmten Bibliothek von Alexandria, verglich um 240 v. Chr. den Sonnenstand an zwei Orten in Ägypten und berechnete daraus den Erdumfang. Sein Ergebnis lag – je nach angenommener Länge seiner Maßeinheit – nahe am tatsächlichen Wert von rund 40.000 Kilometern.\n\nViele dieser Schriften wurden später in der arabischen Welt übersetzt und bewahrt."
+        },
+        {
+          "id": "kap04_rom",
+          "kind": "fakt",
+          "title": "Das Römische Reich",
+          "short": "Aus der Stadt Rom wurde ein Weltreich, das um 117 n. Chr. von Britannien bis nach Mesopotamien reichte. Das Weströmische Reich endete 476, das Oströmische bestand bis 1453.",
+          "long": "Rom war zunächst ein Königreich, ab etwa 509 v. Chr. eine Republik mit gewählten Beamten und einem Senat. Durch Eroberungen wuchs Rom zur beherrschenden Macht im Mittelmeerraum. Nach blutigen Bürgerkriegen wurde Augustus 27 v. Chr. der erste Kaiser.\n\nUnter Kaiser Trajan erreichte das Reich um 117 n. Chr. seine größte Ausdehnung. Straßen, Aquädukte, ein gemeinsames Recht und die lateinische Sprache verbanden die Provinzen. Auch das Gebiet des heutigen Deutschlands westlich des Rheins und südlich der Donau gehörte dazu; der Limes markierte lange die Grenze.\n\nIm Jahr 476 setzte der germanische Heerführer Odoaker den letzten weströmischen Kaiser ab. Das Oströmische oder Byzantinische Reich mit der Hauptstadt Konstantinopel bestand dagegen noch fast tausend Jahre bis 1453."
+        },
+        {
+          "id": "kap04_denker_asiens",
+          "kind": "fakt",
+          "title": "Lehren, die die Welt prägen",
+          "short": "Zwischen dem 6. und 4. Jahrhundert v. Chr. lehrten in Asien Konfuzius und Siddhartha Gautama, der Buddha. Ihre Gedanken prägen bis heute das Leben von Milliarden Menschen.",
+          "long": "In China lebte Konfuzius (traditionell 551 bis 479 v. Chr.). Er lehrte, dass eine gute Gesellschaft auf Bildung, Respekt, Pflichtbewusstsein und dem Vorbild gerechter Herrscher beruht. Seine Lehre wurde später zur Grundlage der chinesischen Beamtenausbildung.\n\nIm Norden Indiens lehrte etwa im 5. Jahrhundert v. Chr. Siddhartha Gautama, der „Buddha“ (der Erwachte). Seine genauen Lebensdaten sind unsicher. Er lehrte einen Weg, Leiden durch Einsicht, Mitgefühl und Achtsamkeit zu überwinden. Der indische Kaiser Ashoka förderte im 3. Jahrhundert v. Chr. die Verbreitung des Buddhismus.\n\nAuch andere Religionen und Lehren, die heute weltweit Bedeutung haben, entstanden in der Antike oder wurden in dieser Zeit aufgeschrieben – darunter wichtige Teile der Hebräischen Bibel, die in dieser Zeit aufgeschrieben wurden, und im 1. Jahrhundert n. Chr. das Christentum."
+        },
+        {
+          "id": "kap04_qin_han",
+          "kind": "fakt",
+          "title": "Das erste Kaiserreich Chinas",
+          "short": "221 v. Chr. vereinte der König von Qin China und nannte sich erster Kaiser. Unter der folgenden Han-Dynastie entstanden die Handelswege, die später Seidenstraße genannt wurden.",
+          "long": "Nach Jahrhunderten von Kriegen zwischen rivalisierenden Staaten vereinte der König von Qin 221 v. Chr. China. Als Qin Shi Huangdi („Erster Kaiser von Qin“) vereinheitlichte er Schrift, Maße, Gewichte und Münzen. Für sein Grab ließ er eine Armee aus Tausenden lebensgroßen Tonkriegern anfertigen, die 1974 bei Xi'an entdeckt wurde.\n\nDie Qin-Dynastie zerfiel bald nach seinem Tod. Die folgende Han-Dynastie (206 v. Chr. bis 220 n. Chr.) prägte China so stark, dass sich die größte Bevölkerungsgruppe Chinas bis heute „Han“ nennt. In dieser Zeit wurde auch Papier entwickelt.\n\nAb dem 2. Jahrhundert v. Chr. verbanden Handelsrouten China über Zentralasien mit Persien, Indien und dem Mittelmeer. Über sie wurden Seide, Gewürze, Ideen und Religionen ausgetauscht – aber auch Krankheiten. Den Namen „Seidenstraße“ prägte erst im 19. Jahrhundert der deutsche Geograf Ferdinand von Richthofen."
+        }
+      ]
     },
     {
       "id": "kap05_mittelalter",
       "number": 5,
-      "available": false,
+      "available": true,
       "title": "Das Mittelalter",
       "era": "etwa 500 bis 1500",
-      "summary": "Reiche und Glaubenswelten, Handelswege zwischen Europa, Afrika und Asien.",
-      "infoPoints": []
+      "summary": "Reiche und Glaubenswelten, Gelehrsamkeit in der islamischen Welt, Afrikas Handelsreiche, das Mongolenreich und die Kulturen Amerikas.",
+      "theme": { "floor": [0.30, 0.30, 0.32], "wall": [0.36, 0.35, 0.34], "column": [0.22, 0.21, 0.21], "torch": [1.0, 0.50, 0.20], "columnShape": "eckig", "monument": "zikkurat", "sunPitch": -25, "sunIntensity": 4, "fog": 0.025 },
+      "infoPoints": [
+        {
+          "id": "kap05_bagdad",
+          "kind": "fakt",
+          "title": "Das Haus der Weisheit",
+          "short": "Nach der Entstehung des Islams im 7. Jahrhundert wurde Bagdad zu einem Zentrum der Wissenschaft. Gelehrte übersetzten antike Schriften und entwickelten Mathematik, Medizin und Astronomie weiter.",
+          "long": "Im 7. Jahrhundert entstand auf der Arabischen Halbinsel der Islam. Nach dem Tod des Propheten Mohammed 632 breitete sich in kurzer Zeit ein Reich von Spanien bis nach Zentralasien aus.\n\nDie Kalifen der Abbasiden gründeten 762 Bagdad. Dort und in anderen Städten übersetzten Gelehrte Schriften aus dem Griechischen, Persischen und Indischen ins Arabische. Der Mathematiker al-Chwarizmi schrieb um 820 ein Lehrbuch, von dessen Titel sich das Wort „Algebra“ ableitet; aus seinem Namen entstand das Wort „Algorithmus“. Über die arabische Welt gelangten auch die aus Indien stammenden Ziffern nach Europa, die wir heute benutzen.\n\nÄrzte wie Ibn Sina (Avicenna, gestorben 1037) schrieben medizinische Werke, die in Europa noch Jahrhunderte später gelehrt wurden."
+        },
+        {
+          "id": "kap05_europa",
+          "kind": "fakt",
+          "title": "Klöster, Städte und die Pest",
+          "short": "Karl der Große wurde im Jahr 800 zum Kaiser gekrönt. Klöster bewahrten Wissen, Städte wuchsen. Die Pest tötete von 1347 bis 1351 schätzungsweise ein Drittel bis die Hälfte der Menschen in Europa.",
+          "long": "Nach dem Ende des Weströmischen Reichs entstanden in Europa neue Königreiche. Der Frankenkönig Karl der Große wurde am Weihnachtstag des Jahres 800 in Rom zum Kaiser gekrönt. Er förderte Schulen und das Abschreiben alter Texte.\n\nDie Gesellschaft war in Stände gegliedert: Geistliche, Adel und die große Mehrheit der Bauern, von denen viele in Abhängigkeit von Grundherren lebten. Klöster waren Orte des Glaubens, der Bildung und der Landwirtschaft. Ab dem 11. Jahrhundert wuchsen Handel und Städte; ab dem späten 11. Jahrhundert entstanden die ersten Universitäten, etwa in Bologna und Paris.\n\nAb 1347 breitete sich die Pest, der „Schwarze Tod“, in Europa aus. Bis 1351 starben schätzungsweise ein Drittel bis die Hälfte der Bevölkerung. In ihrer Angst machten viele Menschen Minderheiten zu Sündenböcken: In zahlreichen Städten wurden jüdische Gemeinden verfolgt und ermordet."
+        },
+        {
+          "id": "kap05_mali",
+          "kind": "fakt",
+          "title": "Das Goldreich Mali",
+          "short": "Im 14. Jahrhundert war das Reich Mali in Westafrika eines der reichsten der Welt. Sein Herrscher Mansa Musa pilgerte 1324 nach Mekka; Timbuktu wurde ein berühmter Ort der Gelehrsamkeit.",
+          "long": "Westafrika war im Mittelalter durch den Handel über die Sahara mit Nordafrika und dem Mittelmeer verbunden. Gold, Salz, Bücher und Ideen wurden mit Kamelkarawanen transportiert. Nacheinander entstanden dort große Reiche wie Ghana, Mali und Songhai.\n\nMansa Musa, Herrscher von Mali, reiste 1324 auf seiner Pilgerfahrt nach Mekka durch Kairo. Er führte so viel Gold mit sich und verschenkte so großzügig davon, dass Berichte über seinen Reichtum bis nach Europa gelangten. Auf einer katalanischen Weltkarte von 1375 ist er mit einer Goldkugel abgebildet.\n\nIn Timbuktu entstanden Moscheen und Schulen, an denen Gelehrte unterrichteten. Tausende alte Handschriften aus der Region sind bis heute erhalten. Weiter im Süden Afrikas zeugen die Steinbauten von Groß-Simbabwe (etwa 11. bis 15. Jahrhundert) von einem weiteren mächtigen Handelszentrum."
+        },
+        {
+          "id": "kap05_mongolen",
+          "kind": "fakt",
+          "title": "Das Mongolenreich",
+          "short": "1206 vereinte Dschingis Khan die mongolischen Stämme. Seine Nachfolger schufen das größte zusammenhängende Landreich der Geschichte – mit furchtbaren Eroberungen, aber auch sicheren Handelswegen.",
+          "long": "Temüdschin vereinte 1206 die Stämme der mongolischen Steppe und erhielt den Titel Dschingis Khan. Mit schnellen Reiterheeren eroberten er und seine Nachfolger weite Teile Asiens und Osteuropas. Die Feldzüge waren extrem gewaltsam; viele Städte wurden zerstört und ihre Bewohner getötet.\n\nAuf seinem Höhepunkt im 13. Jahrhundert reichte das Mongolenreich von Korea bis nach Osteuropa. Es war das größte zusammenhängende Landreich der Geschichte. Unter mongolischer Herrschaft wurden die Handelswege zwischen China und Europa sicherer. Händler wie der Venezianer Marco Polo reisten bis an den Hof Kublai Khans in China.\n\nÜber dieselben Wege verbreitete sich vermutlich auch die Pest, die ab 1347 Europa erreichte."
+        },
+        {
+          "id": "kap05_amerika",
+          "kind": "fakt",
+          "title": "Maya, Azteken und Inka",
+          "short": "In Amerika entstanden eigenständige Hochkulturen: Die Maya hatten eine Schrift und genaue Kalender, die Azteken gründeten um 1325 Tenochtitlan, die Inka beherrschten im 15. Jahrhundert die Anden.",
+          "long": "Die Maya lebten im Süden Mexikos und in Mittelamerika. In ihrer klassischen Zeit (etwa 250 bis 900) bauten sie Stadtstaaten mit Pyramidentempeln. Sie entwickelten eine vollständige Schrift, genaue Kalender und kannten in ihrem Zahlensystem die Null.\n\nDie Azteken gründeten um 1325 ihre Hauptstadt Tenochtitlan auf einer Insel im Texcoco-See, wo heute Mexiko-Stadt liegt. Um 1500 war sie mit vermutlich weit über hunderttausend Einwohnern eine der größten Städte der Welt, verbunden durch Dämme und Kanäle.\n\nIn Südamerika errichteten die Inka im 15. Jahrhundert ein Reich entlang der Anden, das vom heutigen Ecuador bis nach Chile reichte. Ein Straßennetz von Zehntausenden Kilometern verband es. Zur Verwaltung nutzten die Inka Knotenschnüre, die Quipus. Bekannt ist die Bergstadt Machu Picchu aus der Mitte des 15. Jahrhunderts."
+        }
+      ]
     },
     {
       "id": "kap06_neuzeit",
       "number": 6,
-      "available": false,
+      "available": true,
       "title": "Aufbruch in die Neuzeit",
       "era": "etwa 1450 bis 1800",
-      "summary": "Buchdruck, Entdeckungsfahrten, Kolonialismus, wissenschaftliche Revolution und Aufklärung.",
-      "infoPoints": []
+      "summary": "Buchdruck, Entdeckungsfahrten und Kolonialismus, der Handel mit versklavten Menschen, Reformation, wissenschaftliche Revolution und Aufklärung.",
+      "theme": { "floor": [0.45, 0.33, 0.22], "wall": [0.60, 0.56, 0.48], "column": [0.36, 0.26, 0.18], "torch": [1.0, 0.75, 0.45], "columnShape": "rund", "monument": "kugel", "sunPitch": -40, "sunIntensity": 7, "fog": 0.012 },
+      "infoPoints": [
+        {
+          "id": "kap06_buchdruck",
+          "kind": "fakt",
+          "title": "Der Buchdruck",
+          "short": "Johannes Gutenberg entwickelte in Mainz den Buchdruck mit beweglichen Metalllettern; um 1454 entstand seine berühmte Bibel. Bewegliche Lettern gab es zuvor schon in China und Korea.",
+          "long": "Bevor Bücher gedruckt wurden, mussten sie von Hand abgeschrieben werden. Johannes Gutenberg entwickelte um die Mitte des 15. Jahrhunderts in Mainz ein Verfahren, mit dem sich einzelne Buchstaben aus Metall in großer Zahl gießen, zu Seiten zusammensetzen und mit einer Presse drucken ließen. Um 1454 war seine zweispaltige Bibel mit 42 Zeilen pro Seite fertig.\n\nGutenberg war nicht der Erste, der mit beweglichen Lettern druckte: In China gab es schon im 11. Jahrhundert Versuche mit Lettern aus Ton, und in Korea wurde 1377 ein Buch mit Metalllettern gedruckt. In Europa aber verbreitete sich die Technik rasend schnell. Um 1500 gab es bereits Druckereien in über 200 Städten.\n\nBücher, Flugblätter und Zeitungen wurden billiger. Wissen, Nachrichten und neue Ideen erreichten viel mehr Menschen – eine Voraussetzung für Reformation und Wissenschaft."
+        },
+        {
+          "id": "kap06_entdeckungen",
+          "kind": "fakt",
+          "title": "Entdeckungsfahrten und Eroberung",
+          "short": "1492 erreichte Christoph Kolumbus Amerika, 1498 Vasco da Gama auf dem Seeweg Indien. Für die Menschen in Amerika begann eine Katastrophe: Krankheiten, Gewalt und Ausbeutung forderten Millionen Opfer.",
+          "long": "Europäische Seefahrer suchten im 15. Jahrhundert neue Wege zu den Gewürzen und Reichtümern Asiens. 1492 landete Christoph Kolumbus im Auftrag Spaniens auf Inseln der Karibik; er glaubte, Indien erreicht zu haben. 1498 erreichte Vasco da Gama um Afrika herum Indien. Die Expedition von Ferdinand Magellan umrundete von 1519 bis 1522 erstmals die Erde; Magellan selbst starb unterwegs.\n\nFür die Bevölkerung Amerikas waren die Folgen verheerend. Spanische Eroberer zerstörten 1521 das Aztekenreich und ab 1532 das Inkareich. Eingeschleppte Krankheiten wie Pocken, gegen die die Menschen keine Abwehr hatten, sowie Krieg, Zwangsarbeit und Vertreibung ließen die Bevölkerung in vielen Regionen um einen sehr großen Teil schrumpfen.\n\nZwischen den Kontinenten wurden Pflanzen und Tiere ausgetauscht: Kartoffeln, Mais und Tomaten kamen nach Europa, Pferde, Rinder und Weizen nach Amerika."
+        },
+        {
+          "id": "kap06_sklavenhandel",
+          "kind": "fakt",
+          "title": "Der transatlantische Sklavenhandel",
+          "short": "Vom 16. bis ins 19. Jahrhundert wurden etwa 12,5 Millionen Menschen aus Afrika verschleppt und über den Atlantik nach Amerika verschifft. Fast zwei Millionen starben schon während der Überfahrt.",
+          "long": "Für Plantagen mit Zucker, Tabak und später Baumwolle in Amerika verlangten europäische Kolonialmächte nach immer mehr Arbeitskräften. Vom 16. bis ins 19. Jahrhundert wurden schätzungsweise 12,5 Millionen Afrikanerinnen und Afrikaner gewaltsam auf Schiffe gebracht. Etwa 10,7 Millionen überlebten die grausame Überfahrt; die anderen starben an Krankheiten, Hunger und Misshandlung.\n\nVersklavte Menschen galten rechtlich als Eigentum. Sie wurden verkauft, von ihren Familien getrennt und zu harter Arbeit gezwungen. Viele leisteten Widerstand – durch Flucht, Aufstände und das Bewahren ihrer Kultur. 1791 begann auf Haiti eine Revolution versklavter Menschen, die 1804 zum ersten unabhängigen Staat führte, der von ehemals Versklavten gegründet wurde.\n\nDie Folgen dieses Verbrechens prägen Gesellschaften in Afrika, Amerika und Europa bis heute."
+        },
+        {
+          "id": "kap06_reformation",
+          "kind": "fakt",
+          "title": "Reformation und Glaubenskriege",
+          "short": "1517 veröffentlichte Martin Luther seine 95 Thesen gegen den Ablasshandel. Die Reformation spaltete die westliche Kirche. Der Dreißigjährige Krieg verwüstete Mitteleuropa und endete 1648.",
+          "long": "Der Mönch und Theologieprofessor Martin Luther kritisierte 1517 in seinen 95 Thesen den Verkauf von Ablassbriefen, mit denen sich Gläubige angeblich von Sündenstrafen freikaufen konnten. Dank des Buchdrucks verbreiteten sich seine Schriften schnell. Luther übersetzte die Bibel ins Deutsche, damit Menschen sie selbst lesen konnten.\n\nAus der Reformbewegung entstanden evangelische Kirchen; die westliche Christenheit spaltete sich. Religiöse und politische Konflikte führten zu Kriegen. Der Dreißigjährige Krieg (1618 bis 1648) verwüstete weite Teile Mitteleuropas; in manchen Regionen kam ein großer Teil der Bevölkerung durch Gewalt, Hunger und Seuchen ums Leben.\n\nDer Westfälische Friede von 1648, ausgehandelt in Münster und Osnabrück, beendete den Krieg und legte Regeln für das Zusammenleben der Konfessionen und Staaten fest."
+        },
+        {
+          "id": "kap06_aufklaerung",
+          "kind": "fakt",
+          "title": "Wissenschaft und Aufklärung",
+          "short": "Kopernikus, Galilei und Newton veränderten das Bild vom Universum. Die Aufklärung forderte, selbst zu denken; 1776 und 1789 wurden in Amerika und Frankreich Menschenrechte erklärt.",
+          "long": "1543 veröffentlichte Nikolaus Kopernikus seine Lehre, dass die Erde um die Sonne kreist und nicht umgekehrt. Galileo Galilei beobachtete mit dem Fernrohr die Monde des Jupiter und geriet deshalb in Konflikt mit der Kirche. Isaac Newton beschrieb 1687 die Gesetze der Bewegung und der Schwerkraft. Beobachtung, Experiment und Mathematik wurden zur Grundlage der Naturwissenschaft.\n\nIm 18. Jahrhundert forderten Denkerinnen und Denker der Aufklärung, Vernunft statt Autorität entscheiden zu lassen. Immanuel Kant schrieb 1784: „Habe Mut, dich deines eigenen Verstandes zu bedienen!“\n\nDiese Ideen wirkten politisch: Die Unabhängigkeitserklärung der Vereinigten Staaten von 1776 und die Erklärung der Menschen- und Bürgerrechte der Französischen Revolution von 1789 verkündeten Freiheit und Gleichheit. Für Frauen, versklavte Menschen und die Völker der Kolonien galten diese Rechte zunächst allerdings nicht – sie mussten sie sich erst erkämpfen."
+        }
+      ]
     },
     {
       "id": "kap07_industrie",
       "number": 7,
-      "available": false,
+      "available": true,
       "title": "Das industrielle Zeitalter",
       "era": "etwa 1760 bis 1914",
-      "summary": "Dampfmaschine, Fabriken, Eisenbahn und der Wandel der Gesellschaft.",
-      "infoPoints": []
+      "summary": "Dampfmaschine, Fabriken und Eisenbahn, die soziale Frage, das Ende der Sklaverei in Amerika und der Imperialismus.",
+      "theme": { "floor": [0.20, 0.19, 0.18], "wall": [0.45, 0.20, 0.15], "column": [0.15, 0.15, 0.16], "torch": [1.0, 0.85, 0.55], "columnShape": "eckig", "monument": "turm", "sunPitch": -30, "sunIntensity": 4, "fog": 0.04 },
+      "infoPoints": [
+        {
+          "id": "kap07_dampf",
+          "kind": "fakt",
+          "title": "Die Kraft des Dampfes",
+          "short": "In Großbritannien begann im 18. Jahrhundert die Industrialisierung. James Watt verbesserte ab 1769 die Dampfmaschine entscheidend. Maschinen und Fabriken veränderten Arbeit und Leben grundlegend.",
+          "long": "Über Jahrtausende hatten Menschen vor allem die Kraft von Muskeln, Wasser und Wind genutzt. In Großbritannien wurden im 18. Jahrhundert erste Dampfmaschinen gebaut, um Wasser aus Bergwerken zu pumpen. James Watt verbesserte sie ab 1769 so, dass sie viel weniger Kohle verbrauchten und bald auch Maschinen in Fabriken antreiben konnten.\n\nZuerst veränderte sich die Textilherstellung: Spinn- und Webmaschinen produzierten in Fabriken ein Vielfaches dessen, was Handarbeit leisten konnte. Kohle und Eisen wurden zu den wichtigsten Rohstoffen.\n\nDie Industrialisierung breitete sich im 19. Jahrhundert nach Europa, Nordamerika und Japan aus. Sie brachte enormen Wohlstand für manche – und für die Umwelt den Beginn des massenhaften Verbrennens fossiler Brennstoffe, dessen Folgen wir bis heute spüren."
+        },
+        {
+          "id": "kap07_eisenbahn",
+          "kind": "fakt",
+          "title": "Die Eisenbahn verkürzt die Welt",
+          "short": "1825 fuhr in England die erste öffentliche Eisenbahn mit Dampflokomotive. In Deutschland verband 1835 der „Adler“ Nürnberg und Fürth. Reisen, die Tage dauerten, waren nun in Stunden möglich.",
+          "long": "Die Strecke zwischen Stockton und Darlington in England wurde 1825 als erste öffentliche Eisenbahn mit Dampflokomotiven eröffnet. Bald entstanden in vielen Ländern Eisenbahnnetze. In Deutschland fuhr am 7. Dezember 1835 die Lokomotive „Adler“ zwischen Nürnberg und Fürth.\n\nDie Eisenbahn veränderte das Verständnis von Raum und Zeit. Waren, Rohstoffe und Menschen gelangten schnell und günstig an weit entfernte Orte. Damit überall nach denselben Fahrplänen gefahren werden konnte, wurden einheitliche Zeitzonen eingeführt.\n\nDampfschiffe, der Telegraf und später das Telefon verbanden die Kontinente zusätzlich. 1869 wurde der Suezkanal eröffnet, der den Seeweg zwischen Europa und Asien stark verkürzte."
+        },
+        {
+          "id": "kap07_soziale_frage",
+          "kind": "fakt",
+          "title": "Die soziale Frage",
+          "short": "In den Fabrikstädten arbeiteten Männer, Frauen und Kinder oft 12 bis 16 Stunden am Tag für wenig Lohn. Arbeiterbewegungen kämpften für bessere Bedingungen; ab 1883 entstand in Deutschland die Sozialversicherung.",
+          "long": "Millionen Menschen zogen vom Land in die wachsenden Industriestädte. Dort lebten viele Familien in engen, feuchten Wohnungen. In den Fabriken waren Arbeitstage von 12 bis 16 Stunden üblich, auch Kinder mussten arbeiten. Wer krank wurde oder verunglückte, verlor oft jedes Einkommen.\n\nArbeiterinnen und Arbeiter schlossen sich in Gewerkschaften und Parteien zusammen. Karl Marx und Friedrich Engels veröffentlichten 1848 das „Manifest der Kommunistischen Partei“. Andere setzten auf Reformen, Genossenschaften oder kirchliche Hilfe.\n\nIn Deutschland führte die Regierung unter Otto von Bismarck ab 1883 die Krankenversicherung, 1884 die Unfallversicherung und 1889 die Invaliditäts- und Altersversicherung ein – unter anderem, um der Arbeiterbewegung Zulauf zu nehmen. Diese Sozialversicherung wurde zum Vorbild für viele Länder."
+        },
+        {
+          "id": "kap07_abolition",
+          "kind": "fakt",
+          "title": "Das Ende der Sklaverei in Amerika",
+          "short": "Nach langem Kampf wurde die Sklaverei verboten: im Britischen Weltreich 1833, in den USA 1865 nach dem Bürgerkrieg, in Brasilien als letztem Land Amerikas 1888.",
+          "long": "Gegen die Sklaverei kämpften versklavte Menschen selbst, ehemalige Versklavte wie Frederick Douglass und Harriet Tubman sowie Abolitionistinnen und Abolitionisten in vielen Ländern.\n\nGroßbritannien verbot 1807 den Sklavenhandel und beschloss 1833 die Abschaffung der Sklaverei in seinen Kolonien. In den Vereinigten Staaten war die Sklaverei eine der Hauptursachen des Bürgerkriegs von 1861 bis 1865. Nach dem Sieg der Nordstaaten verbot der 13. Zusatzartikel zur Verfassung 1865 die Sklaverei im ganzen Land. Brasilien schaffte sie 1888 als letztes Land Amerikas ab.\n\nDie Freiheit bedeutete noch keine Gleichberechtigung. In den USA folgten Jahrzehnte der Rassentrennung und Diskriminierung, gegen die im 20. Jahrhundert die Bürgerrechtsbewegung kämpfte."
+        },
+        {
+          "id": "kap07_imperialismus",
+          "kind": "fakt",
+          "title": "Imperialismus",
+          "short": "Ende des 19. Jahrhunderts teilten europäische Mächte fast ganz Afrika unter sich auf. Bis 1914 standen etwa neun Zehntel des Kontinents unter Kolonialherrschaft – auch unter deutscher.",
+          "long": "Industriestaaten suchten Rohstoffe, Absatzmärkte und Macht. Auf der Berliner Konferenz 1884/85 legten europäische Staaten Regeln für die Aufteilung Afrikas fest – ohne dass Afrikanerinnen und Afrikaner beteiligt waren. Bis 1914 waren nur noch Äthiopien und Liberia unabhängig.\n\nKolonialherrschaft bedeutete Ausbeutung, Zwangsarbeit und Gewalt. Im Kongo, damals Privatbesitz des belgischen Königs Leopold II., kamen Millionen Menschen durch Zwangsarbeit und brutale Strafen ums Leben. In der Kolonie Deutsch-Südwestafrika, dem heutigen Namibia, verübten deutsche Truppen ab 1904 einen Völkermord an den Herero und Nama.\n\nAuch in Asien weiteten Großbritannien, Frankreich, die Niederlande, Russland, Japan und die USA ihre Herrschaft aus. Die Rivalität der Großmächte trug zu den Spannungen bei, die 1914 in den Ersten Weltkrieg mündeten."
+        }
+      ]
     },
     {
       "id": "kap08_extreme",
       "number": 8,
-      "available": false,
+      "available": true,
       "title": "Das Zeitalter der Extreme",
       "era": "1914 bis 1991",
-      "summary": "Weltkriege, Holocaust, Kalter Krieg, Dekolonisation und der Aufbruch ins All.",
-      "infoPoints": []
+      "summary": "Zwei Weltkriege, der Holocaust, Dekolonisation, der Kalte Krieg, der Aufbruch ins All und das Ende der Teilung Europas.",
+      "theme": { "floor": [0.35, 0.35, 0.36], "wall": [0.28, 0.28, 0.30], "column": [0.20, 0.20, 0.22], "torch": [0.80, 0.85, 1.0], "columnShape": "eckig", "monument": "obelisk", "sunPitch": -15, "sunIntensity": 3, "fog": 0.03 },
+      "infoPoints": [
+        {
+          "id": "kap08_erster_weltkrieg",
+          "kind": "fakt",
+          "title": "Der Erste Weltkrieg",
+          "short": "Von 1914 bis 1918 führten die Großmächte einen Krieg mit Maschinengewehren, Giftgas und Panzern. Rund 17 Millionen Menschen starben. Danach zerfielen Kaiserreiche, auch das deutsche.",
+          "long": "Nach dem Attentat auf den österreichischen Thronfolger in Sarajevo im Juni 1914 brach durch Bündnisse und Machtpolitik ein Krieg aus, der bald die ganze Welt erfasste. An der Westfront erstarrte der Krieg in Schützengräben; in Schlachten wie bei Verdun und an der Somme starben Hunderttausende für wenige Kilometer Gelände.\n\nNeue Waffen – Maschinengewehre, schwere Artillerie, Giftgas, Panzer und Flugzeuge – machten den Krieg zu einem industriellen Massensterben. Insgesamt kamen schätzungsweise rund 17 Millionen Soldaten und Zivilisten ums Leben.\n\nDer Krieg endete im November 1918. Das deutsche, das österreichisch-ungarische, das russische und das osmanische Reich brachen zusammen. In Deutschland wurde die Weimarer Republik gegründet, die erste deutsche Demokratie; Frauen durften erstmals wählen."
+        },
+        {
+          "id": "kap08_zweiter_weltkrieg",
+          "kind": "fakt",
+          "title": "Diktatur und Zweiter Weltkrieg",
+          "short": "1933 kamen in Deutschland die Nationalsozialisten unter Adolf Hitler an die Macht. Mit dem Überfall auf Polen begann 1939 der Zweite Weltkrieg. Bis 1945 starben weltweit über 60 Millionen Menschen.",
+          "long": "Wirtschaftskrise, Arbeitslosigkeit und Feindschaft gegenüber der Demokratie schwächten die Weimarer Republik. Am 30. Januar 1933 wurde Adolf Hitler Reichskanzler. Die Nationalsozialisten schafften in kurzer Zeit Grundrechte, freie Presse und andere Parteien ab und verfolgten Andersdenkende.\n\nAm 1. September 1939 überfiel Deutschland Polen; damit begann der Zweite Weltkrieg in Europa. Ab 1941 führte Deutschland einen Vernichtungskrieg gegen die Sowjetunion. In Asien führte Japan Krieg gegen China und ab 1941 gegen die USA und Großbritannien.\n\nIn Europa endete der Krieg mit der bedingungslosen Kapitulation Deutschlands am 8. Mai 1945. Nach den Atombombenabwürfen auf Hiroshima und Nagasaki im August kapitulierte auch Japan. Mehr als 60 Millionen Menschen waren tot, die Mehrheit von ihnen Zivilisten."
+        },
+        {
+          "id": "kap08_holocaust",
+          "kind": "fakt",
+          "title": "Der Holocaust",
+          "short": "Die Nationalsozialisten ermordeten rund sechs Millionen europäische Jüdinnen und Juden. Sie ermordeten auch Hunderttausende Sinti und Roma, Menschen mit Behinderungen und viele andere Verfolgte.",
+          "long": "Der Holocaust, auf Hebräisch Schoah, war der von Deutschland geplante und durchgeführte Völkermord an den europäischen Jüdinnen und Juden. Er begann mit Ausgrenzung, Entrechtung und Gewalt, etwa den Novemberpogromen 1938, und führte zum systematischen Massenmord.\n\nRund sechs Millionen jüdische Kinder, Frauen und Männer wurden ermordet – durch Erschießungen, in Ghettos und in Vernichtungslagern wie Auschwitz-Birkenau, Treblinka und Sobibor. Die Nationalsozialisten ermordeten auch Hunderttausende Sinti und Roma, Menschen mit Behinderungen, politische Gegner, Homosexuelle, Zeugen Jehovas sowie Millionen Kriegsgefangene und Zivilisten in Osteuropa.\n\nAm 27. Januar 1945 befreiten sowjetische Soldaten das Lager Auschwitz. Dieser Tag ist heute internationaler Gedenktag. Die Erinnerung an die Opfer ist eine bleibende Verpflichtung: Nie wieder dürfen Menschen wegen ihrer Herkunft, ihres Glaubens oder ihrer Lebensweise entrechtet und verfolgt werden."
+        },
+        {
+          "id": "kap08_dekolonisation",
+          "kind": "fakt",
+          "title": "Vereinte Nationen und Dekolonisation",
+          "short": "1945 wurden die Vereinten Nationen gegründet, 1948 folgte die Allgemeine Erklärung der Menschenrechte. Indien wurde 1947 unabhängig, 1960 allein 17 afrikanische Staaten.",
+          "long": "Um künftige Kriege zu verhindern, gründeten 51 Staaten 1945 die Vereinten Nationen. 1948 verabschiedete die UN-Generalversammlung die Allgemeine Erklärung der Menschenrechte: „Alle Menschen sind frei und gleich an Würde und Rechten geboren.“\n\nNach dem Krieg verloren die Kolonialmächte an Kraft, und die Unabhängigkeitsbewegungen wurden stärker. Indien wurde 1947 nach einem langen, vor allem gewaltlosen Kampf unter Führung von Mahatma Gandhi unabhängig; die gleichzeitige Teilung in Indien und Pakistan war jedoch von Gewalt und Vertreibung begleitet. 1960 wurde als „Afrikanisches Jahr“ bekannt, weil 17 afrikanische Staaten unabhängig wurden.\n\nManche Kolonien erkämpften ihre Freiheit in langen Kriegen, etwa Algerien gegen Frankreich. In Südafrika bestand die Rassentrennung der Apartheid bis Anfang der 1990er-Jahre; 1994 wurde Nelson Mandela der erste demokratisch gewählte Präsident des Landes."
+        },
+        {
+          "id": "kap08_kalter_krieg",
+          "kind": "fakt",
+          "title": "Kalter Krieg, Mondlandung und Mauerfall",
+          "short": "Nach 1945 standen sich die USA und die Sowjetunion feindlich gegenüber; Deutschland war geteilt. 1969 betraten Menschen den Mond. 1989 fiel die Berliner Mauer, 1990 wurde Deutschland wiedervereinigt.",
+          "long": "Nach dem Zweiten Weltkrieg wurden die USA und die Sowjetunion zu Supermächten mit gegensätzlichen Systemen. Sie bekämpften sich nicht direkt, sondern durch Wettrüsten, Spionage und Stellvertreterkriege – daher der Name „Kalter Krieg“. Beide besaßen Atomwaffen, die die gesamte Menschheit hätten vernichten können; in der Kubakrise 1962 stand die Welt kurz vor einem Atomkrieg.\n\nDeutschland war in die Bundesrepublik und die DDR geteilt. Am 13. August 1961 begann die DDR mit dem Bau der Berliner Mauer. Der Wettlauf ins All führte 1957 zum ersten Satelliten Sputnik, 1961 flog Juri Gagarin als erster Mensch ins All, und am 20. Juli 1969 betraten Neil Armstrong und Buzz Aldrin als erste Menschen den Mond.\n\nFriedliche Proteste in der DDR und in Osteuropa führten am 9. November 1989 zur Öffnung der Mauer. Am 3. Oktober 1990 wurde Deutschland wiedervereinigt, im Dezember 1991 löste sich die Sowjetunion auf."
+        }
+      ]
     },
     {
       "id": "kap09_vernetzt",
       "number": 9,
-      "available": false,
+      "available": true,
       "title": "Die vernetzte Welt",
       "era": "seit 1991",
-      "summary": "Globalisierung, Internet und die großen Herausforderungen der Gegenwart.",
-      "infoPoints": []
+      "summary": "Internet und Globalisierung, eine wachsende Menschheit, der Klimawandel und eine weltweite Pandemie.",
+      "theme": { "floor": [0.75, 0.78, 0.82], "wall": [0.85, 0.87, 0.90], "column": [0.60, 0.64, 0.70], "torch": [0.50, 0.80, 1.0], "columnShape": "rund", "monument": "kugel", "sunPitch": -45, "sunIntensity": 8, "fog": 0.008 },
+      "infoPoints": [
+        {
+          "id": "kap09_internet",
+          "kind": "fakt",
+          "title": "Das World Wide Web",
+          "short": "Am Forschungszentrum CERN entwickelte Tim Berners-Lee ab 1989 das World Wide Web; 1991 ging es öffentlich online. Heute nutzt mehr als die Hälfte der Menschheit das Internet.",
+          "long": "Das Internet entstand aus Computernetzen, die seit Ende der 1960er-Jahre in den USA aufgebaut wurden. Für die meisten Menschen nutzbar wurde es durch das World Wide Web: Der britische Physiker Tim Berners-Lee schlug es 1989 am europäischen Forschungszentrum CERN bei Genf vor, um Forschungsergebnisse über Links miteinander zu verbinden. 1991 wurde es öffentlich zugänglich, 1993 gab das CERN die Technik zur freien Nutzung frei.\n\nIn den folgenden Jahrzehnten veränderte das Internet Kommunikation, Arbeit, Handel, Politik und Freizeit. Seit Ende der 2000er-Jahre verbreiteten sich Smartphones, mit denen Milliarden Menschen ständig online sind.\n\nDie Vernetzung bringt Zugang zu Wissen und weltweiten Austausch – aber auch neue Fragen zu Datenschutz, Falschinformationen, Überwachung und Abhängigkeit."
+        },
+        {
+          "id": "kap09_globalisierung",
+          "kind": "fakt",
+          "title": "Eine Welt, eng verflochten",
+          "short": "Nach dem Ende des Kalten Krieges wuchsen Handel und Austausch weltweit stark. Die Europäische Union entstand 1993; seit 2002 bezahlen Millionen Menschen mit dem Euro.",
+          "long": "Nach 1991 öffneten sich viele Länder für den Welthandel. Waren werden heute oft in mehreren Ländern hergestellt und um die halbe Welt transportiert. 1995 wurde die Welthandelsorganisation gegründet. China entwickelte sich zu einer der größten Volkswirtschaften der Welt.\n\nIn Europa trat 1993 der Vertrag von Maastricht in Kraft, mit dem die Europäische Union entstand. Seit 2002 gibt es den Euro als Bargeld. Grenzkontrollen zwischen vielen Mitgliedstaaten fielen weg.\n\nDie Globalisierung hat Hunderte Millionen Menschen aus extremer Armut geholfen. Gleichzeitig führte sie in manchen Regionen zum Verlust von Arbeitsplätzen, und Krisen breiten sich schneller aus – wie die weltweite Finanzkrise von 2008 zeigte."
+        },
+        {
+          "id": "kap09_bevoelkerung",
+          "kind": "fakt",
+          "title": "Acht Milliarden Menschen",
+          "short": "Nach Berechnungen der Vereinten Nationen erreichte die Weltbevölkerung im November 2022 acht Milliarden Menschen. Um 1800 war es noch etwa eine Milliarde.",
+          "long": "Über den größten Teil der Geschichte wuchs die Menschheit nur langsam. Um das Jahr 1800 lebten etwa eine Milliarde Menschen auf der Erde. Durch bessere Ernährung, Hygiene, Impfungen und Medizin sanken die Kindersterblichkeit und andere frühe Todesfälle, und die Bevölkerung wuchs stark. Die Vereinten Nationen legten den 15. November 2022 als den Tag fest, an dem die Weltbevölkerung acht Milliarden erreichte.\n\nDie durchschnittliche Lebenserwartung weltweit hat sich seit 1900 mehr als verdoppelt und liegt heute bei über 70 Jahren. In vielen Ländern bekommen Familien inzwischen weniger Kinder; nach den Prognosen der Vereinten Nationen wird die Weltbevölkerung im Laufe dieses Jahrhunderts ihren Höchststand erreichen.\n\nDie Unterschiede bleiben groß: Noch immer leben Hunderte Millionen Menschen in extremer Armut, besonders in Afrika südlich der Sahara."
+        },
+        {
+          "id": "kap09_klima",
+          "kind": "fakt",
+          "title": "Der Klimawandel",
+          "short": "Durch das Verbrennen von Kohle, Öl und Gas hat sich die Erde seit Beginn der Industrialisierung um mehr als ein Grad erwärmt. Im Pariser Abkommen von 2015 vereinbarten fast alle Staaten, die Erwärmung zu begrenzen.",
+          "long": "Seit der Industrialisierung verbrennt die Menschheit große Mengen fossiler Brennstoffe. Dabei entsteht Kohlendioxid, das wie eine wärmende Decke in der Atmosphäre wirkt. Der Weltklimarat (IPCC) stellte 2021 fest, dass es eindeutig ist, dass der Mensch die Erwärmung verursacht hat. Im Jahrzehnt von 2011 bis 2020 war es weltweit im Mittel rund 1,1 Grad wärmer als vor der Industrialisierung; seither ist die Erwärmung weiter gestiegen.\n\nDie Folgen sind schon sichtbar: häufigere Hitzewellen, Dürren und Starkregen, schmelzende Gletscher und ein steigender Meeresspiegel.\n\nIm Pariser Klimaabkommen von 2015 vereinbarten fast alle Staaten der Welt, die Erwärmung deutlich unter 2 Grad zu halten und möglichst auf 1,5 Grad zu begrenzen. Erneuerbare Energien wie Sonne und Wind werden weltweit stark ausgebaut – doch die Treibhausgas-Emissionen müssen noch viel stärker sinken."
+        },
+        {
+          "id": "kap09_pandemie",
+          "kind": "fakt",
+          "title": "Eine weltweite Pandemie",
+          "short": "Ab Anfang 2020 breitete sich das Coronavirus SARS-CoV-2 über die ganze Welt aus. Die WHO erklärte im März 2020 eine Pandemie. Ende 2020 wurden die ersten Impfstoffe zugelassen.",
+          "long": "Ende 2019 wurden in der chinesischen Stadt Wuhan die ersten Erkrankungen an einer neuen Lungenkrankheit bekannt, später COVID-19 genannt. Das Virus verbreitete sich durch den weltweiten Reiseverkehr in kurzer Zeit auf alle Kontinente. Am 11. März 2020 stufte die Weltgesundheitsorganisation die Ausbreitung als Pandemie ein.\n\nViele Länder schlossen Schulen, Geschäfte und Grenzen; Menschen hielten Abstand und trugen Masken. Forschende entwickelten in weniger als einem Jahr wirksame Impfstoffe, darunter erstmals in großem Umfang zugelassene mRNA-Impfstoffe, an deren Entwicklung auch ein Mainzer Unternehmen maßgeblich beteiligt war. Ende 2020 begannen die ersten Impfungen.\n\nNach Schätzungen der WHO starben in den Jahren 2020 und 2021 weltweit deutlich mehr Menschen als üblich – die Zahl der zusätzlichen Todesfälle wird auf rund 15 Millionen geschätzt. Die Pandemie zeigte, wie eng die Menschheit verbunden ist."
+        }
+      ]
     },
     {
       "id": "kap10_letztes_kapitel",
       "number": 10,
-      "available": false,
+      "available": true,
       "title": "Das letzte Kapitel",
       "era": "Rahmenhandlung (Fiktion)",
       "summary": "Was im Archiv MNEMOSYNE geschah – und was die Hüterin oder der Hüter daraus macht.",
-      "infoPoints": []
+      "theme": { "floor": [0.12, 0.14, 0.18], "wall": [0.18, 0.20, 0.26], "column": [0.10, 0.12, 0.16], "torch": [0.40, 0.70, 1.0], "columnShape": "rund", "monument": "feuer", "sunPitch": -8, "sunIntensity": 2.5, "fog": 0.02 },
+      "infoPoints": [
+        {
+          "id": "kap10_huetende",
+          "kind": "fiktion",
+          "title": "Die Hüterinnen und Hüter",
+          "short": "In dieser Halle findest du Spuren derer, die vor dir das Archiv bewahrt haben. Jede Generation hat neue Erinnerungen hinzugefügt – und keine war die erste.",
+          "long": "Die letzte Halle ist anders als die anderen. Hier gibt es keine Epoche, sondern Namen. Tausende sind in die Wände eingeritzt, in Schriften, die du aus den vorigen Hallen kennst: Keilschrift, Hieroglyphen, chinesische Zeichen, lateinische Buchstaben, Ziffern aus Indien.\n\nDu verstehst: MNEMOSYNE wurde nicht auf einmal gebaut. Jede Generation von Hüterinnen und Hütern hat eine Halle hinzugefügt, ergänzt, korrigiert. Manche Einträge sind durchgestrichen und neu geschrieben – Irrtümer, die spätere Generationen berichtigt haben.\n\nGeschichte, so begreifst du, ist kein fertiges Buch. Sie ist ein Gespräch zwischen den Lebenden und denen, die vor ihnen waren."
+        },
+        {
+          "id": "kap10_warum",
+          "kind": "fiktion",
+          "title": "Warum es das Archiv gibt",
+          "short": "Eine letzte Nachricht erklärt den Sinn des Archivs: Es wurde nicht für die Vergangenheit gebaut, sondern für jene, die nach uns kommen.",
+          "long": "Auf einem schlichten Sockel liegt eine Nachricht, an dich gerichtet, ohne Namen:\n\n„Wenn du dies liest, hast du die Hallen durchschritten. Du hast gesehen, wozu Menschen fähig sind – zum Schrecklichsten und zum Wunderbarsten. Wir haben dieses Archiv nicht gebaut, um uns zu rühmen oder zu entschuldigen. Wir haben es gebaut, damit niemand wieder ganz von vorn anfangen muss.\n\nVergiss nicht, dass jede Erkenntnis in diesen Hallen von Menschen stammt, die nicht wussten, wie ihre Geschichte ausgehen würde. Genau wie du.“"
+        },
+        {
+          "id": "kap10_stille",
+          "kind": "fiktion",
+          "title": "Die Stille draußen",
+          "short": "Durch einen schmalen Spalt in der Wand siehst du nach draußen. Es ist still – aber nicht leer. Am Horizont glimmt ein einzelnes Licht.",
+          "long": "Du hast lange geglaubt, du seist allein. Die Stille vor den Mauern des Archivs schien zu bedeuten, dass niemand mehr da ist.\n\nDoch durch den Spalt in der Wand siehst du Gras, das über alte Wege gewachsen ist, und Vögel, die über den Hof fliegen. Und am Horizont, weit entfernt, glimmt ein einzelnes Licht. Vielleicht ein Feuer.\n\nVielleicht hat dort jemand anderes gerade erst angefangen, sich zu erinnern."
+        },
+        {
+          "id": "kap10_entscheidung",
+          "kind": "fiktion",
+          "title": "Die Entscheidung",
+          "short": "Das Archiv ist vollständig erweckt. Nun liegt es an dir: Das letzte Tor führt hinaus – mit allem, was du hier erfahren hast.",
+          "long": "Alle Hallen leuchten blau. Jede Erinnerung ist archiviert. Das Archiv braucht dich nicht mehr als Wächterin oder Wächter – aber die Welt draußen könnte dich als Erzählerin oder Erzähler brauchen.\n\nAm Ende der Halle öffnet sich das letzte Tor. Du kannst bleiben und die Hallen weiter durchstreifen. Oder du gehst hinaus, dem Licht am Horizont entgegen, und nimmst die Geschichte der Menschheit mit.\n\nWas aus ihr wird, schreiben diejenigen, die sich an sie erinnern."
+        }
+      ]
     }
   ]
 }

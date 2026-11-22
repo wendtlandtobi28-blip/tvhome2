@@ -35,10 +35,13 @@ TheLastHumanity/
 │       ├── TheLastHumanity.Build.cs        Modulabhängigkeiten
 │       ├── TheLastHumanity.h/.cpp          Modul, Log-Kategorie LogTLH
 │       ├── Core/   TLHTypes, TLHGameSubsystem, TLHGameMode, TLHPlayerController, TLHCharacter
-│       ├── World/  TLHHallBuilder, TLHInfoPoint
+│       ├── World/  TLHHallBuilder, TLHInteractable, TLHInfoPoint, TLHPortal
 │       ├── UI/     TLHWidgets (Slate)
 │       └── Save/   TLHSaveGame
+├── 1_Editor_starten.bat            Kompilieren + Editor öffnen (Doppelklick)
+├── 2_Windows_Spiel_erstellen.bat   Fertige .exe erzeugen (Doppelklick)
 ├── Tools/validate_project.py       Statische Prüfung ohne Engine
+├── Tools/ue_find_engine.bat        Engine-Suche für die Skripte
 └── *.md                            Dokumentation
 ```
 
@@ -47,32 +50,60 @@ TheLastHumanity/
 ```
 UGameInstance
 └── UTLHGameSubsystem  (lebt während der ganzen Spielsitzung)
-      · lädt content_de.json  → TArray<FTLHChapter>, UI-Texte
-      · Fortschritt: TSet<FName> entdeckter Informationspunkte
-      · SaveGame()/LoadGame() → UTLHSaveGame (Slot "TLH_Spielstand_1")
+      · lädt content_de.json → Kapitel (inkl. Thema), Erkenntnisse, Abspann, UI-Texte
+      · Fortschritt: entdeckte Erkenntnisse, aktuelles Kapitel, Abspann gesehen
+      · Freischaltung: Kapitel 1 immer; Kapitel n, wenn Kapitel n-1 vollständig
+        (oder Option „alle Kapitel freischalten“)
+      · SaveGame()/LoadGame() → UTLHSaveGame  (Slot "TLH_Spielstand_1", Format v2)
+      · Einstellungen          → UTLHSettingsSave (Slot "TLH_Einstellungen")
 
 ATLHGameMode
-  · StartPlay(): erzeugt ATLHHallBuilder → BuildHall(erstes spielbares Kapitel)
-  · SpawnDefaultPawnAtTransform(): fester Startpunkt (Trägerkarte hat keinen PlayerStart)
-  · DefaultPawn = ATLHCharacter, PlayerController = ATLHPlayerController
+  · StartPlay(): erzeugt ATLHHallBuilder → BuildHall(aktuelles Kapitel)
+  · SpawnDefaultPawnAtTransform(): fester Startpunkt am Halleneingang
 
-ATLHHallBuilder        Boden, Wände, Säulen, Sonne, Himmel, Nebel, Fackellichter,
-                       Kapitel-Inschrift; spawnt je Eintrag ein ATLHInfoPoint
-ATLHInfoPoint          Sockel + schwebende Lichtkugel + Punktlicht + Titel (zur Kamera gedreht)
-                       Farbe: gold = neu, blau = entdeckt; heller bei Fokus
+ATLHHallBuilder        BuildHall(Kapitel) räumt die alte Halle ab und baut neu:
+                       Boden, Wände, Gesims, Säulen (rund/eckig), Monument
+                       (feuer/obelisk/zikkurat/kugel/bogen/turm), Sonne, Himmel, Nebel,
+                       Wandlichter, Inschrift; spawnt ATLHInfoPoint je Erkenntnis
+                       (feste oder automatische Position) und ein ATLHPortal
 
-ATLHCharacter          Ego-Perspektive; WASD/Pfeile, Maus, Shift, Leertaste
-                       Bewegung nur, wenn kein Menü offen ist (SetGameplayInputEnabled)
+ATLHInteractable       Abstrakte Basis für alles, was mit E benutzt wird
+ ├─ ATLHInfoPoint      Sockel, schwebende Kugel, Licht, Titel; gold = neu, blau = entdeckt
+ └─ ATLHPortal         Tor am Hallenende; rot = gesperrt, blau = offen;
+                       führt ins nächste Kapitel bzw. nach Kapitel 10 zum Abspann
+
+ATLHCharacter          Ego-Perspektive; WASD/Pfeile, Maus, Shift, Leertaste;
+                       übernimmt Mausempfindlichkeit, Y-Achse, Sichtfeld
 
 ATLHPlayerController   Zustandsautomat der Oberfläche:
-                       MainMenu → Playing ⇄ PauseMenu / InfoPanel / ChapterOverview
-                       · E: Informationspunkt im Blickkegel (≤ 380 cm, ~56°) öffnen
-                       · Esc/P: Menü · Tab/K: Kapitelübersicht · F5: Schnellspeichern
-                       · automatische Speicherung bei neuer Erkenntnis
+                       MainMenu, Playing, PauseMenu, InfoPanel, ChapterOverview, Options, Ending
+                       (jeweils mit Rücksprung an den aufrufenden Zustand)
+                       · Fokus: nächstes Interaktionsobjekt im Blickkegel (≤ 380 cm, ~56°)
+                       · TravelToChapter(): Halle neu bauen, Spieler an den Eingang, speichern
+                       · automatische Speicherung bei neuer Erkenntnis und Kapitelwechsel
 
-TLHWidgets (Slate)     MakeHud, MakeMenu, MakeInfoPanel (Kurz-/Langtext umschaltbar),
-                       MakeChapterOverview
+TLHWidgets (Slate)     MakeHud, MakeMenu, MakeInfoPanel, MakeChapterOverview,
+                       MakeOptions, MakeEnding
 ```
+
+### Inhaltsformat (Auszug)
+```json
+{ "ui": { "schlüssel": "Text mit {0}" },
+  "ending": { "title": "...", "text": "..." },
+  "chapters": [ { "id": "kap02_...", "number": 2, "available": true,
+      "title": "...", "era": "...", "summary": "...",
+      "theme": { "floor": [r,g,b], "wall": [r,g,b], "column": [r,g,b], "torch": [r,g,b],
+                 "columnShape": "rund|eckig", "monument": "feuer|obelisk|zikkurat|kugel|bogen|turm|keiner",
+                 "sunPitch": -40, "sunIntensity": 7, "fog": 0.015 },
+      "infoPoints": [ { "id": "...", "kind": "fakt|fiktion", "title": "...",
+                        "short": "...", "long": "...", "location": [x,y,z] /* optional */ } ] } ] }
+```
+Ohne `location` werden Erkenntnisse automatisch abwechselnd links und rechts entlang der Halle verteilt (`ATLHHallBuilder::GetAutoLocation`, identisch nachgebildet im Prüfwerkzeug).
+
+### Build-Skripte (Windows)
+- `Tools/ue_find_engine.bat`: sucht UE 5.4 bis 5.7 über die Registry (Epic Launcher) und den Standardpfad; `UE_ROOT` kann vorgegeben werden.
+- `1_Editor_starten.bat`: `Build.bat TheLastHumanityEditor Win64 Development`, dann `UnrealEditor.exe`.
+- `2_Windows_Spiel_erstellen.bat`: Editor-Modul bauen, dann `RunUAT BuildCookRun -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive` nach `Build\Windows`.
 
 ### Eingabe
 Phase 1 liest Tasten direkt ab (`IsInputKeyDown`, `GetInputMouseDelta`, `BindKey`). Das funktioniert ohne Input-Assets. **Geplant:** Umstellung auf Enhanced-Input-Assets (frei belegbare Tasten, Gamepad), sobald im Editor gearbeitet werden kann.
@@ -86,7 +117,7 @@ Slate statt UMG, weil UMG-Widgets als Editor-Assets erstellt werden müssten. Di
 ### Inhalte und Packen
 `content_de.json` wird über `DirectoriesToAlwaysStageAsNonUFS=(Path="Data")` als lose Datei mit ausgeliefert und mit `FPaths::ProjectContentDir()` gefunden. Die Engine-Grundformen werden über `DirectoriesToAlwaysCook=/Engine/BasicShapes` sicher mitgekocht. Die C++-Quelltexte enthalten bewusst nur ASCII-Zeichen; Umlaute stehen ausschließlich in der UTF-8-JSON-Datei.
 
-## 5. Bekannte Einschränkungen von Phase 1
+## 5. Bekannte Einschränkungen
 
 - Als Startkarte dient die leere Engine-Karte `/Engine/Maps/Entry`. Eine eigene Karte muss im Editor angelegt werden (TODO).
 - Grafik besteht aus Platzhalter-Grundformen mit einfarbigem Material.

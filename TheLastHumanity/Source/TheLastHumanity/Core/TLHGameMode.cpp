@@ -33,7 +33,7 @@ void ATLHGameMode::StartPlay()
 		if (ATLHHallBuilder* Builder = World->SpawnActor<ATLHHallBuilder>(FVector::ZeroVector, FRotator::ZeroRotator, Params))
 		{
 			const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
-			const FTLHChapter* Chapter = Sub ? Sub->GetFirstAvailableChapter() : nullptr;
+			const FTLHChapter* Chapter = Sub ? Sub->GetCurrentChapter() : nullptr;
 			Builder->BuildHall(Chapter);
 		}
 	}

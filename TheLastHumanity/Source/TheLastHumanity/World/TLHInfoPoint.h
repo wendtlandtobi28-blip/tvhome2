@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "World/TLHInteractable.h"
 #include "TLHInfoPoint.generated.h"
 
 class UStaticMeshComponent;
@@ -12,7 +12,7 @@ class UMaterialInstanceDynamic;
 
 /** Interaktiver Informationspunkt: Sockel, schwebende Lichtkugel, Titel. */
 UCLASS()
-class THELASTHUMANITY_API ATLHInfoPoint : public AActor
+class THELASTHUMANITY_API ATLHInfoPoint : public ATLHInteractable
 {
 	GENERATED_BODY()
 
@@ -23,10 +23,10 @@ public:
 
 	FName GetInfoId() const { return InfoId; }
 	const FText& GetTitle() const { return Title; }
-	FVector GetInteractionLocation() const;
+	virtual FVector GetInteractionLocation() const override;
 
 	void SetDiscovered(bool bInDiscovered);
-	void SetFocused(bool bInFocused);
+	virtual void SetFocused(bool bInFocused) override;
 
 	virtual void Tick(float DeltaSeconds) override;
 
@@ -60,7 +60,6 @@ private:
 	FName InfoId;
 	FText Title;
 	bool bDiscovered = false;
-	bool bFocused = false;
 	float Time = 0.f;
 
 	static constexpr float OrbHeight = 135.f;

@@ -41,7 +41,7 @@ def check(cond: bool, ok_msg: str, err_msg: str) -> bool:
 def hall_constants() -> dict[str, float]:
     text = (SRC / "World" / "TLHHallBuilder.h").read_text(encoding="utf-8")
     consts = {}
-    for name in ("HalfLength", "HalfWidth", "WallHeight"):
+    for name in ("HalfLength", "HalfWidth", "WallHeight", "PortalX"):
         m = re.search(rf"{name}\s*=\s*([0-9.]+)f", text)
         if m:
             consts[name] = float(m.group(1))
@@ -51,6 +51,27 @@ def hall_constants() -> dict[str, float]:
 def column_positions(half_width: float) -> list[tuple[float, float]]:
     # muss zu ATLHHallBuilder::BuildHall passen (i * 550 + 275, +-(HalfWidth - 220))
     return [(i * 550.0 + 275.0, s * (half_width - 220.0)) for i in range(-3, 4) for s in (-1, 1)]
+
+
+def auto_location(index: int, count: int, half_length: float) -> tuple[float, float]:
+    # muss zu ATLHHallBuilder::GetAutoLocation passen
+    start_x = -half_length + 600.0
+    end_x = half_length - 800.0
+    step = (end_x - start_x) / (count - 1) if count > 1 else 0.0
+    return (start_x + index * step, -450.0 if index % 2 == 0 else 450.0)
+
+
+VALID_MONUMENTS = {"feuer", "obelisk", "zikkurat", "kugel", "bogen", "turm", "keiner"}
+MONUMENT_RADIUS = 260.0  # groesste Monumentausdehnung um (0, 0)
+PORTAL_CLEARANCE = 450.0
+
+
+def is_latin1(text: str) -> bool:
+    try:
+        text.encode("latin-1")
+        return True
+    except UnicodeEncodeError:
+        return False
 
 
 def start_location() -> tuple[float, float]:
@@ -89,8 +110,26 @@ def validate_content() -> dict:
         ids.add(cid)
         numbers.append(ch.get("number"))
         points = ch.get("infoPoints", [])
-        if ch.get("available") and not points:
-            errors.append(f"Kapitel {cid} ist spielbar, hat aber keine Informationspunkte")
+        if ch.get("available") and len(points) < 3:
+            errors.append(f"Kapitel {cid} ist spielbar, hat aber weniger als 3 Informationspunkte")
+        if len(points) > 7:
+            errors.append(f"Kapitel {cid}: hoechstens 7 Informationspunkte pro Halle (Abstaende)")
+        for field in ("title", "era"):
+            if not is_latin1(str(ch.get(field, ""))):
+                errors.append(f"Kapitel {cid}: '{field}' enthaelt Zeichen ausserhalb Latin-1 (3D-Schrift)")
+        theme = ch.get("theme")
+        if ch.get("available"):
+            if not isinstance(theme, dict):
+                errors.append(f"Kapitel {cid}: 'theme' fehlt")
+            else:
+                for col in ("floor", "wall", "column", "torch"):
+                    v = theme.get(col)
+                    if not (isinstance(v, list) and len(v) == 3 and all(isinstance(x, (int, float)) and 0 <= x <= 1 for x in v)):
+                        errors.append(f"Kapitel {cid}: theme.{col} muss [r, g, b] mit Werten 0..1 sein")
+                if theme.get("monument") not in VALID_MONUMENTS:
+                    errors.append(f"Kapitel {cid}: theme.monument ungueltig ({theme.get('monument')})")
+                if theme.get("columnShape") not in ("rund", "eckig"):
+                    errors.append(f"Kapitel {cid}: theme.columnShape muss 'rund' oder 'eckig' sein")
 
         locs = []
         for p in points:
@@ -107,11 +146,20 @@ def validate_content() -> dict:
                 errors.append(f"Infopunkt {pid}: Kurzfassung ist nicht kuerzer als die ausfuehrliche Fassung")
             if len(p.get("short", "")) > 260:
                 warnings.append(f"Infopunkt {pid}: Kurzfassung hat {len(p['short'])} Zeichen (Ziel <= 260)")
+            if not is_latin1(p.get("title", "")):
+                errors.append(f"Infopunkt {pid}: Titel enthaelt Zeichen ausserhalb Latin-1 (3D-Schrift)")
             loc = p.get("location")
-            if not (isinstance(loc, list) and len(loc) == 3 and all(isinstance(v, (int, float)) for v in loc)):
+            if loc is None:
+                x, y = auto_location(points.index(p), len(points), hl)
+                loc = [x, y, 0.0]
+            elif not (isinstance(loc, list) and len(loc) == 3 and all(isinstance(v, (int, float)) for v in loc)):
                 errors.append(f"Infopunkt {pid}: 'location' muss [x, y, z] sein")
                 continue
             x, y = loc[0], loc[1]
+            if math.hypot(x, y) < MONUMENT_RADIUS + 100:
+                errors.append(f"Infopunkt {pid}: zu nah am Monument in der Hallenmitte")
+            if math.hypot(x - hall.get("PortalX", 1800), y) < PORTAL_CLEARANCE:
+                errors.append(f"Infopunkt {pid}: zu nah am Portal")
             if abs(x) > hl - 100 or abs(y) > hw - 100:
                 errors.append(f"Infopunkt {pid}: Position {loc} liegt ausserhalb/zu nah an der Hallenwand")
             for cx, cy in cols:
@@ -127,6 +175,11 @@ def validate_content() -> dict:
                 if d < 400:
                     errors.append(f"Infopunkte {locs[i][0]} und {locs[j][0]} nur {d:.0f} cm auseinander (< 400)")
 
+    ending = data.get("ending", {})
+    check(bool(str(ending.get("title", "")).strip()) and bool(str(ending.get("text", "")).strip()),
+          "Abspann (ending) vorhanden", "Abspann 'ending' mit 'title' und 'text' fehlt")
+    total = sum(len(c.get("infoPoints", [])) for c in chapters)
+    passed.append(f"{total} Informationspunkte insgesamt")
     check(numbers == list(range(1, len(numbers) + 1)), "Kapitelnummern fortlaufend ab 1",
           f"Kapitelnummern nicht fortlaufend: {numbers}")
     check(any(c.get("available") for c in chapters), "Mindestens ein spielbares Kapitel",
@@ -149,12 +202,20 @@ def validate_ui_keys(data: dict) -> None:
           f"UI-Schluessel fehlen in der JSON-Datei: {missing}")
     if unused:
         warnings.append(f"Unbenutzte UI-Schluessel: {unused}")
+    expected = {
+        "hud.interact": 1, "hud.interact_again": 1, "chapters.locked": 1,
+        "info.chapter": 2, "chapters.heading": 2, "chapters.discovered": 2, "chapters.complete": 2,
+        "chapters.total": 2, "hud.portal_locked": 2, "hud.portal_next": 2, "portal.label_next": 2,
+        "toast.chapter": 2, "ending.stats": 2, "hud.chapter": 4,
+    }
     for key, value in ui.items():
-        n_used = len(re.findall(r"\{(\d+)\}", value))
-        if key in ("hud.interact", "hud.interact_again") and n_used != 1:
-            errors.append(f"UI-Text {key} braucht genau einen Platzhalter {{0}}")
-        if key in ("info.chapter", "chapters.heading", "chapters.discovered") and n_used != 2:
-            errors.append(f"UI-Text {key} braucht Platzhalter {{0}} und {{1}}")
+        n_used = len(set(re.findall(r"\{(\d+)\}", value)))
+        want = expected.get(key, 0)
+        if n_used != want:
+            errors.append(f"UI-Text {key}: {n_used} Platzhalter, erwartet {want}")
+    for key in ("portal.label_next", "portal.label_end"):
+        if key in ui and not is_latin1(ui[key]):
+            errors.append(f"UI-Text {key} wird als 3D-Schrift gezeigt und muss Latin-1 sein")
 
 
 # ---------------------------------------------------------------- 3. C++

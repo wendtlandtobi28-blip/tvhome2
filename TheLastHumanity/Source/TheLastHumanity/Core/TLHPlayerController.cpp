@@ -4,7 +4,9 @@
 #include "Core/TLHGameMode.h"
 #include "Core/TLHGameSubsystem.h"
 #include "UI/TLHWidgets.h"
+#include "World/TLHHallBuilder.h"
 #include "World/TLHInfoPoint.h"
+#include "World/TLHPortal.h"
 
 #include "Components/InputComponent.h"
 #include "Engine/GameViewportClient.h"
@@ -47,12 +49,16 @@ void ATLHPlayerController::BeginPlay()
 		Viewport->AddViewportWidgetContent(RootWidget.ToSharedRef(), 10);
 	}
 
-	const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
-	if (!Sub || !Sub->IsContentLoaded())
+	if (const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this))
 	{
-		UE_LOG(LogTLH, Error, TEXT("Inhalte konnten nicht geladen werden - Texte fehlen."));
+		if (!Sub->IsContentLoaded())
+		{
+			UE_LOG(LogTLH, Error, TEXT("Inhalte konnten nicht geladen werden - Texte fehlen."));
+		}
+		ApplySettings(Sub->GetSettings());
 	}
 
+	RefreshWorldState();
 	SetUIState(ETLHUIState::MainMenu);
 }
 
@@ -97,20 +103,84 @@ void ATLHPlayerController::PlayerTick(float DeltaTime)
 
 	if (UIState == ETLHUIState::Playing)
 	{
-		UpdateFocusedInfoPoint();
+		UpdateFocus();
 	}
 }
 
-void ATLHPlayerController::UpdateFocusedInfoPoint()
+// ------------------------------------------------------------------ Welt
+
+ATLHHallBuilder* ATLHPlayerController::FindHallBuilder() const
+{
+	for (TActorIterator<ATLHHallBuilder> It(GetWorld()); It; ++It)
+	{
+		return *It;
+	}
+	return nullptr;
+}
+
+void ATLHPlayerController::EnsureHallForCurrentChapter()
+{
+	const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
+	ATLHHallBuilder* Builder = FindHallBuilder();
+	if (!Sub || !Builder)
+	{
+		return;
+	}
+	const FTLHChapter* Chapter = Sub->GetCurrentChapter();
+	if (Chapter && Builder->GetBuiltChapterId() != Chapter->Id)
+	{
+		Focused = nullptr;
+		Builder->BuildHall(Chapter);
+	}
+}
+
+void ATLHPlayerController::RefreshWorldState()
+{
+	const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
+	if (!Sub)
+	{
+		return;
+	}
+	for (TActorIterator<ATLHInfoPoint> It(GetWorld()); It; ++It)
+	{
+		It->SetDiscovered(Sub->IsDiscovered(It->GetInfoId()));
+	}
+
+	const FTLHChapter* Current = Sub->GetCurrentChapter();
+	ATLHHallBuilder* Builder = FindHallBuilder();
+	ATLHPortal* Portal = Builder ? Builder->GetPortal() : nullptr;
+	if (!Current || !Portal)
+	{
+		return;
+	}
+	const FTLHChapter* Next = Sub->GetNextChapter(*Current);
+	const bool bNextPlayable = Next && Next->bAvailable;
+	const bool bOpen = bNextPlayable ? Sub->IsChapterUnlocked(*Next) : Sub->IsChapterComplete(*Current);
+	Portal->SetOpen(bOpen);
+
+	if (bNextPlayable)
+	{
+		FFormatOrderedArguments Args;
+		Args.Add(FText::AsNumber(Next->Number));
+		Args.Add(Next->Title);
+		Portal->SetLabel(Sub->UIFormat(TEXT("portal.label_next"), Args));
+	}
+	else
+	{
+		Portal->SetLabel(Sub->UI(TEXT("portal.label_end")));
+	}
+}
+
+void ATLHPlayerController::UpdateFocus()
 {
 	FVector ViewLocation;
 	FRotator ViewRotation;
 	GetPlayerViewPoint(ViewLocation, ViewRotation);
 	const FVector Forward = ViewRotation.Vector();
 
-	ATLHInfoPoint* Best = nullptr;
+	ATLHInteractable* Best = nullptr;
 	float BestDot = 0.55f; // ca. 56 Grad Blickkegel
-	for (TActorIterator<ATLHInfoPoint> It(GetWorld()); It; ++It)
+	for (TActorIterator<ATLHInteractable> It(GetWorld()); It; ++It)
 	{
 		const FVector ToPoint = It->GetInteractionLocation() - ViewLocation;
 		const float Distance = ToPoint.Size();
@@ -126,9 +196,9 @@ void ATLHPlayerController::UpdateFocusedInfoPoint()
 		}
 	}
 
-	if (FocusedInfoPoint.Get() != Best)
+	if (Focused.Get() != Best)
 	{
-		if (ATLHInfoPoint* Old = FocusedInfoPoint.Get())
+		if (ATLHInteractable* Old = Focused.Get())
 		{
 			Old->SetFocused(false);
 		}
@@ -136,21 +206,78 @@ void ATLHPlayerController::UpdateFocusedInfoPoint()
 		{
 			Best->SetFocused(true);
 		}
-		FocusedInfoPoint = Best;
+		Focused = Best;
 	}
 }
 
+void ATLHPlayerController::MovePawnTo(const FVector& Location, const FRotator& Rotation)
+{
+	if (APawn* MyPawn = GetPawn())
+	{
+		MyPawn->SetActorLocation(Location, false, nullptr, ETeleportType::TeleportPhysics);
+	}
+	SetControlRotation(FRotator(Rotation.Pitch, Rotation.Yaw, 0.f));
+}
+
+// ------------------------------------------------------------------ HUD-Texte
+
 FText ATLHPlayerController::GetInteractPrompt() const
 {
-	const ATLHInfoPoint* Point = FocusedInfoPoint.Get();
 	const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
-	if (!Point || !Sub || UIState != ETLHUIState::Playing)
+	const ATLHInteractable* Target = Focused.Get();
+	if (!Target || !Sub || UIState != ETLHUIState::Playing)
+	{
+		return FText::GetEmpty();
+	}
+
+	if (const ATLHInfoPoint* Point = Cast<ATLHInfoPoint>(Target))
+	{
+		FFormatOrderedArguments Args;
+		Args.Add(Point->GetTitle());
+		return Sub->UIFormat(Sub->IsDiscovered(Point->GetInfoId()) ? TEXT("hud.interact_again") : TEXT("hud.interact"), Args);
+	}
+
+	if (const ATLHPortal* Portal = Cast<ATLHPortal>(Target))
+	{
+		const FTLHChapter* Current = Sub->GetCurrentChapter();
+		if (!Current)
+		{
+			return FText::GetEmpty();
+		}
+		if (!Portal->IsOpen())
+		{
+			FFormatOrderedArguments Args;
+			Args.Add(FText::AsNumber(Sub->CountDiscovered(*Current)));
+			Args.Add(FText::AsNumber(Current->InfoPoints.Num()));
+			return Sub->UIFormat(TEXT("hud.portal_locked"), Args);
+		}
+		const FTLHChapter* Next = Sub->GetNextChapter(*Current);
+		if (Next && Next->bAvailable)
+		{
+			FFormatOrderedArguments Args;
+			Args.Add(FText::AsNumber(Next->Number));
+			Args.Add(Next->Title);
+			return Sub->UIFormat(TEXT("hud.portal_next"), Args);
+		}
+		return Sub->UI(TEXT("hud.portal_ending"));
+	}
+	return FText::GetEmpty();
+}
+
+FText ATLHPlayerController::GetChapterLine() const
+{
+	const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
+	const FTLHChapter* Current = Sub ? Sub->GetCurrentChapter() : nullptr;
+	if (!Current)
 	{
 		return FText::GetEmpty();
 	}
 	FFormatOrderedArguments Args;
-	Args.Add(Point->GetTitle());
-	return Sub->UIFormat(Sub->IsDiscovered(Point->GetInfoId()) ? TEXT("hud.interact_again") : TEXT("hud.interact"), Args);
+	Args.Add(FText::AsNumber(Current->Number));
+	Args.Add(Current->Title);
+	Args.Add(FText::AsNumber(Sub->CountDiscovered(*Current)));
+	Args.Add(FText::AsNumber(Current->InfoPoints.Num()));
+	return Sub->UIFormat(TEXT("hud.chapter"), Args);
 }
 
 void ATLHPlayerController::ShowToast(const FText& Text, float Seconds)
@@ -159,7 +286,9 @@ void ATLHPlayerController::ShowToast(const FText& Text, float Seconds)
 	ToastTimeLeft = Seconds;
 }
 
-void ATLHPlayerController::SetUIState(ETLHUIState NewState, FName InfoId)
+// ------------------------------------------------------------------ Zustand
+
+void ATLHPlayerController::SetUIState(ETLHUIState NewState)
 {
 	UIState = NewState;
 
@@ -174,10 +303,16 @@ void ATLHPlayerController::SetUIState(ETLHUIState NewState, FName InfoId)
 			OverlaySlot->SetContent(TLHWidgets::MakeMenu(this, true));
 			break;
 		case ETLHUIState::InfoPanel:
-			OverlaySlot->SetContent(TLHWidgets::MakeInfoPanel(this, InfoId));
+			OverlaySlot->SetContent(TLHWidgets::MakeInfoPanel(this, OpenInfoId));
 			break;
 		case ETLHUIState::ChapterOverview:
 			OverlaySlot->SetContent(TLHWidgets::MakeChapterOverview(this));
+			break;
+		case ETLHUIState::Options:
+			OverlaySlot->SetContent(TLHWidgets::MakeOptions(this));
+			break;
+		case ETLHUIState::Ending:
+			OverlaySlot->SetContent(TLHWidgets::MakeEnding(this));
 			break;
 		case ETLHUIState::Playing:
 		default:
@@ -200,11 +335,11 @@ void ATLHPlayerController::SetUIState(ETLHUIState NewState, FName InfoId)
 	}
 	else
 	{
-		if (ATLHInfoPoint* Old = FocusedInfoPoint.Get())
+		if (ATLHInteractable* Old = Focused.Get())
 		{
 			Old->SetFocused(false);
 		}
-		FocusedInfoPoint = nullptr;
+		Focused = nullptr;
 
 		// GameAndUI: Tastenkuerzel (E, Esc, Tab) funktionieren weiter, Maus bedient die Knoepfe
 		FInputModeGameAndUI Mode;
@@ -215,34 +350,21 @@ void ATLHPlayerController::SetUIState(ETLHUIState NewState, FName InfoId)
 	}
 }
 
-void ATLHPlayerController::MovePawnTo(const FVector& Location, const FRotator& Rotation)
-{
-	if (APawn* MyPawn = GetPawn())
-	{
-		MyPawn->SetActorLocation(Location, false, nullptr, ETeleportType::TeleportPhysics);
-	}
-	SetControlRotation(FRotator(Rotation.Pitch, Rotation.Yaw, 0.f));
-}
-
-void ATLHPlayerController::RefreshInfoPoints()
-{
-	const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
-	for (TActorIterator<ATLHInfoPoint> It(GetWorld()); It; ++It)
-	{
-		It->SetDiscovered(Sub && Sub->IsDiscovered(It->GetInfoId()));
-	}
-}
+// ------------------------------------------------------------------ Aktionen
 
 void ATLHPlayerController::StartNewGame()
 {
-	if (UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this))
+	UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
+	if (!Sub)
 	{
-		Sub->ResetProgress();
-		ShowToast(Sub->UI(TEXT("toast.newgame")), 4.f);
+		return;
 	}
+	Sub->ResetProgress();
+	EnsureHallForCurrentChapter();
 	MovePawnTo(ATLHGameMode::GetStartLocation(), ATLHGameMode::GetStartRotation());
-	RefreshInfoPoints();
+	RefreshWorldState();
 	bGameStarted = true;
+	ShowToast(Sub->UI(TEXT("toast.newgame")), 5.f);
 	SetUIState(ETLHUIState::Playing);
 }
 
@@ -253,8 +375,9 @@ void ATLHPlayerController::ContinueGame()
 	FRotator Rotation;
 	if (Sub && Sub->LoadGame(Location, Rotation))
 	{
+		EnsureHallForCurrentChapter();
 		MovePawnTo(Location, Rotation);
-		RefreshInfoPoints();
+		RefreshWorldState();
 		bGameStarted = true;
 		ShowToast(Sub->UI(TEXT("toast.loaded")));
 		SetUIState(ETLHUIState::Playing);
@@ -285,13 +408,73 @@ void ATLHPlayerController::SaveCurrentGame(bool bShowMessage)
 	}
 }
 
+void ATLHPlayerController::TravelToChapter(FName ChapterId)
+{
+	UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
+	const FTLHChapter* Chapter = Sub ? Sub->FindChapter(ChapterId) : nullptr;
+	if (!Chapter || !Sub->IsChapterUnlocked(*Chapter))
+	{
+		return;
+	}
+	Sub->SetCurrentChapter(ChapterId);
+	EnsureHallForCurrentChapter();
+	MovePawnTo(ATLHGameMode::GetStartLocation(), ATLHGameMode::GetStartRotation());
+	RefreshWorldState();
+	bGameStarted = true;
+
+	FFormatOrderedArguments Args;
+	Args.Add(FText::AsNumber(Chapter->Number));
+	Args.Add(Chapter->Title);
+	ShowToast(Sub->UIFormat(TEXT("toast.chapter"), Args), 5.f);
+
+	SetUIState(ETLHUIState::Playing);
+	SaveCurrentGame(false);
+}
+
 void ATLHPlayerController::OpenChapterOverview()
 {
 	if (UIState != ETLHUIState::ChapterOverview)
 	{
-		StateBeforeOverview = UIState;
+		ReturnFromOverview = UIState;
 		SetUIState(ETLHUIState::ChapterOverview);
 	}
+}
+
+void ATLHPlayerController::OpenOptions()
+{
+	if (UIState != ETLHUIState::Options)
+	{
+		ReturnFromOptions = UIState;
+		SetUIState(ETLHUIState::Options);
+	}
+}
+
+void ATLHPlayerController::OpenInfo(FName InfoId)
+{
+	const UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
+	if (!Sub || !Sub->FindInfo(InfoId))
+	{
+		return;
+	}
+	if (UIState != ETLHUIState::InfoPanel)
+	{
+		ReturnFromInfo = UIState;
+	}
+	OpenInfoId = InfoId;
+	SetUIState(ETLHUIState::InfoPanel);
+}
+
+void ATLHPlayerController::ApplySettings(const FTLHSettings& NewSettings)
+{
+	if (UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this))
+	{
+		Sub->SetSettings(NewSettings);
+		if (ATLHCharacter* Character = GetPawn<ATLHCharacter>())
+		{
+			Character->ApplySettings(Sub->GetSettings());
+		}
+	}
+	RefreshWorldState(); // "alle Kapitel freischalten" beeinflusst das Portal
 }
 
 void ATLHPlayerController::ReturnToMainMenu()
@@ -303,12 +486,22 @@ void ATLHPlayerController::CloseOverlay()
 {
 	switch (UIState)
 	{
-	case ETLHUIState::InfoPanel:
 	case ETLHUIState::PauseMenu:
+	case ETLHUIState::Ending:
 		SetUIState(ETLHUIState::Playing);
 		break;
+	case ETLHUIState::InfoPanel:
+		SetUIState(ReturnFromInfo == ETLHUIState::InfoPanel ? ETLHUIState::Playing : ReturnFromInfo);
+		break;
 	case ETLHUIState::ChapterOverview:
-		SetUIState(StateBeforeOverview == ETLHUIState::ChapterOverview ? ETLHUIState::MainMenu : StateBeforeOverview);
+		SetUIState(ReturnFromOverview == ETLHUIState::ChapterOverview ? ETLHUIState::MainMenu : ReturnFromOverview);
+		break;
+	case ETLHUIState::Options:
+		if (UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this))
+		{
+			Sub->SaveSettings();
+		}
+		SetUIState(ReturnFromOptions == ETLHUIState::Options ? ETLHUIState::MainMenu : ReturnFromOptions);
 		break;
 	default:
 		break;
@@ -317,8 +510,55 @@ void ATLHPlayerController::CloseOverlay()
 
 void ATLHPlayerController::QuitToDesktop()
 {
+	if (UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this))
+	{
+		Sub->SaveSettings();
+	}
 	UKismetSystemLibrary::QuitGame(this, this, EQuitPreference::Quit, false);
 }
+
+void ATLHPlayerController::UsePortal()
+{
+	UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
+	const FTLHChapter* Current = Sub ? Sub->GetCurrentChapter() : nullptr;
+	if (!Current)
+	{
+		return;
+	}
+	const FTLHChapter* Next = Sub->GetNextChapter(*Current);
+	if (Next && Next->bAvailable)
+	{
+		if (Sub->IsChapterUnlocked(*Next))
+		{
+			TravelToChapter(Next->Id);
+		}
+		else
+		{
+			ShowToast(Sub->UI(TEXT("toast.portal_locked")));
+		}
+		return;
+	}
+	if (Sub->IsChapterComplete(*Current))
+	{
+		ShowEnding();
+	}
+	else
+	{
+		ShowToast(Sub->UI(TEXT("toast.portal_locked")));
+	}
+}
+
+void ATLHPlayerController::ShowEnding()
+{
+	if (UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this))
+	{
+		Sub->SetEndingSeen();
+		SaveCurrentGame(false);
+	}
+	SetUIState(ETLHUIState::Ending);
+}
+
+// ------------------------------------------------------------------ Tasten
 
 void ATLHPlayerController::OnInteractPressed()
 {
@@ -331,21 +571,31 @@ void ATLHPlayerController::OnInteractPressed()
 	{
 		return;
 	}
-	ATLHInfoPoint* Point = FocusedInfoPoint.Get();
 	UTLHGameSubsystem* Sub = UTLHGameSubsystem::Get(this);
-	if (!Point || !Sub)
+	ATLHInteractable* Target = Focused.Get();
+	if (!Sub || !Target)
 	{
 		return;
 	}
 
-	const FName InfoId = Point->GetInfoId();
-	if (Sub->MarkDiscovered(InfoId))
+	if (ATLHInfoPoint* Point = Cast<ATLHInfoPoint>(Target))
 	{
-		Point->SetDiscovered(true);
-		SaveCurrentGame(false); // automatische Speicherung bei neuer Erkenntnis
-		ShowToast(Sub->UI(TEXT("toast.discovered")));
+		const FName InfoId = Point->GetInfoId();
+		if (Sub->MarkDiscovered(InfoId))
+		{
+			Point->SetDiscovered(true);
+			RefreshWorldState();
+			SaveCurrentGame(false); // automatische Speicherung bei neuer Erkenntnis
+
+			const FTLHChapter* Current = Sub->GetCurrentChapter();
+			ShowToast(Sub->UI(Current && Sub->IsChapterComplete(*Current) ? TEXT("toast.chapter_complete") : TEXT("toast.discovered")), 4.f);
+		}
+		OpenInfo(InfoId);
 	}
-	SetUIState(ETLHUIState::InfoPanel, InfoId);
+	else if (Cast<ATLHPortal>(Target))
+	{
+		UsePortal();
+	}
 }
 
 void ATLHPlayerController::OnMenuPressed()
@@ -355,12 +605,10 @@ void ATLHPlayerController::OnMenuPressed()
 	case ETLHUIState::Playing:
 		SetUIState(ETLHUIState::PauseMenu);
 		break;
-	case ETLHUIState::PauseMenu:
-	case ETLHUIState::InfoPanel:
-	case ETLHUIState::ChapterOverview:
-		CloseOverlay();
+	case ETLHUIState::MainMenu:
 		break;
 	default:
+		CloseOverlay();
 		break;
 	}
 }

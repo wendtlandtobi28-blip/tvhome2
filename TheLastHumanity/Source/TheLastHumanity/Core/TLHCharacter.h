@@ -5,6 +5,7 @@
 #include "TLHCharacter.generated.h"
 
 class UCameraComponent;
+struct FTLHSettings;
 
 /**
  * Ego-Spielfigur. Steuerung bewusst ohne Input-Assets (WASD/Pfeiltasten,
@@ -25,6 +26,9 @@ public:
 	/** false, solange ein Menue oder Textfenster offen ist. */
 	void SetGameplayInputEnabled(bool bEnabled) { bGameplayInput = bEnabled; }
 	bool IsGameplayInputEnabled() const { return bGameplayInput; }
+
+	/** Mausempfindlichkeit, Y-Achse, Sichtfeld uebernehmen. */
+	void ApplySettings(const FTLHSettings& Settings);
 
 protected:
 	UPROPERTY(VisibleAnywhere, Category = "TLH")

@@ -4,9 +4,11 @@
 #include "GameFramework/PlayerController.h"
 #include "TLHPlayerController.generated.h"
 
-class ATLHInfoPoint;
+class ATLHInteractable;
+class ATLHHallBuilder;
 class SBox;
 class SOverlay;
+struct FTLHSettings;
 
 UENUM()
 enum class ETLHUIState : uint8
@@ -15,12 +17,15 @@ enum class ETLHUIState : uint8
 	Playing,
 	PauseMenu,
 	InfoPanel,
-	ChapterOverview
+	ChapterOverview,
+	Options,
+	Ending
 };
 
 /**
  * Steuert Spielzustand und Benutzeroberflaeche:
- * Hauptmenue, Pausenmenue, Informationsfenster, Kapiteluebersicht, HUD.
+ * Haupt-/Pausenmenue, Informationsfenster, Kapiteluebersicht, Optionen, Abspann, HUD,
+ * Interaktion (Informationspunkte, Portal) und Kapitelwechsel.
  */
 UCLASS()
 class THELASTHUMANITY_API ATLHPlayerController : public APlayerController
@@ -35,18 +40,24 @@ public:
 	void ContinueGame();
 	void SaveCurrentGame(bool bShowMessage = true);
 	void OpenChapterOverview();
+	void OpenOptions();
+	void OpenInfo(FName InfoId);
+	void TravelToChapter(FName ChapterId);
 	void ReturnToMainMenu();
 	void CloseOverlay();
 	void QuitToDesktop();
 	void ToggleLongText() { bShowLongText = !bShowLongText; }
+	void ApplySettings(const FTLHSettings& NewSettings);
 
 	// --- Abfragen fuer die Oberflaeche ---
 	ETLHUIState GetUIState() const { return UIState; }
+	bool HasActiveGame() const { return bGameStarted; }
 	bool IsShowingLongText() const { return bShowLongText; }
 	FText GetInteractPrompt() const;
+	FText GetChapterLine() const;
 	FText GetToastText() const { return ToastText; }
 	bool HasToast() const { return ToastTimeLeft > 0.f; }
-	void ShowToast(const FText& Text, float Seconds = 2.5f);
+	void ShowToast(const FText& Text, float Seconds = 3.f);
 
 protected:
 	virtual void BeginPlay() override;
@@ -54,7 +65,7 @@ protected:
 	virtual void SetupInputComponent() override;
 	virtual void PlayerTick(float DeltaTime) override;
 
-	/** Maximale Entfernung (cm) zwischen Kamera und Informationspunkt. */
+	/** Maximale Entfernung (cm) zwischen Kamera und Interaktionsobjekt. */
 	UPROPERTY(EditDefaultsOnly, Category = "TLH")
 	float InteractDistance = 380.f;
 
@@ -64,14 +75,21 @@ private:
 	void OnOverviewPressed();
 	void OnQuickSavePressed();
 
-	void SetUIState(ETLHUIState NewState, FName InfoId = NAME_None);
-	void UpdateFocusedInfoPoint();
-	void RefreshInfoPoints();
+	void SetUIState(ETLHUIState NewState);
+	void UpdateFocus();
+	void RefreshWorldState();
+	void UsePortal();
+	void ShowEnding();
+	void EnsureHallForCurrentChapter();
+	ATLHHallBuilder* FindHallBuilder() const;
 	void MovePawnTo(const FVector& Location, const FRotator& Rotation);
 
 	ETLHUIState UIState = ETLHUIState::MainMenu;
-	ETLHUIState StateBeforeOverview = ETLHUIState::MainMenu;
-	TWeakObjectPtr<ATLHInfoPoint> FocusedInfoPoint;
+	ETLHUIState ReturnFromOverview = ETLHUIState::MainMenu;
+	ETLHUIState ReturnFromOptions = ETLHUIState::MainMenu;
+	ETLHUIState ReturnFromInfo = ETLHUIState::Playing;
+	FName OpenInfoId;
+	TWeakObjectPtr<ATLHInteractable> Focused;
 
 	TSharedPtr<SOverlay> RootWidget;
 	TSharedPtr<SBox> OverlaySlot;
