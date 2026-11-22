@@ -317,7 +317,7 @@ function check(cond, label, detail) {
   console.log('\n7. Optionen, schmaler Bildschirm');
   await press('Escape');
   await click('Optionen');
-  await page.locator('#opt-sens').fill('4.0');
+  await page.locator('#opt-sens').fill('4');
   await page.locator('#opt-invert').check();
   const st = await ev(() => TLH.settings());
   check(Math.abs(st.sensitivity - 4) < 0.01 && st.invertY, 'Optionen wirken sofort', JSON.stringify(st));

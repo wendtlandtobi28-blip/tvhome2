@@ -1,0 +1,117 @@
+
+1. Laden, Hauptmenue, Namenseingabe, Einleitung
+  [OK]     Spiel laedt, Hauptmenue erscheint  (7937 ms)
+  [OK]     "Fortsetzen" ohne Spielstand deaktiviert
+  [OK]     Namenseingabe erscheint
+  [OK]     Einleitungstext erscheint
+  [OK]     Spiel startet auf der Station
+  [OK]     Eigener Name im HUD  (Testhüterin)
+  [OK]     Erste Quest: Sprich mit der Kommandantin
+
+2. Steuerung, Kamera, Kollision
+  [OK]     W: vorwaerts gehen  (dz=3.12 m)
+  [OK]     D: nach rechts gehen (Kamera-relativ)  (dx=-2.07 m)
+  [OK]     Shift: Sprinten verbraucht Ausdauer (roter Balken)  (100 -> 90)
+  [OK]     Leertaste: springen und landen  (Hoehe 0.78 m)
+  [OK]     Maus: Kamera dreht nach rechts  (0.04 -> -0.24)
+  [OK]     Maus nach oben: Kamera schaut nach oben  (0.14 -> 0.03)
+  [OK]     Kollision: Gelaender am Plattformrand haelt die Figur auf  (Abstand zur Mitte 44.4 m)
+  [OK]     Esc oeffnet das Pausenmenue
+  [OK]     Esc schliesst das Pausenmenue
+
+3. Gespraech, Erkundung, Kristalle, Faehigkeiten
+  [OK]     Archivtor vor dem Gespraech versiegelt  (Das Archivtor ist versiegelt. Sprich zuerst mit der Kommandantin.)
+  [OK]     Gespraech mit der Kommandantin (4 Zeilen)  (erreicht=true, Fokus=npc:kommandantin, Zeilen=4)
+  [OK]     Quest weiter: Erkunde die Raumstation
+  [OK]     Erkundet: aussicht
+  [OK]     Erkundet: denkmal
+  [OK]     Erkundet: archivtor
+  [OK]     Nach drei Orten: Quest "Betritt das Archivtor"
+  [OK]     Alle 10 Datenkristalle eingesammelt  (10/10, erreicht 10)
+  [OK]     Kodex (I) zeigt gefundene Kristalltexte
+  [OK]     Faehigkeit 1 (Scan-Puls) verbraucht Energie  (100 -> 72)
+  [OK]     Faehigkeit 2 (Schub) bewegt die Figur  (3.36 m)
+  [OK]     Faehigkeit 3 (Leuchtfeuer) ausloesbar
+  [OK]     Faehigkeit 5 (Rueckruf) zum Startpunkt  (0.0/-22.0)
+  [OK]     Faehigkeit 6 ist bis Stufe 10 gesperrt
+  [OK]     Faehigkeiten-Uebersicht (K)
+  [OK]     Karte (M)
+  [OK]     Journal (J)
+
+4. Archivsektor 1
+  [OK]     Archivtor fuehrt in kap01_urspruenge  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap01_urspruenge)
+  [OK]     Quest: Erinnerungen in Sektor 1 erwecken
+  [OK]     Sektortor vor Abschluss gesperrt
+  [OK]     Faehigkeit 4 (Zeitecho) setzt Wegpunkt
+  [OK]     Ausfuehrliche Fassung ist laenger als die Kurzfassung  (164 -> 777)
+  [OK]     Sektor 1: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 1: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Quest: Bericht an die Kommandantin
+  [OK]     Bericht nach Sektor 1  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Danach: naechster Sektor ueber das Archivtor
+
+5. Speichern und Laden
+  [OK]     F5 speichert
+  [OK]     Nach Neuladen: Fortschritt, Kristalle, Erfahrung, Quest wiederhergestellt  ({"d":5,"c":10,"xp":1450,"stage":"gate"})
+
+6. Archivsektoren 2 bis 10 und Abspann
+  [OK]     Archivtor fuehrt in kap02_sesshaftigkeit  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap02_sesshaftigkeit)
+  [OK]     Sektor 2: alle 4 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 2: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 2  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap03_hochkulturen  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap03_hochkulturen)
+  [OK]     Sektor 3: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 3: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 3  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap04_antike  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap04_antike)
+  [OK]     Sektor 4: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 4: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 4  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap05_mittelalter  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap05_mittelalter)
+  [OK]     Sektor 5: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 5: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 5  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap06_neuzeit  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap06_neuzeit)
+  [OK]     Sektor 6: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 6: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 6  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap07_industrie  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap07_industrie)
+  [OK]     Sektor 7: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 7: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 7  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap08_extreme  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap08_extreme)
+  [OK]     Sektor 8: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 8: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 8  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap09_vernetzt  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap09_vernetzt)
+  [OK]     Sektor 9: alle 5 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 9: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Bericht nach Sektor 9  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Archivtor fuehrt in kap10_letztes_kapitel  (erreicht=true, Fokus=gate:archivtor, Bereich=sector, Kapitel=kap10_letztes_kapitel)
+  [OK]     Sektor 10: alle 4 Erinnerungen gefunden und gelesen  (offen: 0)
+  [OK]     Sektor 10: Sektortor offen, Rueckkehr zur Station  (erreicht=true, Fokus=portal:sektortor, offen=true, Bereich=hub)
+  [OK]     Alle Sektoren erweckt: letzte Quest
+  [OK]     Letztes Gespraech mit der Kommandantin  (erreicht=true, Fokus=npc:kommandantin, Zeilen=2)
+  [OK]     Abspann erscheint
+  [OK]     Abspann: 48 von 48 Erinnerungen  (Du hast 48 von 48 Erkenntnissen archiviert. · 10/10 Datenkristalle · Stufe 22)
+  [OK]     Stufe 10 erreicht  (Stufe 22)
+  [OK]     Nach dem Abspann weiter spielen
+
+7. Optionen, schmaler Bildschirm
+ABBRUCH: locator.fill: Error: Malformed value
+Call log:
+[2m  - waiting for locator('#opt-sens')[22m
+[2m    - locator resolved to <input max="6" min="0.5" step="0.1" value="2.5" type="range" id="opt-sens"/>[22m
+[2m    - fill("4.0")[22m
+[2m  - attempting fill action[22m
+[2m    - waiting for element to be visible, enabled and editable[22m
+
+    at /home/user/tvhome2/TheLastHumanity_Web/tests/e2e_test.js:320:35 {
+  log: [
+    "  - waiting for locator('#opt-sens')",
+    '    - locator resolved to <input max="6" min="0.5" step="0.1" value="2.5" type="range" id="opt-sens"/>',
+    '    - fill("4.0")',
+    '  - attempting fill action',
+    '    - waiting for element to be visible, enabled and editable'
+  ]
+}

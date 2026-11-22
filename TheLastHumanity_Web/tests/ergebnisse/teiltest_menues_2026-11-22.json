@@ -1,0 +1,72 @@
+[
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Weiterspielen\" vollstaendig sichtbar",
+    "detail": "305 px"
+  },
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Spiel speichern\" vollstaendig sichtbar",
+    "detail": "305 px"
+  },
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Journal\" vollstaendig sichtbar",
+    "detail": "358 px"
+  },
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Kodex\" vollstaendig sichtbar",
+    "detail": "411 px"
+  },
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Fähigkeiten\" vollstaendig sichtbar",
+    "detail": "411 px"
+  },
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Karte\" vollstaendig sichtbar",
+    "detail": "464 px"
+  },
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Optionen\" vollstaendig sichtbar",
+    "detail": "464 px"
+  },
+  {
+    "ok": true,
+    "label": "Pausenmenue (1024x640): \"Zum Hauptmenü\" vollstaendig sichtbar",
+    "detail": "516 px"
+  },
+  {
+    "ok": true,
+    "label": "Optionen oeffnen sich",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "Optionen wirken sofort",
+    "detail": "{\"sensitivity\":4,\"invertY\":true,\"fov\":80,\"showHint\":true,\"unlockAll\":false,\"quality\":\"mittel\",\"volume\":0.3}"
+  },
+  {
+    "ok": true,
+    "label": "Zurueck ins Pausenmenue",
+    "detail": ""
+  },
+  {
+    "ok": true,
+    "label": "Einstellungen bleiben nach Neuladen erhalten (inkl. Grafikqualitaet)",
+    "detail": "{\"sensitivity\":4,\"invertY\":true,\"fov\":80,\"showHint\":true,\"unlockAll\":false,\"quality\":\"mittel\",\"volume\":0.3}"
+  },
+  {
+    "ok": true,
+    "label": "Kein waagerechtes Scrollen bei 390 px Breite",
+    "detail": "0 px"
+  },
+  {
+    "ok": true,
+    "label": "Keine JavaScript-Fehler",
+    "detail": ""
+  }
+]

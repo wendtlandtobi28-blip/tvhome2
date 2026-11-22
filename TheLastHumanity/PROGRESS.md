@@ -1,6 +1,6 @@
 # Entwicklungsstand – THE LAST HUMANITY
 
-Letzte Aktualisierung: 22.11.2026 · **Version 1.0.0 (Browser) / 0.9.0 (Unreal)** · Branch `claude/last-humanity-game-dev-l0fii0`
+Letzte Aktualisierung: 22.11.2026 · **Version 2.0.0 (Browser, Science-Fiction) / 0.9.0 (Unreal)** · Branch `claude/last-humanity-game-dev-l0fii0`
 
 ## Statusbegriffe
 
@@ -11,7 +11,26 @@ Letzte Aktualisierung: 22.11.2026 · **Version 1.0.0 (Browser) / 0.9.0 (Unreal)*
 | ❌ Fehlgeschlagen | Test durchgeführt, Fehler offen |
 | ⬜ Nicht implementiert | Noch nicht begonnen |
 
-## Browser-Version 1.0.0 (`../TheLastHumanity_Web/`)
+## Browser-Version 2.0.0 – Science-Fiction-Story-Modus (`../TheLastHumanity_Web/`)
+
+Neue Richtung nach Vorgabe des Projektinhabers (Bildvorlage): Raumstation MNEMOSYNE, dritte Person, eigenes Emblem, HUD wie in der Vorlage. Komplette Geschichte spielbar (Station → 10 Archivsektoren → Abspann), **im Browser automatisch komplett durchgespielt** (`TESTS.md`, Abschnitt D: 86/86 bis zum Abspann in zwei Läufen, Menü-Teiltest 14/14).
+
+| Bereich | Status |
+|---|---|
+| Station mit Gasriese, Ringstadt, Schiffen, spiegelnder Plaza, Gebäuden, Bannern, Denkmal, Archivtor | ✅ getestet |
+| Spielfigur (eigenes Blender-Modell) mit Animation und Umhang; Nebenfiguren (5 sprechende, 6 laufende) | ✅ getestet |
+| Steuerung 3. Person, Kamera mit Wandkollision, Sprint/Ausdauer, Springen | ✅ getestet (Maus mit Zeigersperre: nur manuell prüfbar) |
+| Quests, Dialoge, Erkundung, Datenkristalle, Erfahrung/Stufen | ✅ getestet |
+| 6 Fähigkeiten, Energie | ✅ getestet |
+| HUD (Porträt, Balken, Quest, Kompass, Minikarte, Ort/Zeit, Protokoll, Fähigkeiten, Zähler) | ✅ sichtbar in Testbildern |
+| Journal, Kodex, Fähigkeiten, Karte, Optionen (inkl. Grafikstufe, Lautstärke) | ✅ getestet |
+| 10 Archivsektoren mit 48 Erinnerungen, Sektortore, Abspann | ✅ getestet |
+| Speichern/Laden | ✅ getestet |
+| Klang (prozedural) | 🟡 implementiert, im Test nicht hörbar |
+| Umfang für 60 Stunden | ⬜ geplant (siehe `GAME_DESIGN.md`, Abschnitt 11) |
+| Windows-Version | ⬜ nach Freigabe des Projektinhabers |
+
+## Browser-Version 1.0.0 (Archiv-Version, ersetzt durch 2.0.0; im Git-Verlauf erhalten)
 
 Auf Wunsch des Projektinhabers (22.11.2026, „Plan B“) gibt es das komplette Spiel zusätzlich als Browser-Version (three.js/WebGL). Sie hat dieselben Inhalte, Kapitel, Tore, Optionen, das Speichern und den Abspann wie das Unreal-Projekt, braucht keine Installation und **wurde in dieser Umgebung in einem echten Browser (Chromium) automatisch komplett durchgespielt** (siehe `TESTS.md`, Abschnitt C: **102 von 102 Prüfungen bestanden**).
 
