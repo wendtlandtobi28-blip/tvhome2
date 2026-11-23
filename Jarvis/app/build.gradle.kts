@@ -12,8 +12,10 @@ android {
         applicationId = "de.tobi.jarvis"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        // Die Versionsnummer setzt der GitHub-Bau automatisch hoch (siehe .github/workflows/jarvis.yml)
+        val build = (project.findProperty("jarvisVersion") as String?)?.toIntOrNull() ?: 1
+        versionCode = build
+        versionName = "1.$build"
     }
 
     // Fester Schlüssel, damit sich neue Versionen einfach drüber installieren lassen

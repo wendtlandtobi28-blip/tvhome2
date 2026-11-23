@@ -29,16 +29,21 @@ jobs:
           gradle-version: 8.9
 
       - name: APK bauen
-        run: cd Jarvis && gradle assembleDebug --no-daemon --stacktrace
+        run: cd Jarvis && gradle assembleDebug --no-daemon --stacktrace -PjarvisVersion=${{ github.run_number }}
 
-      - name: APK umbenennen
-        run: cp Jarvis/app/build/outputs/apk/debug/app-debug.apk Jarvis.apk
+      - name: APK umbenennen und Update-Datei erzeugen
+        run: |
+          cp Jarvis/app/build/outputs/apk/debug/app-debug.apk Jarvis.apk
+          echo "{\"versionCode\": ${{ github.run_number }}, \"versionName\": \"1.${{ github.run_number }}\", \"apk\": \"Jarvis.apk\"}" > version.json
+          cat version.json
 
       - name: APK hochladen
         uses: actions/upload-artifact@v4
         with:
           name: Jarvis-APK
-          path: Jarvis.apk
+          path: |
+            Jarvis.apk
+            version.json
 
       - name: APK veröffentlichen
         uses: softprops/action-gh-release@v2
@@ -46,4 +51,6 @@ jobs:
           tag_name: jarvis
           name: Jarvis
           body: "Jarvis – Sprachassistent für Android-Tablets. Datei Jarvis.apk auf dem Tablet herunterladen und installieren."
-          files: Jarvis.apk
+          files: |
+            Jarvis.apk
+            version.json

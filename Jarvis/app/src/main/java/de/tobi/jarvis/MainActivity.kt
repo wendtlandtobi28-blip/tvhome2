@@ -40,6 +40,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.darkColorScheme
@@ -87,6 +91,12 @@ class MainActivity : ComponentActivity() {
     private lateinit var brain: Brain
     private lateinit var ears: Ears
     private lateinit var mouth: Mouth
+    private lateinit var updater: Updater
+
+    private var update by mutableStateOf<UpdateInfo?>(null)
+    private var updateProgress by mutableStateOf<Float?>(null)
+    private var updateNote by mutableStateOf("")
+    private var installAfterPermission = false
 
     private var mood by mutableStateOf(Mood.Idle)
     private var level by mutableFloatStateOf(0f)
@@ -114,8 +124,10 @@ class MainActivity : ComponentActivity() {
         store = Store(this)
         brain = Brain(store)
         ears = Ears(this)
-        mouth = Mouth(this)
+        mouth = Mouth(this, store)
+        updater = Updater(this)
         if (store.apiKey.isBlank()) screen = Screen.Setup
+        checkForUpdate(silent = true)
 
         setContent {
             MaterialTheme(colorScheme = darkColorScheme(primary = Pink, background = Bg, surface = Bg)) {
@@ -126,6 +138,7 @@ class MainActivity : ComponentActivity() {
                         Screen.History -> HistoryScreen()
                         is Screen.Detail -> DetailScreen(s.conv)
                     }
+                    UpdateDialog()
                 }
             }
         }
@@ -133,6 +146,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (installAfterPermission && updater.mayInstall()) {
+            installAfterPermission = false
+            update?.let { startUpdate(it) }
+        }
         if (screen == Screen.Main && !asleep) begin()
     }
 
@@ -360,7 +377,7 @@ class MainActivity : ComponentActivity() {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Box(Modifier.size(160.dp)) { Orb(Mood.Idle, 0f, Modifier.fillMaxSize()) }
-            Text("Einrichtung", color = Fg, fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
+            Text(if (canLeave) "Einstellungen" else "Einrichtung", color = Fg, fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
             Text(
                 "Damit ich denken und im Internet suchen kann, brauche ich einmalig Ihren Anthropic-API-Schlüssel, Sir. " +
                     "Sie erstellen ihn auf console.anthropic.com unter „API Keys“. Er beginnt mit „sk-ant-“ und bleibt nur auf diesem Tablet gespeichert.",
@@ -377,6 +394,13 @@ class MainActivity : ComponentActivity() {
                 ),
                 modifier = Modifier.widthIn(max = 620.dp).fillMaxWidth()
             )
+            if (canLeave) {
+                HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
+                VoiceSettings()
+                HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
+                UpdateSettings()
+                HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
+            }
             Button(
                 onClick = { store.apiKey = key; backToMain() },
                 enabled = key.startsWith("sk-"),
@@ -472,6 +496,135 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
+            }
+        }
+    }
+
+    @Composable
+    private fun VoiceSettings() {
+        var options by remember { mutableStateOf(emptyList<VoiceOption>()) }
+        var chosen by remember { mutableStateOf(store.voice) }
+        var rate by remember { mutableFloatStateOf(store.speechRate) }
+        LaunchedEffect(Unit) { options = mouth.options() }
+        val sample = "Guten Tag, Sir. So klinge ich mit dieser Stimme. Wie kann ich Ihnen heute weiterhelfen?"
+        Column(Modifier.widthIn(max = 620.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text("Stimme", color = Fg, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
+            Text(
+                "Die Online-Stimmen klingen am natürlichsten. Fehlen Stimmen, installieren Sie in den Android-Einstellungen unter " +
+                    "„Sprachausgabe“ die Google-Sprachausgabe und dort die deutschen Sprachdaten.",
+                color = Muted, fontSize = 14.sp
+            )
+            val auto = chosen.isBlank()
+            VoiceRow("Automatisch (natürlichste Stimme)", auto) {
+                chosen = ""; store.voice = ""
+                lifecycleScope.launch { mouth.say(sample) }
+            }
+            options.forEach { o ->
+                VoiceRow(o.label, chosen == o.name) {
+                    chosen = o.name; store.voice = o.name
+                    lifecycleScope.launch { mouth.say(sample) }
+                }
+            }
+            if (options.isEmpty()) Text("Keine deutschen Stimmen gefunden.", color = Muted, fontSize = 14.sp)
+            Text("Sprechtempo: ${"%.0f".format(rate * 100)} %", color = Muted, fontSize = 14.sp)
+            Slider(
+                value = rate, onValueChange = { rate = it }, valueRange = 0.8f..1.25f,
+                onValueChangeFinished = { store.speechRate = rate; lifecycleScope.launch { mouth.say(sample) } },
+                colors = SliderDefaults.colors(thumbColor = Pink, activeTrackColor = Pink)
+            )
+        }
+    }
+
+    @Composable
+    private fun VoiceRow(label: String, selected: Boolean, onClick: () -> Unit) {
+        Row(
+            Modifier.fillMaxWidth()
+                .border(1.dp, if (selected) Pink else Pink.copy(alpha = 0.2f), RoundedCornerShape(12.dp))
+                .background(if (selected) Pink.copy(alpha = 0.14f) else Color.Transparent, RoundedCornerShape(12.dp))
+                .clickable(onClick = onClick)
+                .padding(horizontal = 14.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(label, color = Fg, fontSize = 16.sp, modifier = Modifier.weight(1f))
+            Text(if (selected) "● gewählt" else "Probehören", color = PinkSoft, fontSize = 13.sp)
+        }
+    }
+
+    @Composable
+    private fun UpdateSettings() {
+        Column(Modifier.widthIn(max = 620.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text("Updates", color = Fg, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
+            Text(
+                "Installiert: Version ${updater.installedName}. Jarvis sucht bei jedem Start automatisch nach einer neuen Version.",
+                color = Muted, fontSize = 14.sp
+            )
+            Button(
+                onClick = { checkForUpdate(silent = false) },
+                colors = ButtonDefaults.buttonColors(containerColor = Pink.copy(alpha = 0.2f), contentColor = PinkSoft)
+            ) { Text("Jetzt nach Updates suchen") }
+            if (updateNote.isNotBlank()) Text(updateNote, color = Muted, fontSize = 14.sp)
+        }
+    }
+
+    @Composable
+    private fun UpdateDialog() {
+        val info = update ?: return
+        val progress = updateProgress
+        AlertDialog(
+            onDismissRequest = { if (progress == null) update = null },
+            title = { Text("Neue Version ${info.versionName}") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text("Sir, es gibt eine neue Version von Jarvis. Ihre Gespräche und Einstellungen bleiben erhalten.")
+                    if (progress != null) {
+                        LinearProgressIndicator(progress = { progress }, color = Pink, modifier = Modifier.fillMaxWidth())
+                        Text("Wird heruntergeladen … ${(progress * 100).toInt()} %", color = Muted, fontSize = 13.sp)
+                    }
+                    if (updateNote.isNotBlank()) Text(updateNote, color = Muted, fontSize = 13.sp)
+                }
+            },
+            confirmButton = {
+                TextButton(enabled = progress == null, onClick = { startUpdate(info) }) { Text("Jetzt aktualisieren", color = Pink) }
+            },
+            dismissButton = {
+                TextButton(enabled = progress == null, onClick = { update = null }) { Text("Später") }
+            }
+        )
+    }
+
+    private fun checkForUpdate(silent: Boolean) {
+        if (!silent) updateNote = "Suche nach Updates …"
+        lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) { runCatching { updater.check() } }
+            result.onSuccess { info ->
+                if (info != null) { updateNote = ""; update = info }
+                else if (!silent) updateNote = "Jarvis ist auf dem neuesten Stand."
+            }.onFailure {
+                if (!silent) updateNote = "Update-Suche fehlgeschlagen: ${it.message ?: "keine Verbindung"}"
+            }
+        }
+    }
+
+    private fun startUpdate(info: UpdateInfo) {
+        if (!updater.mayInstall()) {
+            // Android verlangt einmalig die Freigabe "Apps aus dieser Quelle installieren"
+            installAfterPermission = true
+            updateNote = "Bitte erlauben Sie Jarvis im nächsten Fenster, Updates zu installieren, und kommen Sie dann zurück."
+            updater.openInstallPermission()
+            return
+        }
+        updateNote = ""
+        updateProgress = 0f
+        lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                runCatching { updater.download(info) { p -> lifecycleScope.launch { updateProgress = p } } }
+            }
+            updateProgress = null
+            result.onSuccess { apk ->
+                saveConversation()
+                updater.install(apk)
+            }.onFailure {
+                updateNote = "Download fehlgeschlagen: ${it.message ?: "keine Verbindung"}. Bitte später erneut versuchen."
             }
         }
     }

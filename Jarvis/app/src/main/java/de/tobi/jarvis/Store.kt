@@ -18,6 +18,15 @@ class Store(context: Context) {
         get() = prefs.getString("api_key", "") ?: ""
         set(v) = prefs.edit().putString("api_key", v.trim()).apply()
 
+    /** Name der gewählten Stimme; leer = automatisch die natürlichste. */
+    var voice: String
+        get() = prefs.getString("voice", "") ?: ""
+        set(v) = prefs.edit().putString("voice", v).apply()
+
+    var speechRate: Float
+        get() = prefs.getFloat("rate", 1.0f)
+        set(v) = prefs.edit().putFloat("rate", v).apply()
+
     @Synchronized
     fun all(): List<Conversation> {
         if (!file.exists()) return emptyList()

@@ -89,13 +89,23 @@ class Ears(private val context: Context) {
     }
 }
 
-/** Sprachausgabe über die eingebaute Vorlesestimme des Tablets. */
-class Mouth(context: Context) {
+/** Eine Stimme, wie sie in den Einstellungen angezeigt wird. */
+data class VoiceOption(val name: String, val label: String, val quality: Int, val online: Boolean)
+
+/**
+ * Sprachausgabe über die Vorlesestimme des Tablets. Bevorzugt die Google-Sprachausgabe und
+ * wählt die natürlichste deutsche Stimme, die installiert ist (die Online-Stimmen klingen am besten).
+ */
+class Mouth(context: Context, private val store: Store) {
     private val ready = CompletableDeferred<Boolean>()
     private val pending = mutableMapOf<String, CompletableDeferred<Unit>>()
+    private val app = context.applicationContext
 
-    private val tts: TextToSpeech = TextToSpeech(context.applicationContext) { status ->
-        ready.complete(status == TextToSpeech.SUCCESS)
+    private val tts: TextToSpeech = run {
+        val google = "com.google.android.tts"
+        val hasGoogle = try { app.packageManager.getPackageInfo(google, 0); true } catch (e: Exception) { false }
+        val listener = TextToSpeech.OnInitListener { status -> ready.complete(status == TextToSpeech.SUCCESS) }
+        if (hasGoogle) TextToSpeech(app, listener, google) else TextToSpeech(app, listener)
     }
 
     init {
@@ -113,29 +123,69 @@ class Mouth(context: Context) {
         synchronized(pending) { pending.remove(id) }?.complete(Unit)
     }
 
+    private fun germanVoices(): List<android.speech.tts.Voice> =
+        (tts.voices ?: emptySet()).filter {
+            it.locale.language == "de" &&
+                !it.features.contains(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED)
+        }
+
+    /** Alle installierten deutschen Stimmen, die natürlichsten zuerst. */
+    suspend fun options(): List<VoiceOption> {
+        if (!ready.await()) return emptyList()
+        return germanVoices()
+            .sortedWith(compareByDescending<android.speech.tts.Voice> { score(it) }.thenBy { it.name })
+            .mapIndexed { i, v ->
+                val kind = if (v.isNetworkConnectionRequired) "Online, sehr natürlich" else "Offline"
+                VoiceOption(v.name, "Stimme ${i + 1} · $kind · ${v.locale.displayCountry}", v.quality, v.isNetworkConnectionRequired)
+            }
+    }
+
+    private fun score(v: android.speech.tts.Voice): Int =
+        v.quality + (if (v.isNetworkConnectionRequired) 150 else 0) + (if (v.locale.country == "DE") 20 else 0) -
+            (if (v.features.contains("legacySetLanguageVoice")) 50 else 0)
+
+    private fun applyVoice() {
+        val voices = germanVoices()
+        val chosen = voices.firstOrNull { it.name == store.voice } ?: voices.maxByOrNull { score(it) }
+        if (chosen != null) tts.voice = chosen else tts.language = Locale.GERMANY
+        // Natürliche Tonhöhe und Geschwindigkeit; verstellte Werte klingen schnell künstlich
+        tts.setPitch(1.0f)
+        tts.setSpeechRate(store.speechRate)
+    }
+
     /** Spricht [text] und kehrt zurück, wenn fertig gesprochen oder abgebrochen wurde. */
     suspend fun say(text: String) {
         if (!ready.await()) return
-        tts.language = Locale.GERMANY
-        tts.setPitch(0.92f)
-        tts.setSpeechRate(1.02f)
-        val clean = text.replace(Regex("[*_#`>|]"), " ").replace(Regex("\\s+"), " ").trim()
+        stopped = false
+        applyVoice()
+        val clean = text
+            .replace(Regex("[*_#`>|]"), " ")
+            .replace(Regex("\\s+"), " ")
+            .trim()
         if (clean.isEmpty()) return
-        val chunks = clean.chunked(3500)
-        for ((i, chunk) in chunks.withIndex()) {
-            val id = UUID.randomUUID().toString()
-            val done = CompletableDeferred<Unit>()
-            synchronized(pending) { pending[id] = done }
-            val mode = if (i == 0) TextToSpeech.QUEUE_FLUSH else TextToSpeech.QUEUE_ADD
-            if (tts.speak(chunk, mode, null, id) != TextToSpeech.SUCCESS) {
-                release(id)
-                return
+        // In Sätze teilen: jeder Satz bekommt seine eigene Satzmelodie, dazwischen eine kurze Atempause
+        val sentences = Regex("(?<=[.!?…])\\s+").split(clean).filter { it.isNotBlank() }
+        for ((i, sentence) in sentences.withIndex()) {
+            for ((j, chunk) in sentence.chunked(3500).withIndex()) {
+                val id = UUID.randomUUID().toString()
+                val done = CompletableDeferred<Unit>()
+                synchronized(pending) { pending[id] = done }
+                val mode = if (i == 0 && j == 0) TextToSpeech.QUEUE_FLUSH else TextToSpeech.QUEUE_ADD
+                if (tts.speak(chunk, mode, null, id) != TextToSpeech.SUCCESS) {
+                    release(id)
+                    return
+                }
+                done.await()
+                if (stopped) { stopped = false; return }
             }
-            done.await()
+            if (i < sentences.lastIndex) tts.playSilentUtterance(140, TextToSpeech.QUEUE_ADD, null)
         }
     }
 
+    @Volatile private var stopped = false
+
     fun stop() {
+        stopped = true
         tts.stop()
         val all = synchronized(pending) { pending.values.toList().also { pending.clear() } }
         all.forEach { it.complete(Unit) }
