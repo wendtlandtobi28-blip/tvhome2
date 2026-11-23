@@ -20,6 +20,29 @@ class Store(context: Context) {
         get() = prefs.getString("api_key", "") ?: ""
         set(v) = prefs.edit().putString("api_key", v.trim()).apply()
 
+    /** Kostenloser Schlüssel von Google AI Studio für Gemini. */
+    var geminiKey: String
+        get() = prefs.getString("gemini_key", "") ?: ""
+        set(v) = prefs.edit().putString("gemini_key", v.trim()).apply()
+
+    /** "gemini" (kostenlos) oder "claude" (Guthaben nötig). */
+    var provider: String
+        get() = prefs.getString("provider", "gemini") ?: "gemini"
+        set(v) = prefs.edit().putString("provider", v).apply()
+
+    /** Zuletzt funktionierendes Gemini-Modell, damit nicht jedes Mal gesucht werden muss. */
+    var geminiModel: String
+        get() = prefs.getString("gemini_model", "") ?: ""
+        set(v) = prefs.edit().putString("gemini_model", v).apply()
+
+    /** Wohnort für Wetterfragen ohne Ortsangabe. */
+    var homeCity: String
+        get() = prefs.getString("home_city", "") ?: ""
+        set(v) = prefs.edit().putString("home_city", v.trim()).apply()
+
+    /** Hat Jarvis überhaupt einen Schlüssel, mit dem er denken kann? */
+    val hasAnyKey: Boolean get() = geminiKey.isNotBlank() || apiKey.isNotBlank()
+
     /** Name der gewählten Stimme; leer = automatisch die natürlichste. */
     var voice: String
         get() = prefs.getString("voice", "") ?: ""

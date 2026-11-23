@@ -10,6 +10,11 @@ import android.provider.CalendarContract
 import androidx.core.content.ContextCompat
 import com.anthropic.core.JsonValue
 import com.anthropic.models.messages.Tool
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
+import java.net.URLEncoder
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -17,26 +22,66 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 
+/** Ein Werkzeug, unabhängig davon, ob Claude oder Gemini es benutzt. */
+class ToolSpec(val name: String, val description: String, val props: Map<String, Map<String, Any>>, val required: List<String>)
+
 /**
  * Werkzeuge, die Jarvis auf dem Tablet benutzen darf: Kalender (der Google-Kalender, der auf dem
  * Tablet eingerichtet ist), Wecker und Timer der Uhr-App, eigene Notizen und frühere Gespräche.
  */
 class Tools(private val context: Context, private val store: Store) {
 
-    private fun tool(name: String, description: String, props: Map<String, Map<String, Any>>, required: List<String>): Tool {
+    private fun tool(name: String, description: String, props: Map<String, Map<String, Any>>, required: List<String>) =
+        ToolSpec(name, description, props, required)
+
+    /** Die Werkzeuge im Format der Claude-Schnittstelle. */
+    fun claudeTools(): List<Tool> = specs.map { t ->
         val p = Tool.InputSchema.Properties.builder()
-        props.forEach { (k, v) -> p.putAdditionalProperty(k, JsonValue.from(v)) }
-        return Tool.builder()
-            .name(name)
-            .description(description)
-            .inputSchema(Tool.InputSchema.builder().properties(p.build()).required(required).build())
+        t.props.forEach { (k, v) -> p.putAdditionalProperty(k, JsonValue.from(v)) }
+        Tool.builder()
+            .name(t.name)
+            .description(t.description)
+            .inputSchema(Tool.InputSchema.builder().properties(p.build()).required(t.required).build())
             .build()
+    }
+
+    /** Die Werkzeuge im Format der Gemini-Schnittstelle (functionDeclarations). */
+    fun geminiDeclarations(extra: List<ToolSpec>): JSONArray {
+        val arr = JSONArray()
+        (specs + extra).forEach { t ->
+            val props = JSONObject()
+            t.props.forEach { (k, v) -> props.put(k, JSONObject(v)) }
+            val params = JSONObject().put("type", "object").put("properties", props)
+            if (t.required.isNotEmpty()) params.put("required", JSONArray(t.required))
+            arr.put(JSONObject().put("name", t.name).put("description", t.description).put("parameters", params))
+        }
+        return arr
     }
 
     private fun str(desc: String) = mapOf("type" to "string", "description" to desc)
     private fun int(desc: String) = mapOf("type" to "integer", "description" to desc)
 
-    val definitions: List<Tool> = listOf(
+    val specs: List<ToolSpec> = listOf(
+        tool(
+            "weather",
+            "Kostenloses Wetter: aktuelles Wetter und Vorhersage für die nächsten Tage für einen Ort. Immer zuerst dieses Werkzeug für Wetterfragen benutzen.",
+            mapOf(
+                "city" to str("Ort, zum Beispiel Berlin. Leer lassen für den Wohnort des Nutzers"),
+                "days" to int("Anzahl Tage Vorhersage, 1 bis 7")
+            ),
+            emptyList()
+        ),
+        tool(
+            "news",
+            "Kostenlose aktuelle Nachrichten aus Deutschland und der Welt (Tagesschau). Für Fragen nach Nachrichten und Schlagzeilen.",
+            mapOf("topic" to str("Optionales Stichwort, nach dem gefiltert wird")),
+            emptyList()
+        ),
+        tool(
+            "wikipedia",
+            "Kostenlose Wikipedia-Suche: kurze Zusammenfassung zu Personen, Orten, Begriffen und Wissen.",
+            mapOf("query" to str("Suchbegriff")), listOf("query")
+        ),
         tool(
             "search_conversations",
             "Durchsucht die gespeicherten früheren Gespräche mit dem Nutzer nach Stichworten und gibt passende Ausschnitte mit Datum zurück.",
@@ -99,6 +144,9 @@ class Tools(private val context: Context, private val store: Store) {
 
     fun run(name: String, input: Map<*, *>, conversationId: Long): String = try {
         when (name) {
+            "weather" -> weather(input["city"]?.toString().orEmpty(), (input["days"] as? Number)?.toInt() ?: 3)
+            "news" -> news(input["topic"]?.toString().orEmpty())
+            "wikipedia" -> wikipedia(input["query"]?.toString().orEmpty())
             "search_conversations" -> store.search(input["query"]?.toString().orEmpty(), conversationId)
             "calendar_list_events" -> listEvents(input["from_date"].toString(), input["to_date"].toString())
             "calendar_add_event" -> addEvent(input)
@@ -116,6 +164,85 @@ class Tools(private val context: Context, private val store: Store) {
         "Keine Berechtigung. Der Nutzer muss Jarvis in den Android-Einstellungen den Zugriff erlauben."
     } catch (e: Exception) {
         "Fehler: ${e.message}"
+    }
+
+    // ---------------- kostenlose Internetdienste ----------------
+
+    private fun getJson(url: String): String {
+        val c = URL(url).openConnection() as HttpURLConnection
+        c.connectTimeout = 10_000
+        c.readTimeout = 15_000
+        c.setRequestProperty("User-Agent", "JarvisTabletApp/1.0")
+        try {
+            if (c.responseCode != 200) error("Dienst antwortet mit ${c.responseCode}")
+            return c.inputStream.use { it.readBytes().decodeToString() }
+        } finally {
+            c.disconnect()
+        }
+    }
+
+    private fun enc(s: String) = URLEncoder.encode(s, "UTF-8")
+
+    private fun weather(cityIn: String, daysIn: Int): String {
+        val city = cityIn.ifBlank { store.homeCity }.ifBlank { return "Kein Ort bekannt. Frag den Nutzer, für welchen Ort." }
+        val geo = JSONObject(getJson("https://geocoding-api.open-meteo.com/v1/search?count=1&language=de&name=" + enc(city)))
+        val place = geo.optJSONArray("results")?.optJSONObject(0) ?: return "Ort \"$city\" nicht gefunden."
+        val days = daysIn.coerceIn(1, 7)
+        val w = JSONObject(
+            getJson(
+                "https://api.open-meteo.com/v1/forecast?latitude=${place.getDouble("latitude")}&longitude=${place.getDouble("longitude")}" +
+                    "&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation" +
+                    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
+                    "&timezone=auto&forecast_days=$days"
+            )
+        )
+        val cur = w.getJSONObject("current")
+        val sb = StringBuilder("${place.getString("name")}: jetzt ${cur.getDouble("temperature_2m")} °C " +
+            "(gefühlt ${cur.getDouble("apparent_temperature")} °C), ${code(cur.getInt("weather_code"))}, " +
+            "Wind ${cur.getDouble("wind_speed_10m")} km/h.")
+        val d = w.getJSONObject("daily")
+        val dates = d.getJSONArray("time")
+        for (i in 0 until dates.length()) {
+            sb.append("\n${dates.getString(i)}: ${code(d.getJSONArray("weather_code").getInt(i))}, " +
+                "${d.getJSONArray("temperature_2m_min").getDouble(i)} bis ${d.getJSONArray("temperature_2m_max").getDouble(i)} °C, " +
+                "Regenwahrscheinlichkeit ${d.getJSONArray("precipitation_probability_max").optInt(i)} %")
+        }
+        return sb.toString()
+    }
+
+    private fun code(c: Int) = when (c) {
+        0 -> "klar"; 1 -> "überwiegend klar"; 2 -> "teils bewölkt"; 3 -> "bedeckt"
+        45, 48 -> "Nebel"; 51, 53, 55 -> "Nieselregen"; 56, 57 -> "gefrierender Niesel"
+        61 -> "leichter Regen"; 63 -> "Regen"; 65 -> "starker Regen"; 66, 67 -> "gefrierender Regen"
+        71 -> "leichter Schneefall"; 73 -> "Schneefall"; 75 -> "starker Schneefall"; 77 -> "Schneegriesel"
+        80, 81, 82 -> "Regenschauer"; 85, 86 -> "Schneeschauer"; 95 -> "Gewitter"; 96, 99 -> "Gewitter mit Hagel"
+        else -> "wechselhaft"
+    }
+
+    private fun news(topic: String): String {
+        val json = JSONObject(getJson("https://www.tagesschau.de/api2u/homepage/"))
+        val items = mutableListOf<String>()
+        for (key in listOf("news", "regional")) {
+            val arr = json.optJSONArray(key) ?: continue
+            for (i in 0 until arr.length()) {
+                val o = arr.optJSONObject(i) ?: continue
+                val title = o.optString("title")
+                val first = o.optString("firstSentence")
+                if (title.isBlank()) continue
+                val line = if (first.isNotBlank()) "$title: $first" else title
+                if (topic.isBlank() || line.contains(topic, ignoreCase = true)) items.add(line)
+            }
+        }
+        return if (items.isEmpty()) "Keine passenden Nachrichten gefunden." else items.distinct().take(10).joinToString("\n")
+    }
+
+    private fun wikipedia(query: String): String {
+        if (query.isBlank()) return "Kein Suchbegriff."
+        val search = JSONObject(getJson("https://de.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=1&srsearch=" + enc(query)))
+        val hit = search.getJSONObject("query").getJSONArray("search").optJSONObject(0) ?: return "Bei Wikipedia nichts gefunden."
+        val title = hit.getString("title")
+        val sum = JSONObject(getJson("https://de.wikipedia.org/api/rest_v1/page/summary/" + enc(title.replace(' ', '_')).replace("+", "%20")))
+        return "$title: " + sum.optString("extract").take(1500)
     }
 
     private fun fmtDay(ms: Long) =

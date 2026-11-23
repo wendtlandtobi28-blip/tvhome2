@@ -9,3 +9,5 @@
 - Android-Apps werden über GitHub Actions gebaut und als Release veröffentlicht (in der Cloud-Umgebung ist
   das Android-SDK nicht erreichbar). Immer denselben Signaturschlüssel behalten, damit Updates sich über die
   alte Version installieren lassen.
+- **So kostengünstig wie möglich bauen.** Kostenlose Dienste bevorzugen (z. B. Gemini-Gratistarif, Open-Meteo,
+  Tagesschau-API, Wikipedia). Kostenpflichtige APIs nur als Reserve und mit dem günstigsten Modell.

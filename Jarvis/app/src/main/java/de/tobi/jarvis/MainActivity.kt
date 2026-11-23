@@ -126,7 +126,7 @@ class MainActivity : ComponentActivity() {
         ears = Ears(this)
         mouth = Mouth(this, store)
         updater = Updater(this)
-        if (store.apiKey.isBlank()) screen = Screen.Setup
+        if (!store.hasAnyKey) screen = Screen.Setup
         checkForUpdate(silent = true)
 
         setContent {
@@ -168,7 +168,7 @@ class MainActivity : ComponentActivity() {
     // ---------------- Gesprächsschleife ----------------
 
     private fun begin() {
-        if (store.apiKey.isBlank()) { screen = Screen.Setup; return }
+        if (!store.hasAnyKey) { screen = Screen.Setup; return }
         val micMissing = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
         val calendarMissing = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED
         // Den Kalender nur einmal von selbst erfragen, danach nur noch das Mikrofon
@@ -375,45 +375,80 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun SetupScreen() {
-        var key by remember { mutableStateOf(store.apiKey) }
-        val canLeave = store.apiKey.isNotBlank()
+        var provider by remember { mutableStateOf(store.provider) }
+        var gKey by remember { mutableStateOf(store.geminiKey) }
+        var cKey by remember { mutableStateOf(store.apiKey) }
+        var city by remember { mutableStateOf(store.homeCity) }
+        val canLeave = store.hasAnyKey
         BackHandler(enabled = canLeave) { backToMain() }
+        val ok = if (provider == "gemini") gKey.length > 20 else cKey.startsWith("sk-")
         Column(
             Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp).verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Box(Modifier.size(160.dp)) { Orb(Mood.Idle, 0f, Modifier.fillMaxSize()) }
+            Box(Modifier.size(140.dp)) { Orb(Mood.Idle, 0f, Modifier.fillMaxSize()) }
             Text(if (canLeave) "Einstellungen" else "Einrichtung", color = Fg, fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
-            Text(
-                "Damit ich denken und im Internet suchen kann, brauche ich einmalig Ihren Anthropic-API-Schlüssel, Sir. " +
-                    "Sie erstellen ihn auf console.anthropic.com unter „API Keys“. Er beginnt mit „sk-ant-“ und bleibt nur auf diesem Tablet gespeichert.",
-                color = Muted, fontSize = 16.sp, textAlign = TextAlign.Center, modifier = Modifier.widthIn(max = 620.dp)
+
+            Column(Modifier.widthIn(max = 620.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Womit soll ich denken, Sir?", color = Fg, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
+                VoiceRow("Google Gemini – kostenlos (empfohlen)", provider == "gemini") { provider = "gemini" }
+                VoiceRow("Claude Haiku – sehr günstig, braucht Guthaben", provider == "claude") { provider = "claude" }
+            }
+
+            KeyField(
+                "Gemini-Schlüssel (kostenlos)", gKey, { gKey = it },
+                "Kostenlos auf aistudio.google.com: mit dem Google-Konto anmelden, „Get API key“ und dann „Create API key“ tippen, " +
+                    "kopieren und hier einfügen. Keine Kreditkarte nötig."
+            )
+            KeyField(
+                "Claude-Schlüssel (optional, Reserve)", cKey, { cKey = it },
+                "Optional von console.anthropic.com. Ist er eingetragen, springt Claude ein, wenn das kostenlose Gemini-Tageslimit erreicht ist."
             )
             OutlinedTextField(
-                value = key, onValueChange = { key = it.trim() },
-                label = { Text("API-Schlüssel") }, singleLine = true,
-                visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Pink, unfocusedBorderColor = Pink.copy(alpha = 0.4f),
-                    focusedTextColor = Fg, unfocusedTextColor = Fg, cursorColor = Pink, focusedLabelColor = PinkSoft
-                ),
-                modifier = Modifier.widthIn(max = 620.dp).fillMaxWidth()
+                value = city, onValueChange = { city = it },
+                label = { Text("Wohnort (für das Wetter)") }, singleLine = true,
+                colors = fieldColors(), modifier = Modifier.widthIn(max = 620.dp).fillMaxWidth()
             )
+            Text(
+                "Die Schlüssel bleiben nur auf diesem Tablet gespeichert. Wetter, Nachrichten und Wikipedia nutze ich über kostenlose Dienste.",
+                color = Muted, fontSize = 14.sp, textAlign = TextAlign.Center, modifier = Modifier.widthIn(max = 620.dp)
+            )
+            Button(
+                onClick = {
+                    store.provider = provider; store.geminiKey = gKey; store.apiKey = cKey; store.homeCity = city
+                    backToMain()
+                },
+                enabled = ok,
+                colors = ButtonDefaults.buttonColors(containerColor = Pink, contentColor = Bg)
+            ) { Text("Speichern und starten") }
             if (canLeave) {
                 HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
                 VoiceSettings()
                 HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
                 UpdateSettings()
-                HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
+                TextButton(onClick = { backToMain() }) { Text("Zurück ohne Speichern", color = PinkSoft) }
             }
-            Button(
-                onClick = { store.apiKey = key; backToMain() },
-                enabled = key.startsWith("sk-"),
-                colors = ButtonDefaults.buttonColors(containerColor = Pink, contentColor = Bg)
-            ) { Text("Speichern und starten") }
-            if (canLeave) TextButton(onClick = { backToMain() }) { Text("Zurück", color = PinkSoft) }
+        }
+    }
+
+    @Composable
+    private fun fieldColors() = OutlinedTextFieldDefaults.colors(
+        focusedBorderColor = Pink, unfocusedBorderColor = Pink.copy(alpha = 0.4f),
+        focusedTextColor = Fg, unfocusedTextColor = Fg, cursorColor = Pink, focusedLabelColor = PinkSoft
+    )
+
+    @Composable
+    private fun KeyField(label: String, value: String, onChange: (String) -> Unit, help: String) {
+        Column(Modifier.widthIn(max = 620.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            OutlinedTextField(
+                value = value, onValueChange = { onChange(it.trim()) },
+                label = { Text(label) }, singleLine = true,
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                colors = fieldColors(), modifier = Modifier.fillMaxWidth()
+            )
+            Text(help, color = Muted, fontSize = 13.sp)
         }
     }
 
