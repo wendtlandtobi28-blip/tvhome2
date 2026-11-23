@@ -1,0 +1,81 @@
+{
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "ok": true,
+      "label": "PC: kein Touch-Modus",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Q oeffnet das Waffenkreuz",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Q + W: Puls-Blaster",
+      "detail": "blaster"
+    },
+    {
+      "ok": true,
+      "label": "Q, dann KeyD: streuer",
+      "detail": "streuer"
+    },
+    {
+      "ok": true,
+      "label": "Q, dann KeyS: lanze",
+      "detail": "lanze"
+    },
+    {
+      "ok": true,
+      "label": "Q, dann KeyA: klinge",
+      "detail": "klinge"
+    },
+    {
+      "ok": true,
+      "label": "X steckt die Waffe weg",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "X zieht die letzte Waffe wieder",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "F feuert die Lichtlanze (Ladung 3 von 4)",
+      "detail": "3"
+    },
+    {
+      "ok": true,
+      "label": "Uebungsziel zerstoert",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Uebungsziele geben keine Erfahrung (kein Farmen)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "R laedt nach",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Nachladen fertig (4 von 4)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Uebungsziel kommt nach einigen Sekunden wieder",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Keine JavaScript-Fehler",
+      "detail": ""
+    }
+  ]
+}

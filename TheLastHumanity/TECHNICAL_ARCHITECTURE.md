@@ -145,3 +145,10 @@ Slate statt UMG, weil UMG-Widgets als Editor-Assets erstellt werden müssten. Di
 - `python3 Tools/merge_content.py` fügt die Kapitel mit `basis_de.json` zu `content_de.json` (`schemaVersion` 3) zusammen. Die Browser-Version liest diese Datei beim Bündeln ein (`TheLastHumanity_Web/tools/bundle.mjs`).
 - `Tools/validate_project.py` prüft u. a. Anzahl der Erinnerungen, Artefakte, Echo, Quizfragen, Latin-1-Titel, Übereinstimmung der Kapiteldateien mit `content_de.json` sowie die Nebenaufgaben in `story_de.json`.
 - **Einschränkung Unreal-Version:** Der C++-Code wurde für 10 Kapitel mit bis zu 7 Erkenntnissen geschrieben. Artefakte, Echo und Wissensprüfung gibt es dort noch nicht; die neuen Felder werden ignoriert. Hallenaufbau und Positionen für 12–15 Punkte müssen beim Ausbau in Unreal angepasst werden.
+
+## 8. Leistung und Waffen (Browser 3.1.0)
+
+- `perf` in `src/main.js`: misst alle 1,5 s die Bildrate. Unter 48 Bildern/s sinkt zuerst die Auflösung (Pixelverhältnis, Tablet 0,55–1,0), dann wird Bloom abgeschaltet, unter 40 Bildern/s auch die Schatten. Steigt die Bildrate stabil über 57, geht die Auflösung wieder hoch, mit Sperre gegen Hin- und Herspringen. `?auto=aus` schaltet das ab.
+- Ruckler vermieden: Das Leuchtfeuer-Licht bleibt dauerhaft in der Szene (Intensität 0). Alle Waffeneffekte kommen aus festen Vorräten mit Grundmaterialien, ohne Lichter. Nach jedem Weltwechsel übersetzt `renderer.compile` die Shader vorab.
+- Glättung: Bildzeit (gleitender Mittelwert), Wischbewegungen (gesammelt, pro Bild weich angewendet), Kamera-Wandkollision (gedämpft statt springend). Die Minikarte wird mit höchstens 30 Bildern/s gezeichnet.
+- `src/weapons.js`: Waffendaten, Waffenmodelle, Geschosse (Segment-gegen-Kugel-Test), Strahl, Nahkampf, Funken, Störsonden. Wände begrenzen Schüsse per Raycast auf `world.blockers`, dazu der Boden.

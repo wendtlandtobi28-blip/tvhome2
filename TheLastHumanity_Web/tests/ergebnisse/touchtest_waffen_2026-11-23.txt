@@ -1,0 +1,51 @@
+
+T1. Start auf dem Tablet
+  [OK]     Tablet wird erkannt (Touch-Modus)
+  [OK]     Menues per Antippen bedienbar, Spiel startet
+  [OK]     Touch-Steuerung sichtbar
+  [OK]     Tastatur-Hinweise ausgeblendet
+
+T2. Joystick, Umsehen, Knoepfe
+  [OK]     Joystick: Figur laeuft  (4.76 m)
+  [OK]     Joystick loslassen: Figur bleibt stehen
+  [OK]     Wischen rechts: Kamera dreht sich
+  [OK]     Zwei Finger: laufen und umsehen gleichzeitig
+  [OK]     Sprint-Knopf schaltet ein
+  [OK]     Sprinten per Knopf verbraucht Ausdauer
+  [OK]     Sprung-Knopf
+  [OK]     Faehigkeit antippen (Scan-Puls)
+  [OK]     Knopf oeffnet journal
+  [OK]     journal per Antippen schliessen
+  [OK]     Knopf oeffnet map
+  [OK]     map per Antippen schliessen
+  [OK]     Knopf oeffnet codex
+  [OK]     codex per Antippen schliessen
+  [OK]     Menue-Knopf oeffnet das Menue
+  [OK]     "Weiterspielen" antippen
+
+T3. Gespraech und Sektor per Touch
+  [OK]     Hinweis erscheint bei der Kommandantin
+  [OK]     E-Knopf startet Gespraech
+  [OK]     Gespraech per E-Knopf durchgeklickt, Quest weiter
+  [OK]     Sektor 1 per Antippen im Journal betreten
+  [OK]     Datenrauschen: E-Knopf gedrueckt halten
+  [OK]     Erinnerung per E-Knopf geoeffnet
+  [OK]     Erinnerung per Antippen geschlossen
+  [OK]     Prueftterminal reagiert (Pruefung erst nach allen Erinnerungen)  (Wissensterminal: erst alle Erinnerungen erwecken (1/13))
+
+T3b. Waffen und Waffenkreuz
+  [OK]     Waffenkreuz oeffnet per Knopf
+  [OK]     Waffe im Kreuz antippen ruestet sie aus (Streukanone)
+  [OK]     Feuer-Knopf, Fadenkreuz und Waffenanzeige sichtbar
+  [OK]     Stoersonden im Sektor vorhanden  (4)
+  [OK]     Feuer-Knopf schiesst (Ladung sinkt)
+  [OK]     Stoersonde getroffen und ausgeschaltet  (1)
+  [OK]     Waffe wegstecken ueber die Kreuzmitte
+  [OK]     Tablet: Aufloesung begrenzt und Leuchteffekt aus (Leistung)  ({"scale":0.55,"max":0.8,"min":0.55,"fps":6,"bloom":false,"shadows":false})
+
+T4. Hochformat
+  [OK]     Hochformat: Knoepfe ueberlappen nicht und sind im Bild  ({"useAb":false,"menuMap":false,"inside":true})
+  [OK]     Hochformat: kein waagerechtes Scrollen
+  [OK]     Keine JavaScript-Fehler  ()
+
+=== 39 bestanden, 0 fehlgeschlagen ===

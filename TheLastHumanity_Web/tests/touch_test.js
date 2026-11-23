@@ -163,6 +163,36 @@ function check(cond, label, detail) {
     check((await ev(() => TLH.prompt())).length > 0, 'Prueftterminal reagiert (Pruefung erst nach allen Erinnerungen)', await ev(() => TLH.prompt()));
   }
 
+  console.log('\nT3b. Waffen und Waffenkreuz');
+  if (await state() !== 'playing') await ev(() => { const b = document.querySelector('.screen:not([hidden]) button[data-action="close"]'); if (b) b.click(); });
+  await wait(200);
+  await tapKey('#t-wpn');
+  check(await ev(() => TLH.wheelOpen()) && await page.locator('#wcross').isVisible(), 'Waffenkreuz oeffnet per Knopf');
+  await shot('tablet_waffenkreuz');
+  await press('[data-weapon="streuer"]', 'pointerdown'); await wait(250);
+  check(await ev(() => TLH.weapon()) === 'streuer' && !(await ev(() => TLH.wheelOpen())), 'Waffe im Kreuz antippen ruestet sie aus (Streukanone)');
+  check(await page.locator('#t-fire').isVisible() && await page.locator('#xhair').isVisible() && await page.locator('#weapon-hud').isVisible(), 'Feuer-Knopf, Fadenkreuz und Waffenanzeige sichtbar');
+  const dr = (await ev(() => TLH.drones())).find((d) => d.alive);
+  check(!!dr, 'Stoersonden im Sektor vorhanden', (await ev(() => TLH.drones())).length);
+  if (dr) {
+    await ev(([x, z]) => TLH.teleport(x - 4, z), [dr.x, dr.z]);
+    const a0 = await ev(() => TLH.ammo());
+    const k0 = await ev(() => TLH.dronesKilled());
+    for (let i = 0; i < 40 && (await ev(() => TLH.dronesKilled())) === k0; i++) {
+      const d = await ev(() => { const p = TLH.player(); const a = TLH.drones().filter((x) => x.alive); return a.find((x) => Math.hypot(x.x - p.x, x.z - p.z) < 12) || a[0]; });
+      await ev(([x, y, z]) => TLH.aimAt(x, y, z), [d.x, d.y, d.z]);
+      await press('#t-fire', 'pointerdown'); await wait(250); await press('#t-fire', 'pointerup'); await wait(150);
+    }
+    check(await ev(() => TLH.ammo()) < a0 || await ev(() => TLH.reloading()), 'Feuer-Knopf schiesst (Ladung sinkt)');
+    check(await ev(() => TLH.dronesKilled()) > k0, 'Stoersonde getroffen und ausgeschaltet', await ev(() => TLH.dronesKilled()));
+    await shot('tablet_waffe');
+  }
+  await tapKey('#t-wpn');
+  await press('[data-weapon="none"]', 'pointerdown'); await wait(250);
+  check(await ev(() => TLH.weapon()) === null && !(await page.locator('#t-fire').isVisible()), 'Waffe wegstecken ueber die Kreuzmitte');
+  const pf = await ev(() => TLH.perf());
+  check(pf.scale <= 1.0 && !pf.bloom, 'Tablet: Aufloesung begrenzt und Leuchteffekt aus (Leistung)', JSON.stringify(pf));
+
   console.log('\nT4. Hochformat');
   await page.setViewportSize({ width: 834, height: 1194 });
   await wait(600);

@@ -1,0 +1,22 @@
+  [OK]     PC: kein Touch-Modus
+
+W1. Waffenkreuz
+  [OK]     Q oeffnet das Waffenkreuz
+  [OK]     Q + W: Puls-Blaster  (blaster)
+  [OK]     Q, dann KeyD: streuer  (streuer)
+  [OK]     Q, dann KeyS: lanze  (lanze)
+  [OK]     Q, dann KeyA: klinge  (klinge)
+  [OK]     X steckt die Waffe weg
+  [OK]     X zieht die letzte Waffe wieder
+
+W2. Feuern auf der Station (Uebungsziele)
+  [OK]     F feuert die Lichtlanze (Ladung 3 von 4)  (3)
+  [OK]     Uebungsziel zerstoert
+  [OK]     Uebungsziele geben keine Erfahrung (kein Farmen)
+  [OK]     R laedt nach
+  [OK]     Nachladen fertig (4 von 4)
+  [OK]     Uebungsziel kommt nach einigen Sekunden wieder
+  [OK]     Keine JavaScript-Fehler  ()
+  Leistung: {"scale":0.6000000000000001,"max":1,"min":0.6,"fps":6,"bloom":false,"shadows":false}
+
+=== 15 bestanden, 0 fehlgeschlagen ===

@@ -232,6 +232,31 @@ body.touch #minimap { width: 150px; height: 150px; }
 body.touch .ttop { top: 220px; }
 @media (max-width: 900px) { body.touch #abilities { left: 50%; } body.touch #abilities .slot { width: 46px; height: 46px; } body.touch #abilities .slot svg { width: 26px; height: 26px; } .ttop { top: 215px !important; } }
 @media (max-height: 640px) { body.touch #abilities { display: none; } }
+/* Waffen */
+#xhair { position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px; pointer-events: none; border: 2px solid rgba(230,245,255,0.85); border-radius: 50%; box-shadow: 0 0 3px rgba(0,0,0,0.8), inset 0 0 3px rgba(0,0,0,0.8); }
+#xhair::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px 0 0 -2px; background: #fff; border-radius: 50%; }
+#weapon-hud { position: absolute; left: 50%; top: 74px; transform: translateX(-50%); background: var(--glass); border: 1px solid var(--line); padding: 5px 14px; display: flex; gap: 10px; align-items: center; font-weight: 700; font-size: 16px; white-space: nowrap; }
+#weapon-hud i { width: 10px; height: 10px; transform: rotate(45deg); display: inline-block; }
+#weapon-hud span { color: var(--gold); min-width: 64px; text-align: right; }
+#weapon-hud.reload span { color: #ff9a70; }
+#wcross { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(2,6,12,0.35); pointer-events: auto; z-index: 5; }
+#wcross .wc { position: relative; width: 330px; height: 330px; }
+#wcross button { position: absolute; width: 104px; height: 104px; margin: -52px 0 0 -52px; border-radius: 14px; background: rgba(8,16,28,0.82); border: 2px solid rgba(95,208,255,0.45); color: #dff4ff; font: 700 14px var(--font-ui); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer; touch-action: none; }
+#wcross button svg { width: 46px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2.2; }
+#wcross button.cur { border-color: var(--gold); }
+#wcross button.sel { background: rgba(40,110,160,0.9); border-color: #9fe0ff; transform: scale(1.07); }
+#wcross button kbd { position: absolute; top: 4px; right: 6px; font-size: 11px; opacity: 0.7; }
+#wcross .w-oben { left: 50%; top: 16%; } #wcross .w-rechts { left: 84%; top: 50%; } #wcross .w-unten { left: 50%; top: 84%; } #wcross .w-links { left: 16%; top: 50%; }
+#wcross .w-none { left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; font-size: 12px; }
+#wc-info { position: absolute; left: 50%; top: calc(50% + 190px); transform: translateX(-50%); width: min(420px, 90vw); text-align: center; background: var(--glass); border: 1px solid var(--line); padding: 8px 12px; }
+#wc-info b { display: block; color: var(--gold); font-size: 18px; } #wc-info span { font-size: 15px; }
+#t-fire { position: absolute; right: 0; bottom: 128px; width: 84px; height: 84px; font-size: 16px; border-color: rgba(255,110,80,0.85) !important; color: #ffc0a8 !important; display: none !important; }
+#t-reload { position: absolute; right: 96px; bottom: 160px; width: 54px; height: 54px; font-size: 12px; display: none !important; }
+body.armed #t-fire, body.armed #t-reload { display: grid !important; }
+#t-wpn { position: absolute; right: 104px; bottom: 160px; width: 66px; height: 66px; font-size: 13px; }
+body.armed #t-wpn { right: 160px; bottom: 150px; }
+body.touch .tpad { height: 220px; }
+@media (max-height: 560px) { #wcross .wc { transform: scale(0.75); } #wc-info { top: calc(50% + 140px); } }
 @media (prefers-reduced-motion: reduce) { button, .bar i { transition: none; } }
 </style>
 </head>
@@ -257,7 +282,7 @@ body.touch .ttop { top: 220px; }
     <div class="loc"><span id="loc-name"></span><span id="loc-time"></span></div>
     <canvas id="minimap" width="190" height="190"></canvas>
     <ul id="hint">
-      <li>Karte <kbd>M</kbd></li><li>Kodex <kbd>I</kbd></li><li>Fähigkeiten <kbd>K</kbd></li><li>Journal <kbd>J</kbd></li><li>Menü <kbd>ESC</kbd></li>
+      <li>Waffen <kbd>Q</kbd> · Feuer <kbd>Maus</kbd>/<kbd>F</kbd></li><li>Karte <kbd>M</kbd></li><li>Kodex <kbd>I</kbd></li><li>Fähigkeiten <kbd>K</kbd></li><li>Journal <kbd>J</kbd></li><li>Menü <kbd>ESC</kbd></li>
     </ul>
   </div>
   <div class="hud-log"><h4>Protokoll</h4><ul id="log"></ul></div>
@@ -279,6 +304,9 @@ body.touch .ttop { top: 220px; }
       <button id="t-run" type="button" aria-label="Sprinten umschalten">Sprint</button>
       <button id="t-jump" type="button" data-key="Space" aria-label="Springen">Sprung</button>
       <button id="t-use" type="button" data-key="KeyE" aria-label="Benutzen (gedrückt halten bei Datenrauschen)">E</button>
+      <button id="t-fire" type="button" aria-label="Feuern (gedrückt halten)">Feuer</button>
+      <button id="t-reload" type="button" aria-label="Nachladen">Laden</button>
+      <button id="t-wpn" type="button" aria-label="Waffenkreuz öffnen">Waffen</button>
     </div>
     <div class="ttop">
       <button type="button" data-key="Escape" aria-label="Menü">Menü</button>
@@ -287,6 +315,9 @@ body.touch .ttop { top: 220px; }
       <button type="button" data-key="KeyI" aria-label="Kodex">Kodex</button>
     </div>
   </div>
+  <div id="xhair" hidden></div>
+  <div id="weapon-hud" hidden></div>
+  <div id="wcross" hidden><div class="wc"><button type="button" class="w-oben" data-weapon="blaster"><kbd>W</kbd><svg viewBox="0 0 46 30"><path d="M4 12h30v6H14l-2 8H6l2-8H4z"/><path d="M34 14h8"/></svg>Puls-Blaster</button><button type="button" class="w-rechts" data-weapon="streuer"><kbd>D</kbd><svg viewBox="0 0 46 30"><path d="M2 10h34v9H16l-3 8H7l2-8H2z"/><path d="M36 11h8M36 14.5h8M36 18h8"/></svg>Streukanone</button><button type="button" class="w-unten" data-weapon="lanze"><kbd>S</kbd><svg viewBox="0 0 46 30"><path d="M2 13h40v5H14l-2 8H7l2-8H2z"/><path d="M8 10h32"/></svg>Lichtlanze</button><button type="button" class="w-links" data-weapon="klinge"><kbd>A</kbd><svg viewBox="0 0 46 30"><path d="M4 22l6-6 4 4-6 6z"/><path d="M12 16L40 4l-24 16z"/></svg>Energieklinge</button><button type="button" class="w-none" data-weapon="none"><kbd>X</kbd>Weg­stecken</button></div><div id="wc-info"></div></div>
   <div id="prompt" hidden></div>
   <div id="lockHint" hidden>Klicke ins Bild, um die Kamera mit der Maus zu steuern.</div>
 </div>

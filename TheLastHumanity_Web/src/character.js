@@ -90,7 +90,7 @@ export function createCharacter(assets, opts = {}) {
 
   let phase = Math.random() * 6;
   let time = Math.random() * 10;
-  const state = { speed: 0, grounded: true, talking: false };
+  const state = { speed: 0, grounded: true, talking: false, aim: false };
 
   function setRot(name, x, y, z) {
     const n = nodes[name];
@@ -123,6 +123,11 @@ export function createCharacter(assets, opts = {}) {
     }
     setRot('Elbow.L', -0.25 - move * 0.35 - run * 0.4, 0, 0);
     setRot('Elbow.R', -0.25 - move * 0.35 - run * 0.4, 0, 0);
+    // Zielhaltung mit gezogener Waffe: rechter Arm nach vorn
+    if (state.aim) {
+      setRot('Shoulder.R', -1.45, 0, 0.12);
+      setRot('Elbow.R', -0.08, 0, 0);
+    }
     setRot('Torso', 0.04 * move + run * 0.12, s * 0.06 * move, 0);
     setRot('Head', -0.04 * move, state.talking ? Math.sin(time * 1.3) * 0.1 : 0, 0);
     if (nodes.Pelvis) {

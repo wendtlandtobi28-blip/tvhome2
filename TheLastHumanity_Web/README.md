@@ -27,6 +27,8 @@ Science-Fiction-Erkundungsspiel in der dritten Person. Im Orbit des Gasriesen Te
 | M | Karte |
 | Esc oder P | Menü |
 | F5 | Schnellspeichern |
+| Q | **Waffenkreuz** öffnen, dann W/D/S/A (oder Maus in die Richtung) und Q loslassen: Puls-Blaster (oben), Streukanone (rechts), Lichtlanze (unten), Energieklinge (links) |
+| Linke Maustaste oder F | Feuern (gedrückt halten = Dauerfeuer) · R: nachladen · X: Waffe wegstecken/ziehen |
 
 ### Tablet (Touch)
 
@@ -40,8 +42,14 @@ Auf Tablets schaltet das Spiel automatisch auf Touch-Steuerung um (erzwingen: `?
 | Sprint / Sprung | Sprinten ein/aus, Springen |
 | Menü, Journal, Karte, Kodex (rechts) | wie Esc, J, M, I |
 | Fähigkeiten-Symbole unten / gelber Hinweis | antippen = benutzen |
+| **Waffen** | Waffenkreuz öffnen, Waffe antippen (Mitte = wegstecken) |
+| **Feuer** (rot, erscheint mit gezogener Waffe) | gedrückt halten = schießen, leichte Zielhilfe · **Laden**: nachladen |
 
-Beim ersten Start auf dem Tablet ist die Grafik auf „Mittel“ gestellt. Ruckelt es, in den Optionen „Niedrig“ wählen und neu laden. Hoch- und Querformat funktionieren; Querformat ist angenehmer.
+**Flüssiges Spielen:** Das Spiel misst laufend die Bildrate und senkt bei Bedarf automatisch die Auflösung, dann den Leuchteffekt und zuletzt die Schatten (abschaltbar mit `?auto=aus`). Auf Tablets ist der Leuchteffekt außer bei „Hoch“ aus, die Auflösung ist begrenzt, Wischbewegungen und Bildzeit werden geglättet. Ruckelt es trotzdem, in den Optionen „Niedrig“ wählen und neu laden. Querformat ist angenehmer.
+
+### Waffen und Störsonden
+
+Vier Waffen über das Waffenkreuz. Ziele sind **Störsonden** – schwebende, beschädigte Drohnen: in jedem Sektor 4–9 (je 25 Erfahrung), auf der Station drei Übungsziele südlich vom Startpunkt (kommen nach 6 s wieder, keine Erfahrung). Die Sonden greifen noch nicht an (erster Schritt; echte Kämpfe offen).
 
 ## Geschichte und Ablauf
 
@@ -75,7 +83,9 @@ Nebenbei findest du 10 Datenkristalle mit Geschichten der Station. Mit wachsende
 | `../TheLastHumanity/Content/Data/content_de.json` | Daraus erzeugt mit `Tools/merge_content.py` (gemeinsam mit der Unreal-Version) |
 | `../TheLastHumanity/Content/Data/story_de.json` | Rahmenhandlung: Personen, Dialoge, Quests, Kristalle, Fähigkeiten, Nebenaufgaben |
 | `tests/e2e_test.js` | Automatischer Gesamttest (spielt das ganze Spiel durch) |
-| `tests/touch_test.js` | Test der Tablet-Steuerung (emuliertes iPad) |
+| `tests/touch_test.js` | Test der Tablet-Steuerung (emuliertes iPad, inkl. Waffen) |
+| `tests/waffen_test.js` | Test der Waffen am PC (Tastatur) |
+| `src/weapons.js` | Waffen, Geschosse, Effekte, Störsonden |
 | `THIRD_PARTY_LICENSES.md` | Lizenzen der verwendeten Fremdbestandteile |
 
 ### Bauen

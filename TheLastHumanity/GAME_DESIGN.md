@@ -125,3 +125,12 @@ Ein Spielstand-Slot (Phase 1). Automatische Speicherung bei jeder neuen Erkenntn
 **Vorgehen:** Zuerst ein vollständiger, durchspielbarer grober Entwurf mit der vorhandenen Grafik (Browser-Version). Die Grafik wird später auf dem PC des Projektinhabers (i7-10700K, RTX 3080, 32 GB RAM) mit Unreal Engine 5 verbessert. Ein Kapitel in Endqualität wird gemessen und die Planung danach angepasst.
 
 **Stand 22.11.2026 – grober Entwurf umgesetzt (Browser-Version 3):** 20 Sektoren mit zusammen 246 Erinnerungen (12–15 je Sektor), 80 Artefakte, 40 Rauschstellen, 20 Zeitzeugen-Echos, 20 Wissensprüfungen (60 Fragen), 20 Nebenaufgaben auf der Station (bringen, holen, besuchen) und 10 sprechende Bewohner. Jeder Sektor besteht aus drei Kammern (Eingang, Mitte mit Echo, Ende mit Prüfterminal und Tor). Die Grafik ist unverändert. Die Texte sind Entwürfe und müssen noch fachlich geprüft werden. Wie lange das tatsächlich dauert, ist noch nicht gemessen (siehe `PROGRESS.md`).
+
+## 13. Entscheidung vom 23.11.2026: Waffen und Waffenkreuz
+
+Auf Wunsch des Projektinhabers gibt es jetzt Waffen. Das ändert Kernprinzip 1 („Fortschritt entsteht durch Entdecken, nicht durch Kampf“): Entdecken bleibt der Hauptfortschritt, Kampf kommt als zusätzliche Spielmechanik hinzu.
+
+- **Waffenkreuz** mit vier Richtungen: oben Puls-Blaster (Einzelschüsse), rechts Streukanone (Streuladung, kurze Distanz), unten Lichtlanze (durchschlagender Strahl), links Energieklinge (Nahkampf, ohne Ladung). In der Mitte steckt man die Waffe weg.
+- **Ladung und Nachladen** je Waffe. Mit gezogener Waffe blickt die Figur in Kamerarichtung, das Fadenkreuz liegt in der Bildmitte. Es gibt eine leichte Zielhilfe, auf dem Tablet etwas stärker.
+- **Störsonden** sind beschädigte Überwachungsdrohnen. Im Sektor gibt es 4–9 Stück, je 25 Erfahrung, sie bleiben bis zum nächsten Betreten zerstört. Auf der Station gibt es 3 Übungsziele ohne Erfahrung, die nach 6 s wiederkommen.
+- **Offen (Entscheidung nötig):** Sollen Sonden angreifen (Lebenspunkte, Niederlage, Rückkehr zum Startpunkt)? Sollen Waffen nach und nach freigeschaltet und verbessert werden? Wie stark soll der Kampfanteil an den 45 Stunden sein?

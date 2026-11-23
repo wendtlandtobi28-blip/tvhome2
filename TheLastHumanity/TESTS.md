@@ -104,3 +104,28 @@ Umgebung: Chromium (Playwright) mit Geräteemulation „iPad Pro 11“ (Touch, 1
 **Geprüft (alle ✅):** Tablet wird erkannt · Menüs, Namenseingabe, Einleitung per Antippen · Touch-Knöpfe sichtbar, Tastaturhinweise ausgeblendet · Joystick bewegt die Figur, Loslassen stoppt · Wischen dreht die Kamera · zwei Finger gleichzeitig (laufen + umsehen) · Sprint-Knopf (Ausdauer sinkt), Sprung-Knopf · Fähigkeit antippen · Journal, Karte, Kodex, Menü per Knopf öffnen und per Antippen schließen · Gespräch mit E-Knopf · Sektor über das Journal betreten · Datenrauschen durch gedrückt gehaltenen E-Knopf · Erinnerung öffnen/schließen · Hochformat: Knöpfe überlappen nicht, kein waagerechtes Scrollen · keine JavaScript-Fehler.
 
 **Nicht geprüft:** echtes Tablet (Bildrate, Akku, Safari-Eigenheiten auf iPad, Android-Browser). Bitte auf dem eigenen Tablet testen.
+
+## G. Flüssigkeit (Leistung) und Waffen – im Browser getestet
+
+Anlass: Rückmeldung des Projektinhabers vom 23.11.2026, das Spiel ruckelt auf dem echten Tablet stark. Umgebung wie in F (Chromium, Software-3D ohne Grafikkarte, daher nur ca. 6 Bilder/s; **die echte Bildrate auf dem Tablet ist damit nicht messbar**).
+
+| ID | Datum | Test | Ergebnis |
+|---|---|---|---|
+| G-01 | 23.11.2026 | Touch-Test inkl. Waffen, 1. Lauf | ❌ abgebrochen nach 4 Waffen-Prüfungen, Fehler im Testskript (nicht im Spiel) → korrigiert |
+| G-02 | 23.11.2026 | **Touch-Test inkl. Waffen (emuliertes iPad)** | ✅ **39 von 39** |
+| G-03 | 23.11.2026 | **Waffentest am PC (Tastatur)** `tests/waffen_test.js` | ✅ **15 von 15** |
+| G-04 | 23.11.2026 | Menü-Teiltest PC | ✅ 14 von 14 |
+
+**Geprüft (alle ✅):**
+- Waffenkreuz per Knopf (Tablet) und per Q (PC) öffnen; Auswahl per Antippen bzw. Q + W/D/S/A; alle vier Waffen
+- Wegstecken (Kreuzmitte, X) und letzte Waffe wieder ziehen (X)
+- Feuer-Knopf, Fadenkreuz und Waffenanzeige erscheinen; Feuern mit Knopf und F
+- Ladung sinkt; Nachladen mit R; Störsonde im Sektor ausgeschaltet (Erfahrung)
+- Übungsziel auf der Station zerstört (keine Erfahrung), kommt nach 6 s wieder
+- automatische Leistungsanpassung: Auflösung sinkt, Leuchteffekt und Schatten werden bei zu niedriger Bildrate abgeschaltet
+- keine JavaScript-Fehler
+
+**Nicht geprüft:**
+- ob es auf dem echten Tablet jetzt flüssig läuft (bitte testen)
+- Maussteuerung mit Zeigersperre (nur manuell)
+- Gesamtdurchlauf (239 Prüfungen) nach dieser Änderung nicht wiederholt; Bewegung und Kamera wurden geändert (Glättung)

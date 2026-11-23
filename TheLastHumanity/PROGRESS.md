@@ -1,6 +1,6 @@
 # Entwicklungsstand – THE LAST HUMANITY
 
-Letzte Aktualisierung: 22.11.2026 · **Version 3.0.0 (Browser, grober 45-Stunden-Entwurf) / 0.9.0 (Unreal)** · Branch `claude/last-humanity-game-dev-l0fii0`
+Letzte Aktualisierung: 23.11.2026 · **Version 3.1.0 (Browser, grober 45-Stunden-Entwurf) / 0.9.0 (Unreal)** · Branch `claude/last-humanity-game-dev-l0fii0`
 
 ## Statusbegriffe
 
@@ -28,6 +28,8 @@ Umsetzung der Entscheidung vom 22.11.2026 (`GAME_DESIGN.md`, Abschnitt 12) mit d
 | Spielzeit | **nicht gemessen.** Schätzung für den Entwurf: ca. 12–18 Stunden bei gründlichem Lesen (246 Texte à ca. 2–3 min, dazu Wege, Prüfungen, Nebenaufgaben). Für 45 Stunden fehlen v. a. größere, gestaltete Sektoren, Story-Szenen und mehr Stationsinhalte | ⬜ Messung durch Projektinhaber |
 | Grafik | unverändert (Version 2) | – |
 | **Tablet-Steuerung** (Joystick, Wischen, Knöpfe, Hoch-/Querformat) | automatisch bei Touch-Geräten | ✅ emuliertes iPad 31/31 (`TESTS.md` F) · echtes Tablet ⬜ |
+| **Flüssigkeit (3.1.0)**: automatische Anpassung von Auflösung, Leuchteffekt und Schatten; geglättetes Wischen, Bildzeit und Kamera; keine Shader-Neuübersetzung im Spiel | Tablet: Leuchteffekt aus, Auflösung begrenzt | ✅ Mechanik getestet (`TESTS.md` G) · echte Tablet-Bildrate ⬜ |
+| **Waffen (3.1.0)**: Waffenkreuz, 4 Waffen, Ladung/Nachladen, Zielhilfe, Störsonden (Sektor 4–9, Station 3 Übungsziele) | Sonden greifen noch nicht an | ✅ Tablet 39/39, PC 15/15 |
 
 ## Browser-Version 2.0.0 (ersetzt durch 3.0.0) – Science-Fiction-Story-Modus (`../TheLastHumanity_Web/`)
 

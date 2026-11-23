@@ -11,6 +11,7 @@ import { createCharacter } from './character.js';
 import { buildHub, buildSector, disposeWorld, HUB, SECTOR } from './world.js';
 import { clamp, damp, esc, paragraphs, fmt, angleDiff } from './util.js';
 import { Audio } from './audio.js';
+import { WEAPONS, weaponById, weaponModel, createCombat, sectorDroneSpots, HUB_DRONE_SPOTS } from './weapons.js';
 
 const T = (key, ...args) => fmt((CONTENT.ui && CONTENT.ui[key]) || key, ...args);
 const S = STORY;
@@ -60,14 +61,14 @@ if (urlQuality) settings.quality = urlQuality;
 // ===================================================================== Fortschritt
 
 const chapters = CONTENT.chapters;
-const XP = { memory: 100, crystal: 50, landmark: 50, chapter: 300, artifact: 75, echo: 75, quiz: 200, noise: 50, perLevel: 800 };
+const XP = { drone: 25, memory: 100, crystal: 50, landmark: 50, chapter: 300, artifact: 75, echo: 75, quiz: 200, noise: 50, perLevel: 800 };
 
 function newProgress(name) {
   return {
     name: (name || 'Hüter').slice(0, 24), xp: 0, area: 'hub', chapter: chapters[0].id,
     discovered: new Set(), crystals: new Set(), landmarks: new Set(), completed: new Set(),
     quizPassed: new Set(), cleared: new Set(), artifacts: new Set(), echoes: new Set(), sideDone: new Set(), side: null,
-    stage: 'talk', endingSeen: false, day: 1, minutes: 19 * 60 + 40
+    stage: 'talk', endingSeen: false, day: 1, minutes: 19 * 60 + 40, weapon: null, drones: 0
   };
 }
 let P = newProgress();
@@ -103,7 +104,7 @@ function serialize() {
     discovered: [...P.discovered], crystals: [...P.crystals], landmarks: [...P.landmarks], completed: [...P.completed],
     stage: P.stage, endingSeen: P.endingSeen, day: P.day, minutes: P.minutes,
     quizPassed: [...P.quizPassed], cleared: [...P.cleared], artifacts: [...P.artifacts], echoes: [...P.echoes],
-    sideDone: [...P.sideDone], side: P.side,
+    sideDone: [...P.sideDone], side: P.side, weapon: P.weapon, drones: P.drones,
     pos: [player.x, player.z], yaw: player.yaw, camYaw: cam.yaw, savedAt: new Date().toISOString()
   };
 }
@@ -127,6 +128,8 @@ function deserialize(s) {
   p.side = s.side && S.sidequests.some((q) => q.id === s.side.id) ? s.side : null;
   p.day = s.day || 1;
   p.minutes = s.minutes || p.minutes;
+  p.weapon = weaponById(s.weapon) ? s.weapon : null;
+  p.drones = Number(s.drones) || 0;
   return p;
 }
 
@@ -143,16 +146,59 @@ try {
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 renderer.shadowMap.enabled = settings.quality !== 'niedrig';
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// weiche Schatten nur auf 'hoch' (teuer auf Tablets)
+renderer.shadowMap.type = settings.quality === 'hoch' ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(settings.fov, 1, 0.1, 4000);
 let composer = null, bloomPass = null;
 
+// ---- Automatische Leistungsanpassung: haelt die Bildrate fluessig, indem zuerst die
+// Aufloesung, dann der Leuchteffekt (Bloom) und zuletzt die Schatten reduziert werden.
+const perf = { scale: 1, max: 1, min: 0.5, acc: 0, frames: 0, warm: 3, good: 0, raised: false, bloomOff: false, shadowsOff: false, fps: 0, auto: !/[?&]auto=aus/.test(location.search) };
+function perfInit() {
+  const dpr = devicePixelRatio || 1;
+  const q = settings.quality;
+  perf.max = q === 'hoch' ? Math.min(dpr, 2) : q === 'mittel' ? Math.min(dpr, touchMode ? 1 : 1.5) : (touchMode ? 0.8 : 1);
+  perf.min = Math.min(perf.max, touchMode ? 0.55 : 0.6);
+  perf.scale = perf.max;
+  // Bloom: auf Tablets nur bei 'hoch'
+  perf.bloomOff = q === 'niedrig' || (touchMode && q !== 'hoch');
+}
+function perfScale(v) {
+  perf.scale = clamp(v, perf.min, perf.max);
+  renderer.setPixelRatio(perf.scale);
+  resize();
+}
+function perfShadowsOff() {
+  perf.shadowsOff = true;
+  renderer.shadowMap.enabled = false;
+  scene.traverse((o) => { if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach((m) => { m.needsUpdate = true; }); });
+}
+function perfUpdate(rawDt) {
+  if (!perf.auto || document.hidden) return;
+  if (perf.warm > 0) { perf.warm -= rawDt; perf.acc = 0; perf.frames = 0; return; }
+  perf.acc += rawDt; perf.frames++;
+  if (perf.acc < 1.5) return;
+  const fps = perf.frames / perf.acc;
+  perf.fps = Math.round(fps); perf.acc = 0; perf.frames = 0;
+  if (fps < 48) {
+    perf.good = 0;
+    if (perf.raised) { perf.max = Math.max(perf.min, perf.scale - 0.08); perf.raised = false; }
+    if (perf.scale > perf.min + 0.01) perfScale(perf.scale - (fps < 30 ? 0.2 : 0.1));
+    else if (composer) { composer = null; perf.bloomOff = true; }
+    else if (!perf.shadowsOff && fps < 40 && renderer.shadowMap.enabled) perfShadowsOff();
+  } else if (fps > 57 && perf.scale < perf.max - 0.01) {
+    if (++perf.good >= 3) { perf.good = 0; perf.raised = true; perfScale(perf.scale + 0.08); }
+  } else { perf.good = 0; perf.raised = false; }
+}
+/** nach einem Weltwechsel kurz nicht messen (Shader werden uebersetzt) */
+function perfWarm() { perf.warm = 2.5; perf.acc = 0; perf.frames = 0; }
+
 function setupPost() {
-  const pr = settings.quality === 'hoch' ? Math.min(devicePixelRatio || 1, 2) : (settings.quality === 'mittel' ? Math.min(devicePixelRatio || 1, 1.5) : 1);
-  renderer.setPixelRatio(pr);
-  if (settings.quality === 'niedrig') { composer = null; return; }
+  perfInit();
+  renderer.setPixelRatio(perf.scale);
+  if (perf.bloomOff) { composer = null; return; }
   composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
   bloomPass = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.7, 0.55, 0.85);
@@ -190,11 +236,16 @@ let time = 0;
 const effects = { scanUntil: 0, lightUntil: 0, echoUntil: 0, echoTarget: null };
 const cooldowns = {};
 let lightOrb = null, echoBeam = null;
+let combat = null;
+/** Waffen: gezogene Waffe, Ladung je Waffe, Nachladen, Abklingzeit, Waffenkreuz */
+const arms = { weapon: null, last: 'blaster', ammo: {}, reloadT: 0, cd: 0, firing: false, wheel: false, sel: null, wx: 0, wy: 0, model: null, models: {} };
+WEAPONS.forEach((w) => { if (w.mag) arms.ammo[w.id] = w.mag; });
 
 // ===================================================================== Welt laden
 
 function enterWorld(kind, chapterId) {
   if (world) {
+    if (combat) combat.spawn(world.group, []);
     scene.remove(world.group);
     disposeWorld(world);
   }
@@ -212,8 +263,15 @@ function enterWorld(kind, chapterId) {
   scene.environment = world.env;
   scene.environmentIntensity = world.envIntensity;
   scene.fog = world.fog;
-  if (lightOrb) scene.add(lightOrb);
   refreshWorld();
+  // Waffenziele (Stoersonden) fuer diese Welt
+  if (combat) {
+    if (kind === 'hub') combat.spawn(world.group, HUB_DRONE_SPOTS, { respawn: 6, practice: true });
+    else combat.spawn(world.group, sectorDroneSpots((Prog.chapter(chapterId) || {}).number || 1));
+  }
+  // Shader vorab uebersetzen, damit es beim ersten Hinsehen nicht ruckelt
+  try { renderer.compile(scene, camera); } catch (e) { /* egal */ }
+  perfWarm();
 }
 
 function placePlayer(x, z, yaw) {
@@ -397,15 +455,18 @@ function movePlayer(dt) {
     mx = (fx * fwd + rx * side) / len;
     mz = (fz * fwd + rz * side) / len;
     target = (wantSprint ? 7.6 : 4.2) * (analog < 0.35 ? 0.45 : analog < 0.7 ? 0.75 : 1);
-    const desired = Math.atan2(mx, mz);
-    player.yaw += angleDiff(desired, player.yaw) * Math.min(1, dt * 12);
+    if (arms.weapon) target = Math.min(target, 5.4);
+    player.mvx = mx; player.mvz = mz;
+    if (!arms.weapon) player.yaw += angleDiff(Math.atan2(mx, mz), player.yaw) * Math.min(1, dt * 12);
   }
+  // mit gezogener Waffe blickt die Figur immer in Kamerarichtung (Zielen)
+  if (arms.weapon) player.yaw += angleDiff(cam.yaw, player.yaw) * Math.min(1, dt * 14);
   player.speed = damp(player.speed, target, 10, dt);
   if (wantSprint && len > 0) player.stamina = Math.max(0, player.stamina - 16 * dt);
   else player.stamina = Math.min(100, player.stamina + 11 * dt);
   player.energy = Math.min(100, player.energy + 5 * dt);
-  const vx = len > 0 ? mx * player.speed : Math.sin(player.yaw) * player.speed;
-  const vz = len > 0 ? mz * player.speed : Math.cos(player.yaw) * player.speed;
+  const vx = (len > 0 ? mx : (player.mvx ?? Math.sin(player.yaw))) * player.speed;
+  const vz = (len > 0 ? mz : (player.mvz ?? Math.cos(player.yaw))) * player.speed;
   player.x += vx * dt;
   player.z += vz * dt;
   if (player.dash > 0) {
@@ -438,7 +499,9 @@ function updateCamera(dt) {
     const hits = raycaster.intersectObjects(world.blockers, false);
     if (hits.length) dist = Math.max(0.8, hits[0].distance - 0.35);
   }
-  cam.curDist = dist < cam.curDist ? dist : damp(cam.curDist, dist, 6, dt);
+  // naeher ran schnell, aber weich (kein Springen); weg langsam
+  cam.curDist = dist < cam.curDist ? Math.max(dist, damp(cam.curDist, dist, 22, dt)) : damp(cam.curDist, dist, 6, dt);
+  if (dist < cam.curDist - 0.4) cam.curDist = dist + 0.4;
   camera.position.copy(target).addScaledVector(dir, cam.curDist);
   camera.lookAt(target.x + fx * 2, target.y + 0.1 - sp * 0.5, target.z + fz * 2);
 }
@@ -743,13 +806,8 @@ function useAbility(slot) {
   if (ab.id === 'dash') { player.dash = 16; Audio.whoosh(0.4); }
   if (ab.id === 'light') {
     effects.lightUntil = time + 40;
-    if (!lightOrb) {
-      lightOrb = new THREE.Group();
-      const l = new THREE.PointLight(0x9fdcff, 30, 16, 2);
-      lightOrb.add(l);
-      lightOrb.add(new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 12), new THREE.MeshBasicMaterial({ color: 0xcff0ff })));
-    }
-    scene.add(lightOrb);
+    lightOrb.children[0].intensity = 30;
+    lightOrb.children[1].visible = true;
     Audio.chime(2);
   }
   if (ab.id === 'echo') {
@@ -783,6 +841,198 @@ function nearestUndiscovered() {
     if (d < bd) { bd = d; best = { x: it.pos.x, z: it.pos.z }; }
   });
   return best;
+}
+
+// ===================================================================== Waffen
+
+const aimRay = new THREE.Raycaster();
+const vA = new THREE.Vector3(), vB = new THREE.Vector3(), vC = new THREE.Vector3(), vD = new THREE.Vector3();
+const SCREEN_CENTER = new THREE.Vector2(0, 0);
+
+function equipWeapon(id) {
+  const w = weaponById(id);
+  if (arms.model) { arms.model.visible = false; arms.model = null; }
+  arms.reloadT = 0; arms.firing = false;
+  arms.weapon = w ? w.id : null;
+  P.weapon = arms.weapon;
+  if (w) {
+    arms.last = w.id;
+    if (!arms.models[w.id]) {
+      const m = weaponModel(w);
+      m.position.set(-0.3, 1.28, 0.42);
+      hero.root.add(m);
+      arms.models[w.id] = m;
+    }
+    arms.model = arms.models[w.id];
+    arms.model.visible = true;
+    Audio.blip(520, 0.06);
+    toast(w.name + ' ausgerüstet', 1.6);
+  } else toast('Waffe weggesteckt', 1.4);
+  hero.state.aim = !!w;
+  document.body.classList.toggle('armed', !!w);
+  updateWeaponHud();
+}
+
+/** Zielpunkt: Bildschirmmitte, mit leichter Zielhilfe (auf dem Tablet staerker) */
+function aimPoint(range) {
+  aimRay.setFromCamera(SCREEN_CENTER, camera);
+  const o = aimRay.ray.origin, d = aimRay.ray.direction;
+  let far = range + cam.curDist;
+  if (world.blockers.length) {
+    aimRay.far = far;
+    const hits = aimRay.intersectObjects(world.blockers, false);
+    if (hits.length) far = hits[0].distance;
+  }
+  if (d.y < -0.001) far = Math.min(far, -o.y / d.y);
+  const direct = combat.firstDroneOnSegment(o, d, far, 0.7);
+  if (direct) return vA.copy(o).addScaledVector(d, direct.t);
+  const cone = Math.cos((touchMode ? 9 : 4) * Math.PI / 180);
+  let best = null, bc = cone;
+  for (const dr of combat.drones) {
+    if (!dr.alive) continue;
+    vB.subVectors(dr.pos, o);
+    const dist = vB.length();
+    if (dist > far + 0.5 || dist > range + cam.curDist) continue;
+    const c = vB.dot(d) / dist;
+    if (c > bc) { bc = c; best = dr; }
+  }
+  if (best) return vA.copy(best.pos);
+  return vA.copy(o).addScaledVector(d, far);
+}
+
+function muzzlePos(w) {
+  hero.root.updateMatrixWorld();
+  return hero.root.localToWorld(vC.set(-0.3, 1.3, w.id === 'lanze' ? 1.0 : w.id === 'streuer' ? 0.85 : 0.65));
+}
+
+/** Freie Strecke ab einem Punkt (Waende/Boden) */
+function freeLength(from, dir, max) {
+  let len = max;
+  if (world.blockers.length) {
+    aimRay.set(from, dir); aimRay.far = max;
+    const hits = aimRay.intersectObjects(world.blockers, false);
+    if (hits.length) len = hits[0].distance;
+  }
+  if (dir.y < -0.001) len = Math.min(len, -from.y / dir.y);
+  return len;
+}
+
+function droneKilled(d) {
+  Audio.whoosh(0.35); Audio.blip(140, 0.12);
+  if (d.practice) return;
+  P.drones++;
+  addXp(XP.drone, 'Störsonde ausgeschaltet');
+  if (combat.aliveCount() === 0) toast('Alle Störsonden in diesem Sektor ausgeschaltet', 3);
+}
+
+function fire(w) {
+  if (w.melee) {
+    arms.cd = w.rate;
+    const fx = Math.sin(player.yaw), fz = Math.cos(player.yaw);
+    const c = vD.set(player.x + fx * 1.4, player.y + 1.6, player.z + fz * 1.4);
+    combat.slash(vB.set(player.x + fx * 0.9, player.y + 1.3, player.z + fz * 0.9), player.yaw);
+    let hit = 0;
+    for (const d of combat.drones) {
+      if (!d.alive || d.pos.distanceTo(c) > w.range) continue;
+      hit++;
+      if (combat.damage(d, w.dmg)) droneKilled(d);
+    }
+    Audio.whoosh(0.18); if (hit) Audio.blip(300, 0.05);
+    return;
+  }
+  if (arms.reloadT > 0) return;
+  if (arms.ammo[w.id] <= 0) { startReload(w); return; }
+  arms.ammo[w.id]--;
+  arms.cd = w.rate;
+  const target = aimPoint(w.range);
+  const from = muzzlePos(w).clone();
+  const dir = vB.subVectors(target, from).normalize();
+  combat.muzzle(from, w.color);
+  if (w.beam) {
+    const len = freeLength(from, dir, w.range);
+    const end = from.clone().addScaledVector(dir, len);
+    combat.beam(from, end);
+    combat.allDronesOnSegment(from, dir, len).forEach((d) => { if (combat.damage(d, w.dmg)) droneKilled(d); });
+    combat.spark(end, w.color, 8, 3);
+    Audio.sweep(0.25); Audio.blip(900, 0.08);
+  } else {
+    const base = dir.clone();
+    for (let i = 0; i < w.pellets; i++) {
+      const d = vD.copy(base);
+      if (w.spread) { d.x += (Math.random() - 0.5) * 2 * w.spread; d.y += (Math.random() - 0.5) * 2 * w.spread; d.z += (Math.random() - 0.5) * 2 * w.spread; d.normalize(); }
+      combat.bolt(w, from, d, freeLength(from, d, w.range), w.dmg);
+    }
+    Audio.blip(w.pellets > 1 ? 160 : 760, w.pellets > 1 ? 0.12 : 0.05);
+  }
+  if (arms.ammo[w.id] <= 0) startReload(w);
+  updateWeaponHud();
+}
+function startReload(w) {
+  if (!w || w.melee || arms.reloadT > 0 || arms.ammo[w.id] >= w.mag) return;
+  arms.reloadT = w.reload;
+  Audio.blip(330, 0.08);
+  updateWeaponHud();
+}
+function updateArms(dt) {
+  const w = weaponById(arms.weapon);
+  arms.cd = Math.max(0, arms.cd - dt);
+  if (w && arms.reloadT > 0) {
+    arms.reloadT -= dt;
+    if (arms.reloadT <= 0) { arms.reloadT = 0; arms.ammo[w.id] = w.mag; Audio.blip(620, 0.05); updateWeaponHud(); }
+  }
+  if (w && arms.firing && !arms.wheel && arms.cd <= 0 && state === 'playing') fire(w);
+}
+
+// ---- Waffenkreuz (oben/rechts/unten/links, Mitte = wegstecken)
+const wcross = $('wcross');
+function openWheel() {
+  if (state !== 'playing') return;
+  arms.wheel = true; arms.firing = false; arms.sel = null; arms.wx = 0; arms.wy = 0;
+  renderWheel();
+  wcross.hidden = false;
+}
+function closeWheel(apply) {
+  if (!arms.wheel) return;
+  arms.wheel = false;
+  wcross.hidden = true;
+  if (apply && arms.sel !== null) equipWeapon(arms.sel === 'none' ? null : arms.sel);
+}
+function renderWheel() {
+  wcross.querySelectorAll('[data-weapon]').forEach((b) => {
+    const id = b.dataset.weapon;
+    b.classList.toggle('sel', arms.sel === id);
+    b.classList.toggle('cur', (arms.weapon || 'none') === id);
+  });
+  const w = weaponById(arms.sel) || weaponById(arms.weapon);
+  $('wc-info').innerHTML = w ? `<b>${esc(w.name)}</b><span>${esc(w.desc)}</span>` : '<b>Keine Waffe</b><span>Waffe wegstecken</span>';
+}
+const WHEEL_DIRS = { oben: [0, -1], rechts: [1, 0], unten: [0, 1], links: [-1, 0] };
+function wheelPick(dx, dy) {
+  arms.wx = clamp(arms.wx + dx, -120, 120); arms.wy = clamp(arms.wy + dy, -120, 120);
+  if (Math.hypot(arms.wx, arms.wy) < 30) return;
+  let best = null, bd = -2;
+  for (const w of WEAPONS) { const [x, y] = WHEEL_DIRS[w.dir]; const c = (x * arms.wx + y * arms.wy) / Math.hypot(arms.wx, arms.wy); if (c > bd) { bd = c; best = w.id; } }
+  if (best !== arms.sel) { arms.sel = best; renderWheel(); Audio.blip(700, 0.03); }
+}
+wcross.querySelectorAll('[data-weapon]').forEach((b) => {
+  b.addEventListener('pointerdown', (ev) => { ev.preventDefault(); ev.stopPropagation(); arms.sel = b.dataset.weapon; closeWheel(true); });
+  b.addEventListener('pointerenter', () => { arms.sel = b.dataset.weapon; renderWheel(); });
+});
+wcross.addEventListener('pointerdown', (ev) => { if (ev.target === wcross) closeWheel(false); });
+
+function updateWeaponHud() {
+  const el = $('weapon-hud');
+  const w = weaponById(arms.weapon);
+  el.hidden = !w || state !== 'playing';
+  $('xhair').hidden = !w || state !== 'playing';
+  if (!w) return;
+  const ammo = w.melee ? '∞' : (arms.reloadT > 0 ? 'lädt …' : arms.ammo[w.id] + ' | ' + w.mag);
+  const txt = w.name + '|' + ammo;
+  if (el.dataset.t !== txt) {
+    el.dataset.t = txt;
+    el.innerHTML = `<i style="background:#${w.color.toString(16).padStart(6, '0')}"></i><b>${esc(w.name)}</b><span>${ammo}</span>`;
+  }
+  el.classList.toggle('reload', arms.reloadT > 0);
 }
 
 // ===================================================================== Speichern
@@ -940,16 +1190,18 @@ function drawMinimap() {
 let hudTick = 0;
 function updateHud(dt) {
   if (state !== 'playing') return;
-  $('bar-hp').style.width = player.stamina + '%';
-  $('bar-en').style.width = player.energy + '%';
-  $('pname').textContent = P.name;
-  $('plevel').textContent = 'Lv. ' + Prog.level();
+  $('bar-hp').style.width = player.stamina.toFixed(1) + '%';
+  $('bar-en').style.width = player.energy.toFixed(1) + '%';
   const pt = promptText();
   promptEl.hidden = !pt;
   if (pt && promptEl.textContent !== pt) promptEl.textContent = pt;
   hudTick -= dt;
   if (hudTick <= 0) {
     hudTick = 0.1;
+    if ($('pname').textContent !== P.name) $('pname').textContent = P.name;
+    const lv = 'Lv. ' + Prog.level();
+    if ($('plevel').textContent !== lv) $('plevel').textContent = lv;
+    updateWeaponHud();
     const q = questInfo();
     $('quest-title').textContent = q.title;
     $('quest-steps').innerHTML = q.lines.map((l) => `<li class="${l.done ? 'done' : ''}">${esc(l.text)}</li>`).join('')
@@ -971,8 +1223,11 @@ function updateHud(dt) {
     $('lockHint').hidden = pointerLocked || !lockSupported;
   }
   updateCompass();
-  drawMinimap();
+  // Minikarte mit hoechstens ~30 Bildern pro Sekunde (spart Zeit auf Tablets)
+  mmTick -= dt;
+  if (mmTick <= 0) { mmTick = 1 / 30; drawMinimap(); }
 }
+let mmTick = 0;
 
 // ===================================================================== Oberflaeche (Menues)
 
@@ -1185,6 +1440,9 @@ function setState(next) {
   if (RENDER[next]) RENDER[next]();
   Object.entries(screens).forEach(([k, el]) => { el.hidden = !((k === 'menu' && (next === 'mainmenu' || next === 'pause')) || k === next); });
   hud.hidden = !(next === 'playing' || next === 'dialog');
+  if (next !== 'playing') { arms.firing = false; closeWheel(false); }
+  if (next === 'playing' && hero && (P.weapon || null) !== arms.weapon) equipWeapon(P.weapon);
+  if (hero) updateWeaponHud();
   if (next === 'playing') {
     requestLock();
     canvas.focus({ preventScroll: true });
@@ -1271,14 +1529,16 @@ document.addEventListener('pointerlockchange', () => {
 let dragging = false, lastMX = 0, lastMY = 0;
 canvas.addEventListener('mousedown', (ev) => {
   if (state !== 'playing') return;
+  if (ev.button === 0 && arms.weapon && (pointerLocked || !lockSupported)) { arms.firing = true; return; }
   if (!pointerLocked) { requestLock(); dragging = true; lastMX = ev.clientX; lastMY = ev.clientY; }
 });
-addEventListener('mouseup', () => { dragging = false; });
+addEventListener('mouseup', (ev) => { dragging = false; if (ev.button === 0 && !keys.KeyF) arms.firing = false; });
 document.addEventListener('mousemove', (ev) => {
   if (state !== 'playing') return;
   if (pointerLocked) {
     const mx = ev.movementX || 0, my = ev.movementY || 0;
     if (Math.abs(mx) > 250 || Math.abs(my) > 250) return;
+    if (arms.wheel) { wheelPick(mx, my); return; }
     look(mx, my);
   } else if (dragging) { look(ev.clientX - lastMX, ev.clientY - lastMY); lastMX = ev.clientX; lastMY = ev.clientY; }
 });
@@ -1286,7 +1546,7 @@ canvas.addEventListener('wheel', (ev) => { if (state === 'playing') { cam.dist =
 
 // ===================================================================== Tastatur
 
-const GAME_KEYS = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'];
+const GAME_KEYS = ['KeyQ', 'KeyF', 'KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'];
 addEventListener('keydown', (ev) => {
   if (ev.target && ev.target.tagName === 'INPUT' && ev.target.type === 'text') return;
   const code = ev.code;
@@ -1315,6 +1575,17 @@ addEventListener('keydown', (ev) => {
     return;
   }
   if (code === 'F5' && state === 'playing') { saveGame(true); return; }
+  if (state === 'playing') {
+    if (code === 'KeyQ') { if (arms.wheel) closeWheel(true); else openWheel(); return; }
+    if (arms.wheel) {
+      const dirKey = { KeyW: 'oben', ArrowUp: 'oben', KeyD: 'rechts', ArrowRight: 'rechts', KeyS: 'unten', ArrowDown: 'unten', KeyA: 'links', ArrowLeft: 'links' }[code];
+      if (dirKey) { arms.sel = WEAPONS.find((w) => w.dir === dirKey).id; closeWheel(true); return; }
+      if (code === 'KeyX' || code === 'Backspace') { arms.sel = 'none'; closeWheel(true); return; }
+    }
+    if (code === 'KeyX') { equipWeapon(arms.weapon ? null : arms.last); return; }
+    if (code === 'KeyF' && arms.weapon) { keys.KeyF = true; arms.firing = true; return; }
+    if (code === 'KeyR' && arms.weapon) { startReload(weaponById(arms.weapon)); return; }
+  }
   const m = code.match(/^Digit([1-6])$/);
   if (m && state === 'playing') useAbility(parseInt(m[1], 10));
 });
@@ -1330,6 +1601,8 @@ setTouchMode(touchMode);
 function sendKey(type, code) { dispatchEvent(new KeyboardEvent(type, { code, key: code, bubbles: true })); }
 const STICK_R = 56;
 let stickId = null, stickCX = 0, stickCY = 0, lookId = null, lookX = 0, lookY = 0;
+/** Wischbewegungen werden gesammelt und weich pro Bild angewendet (kein Ruckeln bei unregelmaessigen Touch-Ereignissen) */
+const lookPend = { x: 0, y: 0 };
 function stickMove(x, y) {
   let dx = x - stickCX, dy = y - stickCY;
   const d = Math.hypot(dx, dy);
@@ -1359,7 +1632,7 @@ canvas.addEventListener('pointerdown', (ev) => {
 canvas.addEventListener('pointermove', (ev) => {
   if (ev.pointerType !== 'touch') return;
   if (ev.pointerId === stickId) stickMove(ev.clientX, ev.clientY);
-  else if (ev.pointerId === lookId && state === 'playing') { look((ev.clientX - lookX) * 1.8, (ev.clientY - lookY) * 1.8); lookX = ev.clientX; lookY = ev.clientY; }
+  else if (ev.pointerId === lookId && state === 'playing') { lookPend.x += (ev.clientX - lookX) * 1.8; lookPend.y += (ev.clientY - lookY) * 1.8; lookX = ev.clientX; lookY = ev.clientY; }
 });
 function touchEnd(ev) {
   if (ev.pointerId === stickId) stickReset();
@@ -1379,6 +1652,12 @@ touchEl.querySelectorAll('button[data-key]').forEach((b) => {
 $('t-run').addEventListener('pointerdown', (ev) => { ev.preventDefault(); touchMove.run = !touchMove.run; $('t-run').classList.toggle('on', touchMove.run); });
 // Faehigkeiten antippen, Hinweis antippen = Benutzen
 for (let i = 1; i <= 6; i++) $('ab' + i).addEventListener('pointerdown', (ev) => { if (state === 'playing') { ev.preventDefault(); useAbility(i); } });
+// Waffen auf dem Tablet: Feuer gedrueckt halten, Waffenkreuz antippen
+$('t-fire').addEventListener('pointerdown', (ev) => { ev.preventDefault(); if (state === 'playing' && arms.weapon) { arms.firing = true; $('t-fire').classList.add('on'); } });
+const fireUp = () => { arms.firing = false; $('t-fire').classList.remove('on'); };
+['pointerup', 'pointercancel', 'pointerleave'].forEach((t) => $('t-fire').addEventListener(t, fireUp));
+$('t-wpn').addEventListener('pointerdown', (ev) => { ev.preventDefault(); if (arms.wheel) closeWheel(false); else openWheel(); });
+$('t-reload').addEventListener('pointerdown', (ev) => { ev.preventDefault(); if (arms.weapon) startReload(weaponById(arms.weapon)); });
 promptEl.addEventListener('pointerdown', (ev) => { if (state === 'playing') { ev.preventDefault(); sendKey('keydown', 'KeyE'); } });
 promptEl.addEventListener('pointerup', () => sendKey('keyup', 'KeyE'));
 promptEl.addEventListener('pointercancel', () => sendKey('keyup', 'KeyE'));
@@ -1387,18 +1666,34 @@ addEventListener('keyup', (ev) => {
   // Datenrauschen: auch bei sehr niedriger Bildrate zaehlt die echte Haltedauer
   if (ev.code === 'KeyE' && noise.active && state === 'playing' && isNoisy(focused) && performance.now() - noise.start >= 1500) clearNoise(focused);
   keys[ev.code] = false;
+  if (ev.code === 'KeyF') arms.firing = false;
+  // Waffenkreuz: Q gedrueckt halten, Richtung waehlen, loslassen
+  if (ev.code === 'KeyQ' && arms.wheel && arms.sel !== null) closeWheel(true);
 });
 addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
 
 // ===================================================================== Schleife
 
 const clock = new THREE.Clock();
+let dtAvg = 1 / 60;
 function tick() {
-  const dt = Math.min(clock.getDelta(), 0.25);
+  const raw = Math.min(clock.getDelta(), 0.25);
+  perfUpdate(raw);
+  // Bildzeit glaetten: kleine Schwankungen erzeugen sonst sichtbares Zittern
+  dtAvg += (raw - dtAvg) * 0.2;
+  const dt = raw > 0.08 || Math.abs(raw - dtAvg) > 0.02 ? raw : dtAvg;
   time += dt;
+  if (lookPend.x || lookPend.y) {
+    const k = state === 'playing' ? 1 - Math.exp(-dt * 28) : 1;
+    const ax = lookPend.x * k, ay = lookPend.y * k;
+    if (state === 'playing' && !arms.wheel) look(ax, ay);
+    lookPend.x -= ax; lookPend.y -= ay;
+    if (Math.abs(lookPend.x) < 0.05 && Math.abs(lookPend.y) < 0.05) { lookPend.x = 0; lookPend.y = 0; }
+  }
   if (state === 'playing') {
     const steps = Math.max(1, Math.ceil(dt / 0.02));
-    for (let i = 0; i < steps; i++) movePlayer(dt / steps);
+    if (!arms.wheel) for (let i = 0; i < steps; i++) movePlayer(dt / steps);
+    updateArms(dt);
     updateFocus();
     if (noise.active) {
       if (keys.KeyE && isNoisy(focused)) {
@@ -1422,10 +1717,11 @@ function tick() {
   }
   if (lightOrb) {
     if (effects.lightUntil > time) lightOrb.position.set(player.x + Math.sin(time * 1.3) * 0.8, player.y + 2.4, player.z + Math.cos(time * 1.3) * 0.8);
-    else if (lightOrb.parent) lightOrb.parent.remove(lightOrb);
+    else if (lightOrb.children[0].intensity) { lightOrb.children[0].intensity = 0; lightOrb.children[1].visible = false; }
   }
   if (echoBeam && effects.echoUntil < time && echoBeam.parent) echoBeam.parent.remove(echoBeam);
   if (world) world.update(dt, time);
+  if (combat) combat.update(dt, time, player, droneKilled);
   updateCamera(dt);
   if (toastTime > 0) { toastTime -= dt; if (toastTime <= 0) toastEl.hidden = true; }
   updateHud(dt);
@@ -1504,7 +1800,16 @@ window.TLH = {
   },
   face: (x, z) => { const a = Math.atan2(x - player.x, z - player.z); cam.yaw = a; player.yaw = a; },
   settings: () => JSON.parse(JSON.stringify(settings)),
-  frames: () => renderer.info.render.frame
+  frames: () => renderer.info.render.frame,
+  perf: () => ({ scale: perf.scale, max: perf.max, min: perf.min, fps: perf.fps, bloom: !!composer, shadows: renderer.shadowMap.enabled }),
+  weapon: () => arms.weapon,
+  ammo: (id) => arms.ammo[id || arms.weapon],
+  reloading: () => arms.reloadT > 0,
+  wheelOpen: () => arms.wheel,
+  drones: () => (combat ? combat.drones.map((d) => ({ x: d.pos.x, y: d.pos.y, z: d.pos.z, alive: d.alive, hp: d.hp })) : []),
+  dronesKilled: () => P.drones,
+  equip: (id) => equipWeapon(id),
+  aimAt: (x, y, z) => { const dx = x - player.x, dz = z - player.z; cam.yaw = Math.atan2(dx, dz); player.yaw = cam.yaw; const h = Math.hypot(dx, dz); cam.pitch = clamp(Math.atan2(y - (player.y + 1.6), h) * -1 + 0.05, -0.45, 1.0); }
 };
 
 // ===================================================================== Start
@@ -1523,6 +1828,14 @@ async function boot() {
   camera.fov = settings.fov;
   hero = createCharacter(assets, { emblem: assets.emblem.gold, cape: true });
   scene.add(hero.root);
+  combat = createCombat(scene);
+  lightOrb = new THREE.Group();
+  lightOrb.add(new THREE.PointLight(0x9fdcff, 0, 16, 2));
+  const orbMesh = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 12), new THREE.MeshBasicMaterial({ color: 0xcff0ff }));
+  orbMesh.visible = false;
+  lightOrb.add(orbMesh);
+  lightOrb.position.set(0, -50, 0);
+  scene.add(lightOrb);
   enterWorld('hub');
   placePlayer(0, -14, 0.15);
   bootEl.hidden = true;

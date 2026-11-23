@@ -45,3 +45,10 @@
 - [ ] Lokalisierung über String Tables (weitere Sprachen)
 - [ ] Fachliche Prüfung aller Texte durch eine Historikerin oder einen Historiker
 - [ ] Oberfläche auf UMG/CommonUI umstellen
+
+## Neu (23.11.2026)
+
+- [ ] Projektinhaber: auf dem Tablet testen, ob es jetzt flüssig läuft
+- [ ] Entscheidung: Sollen Störsonden angreifen (Lebenspunkte, Niederlage)? Sollen Waffen freigeschaltet und verbessert werden?
+- [ ] Waffenhaltung der Figur verfeinern (Waffe von hinten kaum sichtbar)
+- [ ] Gesamtdurchlauf (239 Prüfungen) nach der Glättung von Bewegung und Kamera wiederholen
