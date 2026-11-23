@@ -209,6 +209,29 @@ button.small { font-size: 14px; padding: 6px 10px; font-weight: 600; }
   .opt { grid-template-columns: 1fr; gap: 6px; }
   #abilities .slot { width: 44px; height: 44px; }
 }
+
+/* ------------------------------------------------ Touch (Tablet): Joystick links, Knoepfe rechts, Wischen = Kamera */
+#scene { touch-action: none; }
+#touch { position: absolute; inset: 0; pointer-events: none; }
+#touch button { pointer-events: auto; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; font-family: var(--font-ui); font-weight: 700; color: #dff4ff; background: rgba(8,16,28,0.62); border: 1px solid rgba(95,208,255,0.55); border-radius: 50%; padding: 0; display: grid; place-items: center; text-shadow: none; }
+#touch button.on, #touch button:active { background: rgba(40,110,160,0.75); border-color: #9fe0ff; }
+#stick-base { position: absolute; width: 132px; height: 132px; margin: -66px 0 0 -66px; border-radius: 50%; border: 2px solid rgba(159,224,255,0.45); background: rgba(8,16,28,0.35); left: 120px; bottom: 54px; top: auto; }
+#stick-base.active { bottom: auto; }
+#stick-knob { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(159,224,255,0.55); border: 2px solid #cfefff; }
+#stick-hint { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: 6px; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.tpad { position: absolute; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(22px, env(safe-area-inset-bottom, 0px)); width: 210px; height: 190px; }
+#t-use { position: absolute; right: 0; bottom: 20px; width: 92px; height: 92px; font-size: 30px; border-color: rgba(240,181,74,0.8) !important; color: var(--gold) !important; }
+#t-jump { position: absolute; right: 104px; bottom: 0; width: 66px; height: 66px; font-size: 15px; }
+#t-run { position: absolute; right: 104px; bottom: 80px; width: 66px; height: 66px; font-size: 15px; }
+.ttop { position: absolute; right: max(18px, env(safe-area-inset-right, 0px)); top: 250px; display: flex; flex-direction: column; gap: 10px; }
+.ttop button { width: 56px; height: 56px; border-radius: 10px !important; font-size: 13px; }
+body.touch #hint, body.touch .hud-log, body.touch #lockHint, body.touch .hud-counters, body.touch .slot .num { display: none !important; }
+body.touch #abilities { pointer-events: auto; bottom: max(14px, env(safe-area-inset-bottom, 0px)); }
+body.touch #prompt { pointer-events: auto; bottom: 96px; cursor: pointer; }
+body.touch #minimap { width: 150px; height: 150px; }
+body.touch .ttop { top: 220px; }
+@media (max-width: 900px) { body.touch #abilities { left: 50%; } body.touch #abilities .slot { width: 46px; height: 46px; } body.touch #abilities .slot svg { width: 26px; height: 26px; } .ttop { top: 215px !important; } }
+@media (max-height: 640px) { body.touch #abilities { display: none; } }
 @media (prefers-reduced-motion: reduce) { button, .bar i { transition: none; } }
 </style>
 </head>
@@ -249,6 +272,20 @@ button.small { font-size: 14px; padding: 6px 10px; font-weight: 600; }
   <div class="hud-counters">
     <div class="counter"><span>Erinnerungen</span><b id="cnt-mem">0 | 48</b></div>
     <div class="counter"><span>Datenkristalle</span><b id="cnt-cry">0 | 10</b></div>
+  </div>
+  <div id="touch" hidden>
+    <div id="stick-base"><div id="stick-knob"></div><span id="stick-hint">Laufen</span></div>
+    <div class="tpad">
+      <button id="t-run" type="button" aria-label="Sprinten umschalten">Sprint</button>
+      <button id="t-jump" type="button" data-key="Space" aria-label="Springen">Sprung</button>
+      <button id="t-use" type="button" data-key="KeyE" aria-label="Benutzen (gedrückt halten bei Datenrauschen)">E</button>
+    </div>
+    <div class="ttop">
+      <button type="button" data-key="Escape" aria-label="Menü">Menü</button>
+      <button type="button" data-key="KeyJ" aria-label="Journal">Journal</button>
+      <button type="button" data-key="KeyM" aria-label="Karte">Karte</button>
+      <button type="button" data-key="KeyI" aria-label="Kodex">Kodex</button>
+    </div>
   </div>
   <div id="prompt" hidden></div>
   <div id="lockHint" hidden>Klicke ins Bild, um die Kamera mit der Maus zu steuern.</div>

@@ -90,3 +90,17 @@ Umgebung wie Abschnitt D (Chromium/Playwright, Software-3D, 1024 × 640, Grafiks
 **Was V3-04 geprüft hat** (alle ✅): Laden, Hauptmenü, Namenseingabe, Einleitung, 246 Erinnerungen vorhanden · Gehen, Sprinten/Ausdauer, Springen, Kamera, Esc-Menü („Optionen“ sichtbar bei 640 px) · Archivtor versiegelt, Kommandantin, 3 Orte erkundet, 10 Datenkristalle, Fähigkeiten 1 und 5, Journal/Kodex/Fähigkeiten/Karte · 2 Nebenaufgaben zu Fuß · **Sektor 1 komplett zu Fuß**: Wegsuche (alle 20 Ziele erreichbar), 13 Erinnerungen gelesen, 2 Rauschstellen beseitigt, 4 Artefakte, Echo-Gespräch (4 Zeilen), Wissensprüfung mit absichtlich falscher Antwort und Wiederholung, Sektortor, Bericht · F5, Neuladen, Fortsetzen: alles wiederhergestellt · **Sektoren 2–20 beschleunigt** (Figur wird neben jedes Ziel gesetzt, Bedienung per Tastendruck; vorher Wegsuche, dass jedes Ziel zu Fuß erreichbar ist): in jedem Sektor alle Erinnerungen, Rauschstellen, Artefakte, Echo, Wissensprüfung, Rückkehr, Bericht · **alle 25 Nebenaufgaben** · Abschlussgespräch und Abspann („246 von 246“, Stufe 62) · **alle 80 Artefakte** · Optionen wirken sofort · kein waagerechtes Scrollen bei 390 px.
 
 **Einschränkungen dieses Tests:** Sektoren 2–20 wurden nicht zu Fuß abgelaufen, sondern über Wegsuche + Versetzen geprüft. Gelesen hat der Test die Texte nicht – Inhalt, Verständlichkeit und Spielzeit kann nur ein Mensch beurteilen. Kamera mit eingefangener Maus, Klang, Bildrate und Aussehen auf einem echten PC: bitte beim eigenen Spielen prüfen.
+
+## F. Tablet-Steuerung (Touch) – im Browser getestet
+
+Umgebung: Chromium (Playwright) mit Geräteemulation „iPad Pro 11“ (Touch, 1194 × 834 quer und 834 × 1194 hoch), Software-3D. Test: `TheLastHumanity_Web/tests/touch_test.js`. Fingerbewegungen werden als Touch-Pointer-Events erzeugt.
+
+| ID | Datum | Test | Ergebnis |
+|---|---|---|---|
+| T-01 | 23.11.2026 | Touch-Test, 1. Lauf | ❌ 30/31: im Hochformat lag die Knopfleiste (Menü/Journal/Karte/Kodex) auf der Minikarte → nach unten verschoben |
+| T-02 | 23.11.2026 | **Touch-Test, 2. Lauf** | ✅ **31 von 31** |
+| T-03 | 23.11.2026 | PC-Version unverändert (Menü-Teiltest; Touch-Modus am PC aus) | ✅ 14 von 14, Touch-Modus nicht aktiv |
+
+**Geprüft (alle ✅):** Tablet wird erkannt · Menüs, Namenseingabe, Einleitung per Antippen · Touch-Knöpfe sichtbar, Tastaturhinweise ausgeblendet · Joystick bewegt die Figur, Loslassen stoppt · Wischen dreht die Kamera · zwei Finger gleichzeitig (laufen + umsehen) · Sprint-Knopf (Ausdauer sinkt), Sprung-Knopf · Fähigkeit antippen · Journal, Karte, Kodex, Menü per Knopf öffnen und per Antippen schließen · Gespräch mit E-Knopf · Sektor über das Journal betreten · Datenrauschen durch gedrückt gehaltenen E-Knopf · Erinnerung öffnen/schließen · Hochformat: Knöpfe überlappen nicht, kein waagerechtes Scrollen · keine JavaScript-Fehler.
+
+**Nicht geprüft:** echtes Tablet (Bildrate, Akku, Safari-Eigenheiten auf iPad, Android-Browser). Bitte auf dem eigenen Tablet testen.

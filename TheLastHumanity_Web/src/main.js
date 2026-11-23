@@ -46,7 +46,14 @@ function sanitizeSettings(s) {
   if (!['hoch', 'mittel', 'niedrig'].includes(out.quality)) out.quality = 'hoch';
   return out;
 }
-const settings = sanitizeSettings(Store.get(SETTINGS_KEY));
+// Touch-Geraet (Tablet/Handy) erkennen; ?touch=an / ?touch=aus erzwingt es
+const touchParam = (location.search.match(/[?&]touch=(an|aus)/) || [])[1];
+let touchMode = touchParam ? touchParam === 'an'
+  : ((typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches) || (navigator.maxTouchPoints > 0 && !matchMedia('(pointer: fine)').matches));
+const storedSettings = Store.get(SETTINGS_KEY);
+const settings = sanitizeSettings(storedSettings);
+// Tablets: beim ersten Start mittlere Grafik (spart Akku, fluessiger)
+if (!storedSettings && touchMode) settings.quality = 'mittel';
 const urlQuality = (location.search.match(/[?&]grafik=(hoch|mittel|niedrig)/) || [])[1];
 if (urlQuality) settings.quality = urlQuality;
 
@@ -370,10 +377,17 @@ function resolveCollisions() {
 }
 
 const keys = {};
+/** Virtueller Joystick (Touch): x rechts, y vorwaerts, je -1..1; run = Sprint-Schalter */
+const touchMove = { x: 0, y: 0, run: false };
 function movePlayer(dt) {
-  const fwd = (keys.KeyW || keys.ArrowUp ? 1 : 0) - (keys.KeyS || keys.ArrowDown ? 1 : 0);
-  const side = (keys.KeyD || keys.ArrowRight ? 1 : 0) - (keys.KeyA || keys.ArrowLeft ? 1 : 0);
-  const wantSprint = (keys.ShiftLeft || keys.ShiftRight) && player.stamina > 1;
+  let fwd = (keys.KeyW || keys.ArrowUp ? 1 : 0) - (keys.KeyS || keys.ArrowDown ? 1 : 0);
+  let side = (keys.KeyD || keys.ArrowRight ? 1 : 0) - (keys.KeyA || keys.ArrowLeft ? 1 : 0);
+  let analog = 1;
+  if (!fwd && !side && (touchMove.x || touchMove.y)) {
+    fwd = touchMove.y; side = touchMove.x;
+    analog = Math.min(1, Math.hypot(fwd, side));
+  }
+  const wantSprint = (keys.ShiftLeft || keys.ShiftRight || touchMove.run) && player.stamina > 1;
   const len = Math.hypot(fwd, side);
   let target = 0;
   let mx = 0, mz = 0;
@@ -382,7 +396,7 @@ function movePlayer(dt) {
     const rx = -fz, rz = fx; // rechts = vorwaerts x oben
     mx = (fx * fwd + rx * side) / len;
     mz = (fz * fwd + rz * side) / len;
-    target = wantSprint ? 7.6 : 4.2;
+    target = (wantSprint ? 7.6 : 4.2) * (analog < 0.35 ? 0.45 : analog < 0.7 ? 0.75 : 1);
     const desired = Math.atan2(mx, mz);
     player.yaw += angleDiff(desired, player.yaw) * Math.min(1, dt * 12);
   }
@@ -1177,6 +1191,7 @@ function setState(next) {
   } else {
     if (next !== 'dialog') focused = null;
     for (const k in keys) keys[k] = false;
+    try { stickReset(); lookId = null; } catch (e) { /* Touch noch nicht initialisiert */ }
     if (document.pointerLockElement === canvas) document.exitPointerLock();
     const first = document.querySelector('.screen:not([hidden]) button:not(:disabled), .screen:not([hidden]) input');
     if (first && prev !== next && first.id !== 'heroname') first.focus({ preventScroll: true });
@@ -1243,7 +1258,7 @@ document.addEventListener('keydown', (ev) => {
 
 // ===================================================================== Maus
 
-const lockSupported = ('requestPointerLock' in canvas) && !/[?&]zeiger=aus/.test(location.search);
+const lockSupported = ('requestPointerLock' in canvas) && !/[?&]zeiger=aus/.test(location.search) && !touchMode;
 let pointerLocked = false, lastUnlockPause = 0;
 function requestLock() {
   if (!lockSupported || document.pointerLockElement === canvas) return;
@@ -1303,6 +1318,71 @@ addEventListener('keydown', (ev) => {
   const m = code.match(/^Digit([1-6])$/);
   if (m && state === 'playing') useAbility(parseInt(m[1], 10));
 });
+// ===================================================================== Touch (Tablet)
+
+const touchEl = $('touch'), stickBase = $('stick-base'), stickKnob = $('stick-knob');
+function setTouchMode(on) {
+  touchMode = on;
+  document.body.classList.toggle('touch', on);
+  touchEl.hidden = !on;
+}
+setTouchMode(touchMode);
+function sendKey(type, code) { dispatchEvent(new KeyboardEvent(type, { code, key: code, bubbles: true })); }
+const STICK_R = 56;
+let stickId = null, stickCX = 0, stickCY = 0, lookId = null, lookX = 0, lookY = 0;
+function stickMove(x, y) {
+  let dx = x - stickCX, dy = y - stickCY;
+  const d = Math.hypot(dx, dy);
+  if (d > STICK_R) { dx *= STICK_R / d; dy *= STICK_R / d; }
+  stickKnob.style.transform = `translate(${dx}px, ${dy}px)`;
+  const m = Math.hypot(dx, dy) / STICK_R;
+  touchMove.x = m < 0.12 ? 0 : dx / STICK_R;
+  touchMove.y = m < 0.12 ? 0 : -dy / STICK_R;
+}
+function stickReset() {
+  stickId = null; touchMove.x = 0; touchMove.y = 0;
+  stickKnob.style.transform = '';
+  stickBase.classList.remove('active'); stickBase.style.left = ''; stickBase.style.top = '';
+}
+canvas.addEventListener('pointerdown', (ev) => {
+  if (ev.pointerType !== 'touch') return;
+  if (!touchMode) setTouchMode(true);
+  ev.preventDefault();
+  if (state !== 'playing') return;
+  if (ev.clientX < innerWidth * 0.42 && stickId === null) {
+    stickId = ev.pointerId; stickCX = ev.clientX; stickCY = ev.clientY;
+    stickBase.classList.add('active'); stickBase.style.left = stickCX + 'px'; stickBase.style.top = stickCY + 'px';
+    stickMove(ev.clientX, ev.clientY);
+  } else if (lookId === null) { lookId = ev.pointerId; lookX = ev.clientX; lookY = ev.clientY; }
+  try { canvas.setPointerCapture(ev.pointerId); } catch (e) { /* egal */ }
+});
+canvas.addEventListener('pointermove', (ev) => {
+  if (ev.pointerType !== 'touch') return;
+  if (ev.pointerId === stickId) stickMove(ev.clientX, ev.clientY);
+  else if (ev.pointerId === lookId && state === 'playing') { look((ev.clientX - lookX) * 1.8, (ev.clientY - lookY) * 1.8); lookX = ev.clientX; lookY = ev.clientY; }
+});
+function touchEnd(ev) {
+  if (ev.pointerId === stickId) stickReset();
+  if (ev.pointerId === lookId) lookId = null;
+}
+canvas.addEventListener('pointerup', touchEnd);
+canvas.addEventListener('pointercancel', touchEnd);
+// Knoepfe mit data-key senden Tastendruck (gedrueckt halten = Taste halten, z. B. E bei Datenrauschen)
+touchEl.querySelectorAll('button[data-key]').forEach((b) => {
+  const code = b.dataset.key;
+  let down = false;
+  b.addEventListener('pointerdown', (ev) => { ev.preventDefault(); down = true; b.classList.add('on'); sendKey('keydown', code); });
+  const up = () => { if (!down) return; down = false; b.classList.remove('on'); sendKey('keyup', code); };
+  b.addEventListener('pointerup', up); b.addEventListener('pointercancel', up); b.addEventListener('pointerleave', up);
+  b.addEventListener('contextmenu', (ev) => ev.preventDefault());
+});
+$('t-run').addEventListener('pointerdown', (ev) => { ev.preventDefault(); touchMove.run = !touchMove.run; $('t-run').classList.toggle('on', touchMove.run); });
+// Faehigkeiten antippen, Hinweis antippen = Benutzen
+for (let i = 1; i <= 6; i++) $('ab' + i).addEventListener('pointerdown', (ev) => { if (state === 'playing') { ev.preventDefault(); useAbility(i); } });
+promptEl.addEventListener('pointerdown', (ev) => { if (state === 'playing') { ev.preventDefault(); sendKey('keydown', 'KeyE'); } });
+promptEl.addEventListener('pointerup', () => sendKey('keyup', 'KeyE'));
+promptEl.addEventListener('pointercancel', () => sendKey('keyup', 'KeyE'));
+
 addEventListener('keyup', (ev) => {
   // Datenrauschen: auch bei sehr niedriger Bildrate zaehlt die echte Haltedauer
   if (ev.code === 'KeyE' && noise.active && state === 'playing' && isNoisy(focused) && performance.now() - noise.start >= 1500) clearNoise(focused);

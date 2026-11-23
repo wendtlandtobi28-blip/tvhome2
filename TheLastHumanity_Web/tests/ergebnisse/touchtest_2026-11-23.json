@@ -1,0 +1,161 @@
+{
+  "passed": 31,
+  "failed": 0,
+  "results": [
+    {
+      "ok": true,
+      "label": "Tablet wird erkannt (Touch-Modus)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Menues per Antippen bedienbar, Spiel startet",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Touch-Steuerung sichtbar",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Tastatur-Hinweise ausgeblendet",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Joystick: Figur laeuft",
+      "detail": "2.77 m"
+    },
+    {
+      "ok": true,
+      "label": "Joystick loslassen: Figur bleibt stehen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Wischen rechts: Kamera dreht sich",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Zwei Finger: laufen und umsehen gleichzeitig",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sprint-Knopf schaltet ein",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sprinten per Knopf verbraucht Ausdauer",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sprung-Knopf",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Faehigkeit antippen (Scan-Puls)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Knopf oeffnet journal",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "journal per Antippen schliessen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Knopf oeffnet map",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "map per Antippen schliessen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Knopf oeffnet codex",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "codex per Antippen schliessen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Menue-Knopf oeffnet das Menue",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "\"Weiterspielen\" antippen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Hinweis erscheint bei der Kommandantin",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "E-Knopf startet Gespraech",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Gespraech per E-Knopf durchgeklickt, Quest weiter",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Sektor 1 per Antippen im Journal betreten",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Datenrauschen: E-Knopf gedrueckt halten",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Erinnerung per E-Knopf geoeffnet",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Erinnerung per Antippen geschlossen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Prueftterminal reagiert (Pruefung erst nach allen Erinnerungen)",
+      "detail": "Wissensterminal: erst alle Erinnerungen erwecken (1/13)"
+    },
+    {
+      "ok": true,
+      "label": "Hochformat: Knoepfe ueberlappen nicht und sind im Bild",
+      "detail": "{\"useAb\":false,\"menuMap\":false,\"inside\":true}"
+    },
+    {
+      "ok": true,
+      "label": "Hochformat: kein waagerechtes Scrollen",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "Keine JavaScript-Fehler",
+      "detail": ""
+    }
+  ]
+}

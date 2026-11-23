@@ -28,6 +28,21 @@ Science-Fiction-Erkundungsspiel in der dritten Person. Im Orbit des Gasriesen Te
 | Esc oder P | Menü |
 | F5 | Schnellspeichern |
 
+### Tablet (Touch)
+
+Auf Tablets schaltet das Spiel automatisch auf Touch-Steuerung um (erzwingen: `?touch=an`, abschalten: `?touch=aus`):
+
+| Geste / Knopf | Funktion |
+|---|---|
+| Linke Bildschirmhälfte: Finger auflegen und ziehen | Virtueller Joystick – Laufen (wenig ziehen = langsam) |
+| Rechte Bildschirmhälfte: wischen | Kamera drehen |
+| **E** (gold, unten rechts) | Sprechen, untersuchen, Tor, Dialog weiter · **gedrückt halten:** Datenrauschen |
+| Sprint / Sprung | Sprinten ein/aus, Springen |
+| Menü, Journal, Karte, Kodex (rechts) | wie Esc, J, M, I |
+| Fähigkeiten-Symbole unten / gelber Hinweis | antippen = benutzen |
+
+Beim ersten Start auf dem Tablet ist die Grafik auf „Mittel“ gestellt. Ruckelt es, in den Optionen „Niedrig“ wählen und neu laden. Hoch- und Querformat funktionieren; Querformat ist angenehmer.
+
 ## Geschichte und Ablauf
 
 1. Neues Spiel: Du gibst deinen Namen ein und erwachst auf der Station.
@@ -60,6 +75,7 @@ Nebenbei findest du 10 Datenkristalle mit Geschichten der Station. Mit wachsende
 | `../TheLastHumanity/Content/Data/content_de.json` | Daraus erzeugt mit `Tools/merge_content.py` (gemeinsam mit der Unreal-Version) |
 | `../TheLastHumanity/Content/Data/story_de.json` | Rahmenhandlung: Personen, Dialoge, Quests, Kristalle, Fähigkeiten, Nebenaufgaben |
 | `tests/e2e_test.js` | Automatischer Gesamttest (spielt das ganze Spiel durch) |
+| `tests/touch_test.js` | Test der Tablet-Steuerung (emuliertes iPad) |
 | `THIRD_PARTY_LICENSES.md` | Lizenzen der verwendeten Fremdbestandteile |
 
 ### Bauen

@@ -27,6 +27,7 @@ Umsetzung der Entscheidung vom 22.11.2026 (`GAME_DESIGN.md`, Abschnitt 12) mit d
 | Station, Kristalle, Fähigkeiten, Menüs, Speichern | wie Version 2 | ✅ getestet |
 | Spielzeit | **nicht gemessen.** Schätzung für den Entwurf: ca. 12–18 Stunden bei gründlichem Lesen (246 Texte à ca. 2–3 min, dazu Wege, Prüfungen, Nebenaufgaben). Für 45 Stunden fehlen v. a. größere, gestaltete Sektoren, Story-Szenen und mehr Stationsinhalte | ⬜ Messung durch Projektinhaber |
 | Grafik | unverändert (Version 2) | – |
+| **Tablet-Steuerung** (Joystick, Wischen, Knöpfe, Hoch-/Querformat) | automatisch bei Touch-Geräten | ✅ emuliertes iPad 31/31 (`TESTS.md` F) · echtes Tablet ⬜ |
 
 ## Browser-Version 2.0.0 (ersetzt durch 3.0.0) – Science-Fiction-Story-Modus (`../TheLastHumanity_Web/`)
 
