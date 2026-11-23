@@ -31,6 +31,78 @@ class ToolSpec(val name: String, val description: String, val props: Map<String,
  */
 class Tools(private val context: Context, private val store: Store) {
 
+    /** Zeigt auf dem Bildschirm, was Jarvis gerade tut. */
+    @Volatile var onStatus: ((String) -> Unit)? = null
+
+    fun status(text: String) { onStatus?.invoke(text) }
+
+    // ---------------- Schnellantworten ohne KI (sofort und kostenlos) ----------------
+
+    /**
+     * Beantwortet einfache Fragen direkt, ohne die KI zu fragen: Uhrzeit, Datum und Wetter.
+     * Gibt null zurück, wenn die Frage etwas anderes ist. Blockiert (Netzwerk): nur im Hintergrund aufrufen.
+     */
+    fun quickAnswer(question: String): String? {
+        val q = question.lowercase(Locale.GERMANY)
+        val now = LocalDateTime.now()
+        if (Regex("wie (spät|viel uhr)|welche uhrzeit|wieviel uhr").containsMatchIn(q)) {
+            return "Es ist ${now.hour} Uhr ${now.minute.toString().padStart(2, '0')}, Sir."
+        }
+        if (Regex("welche[rns]? (tag|datum)|den wievielten|welches datum").containsMatchIn(q) && !q.contains("wetter")) {
+            return "Heute ist " + DateTimeFormatter.ofPattern("EEEE, der d. MMMM yyyy", Locale.GERMANY).format(now) + ", Sir."
+        }
+        val weatherWords = listOf("wetter", "regnet", "regen", "schnee", "schneit", "temperatur", "wie warm", "wie kalt", "grad draußen", "sonne scheint", "regenschirm")
+        if (weatherWords.any { q.contains(it) } && !Regex("gestern|letzte woche|klimawandel|warum").containsMatchIn(q)) {
+            val city = Regex("(?:in|für|bei|nach)\\s+([A-ZÄÖÜ][\\wäöüß.-]+(?:[ -][A-ZÄÖÜ][\\wäöüß.-]+)?)").find(question)?.groupValues?.get(1)
+                ?.removeSuffix("?")?.removeSuffix(".")
+            val loose = Regex("(?:in|für|bei)\\s+([a-zäöüß][\\wäöüß-]{2,})", RegexOption.IGNORE_CASE).findAll(question)
+                .map { it.groupValues[1] }
+                .firstOrNull { it.lowercase() !in setOf("der", "den", "dem", "die", "das", "meiner", "meinem", "unserer", "unserem", "einer", "einem", "zukunft", "ordnung", "deutschland") }
+                ?.replaceFirstChar { it.uppercase() }
+            val target = city ?: loose ?: store.homeCity
+            if (target.isBlank()) return null // Ort unbekannt: die KI soll nachfragen
+            status("Hole Wetterdaten für $target …")
+            return try {
+                weatherSpoken(target, focusTomorrow = q.contains("morgen") && !q.contains("heute morgen"))
+            } catch (e: Exception) {
+                null // dann versucht es die KI
+            }
+        }
+        return null
+    }
+
+    private fun spokenTemp(t: Double): String {
+        val r = Math.round(t).toInt()
+        return if (r < 0) "minus ${-r} Grad" else "$r Grad"
+    }
+
+    private fun weatherSpoken(city: String, focusTomorrow: Boolean): String {
+        val geo = JSONObject(getJson("https://geocoding-api.open-meteo.com/v1/search?count=1&language=de&countryCode=DE&name=" + enc(city)))
+        val place = geo.optJSONArray("results")?.optJSONObject(0)
+            ?: JSONObject(getJson("https://geocoding-api.open-meteo.com/v1/search?count=1&language=de&name=" + enc(city)))
+                .optJSONArray("results")?.optJSONObject(0)
+            ?: return "Verzeihung, Sir, den Ort $city finde ich leider nicht."
+        val w = JSONObject(
+            getJson(
+                "https://api.open-meteo.com/v1/forecast?latitude=${place.getDouble("latitude")}&longitude=${place.getDouble("longitude")}" +
+                    "&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m" +
+                    "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
+                    "&timezone=auto&forecast_days=2"
+            )
+        )
+        val name = place.getString("name")
+        val d = w.getJSONObject("daily")
+        fun day(i: Int) = "${code(d.getJSONArray("weather_code").getInt(i))}, zwischen ${spokenTemp(d.getJSONArray("temperature_2m_min").getDouble(i))} " +
+            "und ${spokenTemp(d.getJSONArray("temperature_2m_max").getDouble(i))}, " +
+            "Regenwahrscheinlichkeit ${d.getJSONArray("precipitation_probability_max").optInt(i)} Prozent"
+        if (focusTomorrow) return "Morgen in $name, Sir: ${day(1)}."
+        val cur = w.getJSONObject("current")
+        val wind = Math.round(cur.getDouble("wind_speed_10m")).toInt()
+        val windText = if (wind >= 30) " Es ist ziemlich windig, $wind Kilometer pro Stunde." else ""
+        return "In $name sind es gerade ${spokenTemp(cur.getDouble("temperature_2m"))}, ${code(cur.getInt("weather_code"))}, " +
+            "gefühlt ${spokenTemp(cur.getDouble("apparent_temperature"))}.$windText Heute insgesamt ${day(0)}. Morgen ${day(1)}."
+    }
+
     private fun tool(name: String, description: String, props: Map<String, Map<String, Any>>, required: List<String>) =
         ToolSpec(name, description, props, required)
 
@@ -143,6 +215,17 @@ class Tools(private val context: Context, private val store: Store) {
     )
 
     fun run(name: String, input: Map<*, *>, conversationId: Long): String = try {
+        status(
+            when {
+                name == "weather" -> "Hole Wetterdaten …"
+                name == "news" -> "Lese die Nachrichten …"
+                name == "wikipedia" -> "Schlage bei Wikipedia nach …"
+                name.startsWith("calendar") -> "Schaue in Ihren Kalender …"
+                name.startsWith("notes") -> "Schaue in Ihre Notizen …"
+                name == "search_conversations" -> "Durchsuche frühere Gespräche …"
+                else -> "Einen Moment …"
+            }
+        )
         when (name) {
             "weather" -> weather(input["city"]?.toString().orEmpty(), (input["days"] as? Number)?.toInt() ?: 3)
             "news" -> news(input["topic"]?.toString().orEmpty())

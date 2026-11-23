@@ -24,6 +24,9 @@ import java.time.Duration
 import java.util.Date
 import java.util.Locale
 
+/** Die Antwort hat zu lange gedauert. */
+class TooSlow : Exception()
+
 /** Der Gemini-Schlüssel wird von Google abgelehnt. */
 class BadKey : Exception()
 
@@ -38,6 +41,11 @@ class FreeLimitReached : Exception()
 class Brain(private val store: Store, private val tools: Tools) {
     private val gemini = GeminiBrain(store, tools)
     private val claude = ClaudeBrain(store, tools)
+
+    /** Bereitet Gemini schon beim App-Start vor, damit die erste Frage schneller geht. */
+    fun warmUp() {
+        if (store.geminiKey.isNotBlank()) try { gemini.warmUp() } catch (_: Exception) {}
+    }
 
     fun ask(history: List<Turn>, question: String, conversationId: Long): String {
         if (!store.hasAnyKey) return "Sir, mir fehlt noch ein Schlüssel. Bitte tragen Sie ihn in den Einstellungen ein."
@@ -90,7 +98,16 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
         listOf("query")
     )
 
+    /** Spätester Zeitpunkt für die Antwort; danach wird abgebrochen. */
+    @Volatile private var deadline = 0L
+
+    fun warmUp() {
+        deadline = System.currentTimeMillis() + 15_000
+        candidates()
+    }
+
     fun ask(history: List<Turn>, question: String, conversationId: Long): String {
+        deadline = System.currentTimeMillis() + 35_000
         val contents = JSONArray()
         history.takeLast(10).forEach { t ->
             contents.put(msg(if (t.role == "user") "user" else "model", t.text))
@@ -101,7 +118,7 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
             .put("systemInstruction", JSONObject().put("parts", JSONArray().put(JSONObject().put("text", systemPrompt(store)))))
             .put("contents", contents)
             .put("tools", JSONArray().put(JSONObject().put("functionDeclarations", tools.geminiDeclarations(listOf(internetSearch)))))
-            .put("generationConfig", JSONObject().put("maxOutputTokens", 1500).put("temperature", 0.7))
+            .put("generationConfig", JSONObject().put("maxOutputTokens", 700).put("temperature", 0.7))
 
         return try {
             for (round in 0 until 6) {
@@ -126,7 +143,7 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
                 for (call in calls) {
                     val name = call.optString("name")
                     val args = call.optJSONObject("args") ?: JSONObject()
-                    val result = if (name == internetSearch.name) search(args.optString("query"))
+                    val result = if (name == internetSearch.name) { tools.status("Suche im Internet …"); search(args.optString("query")) }
                     else tools.run(name, toMap(args), conversationId)
                     val fr = JSONObject().put("name", name).put("response", JSONObject().put("result", result))
                     if (call.has("id")) fr.put("id", call.get("id"))
@@ -137,6 +154,10 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
             "Verzeihung, Sir, das hat zu lange gedauert. Fragen Sie mich bitte noch einmal."
         } catch (e: FreeLimitReached) {
             throw e
+        } catch (e: TooSlow) {
+            "Verzeihung, Sir, Google antwortet gerade sehr langsam. Fragen Sie mich bitte gleich noch einmal."
+        } catch (e: java.net.SocketTimeoutException) {
+            "Verzeihung, Sir, Google antwortet gerade sehr langsam. Fragen Sie mich bitte gleich noch einmal."
         } catch (e: BadKey) {
             "Sir, Google akzeptiert den Gemini-Schlüssel nicht. Bitte tippen Sie oben auf Einstellungen und fügen Sie nur den Schlüssel ein, der mit A I z a beginnt."
         } catch (e: java.io.IOException) {
@@ -152,7 +173,7 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
             .put("contents", JSONArray().put(msg("user",
                 "Recherchiere mit der Google-Suche und beantworte auf Deutsch mit den wichtigsten aktuellen Fakten in wenigen Sätzen: $query")))
             .put("tools", JSONArray().put(JSONObject().put("google_search", JSONObject())))
-            .put("generationConfig", JSONObject().put("maxOutputTokens", 800))
+            .put("generationConfig", JSONObject().put("maxOutputTokens", 500))
         val res = generate(body)
         val parts = res.optJSONArray("candidates")?.optJSONObject(0)?.optJSONObject("content")?.optJSONArray("parts")
         (0 until (parts?.length() ?: 0)).joinToString(" ") { parts!!.getJSONObject(it).optString("text") }.trim()
@@ -163,27 +184,48 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
         "Die Internetsuche ist gerade nicht verfügbar."
     }
 
-    /** Schickt die Anfrage; probiert bei Bedarf das nächste kostenlose Modell. */
+    /**
+     * Schickt die Anfrage; probiert bei Bedarf das nächste kostenlose Modell.
+     * Schaltet das lange Nachdenken der Modelle ab bzw. auf "niedrig", damit Antworten schnell kommen.
+     * Welche Einstellung ein Modell versteht, wird ausprobiert und gemerkt.
+     */
     private fun generate(body: JSONObject): JSONObject {
-        val models = candidates()
+        val models = candidates().take(3)
         var limitHit = false
         var lastError = "kein Modell verfügbar"
         for (model in models) {
-            val (code, text) = post("models/$model:generateContent", body)
-            when {
-                code == 200 -> {
-                    if (store.geminiModel != model) store.geminiModel = model
-                    return JSONObject(text)
+            val remembered = store.thinkingMode(model)
+            val modes = if (remembered.isNotBlank()) listOf(remembered) else listOf("level", "budget", "none")
+            for (mode in modes) {
+                val (code, text) = post("models/$model:generateContent", withThinking(body, mode))
+                if (code == 400 && text.contains("thinking", true) && mode != "none") continue
+                when {
+                    code == 200 -> {
+                        if (store.geminiModel != model) store.geminiModel = model
+                        if (remembered != mode) store.setThinkingMode(model, mode)
+                        return JSONObject(text)
+                    }
+                    code == 429 -> { limitHit = true; lastError = "Limit erreicht" }
+                    code == 404 || (code == 400 && text.contains("not supported", true)) -> lastError = "Modell $model nicht verfügbar"
+                    code == 400 && text.contains("API key", true) -> throw BadKey()
+                    code == 401 || code == 403 -> throw BadKey()
+                    else -> lastError = "Fehler $code: " + Regex("\"message\":\\s*\"([^\"]{0,140})").find(text)?.groupValues?.get(1).orEmpty()
                 }
-                code == 429 -> { limitHit = true; lastError = "Limit erreicht" }
-                code == 404 || (code == 400 && text.contains("not supported", true)) -> lastError = "Modell $model nicht verfügbar"
-                code == 400 && text.contains("API key", true) -> throw BadKey()
-                code == 401 || code == 403 -> throw BadKey()
-                else -> lastError = "Fehler $code"
+                break
             }
         }
         if (limitHit) throw FreeLimitReached()
         throw IllegalStateException(lastError)
+    }
+
+    private fun withThinking(body: JSONObject, mode: String): JSONObject {
+        val copy = JSONObject(body.toString())
+        val gen = copy.optJSONObject("generationConfig") ?: JSONObject().also { copy.put("generationConfig", it) }
+        when (mode) {
+            "level" -> gen.put("thinkingConfig", JSONObject().put("thinkingLevel", "low"))
+            "budget" -> gen.put("thinkingConfig", JSONObject().put("thinkingBudget", 0))
+        }
+        return copy
     }
 
     private var cachedList: List<String>? = null
@@ -237,9 +279,11 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
     private fun get(path: String): Pair<Int, String> = request(path, null)
 
     private fun request(path: String, body: String?): Pair<Int, String> {
+        val remaining = (deadline - System.currentTimeMillis()).toInt()
+        if (remaining < 1500) throw TooSlow()
         val c = URL(api + path).openConnection() as HttpURLConnection
-        c.connectTimeout = 15_000
-        c.readTimeout = 90_000
+        c.connectTimeout = minOf(8_000, remaining)
+        c.readTimeout = remaining
         c.setRequestProperty("x-goog-api-key", store.geminiKey)
         if (body != null) {
             c.requestMethod = "POST"
@@ -270,8 +314,8 @@ class ClaudeBrain(private val store: Store, private val tools: Tools) {
         if (client == null || key != clientKey) {
             client = AnthropicOkHttpClient.builder()
                 .apiKey(key)
-                .timeout(Duration.ofSeconds(90))
-                .maxRetries(2)
+                .timeout(Duration.ofSeconds(30))
+                .maxRetries(1)
                 .build()
             clientKey = key
         }

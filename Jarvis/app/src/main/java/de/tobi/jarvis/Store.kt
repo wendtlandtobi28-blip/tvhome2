@@ -52,6 +52,10 @@ class Store(context: Context) {
         get() = prefs.getString("gemini_model", "") ?: ""
         set(v) = prefs.edit().putString("gemini_model", v).apply()
 
+    /** Welche Denk-Einstellung ein Gemini-Modell versteht ("level", "budget" oder "none"). */
+    fun thinkingMode(model: String): String = prefs.getString("think_$model", "") ?: ""
+    fun setThinkingMode(model: String, mode: String) = prefs.edit().putString("think_$model", mode).apply()
+
     /** Wohnort für Wetterfragen ohne Ortsangabe. */
     var homeCity: String
         get() = prefs.getString("home_city", "") ?: ""

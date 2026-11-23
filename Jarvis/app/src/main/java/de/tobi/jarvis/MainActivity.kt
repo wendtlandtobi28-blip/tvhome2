@@ -89,6 +89,7 @@ private sealed class Screen {
 class MainActivity : ComponentActivity() {
     private lateinit var store: Store
     private lateinit var brain: Brain
+    private lateinit var tools: Tools
     private lateinit var ears: Ears
     private lateinit var mouth: Mouth
     private lateinit var updater: Updater
@@ -122,7 +123,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         store = Store(this)
-        brain = Brain(store, Tools(this, store))
+        tools = Tools(this, store)
+        tools.onStatus = { text -> runOnUiThread { hint = text } }
+        brain = Brain(store, tools)
+        // Gemini schon im Hintergrund vorbereiten, damit die erste Antwort schneller kommt
+        lifecycleScope.launch(Dispatchers.IO) { brain.warmUp() }
         ears = Ears(this)
         mouth = Mouth(this, store)
         updater = Updater(this)
@@ -270,8 +275,21 @@ class MainActivity : ComponentActivity() {
     private suspend fun answer(question: String) {
         mood = Mood.Thinking
         reply = "…"
+        hint = ""
         val history = conv.turns.toList()
-        val text = withContext(Dispatchers.IO) { brain.ask(history, question, conv.id) }
+        // Dauert es länger, sagt Jarvis kurz Bescheid, damit man nicht im Ungewissen wartet
+        val filler = lifecycleScope.launch {
+            delay(4000)
+            if (mood == Mood.Thinking) mouth.say("Einen Moment, Sir.")
+        }
+        val text = withContext(Dispatchers.IO) {
+            tools.quickAnswer(question) ?: run {
+                tools.status("Denke nach …")
+                brain.ask(history, question, conv.id)
+            }
+        }
+        filler.cancel()
+        hint = ""
         val now = System.currentTimeMillis()
         conv.turns.add(Turn("user", question, now))
         conv.turns.add(Turn("assistant", text, now))
