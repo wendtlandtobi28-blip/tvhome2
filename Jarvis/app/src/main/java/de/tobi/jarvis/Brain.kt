@@ -13,7 +13,6 @@ import com.anthropic.models.messages.MessageCreateParams
 import com.anthropic.models.messages.MessageParam
 import com.anthropic.models.messages.OutputConfig
 import com.anthropic.models.messages.StopReason
-import com.anthropic.models.messages.Tool
 import com.anthropic.models.messages.ToolResultBlockParam
 import com.anthropic.models.messages.UserLocation
 import com.anthropic.models.messages.WebSearchTool20260209
@@ -23,7 +22,7 @@ import java.util.Date
 import java.util.Locale
 
 /** Spricht mit Claude. Läuft blockierend, also nur aus einem Hintergrund-Thread aufrufen. */
-class Brain(private val store: Store) {
+class Brain(private val store: Store, private val tools: Tools) {
     private var client: AnthropicClient? = null
     private var clientKey = ""
 
@@ -52,28 +51,15 @@ class Brain(private val store: Store) {
             nutze die Websuche. Nenne die Quelle nur kurz, wenn es hilft.
             Wenn der Nutzer sich auf frühere Gespräche bezieht ("weißt du noch", "was hatte ich dich gefragt"),
             nutze das Werkzeug search_conversations.
+            Du hast Zugriff auf den Kalender des Tablets (auch den Google-Kalender): Termine lesen, eintragen und löschen.
+            Du kannst Wecker und Timer in der Uhr-App stellen und eigene Notizen speichern, vorlesen und löschen.
+            Bestätige nach einer Aktion kurz, was du getan hast (zum Beispiel "Erledigt, Sir, Zahnarzt am Dienstag um zehn Uhr ist eingetragen.").
+            Löschen nur nach ausdrücklicher Bestätigung des Nutzers.
+            Auf Gmail, Google Notizen (Keep) oder Google Drive hast du keinen Zugriff; sag das ehrlich, wenn danach gefragt wird.
             Wenn du etwas nicht weißt, sag es ehrlich.
             Jetzt ist $now. Der Nutzer ist in Deutschland.
         """.trimIndent()
     }
-
-    private val conversationTool = Tool.builder()
-        .name("search_conversations")
-        .description("Durchsucht die gespeicherten früheren Gespräche mit dem Nutzer nach Stichworten und gibt passende Ausschnitte mit Datum zurück.")
-        .inputSchema(
-            Tool.InputSchema.builder()
-                .properties(
-                    Tool.InputSchema.Properties.builder()
-                        .putAdditionalProperty(
-                            "query",
-                            JsonValue.from(mapOf("type" to "string", "description" to "Stichworte, nach denen gesucht wird"))
-                        )
-                        .build()
-                )
-                .required(listOf("query"))
-                .build()
-        )
-        .build()
 
     private val webSearch = WebSearchTool20260209.builder()
         .maxUses(4L)
@@ -104,7 +90,7 @@ class Brain(private val store: Store) {
                     .system(systemPrompt())
                     .outputConfig(OutputConfig.builder().effort(OutputConfig.Effort.LOW).build())
                     .addTool(webSearch)
-                    .addTool(conversationTool)
+                    .apply { tools.definitions.forEach { addTool(it) } }
                     .messages(messages)
                     // Falls ein Sicherheitsfilter ablehnt, übernimmt automatisch ein anderes Modell
                     .putAdditionalHeader("anthropic-beta", "server-side-fallback-2026-07-01")
@@ -123,12 +109,11 @@ class Brain(private val store: Store) {
                         messages.add(response.toParam())
                         val results = response.content().mapNotNull { block ->
                             block.toolUse().orElse(null)?.let { use ->
-                                val input = use._input().convert(Map::class.java) as? Map<*, *>
-                                val q = input?.get("query")?.toString().orEmpty()
+                                val input = use._input().convert(Map::class.java) as? Map<*, *> ?: emptyMap<Any, Any>()
                                 ContentBlockParam.ofToolResult(
                                     ToolResultBlockParam.builder()
                                         .toolUseId(use.id())
-                                        .content(store.search(q, conversationId))
+                                        .content(tools.run(use.name(), input, conversationId))
                                         .build()
                                 )
                             }

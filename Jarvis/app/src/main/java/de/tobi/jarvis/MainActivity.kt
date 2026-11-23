@@ -110,8 +110,8 @@ class MainActivity : ComponentActivity() {
     private var greeted = false
     private var asleep = false
 
-    private val askMic = registerForActivityResult(ActivityResultContracts.RequestPermission()) { ok ->
-        if (ok) startLoop() else {
+    private val askMic = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
+        if (result[Manifest.permission.RECORD_AUDIO] == true) startLoop() else {
             mood = Mood.Sleeping
             hint = "Ohne Mikrofon kann ich Sie nicht hören, Sir. Erlauben Sie es bitte in den App-Einstellungen."
         }
@@ -122,7 +122,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         store = Store(this)
-        brain = Brain(store)
+        brain = Brain(store, Tools(this, store))
         ears = Ears(this)
         mouth = Mouth(this, store)
         updater = Updater(this)
@@ -169,8 +169,15 @@ class MainActivity : ComponentActivity() {
 
     private fun begin() {
         if (store.apiKey.isBlank()) { screen = Screen.Setup; return }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            askMic.launch(Manifest.permission.RECORD_AUDIO)
+        val micMissing = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
+        val calendarMissing = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED
+        // Den Kalender nur einmal von selbst erfragen, danach nur noch das Mikrofon
+        val askCalendar = calendarMissing && !store.askedCalendar
+        if (micMissing || askCalendar) {
+            store.askedCalendar = true
+            askMic.launch(
+                arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR)
+            )
         } else startLoop()
     }
 

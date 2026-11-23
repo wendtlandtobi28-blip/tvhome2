@@ -7,6 +7,8 @@ import java.io.File
 
 data class Turn(val role: String, val text: String, val time: Long)
 
+data class Note(val id: Long, val text: String, val time: Long)
+
 data class Conversation(val id: Long, val started: Long, val turns: MutableList<Turn>)
 
 /** Speichert alle Gespräche als JSON-Datei im privaten App-Speicher. */
@@ -22,6 +24,10 @@ class Store(context: Context) {
     var voice: String
         get() = prefs.getString("voice", "") ?: ""
         set(v) = prefs.edit().putString("voice", v).apply()
+
+    var askedCalendar: Boolean
+        get() = prefs.getBoolean("asked_calendar", false)
+        set(v) = prefs.edit().putBoolean("asked_calendar", v).apply()
 
     var speechRate: Float
         get() = prefs.getFloat("rate", 1.0f)
@@ -72,6 +78,47 @@ class Store(context: Context) {
         val tmp = File(file.parentFile, file.name + ".tmp")
         tmp.writeText(arr.toString())
         tmp.renameTo(file)
+    }
+
+    // ---------------- Notizen ----------------
+
+    private val notesFile = File(context.filesDir, "notizen.json")
+
+    @Synchronized
+    fun notes(query: String? = null): List<Note> {
+        if (!notesFile.exists()) return emptyList()
+        val list = try {
+            val arr = JSONArray(notesFile.readText())
+            (0 until arr.length()).map { i ->
+                val o = arr.getJSONObject(i)
+                Note(o.getLong("id"), o.getString("text"), o.getLong("time"))
+            }
+        } catch (e: Exception) { emptyList() }
+        val q = query?.trim()?.lowercase().orEmpty()
+        return if (q.isEmpty()) list else list.filter { it.text.lowercase().contains(q) }
+    }
+
+    @Synchronized
+    fun addNote(text: String) {
+        val list = notes()
+        val id = (list.maxOfOrNull { it.id } ?: 0L) + 1
+        writeNotes(list + Note(id, text.trim(), System.currentTimeMillis()))
+    }
+
+    @Synchronized
+    fun deleteNote(id: Long): Boolean {
+        val list = notes()
+        if (list.none { it.id == id }) return false
+        writeNotes(list.filter { it.id != id })
+        return true
+    }
+
+    private fun writeNotes(list: List<Note>) {
+        val arr = JSONArray()
+        list.forEach { arr.put(JSONObject().put("id", it.id).put("text", it.text).put("time", it.time)) }
+        val tmp = File(notesFile.parentFile, notesFile.name + ".tmp")
+        tmp.writeText(arr.toString())
+        tmp.renameTo(notesFile)
     }
 
     /** Einfache Stichwortsuche in früheren Gesprächen, für Jarvis' "lokale" Suche. */
