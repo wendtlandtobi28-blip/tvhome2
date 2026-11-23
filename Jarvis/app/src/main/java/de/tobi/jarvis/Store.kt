@@ -7,6 +7,23 @@ import java.io.File
 
 data class Turn(val role: String, val text: String, val time: Long)
 
+/**
+ * Holt den echten Gemini-Schlüssel aus eingefügtem Text heraus, auch wenn versehentlich
+ * Beispielcode mitkopiert wurde. Gibt "" zurück, wenn kein Schlüssel darin steckt.
+ */
+fun cleanGeminiKey(raw: String): String {
+    Regex("AIza[0-9A-Za-z_-]{30,}").find(raw)?.let { return it.value }
+    val t = raw.trim()
+    return if (t.length in 20..200 && t.none { it.isWhitespace() || it == '"' || it == '(' }) t else ""
+}
+
+/** Dasselbe für den Claude-Schlüssel (beginnt mit "sk-ant-"). */
+fun cleanClaudeKey(raw: String): String {
+    Regex("sk-ant-[0-9A-Za-z_-]{20,}").find(raw)?.let { return it.value }
+    val t = raw.trim()
+    return if (t.startsWith("sk-") && t.none { it.isWhitespace() }) t else ""
+}
+
 data class Note(val id: Long, val text: String, val time: Long)
 
 data class Conversation(val id: Long, val started: Long, val turns: MutableList<Turn>)
@@ -17,13 +34,13 @@ class Store(context: Context) {
     private val prefs = context.getSharedPreferences("jarvis", Context.MODE_PRIVATE)
 
     var apiKey: String
-        get() = prefs.getString("api_key", "") ?: ""
-        set(v) = prefs.edit().putString("api_key", v.trim()).apply()
+        get() = cleanClaudeKey(prefs.getString("api_key", "") ?: "")
+        set(v) = prefs.edit().putString("api_key", cleanClaudeKey(v)).apply()
 
     /** Kostenloser Schlüssel von Google AI Studio für Gemini. */
     var geminiKey: String
-        get() = prefs.getString("gemini_key", "") ?: ""
-        set(v) = prefs.edit().putString("gemini_key", v.trim()).apply()
+        get() = cleanGeminiKey(prefs.getString("gemini_key", "") ?: "")
+        set(v) = prefs.edit().putString("gemini_key", cleanGeminiKey(v)).apply()
 
     /** "gemini" (kostenlos) oder "claude" (Guthaben nötig). */
     var provider: String

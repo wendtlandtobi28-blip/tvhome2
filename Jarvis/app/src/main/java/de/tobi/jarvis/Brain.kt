@@ -24,6 +24,9 @@ import java.time.Duration
 import java.util.Date
 import java.util.Locale
 
+/** Der Gemini-Schlüssel wird von Google abgelehnt. */
+class BadKey : Exception()
+
 /** Wird geworfen, wenn das kostenlose Gemini-Kontingent für heute aufgebraucht ist. */
 class FreeLimitReached : Exception()
 
@@ -134,6 +137,8 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
             "Verzeihung, Sir, das hat zu lange gedauert. Fragen Sie mich bitte noch einmal."
         } catch (e: FreeLimitReached) {
             throw e
+        } catch (e: BadKey) {
+            "Sir, Google akzeptiert den Gemini-Schlüssel nicht. Bitte tippen Sie oben auf Einstellungen und fügen Sie nur den Schlüssel ein, der mit A I z a beginnt."
         } catch (e: java.io.IOException) {
             "Sir, ich erreiche das Internet gerade nicht. Bitte prüfen Sie die WLAN-Verbindung."
         } catch (e: Exception) {
@@ -172,8 +177,8 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
                 }
                 code == 429 -> { limitHit = true; lastError = "Limit erreicht" }
                 code == 404 || (code == 400 && text.contains("not supported", true)) -> lastError = "Modell $model nicht verfügbar"
-                code == 400 && text.contains("API key", true) -> throw IllegalStateException("Der Gemini-Schlüssel wird nicht akzeptiert. Bitte in den Einstellungen prüfen.")
-                code == 403 -> throw IllegalStateException("Der Gemini-Schlüssel hat keinen Zugriff. Bitte in den Einstellungen prüfen.")
+                code == 400 && text.contains("API key", true) -> throw BadKey()
+                code == 401 || code == 403 -> throw BadKey()
                 else -> lastError = "Fehler $code"
             }
         }

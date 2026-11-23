@@ -381,7 +381,9 @@ class MainActivity : ComponentActivity() {
         var city by remember { mutableStateOf(store.homeCity) }
         val canLeave = store.hasAnyKey
         BackHandler(enabled = canLeave) { backToMain() }
-        val ok = if (provider == "gemini") gKey.length > 20 else cKey.startsWith("sk-")
+        val gClean = cleanGeminiKey(gKey)
+        val cClean = cleanClaudeKey(cKey)
+        val ok = if (provider == "gemini") gClean.isNotEmpty() else cClean.isNotEmpty()
         Column(
             Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp).verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -399,11 +401,21 @@ class MainActivity : ComponentActivity() {
             KeyField(
                 "Gemini-Schlüssel (kostenlos)", gKey, { gKey = it },
                 "Kostenlos auf aistudio.google.com: mit dem Google-Konto anmelden, „Get API key“ und dann „Create API key“ tippen, " +
-                    "kopieren und hier einfügen. Keine Kreditkarte nötig."
+                    "nur den Schlüssel selbst kopieren (beginnt mit „AIza“) und hier einfügen. Keine Kreditkarte nötig.",
+                when {
+                    gKey.isBlank() -> null
+                    gClean.isNotEmpty() -> "✓ Schlüssel erkannt: ${gClean.take(8)}…"
+                    else -> "✗ Darin ist kein gültiger Schlüssel. Bitte nur den Schlüssel kopieren, nicht den Beispielcode."
+                }
             )
             KeyField(
                 "Claude-Schlüssel (optional, Reserve)", cKey, { cKey = it },
-                "Optional von console.anthropic.com. Ist er eingetragen, springt Claude ein, wenn das kostenlose Gemini-Tageslimit erreicht ist."
+                "Optional von console.anthropic.com. Ist er eingetragen, springt Claude ein, wenn das kostenlose Gemini-Tageslimit erreicht ist.",
+                when {
+                    cKey.isBlank() -> null
+                    cClean.isNotEmpty() -> "✓ Schlüssel erkannt: ${cClean.take(10)}…"
+                    else -> "✗ Darin ist kein gültiger Claude-Schlüssel (beginnt mit „sk-ant-“)."
+                }
             )
             OutlinedTextField(
                 value = city, onValueChange = { city = it },
@@ -439,7 +451,7 @@ class MainActivity : ComponentActivity() {
     )
 
     @Composable
-    private fun KeyField(label: String, value: String, onChange: (String) -> Unit, help: String) {
+    private fun KeyField(label: String, value: String, onChange: (String) -> Unit, help: String, status: String?) {
         Column(Modifier.widthIn(max = 620.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             OutlinedTextField(
                 value = value, onValueChange = { onChange(it.trim()) },
@@ -448,6 +460,9 @@ class MainActivity : ComponentActivity() {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 colors = fieldColors(), modifier = Modifier.fillMaxWidth()
             )
+            if (status != null) {
+                Text(status, color = if (status.startsWith("✓")) PinkSoft else Color(0xFFFF8A80), fontSize = 14.sp)
+            }
             Text(help, color = Muted, fontSize = 13.sp)
         }
     }
