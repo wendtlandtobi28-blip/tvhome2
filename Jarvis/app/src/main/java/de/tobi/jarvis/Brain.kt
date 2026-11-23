@@ -204,11 +204,20 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
                             methods != null && (0 until methods.length()).any { methods.getString(it) == "generateContent" }
                         }
                         .map { it.getString("name").removePrefix("models/") }
-                        .filter { Regex("^gemini-[0-9.]+-flash(-lite)?(-latest)?$").matches(it) }
-                        .sortedWith(compareByDescending<String> { version(it) }.thenBy { it.contains("lite") })
+                        // Nur Text-Modelle; Bild-, Sprach- und Spezialmodelle sowie die teuren "pro"-Modelle auslassen
+                        .filter { it.startsWith("gemini-") }
+                        .filterNot { n -> listOf("pro", "image", "tts", "audio", "embed", "live", "vision", "computer", "robotics", "exp", "learnlm")
+                            .any { n.contains(it) } }
+                        // Neueste Generation zuerst; innerhalb einer Generation die schnellen "flash"-Modelle bevorzugen
+                        .sortedWith(
+                            compareByDescending<String> { version(it) }
+                                .thenByDescending { it.contains("flash") && !it.contains("lite") }
+                                .thenBy { it.contains("preview") }
+                                .thenBy { it.contains("lite") }
+                        )
                 }
             } catch (e: Exception) { emptyList() }
-            val all = (found + listOf("gemini-flash-latest", "gemini-2.5-flash", "gemini-2.5-flash-lite")).distinct()
+            val all = (found + listOf("gemini-flash-latest", "gemini-4-hydrogen", "gemini-2.5-flash", "gemini-2.5-flash-lite")).distinct()
             all.also { if (found.isNotEmpty()) cachedList = it }
         }
         val last = store.geminiModel
@@ -216,7 +225,7 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
     }
 
     private fun version(name: String): Double =
-        Regex("gemini-([0-9.]+)").find(name)?.groupValues?.get(1)?.toDoubleOrNull() ?: 0.0
+        Regex("gemini-([0-9]+(\\.[0-9]+)?)").find(name)?.groupValues?.get(1)?.toDoubleOrNull() ?: 0.0
 
     private fun msg(role: String, text: String) =
         JSONObject().put("role", role).put("parts", JSONArray().put(JSONObject().put("text", text)))
