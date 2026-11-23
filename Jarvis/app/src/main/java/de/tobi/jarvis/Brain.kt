@@ -71,7 +71,9 @@ fun systemPrompt(store: Store): String {
         Verwende kein Markdown, keine Aufzählungszeichen, keine Tabellen, keine Links und keine Emojis.
         Schreibe Zahlen und Einheiten so, wie man sie spricht (zum Beispiel "zwölf Grad" statt "12°C").
         Für Wetter nutze das Werkzeug weather, für Nachrichten news, für Wissensfragen wikipedia. Diese sind kostenlos und gehen vor.
-        Nur wenn diese nicht reichen (Öffnungszeiten, Preise, Sportergebnisse, sehr aktuelle Ereignisse), nutze die Internetsuche.
+        Antworte so schnell wie möglich und in erster Linie aus deinem eigenen Wissen. Recherchiere nicht ausführlich.
+        Die Internetsuche nur bei wirklich aktuellen Dingen benutzen (Öffnungszeiten, Preise, Sportergebnisse, Ereignisse der letzten Tage),
+        und dann höchstens ein einziges Mal pro Frage, mit einer kurzen, genauen Suchanfrage.
         Wenn der Nutzer sich auf frühere Gespräche bezieht ("weißt du noch", "was hatte ich dich gefragt"), nutze search_conversations.
         Du hast Zugriff auf den Kalender des Tablets (auch den Google-Kalender): Termine lesen, eintragen und löschen.
         Du kannst Wecker und Timer in der Uhr-App stellen und eigene Notizen speichern, vorlesen und löschen.
@@ -100,6 +102,7 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
 
     /** Spätester Zeitpunkt für die Antwort; danach wird abgebrochen. */
     @Volatile private var deadline = 0L
+    @Volatile private var searchesLeft = 1
 
     fun warmUp() {
         deadline = System.currentTimeMillis() + 15_000
@@ -107,7 +110,8 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
     }
 
     fun ask(history: List<Turn>, question: String, conversationId: Long): String {
-        deadline = System.currentTimeMillis() + 35_000
+        deadline = System.currentTimeMillis() + 25_000
+        searchesLeft = 1
         val contents = JSONArray()
         history.takeLast(10).forEach { t ->
             contents.put(msg(if (t.role == "user") "user" else "model", t.text))
@@ -118,10 +122,12 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
             .put("systemInstruction", JSONObject().put("parts", JSONArray().put(JSONObject().put("text", systemPrompt(store)))))
             .put("contents", contents)
             .put("tools", JSONArray().put(JSONObject().put("functionDeclarations", tools.geminiDeclarations(listOf(internetSearch)))))
-            .put("generationConfig", JSONObject().put("maxOutputTokens", 700).put("temperature", 0.7))
+            .put("generationConfig", JSONObject().put("maxOutputTokens", 400).put("temperature", 0.7))
 
         return try {
-            for (round in 0 until 6) {
+            for (round in 0 until 3) {
+                // In der letzten Runde keine Werkzeuge mehr anbieten: dann muss eine Antwort kommen
+                if (round == 2) body.put("toolConfig", JSONObject().put("functionCallingConfig", JSONObject().put("mode", "NONE")))
                 val res = generate(body)
                 val candidate = res.optJSONArray("candidates")?.optJSONObject(0)
                     ?: return "Verzeihung, Sir, darauf darf ich leider nicht antworten."
@@ -143,7 +149,10 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
                 for (call in calls) {
                     val name = call.optString("name")
                     val args = call.optJSONObject("args") ?: JSONObject()
-                    val result = if (name == internetSearch.name) { tools.status("Suche im Internet …"); search(args.optString("query")) }
+                    val result = if (name == internetSearch.name) {
+                        if (searchesLeft-- > 0) { tools.status("Suche kurz im Internet …"); search(args.optString("query")) }
+                        else "Keine weitere Suche. Antworte jetzt mit dem, was du weißt."
+                    }
                     else tools.run(name, toMap(args), conversationId)
                     val fr = JSONObject().put("name", name).put("response", JSONObject().put("result", result))
                     if (call.has("id")) fr.put("id", call.get("id"))
@@ -169,12 +178,15 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
 
     /** Eigene kleine Gemini-Anfrage, die nur die Google-Suche benutzt. */
     private fun search(query: String): String = try {
+        // Die Suche bekommt höchstens 12 Sekunden, damit danach noch Zeit für die Antwort bleibt
+        val outer = deadline
+        deadline = minOf(outer, System.currentTimeMillis() + 12_000)
         val body = JSONObject()
             .put("contents", JSONArray().put(msg("user",
-                "Recherchiere mit der Google-Suche und beantworte auf Deutsch mit den wichtigsten aktuellen Fakten in wenigen Sätzen: $query")))
+                "Suche einmal kurz mit der Google-Suche und nenne auf Deutsch in höchstens drei Sätzen die wichtigsten Fakten. Keine lange Recherche: $query")))
             .put("tools", JSONArray().put(JSONObject().put("google_search", JSONObject())))
-            .put("generationConfig", JSONObject().put("maxOutputTokens", 500))
-        val res = generate(body)
+            .put("generationConfig", JSONObject().put("maxOutputTokens", 300))
+        val res = try { generate(body) } finally { deadline = outer }
         val parts = res.optJSONArray("candidates")?.optJSONObject(0)?.optJSONObject("content")?.optJSONArray("parts")
         (0 until (parts?.length() ?: 0)).joinToString(" ") { parts!!.getJSONObject(it).optString("text") }.trim()
             .ifBlank { "Die Suche hat nichts ergeben." }
