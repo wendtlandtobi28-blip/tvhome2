@@ -47,6 +47,8 @@ class Brain(private val store: Store, private val tools: Tools) {
         if (store.geminiKey.isNotBlank()) try { gemini.warmUp() } catch (_: Exception) {}
     }
 
+    fun models(): List<String> = if (store.geminiKey.isBlank()) emptyList() else gemini.availableModels()
+
     /** Prüft die Verbindung und sagt in Worten, was los ist (für den Test-Knopf in den Einstellungen). */
     fun test(): String {
         if (store.geminiKey.isBlank()) return "Kein Gemini-Schlüssel eingetragen."
@@ -318,22 +320,30 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
                         .filter { it.startsWith("gemini-") }
                         .filterNot { n -> listOf("pro", "image", "tts", "audio", "embed", "live", "vision", "computer", "robotics", "exp", "learnlm")
                             .any { n.contains(it) } }
-                        // Neueste Generation zuerst; innerhalb einer Generation die schnellen "flash"-Modelle bevorzugen
-                        // Gratis-Tarif gibt es fast immer für die stabilen "flash"-Modelle; die zuerst, neueste vorne.
-                        // Vorschau- und ganz neue Sondermodelle (z. B. gemini-4-hydrogen) kommen danach.
+                        // Auf Wunsch des Nutzers die älteren, bewährten Gratis-Modelle zuerst:
+                        // stabile "flash"-Modelle, älteste Generation vorne; neue Sondermodelle (z. B. gemini-4-hydrogen) zuletzt.
                         .sortedWith(
                             compareByDescending<String> { it.contains("flash") && !it.contains("preview") }
-                                .thenByDescending { version(it) }
+                                .thenBy { version(it).let { v -> if (v == 0.0) 99.0 else v } }
                                 .thenBy { it.contains("lite") }
                                 .thenBy { it.contains("preview") }
                         )
                 }
             } catch (e: Exception) { emptyList() }
-            val all = (found + listOf("gemini-flash-latest", "gemini-flash-lite-latest", "gemini-2.5-flash", "gemini-2.5-flash-lite")).distinct()
+            // Bewährtes älteres Gratis-Modell immer an erster Stelle
+            val all = (listOf("gemini-2.5-flash") + found + listOf("gemini-2.5-flash-lite", "gemini-flash-latest", "gemini-flash-lite-latest")).distinct()
             all.also { if (found.isNotEmpty()) cachedList = it }
         }
-        val last = store.geminiModel
-        return if (last.isNotBlank()) (listOf(last) + list).distinct() else list
+        // Vom Nutzer fest gewähltes Modell hat Vorrang, danach das ältere, bewährte Gratis-Modell
+        val chosen = store.chosenModel
+        return (listOfNotNull(chosen.ifBlank { null }) + list).distinct()
+    }
+
+    /** Alle Modelle, die zur Auswahl in den Einstellungen angezeigt werden. */
+    fun availableModels(): List<String> {
+        deadline = System.currentTimeMillis() + 15_000
+        cachedList = null
+        return try { candidates() } catch (e: Exception) { emptyList() }
     }
 
     private fun version(name: String): Double =

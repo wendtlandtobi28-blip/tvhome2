@@ -451,6 +451,7 @@ class MainActivity : ComponentActivity() {
                 enabled = ok,
                 colors = ButtonDefaults.buttonColors(containerColor = Pink, contentColor = Bg)
             ) { Text("Speichern und starten") }
+            if (gClean.isNotEmpty() && canLeave) ModelSettings()
             if (gClean.isNotEmpty()) {
                 Button(
                     onClick = {
@@ -476,6 +477,25 @@ class MainActivity : ComponentActivity() {
                 HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
                 UpdateSettings()
                 TextButton(onClick = { backToMain() }) { Text("Zurück ohne Speichern", color = PinkSoft) }
+            }
+        }
+    }
+
+    @Composable
+    private fun ModelSettings() {
+        var models by remember { mutableStateOf(emptyList<String>()) }
+        var chosen by remember { mutableStateOf(store.chosenModel) }
+        LaunchedEffect(Unit) { models = withContext(Dispatchers.IO) { brain.models() } }
+        Column(Modifier.widthIn(max = 620.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text("Gemini-Modell", color = Fg, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
+            Text(
+                "Die älteren „flash“-Modelle sind kostenlos und schnell. Ganz neue Modelle sind oft nicht im Gratis-Tarif.",
+                color = Muted, fontSize = 14.sp
+            )
+            VoiceRow("Automatisch (älteres Gratis-Modell, empfohlen)", chosen.isBlank()) { chosen = ""; store.chosenModel = "" }
+            if (models.isEmpty()) Text("Lade verfügbare Modelle …", color = Muted, fontSize = 14.sp)
+            models.forEach { m ->
+                VoiceRow(m, chosen == m) { chosen = m; store.chosenModel = m; store.blockModel(m, 0L) }
             }
         }
     }

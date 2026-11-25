@@ -52,6 +52,11 @@ class Store(context: Context) {
         get() = prefs.getString("gemini_model", "") ?: ""
         set(v) = prefs.edit().putString("gemini_model", v).apply()
 
+    /** Vom Nutzer fest gewähltes Gemini-Modell; leer = automatisch (älteres Gratis-Modell zuerst). */
+    var chosenModel: String
+        get() = prefs.getString("chosen_model", "") ?: ""
+        set(v) = prefs.edit().putString("chosen_model", v).apply()
+
     /** Bis wann ein Gemini-Modell übersprungen wird (z. B. weil es nicht kostenlos ist). */
     fun modelBlockedUntil(model: String): Long = prefs.getLong("block_$model", 0L)
     fun blockModel(model: String, until: Long) = prefs.edit().putLong("block_$model", until).apply()
