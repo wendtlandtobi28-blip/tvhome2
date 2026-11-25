@@ -253,8 +253,8 @@ class Tools(private val context: Context, private val store: Store) {
 
     private fun getJson(url: String): String {
         val c = URL(url).openConnection() as HttpURLConnection
-        c.connectTimeout = 10_000
-        c.readTimeout = 15_000
+        c.connectTimeout = 5_000
+        c.readTimeout = 8_000
         c.setRequestProperty("User-Agent", "JarvisTabletApp/1.0")
         try {
             if (c.responseCode != 200) error("Dienst antwortet mit ${c.responseCode}")

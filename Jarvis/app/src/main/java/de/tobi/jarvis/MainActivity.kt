@@ -66,6 +66,8 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -282,12 +284,16 @@ class MainActivity : ComponentActivity() {
             delay(4000)
             if (mood == Mood.Thinking) mouth.say("Einen Moment, Sir.")
         }
-        val text = withContext(Dispatchers.IO) {
+        // Feste Obergrenze: nach spätestens 28 Sekunden gibt es immer eine Antwort,
+        // auch wenn im Hintergrund noch etwas läuft (das Ergebnis wird dann verworfen)
+        val work = lifecycleScope.async(Dispatchers.IO) {
             tools.quickAnswer(question) ?: run {
                 tools.status("Denke nach …")
                 brain.ask(history, question, conv.id)
             }
         }
+        val text = withTimeoutOrNull(28_000) { work.await() }
+            ?: "Verzeihung, Sir, das dauert mir zu lange. Fragen Sie mich bitte gleich noch einmal, gern auch etwas kürzer."
         filler.cancel()
         hint = ""
         val now = System.currentTimeMillis()

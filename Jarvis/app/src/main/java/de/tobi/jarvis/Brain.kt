@@ -123,7 +123,7 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
     }
 
     fun ask(history: List<Turn>, question: String, conversationId: Long): String {
-        deadline = System.currentTimeMillis() + 25_000
+        deadline = System.currentTimeMillis() + 22_000
         searchesLeft = 1
         val contents = JSONArray()
         history.takeLast(10).forEach { t ->
@@ -193,7 +193,7 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
     private fun search(query: String): String = try {
         // Die Suche bekommt höchstens 12 Sekunden, damit danach noch Zeit für die Antwort bleibt
         val outer = deadline
-        deadline = minOf(outer, System.currentTimeMillis() + 12_000)
+        deadline = minOf(outer, System.currentTimeMillis() + 10_000)
         val body = JSONObject()
             .put("contents", JSONArray().put(msg("user",
                 "Suche einmal kurz mit der Google-Suche und nenne auf Deutsch in höchstens drei Sätzen die wichtigsten Fakten. Keine lange Recherche: $query")))
@@ -394,8 +394,8 @@ class ClaudeBrain(private val store: Store, private val tools: Tools) {
         if (client == null || key != clientKey) {
             client = AnthropicOkHttpClient.builder()
                 .apiKey(key)
-                .timeout(Duration.ofSeconds(30))
-                .maxRetries(1)
+                .timeout(Duration.ofSeconds(20))
+                .maxRetries(0)
                 .build()
             clientKey = key
         }
@@ -421,7 +421,7 @@ class ClaudeBrain(private val store: Store, private val tools: Tools) {
         messages.add(MessageParam.ofUser(question))
 
         return try {
-            for (round in 0 until 6) {
+            for (round in 0 until 3) {
                 val params = MessageCreateParams.builder()
                     // Günstigstes Claude-Modell, ausdrücklich so vom Nutzer gewünscht
                     .model("claude-haiku-5-5")
