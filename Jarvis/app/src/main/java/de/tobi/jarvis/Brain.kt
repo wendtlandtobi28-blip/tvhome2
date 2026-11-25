@@ -47,16 +47,27 @@ class Brain(private val store: Store, private val tools: Tools) {
         if (store.geminiKey.isNotBlank()) try { gemini.warmUp() } catch (_: Exception) {}
     }
 
+    /** Prüft die Verbindung und sagt in Worten, was los ist (für den Test-Knopf in den Einstellungen). */
+    fun test(): String {
+        if (store.geminiKey.isBlank()) return "Kein Gemini-Schlüssel eingetragen."
+        return gemini.test()
+    }
+
     fun ask(history: List<Turn>, question: String, conversationId: Long): String {
         if (!store.hasAnyKey) return "Sir, mir fehlt noch ein Schlüssel. Bitte tragen Sie ihn in den Einstellungen ein."
-        val useGemini = store.geminiKey.isNotBlank() && (store.provider == "gemini" || store.apiKey.isBlank())
-        if (!useGemini) return claude.ask(history, question, conversationId)
+        // Kostenlos geht vor: Ist ein Gemini-Schlüssel da, wird immer zuerst Gemini benutzt
+        if (store.geminiKey.isBlank()) return claude.ask(history, question, conversationId) ?: CLAUDE_NO_CREDIT
         return try {
             gemini.ask(history, question, conversationId)
         } catch (e: FreeLimitReached) {
-            if (store.apiKey.isNotBlank()) claude.ask(history, question, conversationId)
-            else "Sir, das kostenlose Tageskontingent ist aufgebraucht. Morgen bin ich wieder ganz für Sie da."
+            // Claude nur als stille Reserve: hat das Claude-Konto kein Guthaben, wird nicht ständig ans Aufladen erinnert
+            (if (store.apiKey.isNotBlank()) claude.ask(history, question, conversationId, quietAboutCredit = true) else null)
+                ?: "Sir, das kostenlose Kontingent bei Google ist gerade erschöpft. In ein paar Minuten, spätestens morgen, bin ich wieder ganz für Sie da."
         }
+    }
+
+    companion object {
+        const val CLAUDE_NO_CREDIT = "Sir, Ihr Claude-Guthaben ist aufgebraucht. Tragen Sie in den Einstellungen einen kostenlosen Gemini-Schlüssel ein, dann brauchen Sie kein Guthaben."
     }
 }
 
@@ -202,10 +213,13 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
      * Welche Einstellung ein Modell versteht, wird ausprobiert und gemerkt.
      */
     private fun generate(body: JSONObject): JSONObject {
-        val models = candidates().take(3)
+        val now = System.currentTimeMillis()
+        val all = candidates()
+        val usable = all.filter { store.modelBlockedUntil(it) < now }.ifEmpty { all.take(2) }
         var limitHit = false
         var lastError = "kein Modell verfügbar"
-        for (model in models) {
+        for (model in usable) {
+            if (deadline - System.currentTimeMillis() < 2500) break
             val remembered = store.thinkingMode(model)
             val modes = if (remembered.isNotBlank()) listOf(remembered) else listOf("level", "budget", "none")
             for (mode in modes) {
@@ -215,19 +229,61 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
                     code == 200 -> {
                         if (store.geminiModel != model) store.geminiModel = model
                         if (remembered != mode) store.setThinkingMode(model, mode)
+                        lastGood = model
                         return JSONObject(text)
                     }
-                    code == 429 -> { limitHit = true; lastError = "Limit erreicht" }
-                    code == 404 || (code == 400 && text.contains("not supported", true)) -> lastError = "Modell $model nicht verfügbar"
+                    code == 429 -> {
+                        limitHit = true
+                        lastError = "Limit bei $model"
+                        // Jedes Modell hat sein eigenes Kontingent: sperren und das nächste probieren
+                        val msg = text.lowercase()
+                        val pause = when {
+                            // Modell gehört nicht zum Gratis-Tarif (Kontingent 0): drei Tage überspringen
+                            msg.contains("limit: 0") || msg.contains("billing") || msg.contains("paid") -> 3 * 24 * 3600_000L
+                            msg.contains("perday") || msg.contains("per day") || msg.contains("daily") -> 6 * 3600_000L
+                            else -> 60_000L
+                        }
+                        store.blockModel(model, System.currentTimeMillis() + pause)
+                        if (store.geminiModel == model) store.geminiModel = ""
+                    }
+                    code == 404 || (code == 400 && text.contains("not supported", true)) -> {
+                        lastError = "Modell $model nicht verfügbar"
+                        store.blockModel(model, System.currentTimeMillis() + 7 * 24 * 3600_000L)
+                    }
                     code == 400 && text.contains("API key", true) -> throw BadKey()
                     code == 401 || code == 403 -> throw BadKey()
-                    else -> lastError = "Fehler $code: " + Regex("\"message\":\\s*\"([^\"]{0,140})").find(text)?.groupValues?.get(1).orEmpty()
+                    else -> lastError = "Fehler $code bei $model: " + Regex("\"message\":\\s*\"([^\"]{0,140})").find(text)?.groupValues?.get(1).orEmpty()
                 }
                 break
             }
         }
         if (limitHit) throw FreeLimitReached()
         throw IllegalStateException(lastError)
+    }
+
+    @Volatile private var lastGood = ""
+
+    /** Kurze Testanfrage; Ergebnis in verständlichen Worten. */
+    fun test(): String {
+        deadline = System.currentTimeMillis() + 40_000
+        return try {
+            val body = JSONObject()
+                .put("contents", JSONArray().put(msg("user", "Antworte nur mit dem Wort: Bereit")))
+                .put("generationConfig", JSONObject().put("maxOutputTokens", 20))
+            generate(body)
+            "✓ Gemini funktioniert kostenlos (Modell: $lastGood)."
+        } catch (e: BadKey) {
+            "✗ Google lehnt den Schlüssel ab. Bitte den Schlüssel neu kopieren (beginnt mit AIza)."
+        } catch (e: FreeLimitReached) {
+            "✗ Google meldet bei allen Gratis-Modellen ein Limit. Bitte in ein paar Minuten erneut testen. " +
+                "Wenn es dauerhaft so bleibt: Auf aistudio.google.com/apikey prüfen, ob beim Schlüssel „Free“ steht und keine Abrechnung aktiv ist."
+        } catch (e: TooSlow) {
+            "✗ Google antwortet gerade nicht rechtzeitig. Bitte später erneut testen."
+        } catch (e: java.io.IOException) {
+            "✗ Keine Internetverbindung."
+        } catch (e: Exception) {
+            "✗ ${e.message}"
+        }
     }
 
     private fun withThinking(body: JSONObject, mode: String): JSONObject {
@@ -263,15 +319,17 @@ class GeminiBrain(private val store: Store, private val tools: Tools) {
                         .filterNot { n -> listOf("pro", "image", "tts", "audio", "embed", "live", "vision", "computer", "robotics", "exp", "learnlm")
                             .any { n.contains(it) } }
                         // Neueste Generation zuerst; innerhalb einer Generation die schnellen "flash"-Modelle bevorzugen
+                        // Gratis-Tarif gibt es fast immer für die stabilen "flash"-Modelle; die zuerst, neueste vorne.
+                        // Vorschau- und ganz neue Sondermodelle (z. B. gemini-4-hydrogen) kommen danach.
                         .sortedWith(
-                            compareByDescending<String> { version(it) }
-                                .thenByDescending { it.contains("flash") && !it.contains("lite") }
-                                .thenBy { it.contains("preview") }
+                            compareByDescending<String> { it.contains("flash") && !it.contains("preview") }
+                                .thenByDescending { version(it) }
                                 .thenBy { it.contains("lite") }
+                                .thenBy { it.contains("preview") }
                         )
                 }
             } catch (e: Exception) { emptyList() }
-            val all = (found + listOf("gemini-flash-latest", "gemini-4-hydrogen", "gemini-2.5-flash", "gemini-2.5-flash-lite")).distinct()
+            val all = (found + listOf("gemini-flash-latest", "gemini-flash-lite-latest", "gemini-2.5-flash", "gemini-2.5-flash-lite")).distinct()
             all.also { if (found.isNotEmpty()) cachedList = it }
         }
         val last = store.geminiModel
@@ -340,8 +398,9 @@ class ClaudeBrain(private val store: Store, private val tools: Tools) {
         .userLocation(UserLocation.builder().country("DE").timezone("Europe/Berlin").build())
         .build()
 
-    fun ask(history: List<Turn>, question: String, conversationId: Long): String {
-        if (store.apiKey.isBlank()) return "Sir, für Claude fehlt mir der API-Schlüssel."
+    /** Gibt null zurück, wenn [quietAboutCredit] gesetzt ist und Claude wegen fehlendem Guthaben nicht kann. */
+    fun ask(history: List<Turn>, question: String, conversationId: Long, quietAboutCredit: Boolean = false): String? {
+        if (store.apiKey.isBlank()) return null
 
         val messages = mutableListOf<MessageParam>()
         // Nur die letzten Runden mitschicken, damit es günstig bleibt
@@ -391,9 +450,9 @@ class ClaudeBrain(private val store: Store, private val tools: Tools) {
             }
             "Verzeihung, Sir, das hat zu lange gedauert. Fragen Sie mich bitte noch einmal."
         } catch (e: UnauthorizedException) {
-            "Sir, der Claude-Schlüssel wird nicht akzeptiert. Bitte prüfen Sie ihn in den Einstellungen."
+            if (quietAboutCredit) null else "Sir, der Claude-Schlüssel wird nicht akzeptiert. Bitte prüfen Sie ihn in den Einstellungen."
         } catch (e: PermissionDeniedException) {
-            "Sir, Ihr Claude-Konto erlaubt diese Anfrage nicht. Bitte prüfen Sie Ihr Guthaben bei Anthropic."
+            if (quietAboutCredit) null else Brain.CLAUDE_NO_CREDIT
         } catch (e: RateLimitException) {
             "Einen kleinen Moment, Sir, ich bekomme gerade zu viele Anfragen."
         } catch (e: OverloadedException) {
@@ -402,8 +461,9 @@ class ClaudeBrain(private val store: Store, private val tools: Tools) {
             "Sir, ich erreiche das Internet gerade nicht. Bitte prüfen Sie die WLAN-Verbindung."
         } catch (e: Exception) {
             val msg = e.message.orEmpty()
-            if (msg.contains("credit", true) || msg.contains("balance", true))
-                "Sir, Ihr Claude-Guthaben ist aufgebraucht. Bitte laden Sie es bei Anthropic auf."
+            if (msg.contains("credit", true) || msg.contains("balance", true) || msg.contains("billing", true))
+                (if (quietAboutCredit) null else Brain.CLAUDE_NO_CREDIT)
+            else if (quietAboutCredit) null
             else "Verzeihung, Sir, da ist etwas schiefgelaufen: ${msg.take(160)}"
         }
     }

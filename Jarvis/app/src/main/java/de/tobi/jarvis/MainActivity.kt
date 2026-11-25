@@ -393,7 +393,6 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun SetupScreen() {
-        var provider by remember { mutableStateOf(store.provider) }
         var gKey by remember { mutableStateOf(store.geminiKey) }
         var cKey by remember { mutableStateOf(store.apiKey) }
         var city by remember { mutableStateOf(store.homeCity) }
@@ -401,7 +400,8 @@ class MainActivity : ComponentActivity() {
         BackHandler(enabled = canLeave) { backToMain() }
         val gClean = cleanGeminiKey(gKey)
         val cClean = cleanClaudeKey(cKey)
-        val ok = if (provider == "gemini") gClean.isNotEmpty() else cClean.isNotEmpty()
+        val ok = gClean.isNotEmpty() || cClean.isNotEmpty()
+        var testResult by remember { mutableStateOf("") }
         Column(
             Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp).verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -410,11 +410,10 @@ class MainActivity : ComponentActivity() {
             Box(Modifier.size(140.dp)) { Orb(Mood.Idle, 0f, Modifier.fillMaxSize()) }
             Text(if (canLeave) "Einstellungen" else "Einrichtung", color = Fg, fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
 
-            Column(Modifier.widthIn(max = 620.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("Womit soll ich denken, Sir?", color = Fg, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
-                VoiceRow("Google Gemini – kostenlos (empfohlen)", provider == "gemini") { provider = "gemini" }
-                VoiceRow("Claude Haiku – sehr günstig, braucht Guthaben", provider == "claude") { provider = "claude" }
-            }
+            Text(
+                "Ich denke kostenlos mit Google Gemini. Claude ist nur eine freiwillige Reserve.",
+                color = Muted, fontSize = 15.sp, textAlign = TextAlign.Center, modifier = Modifier.widthIn(max = 620.dp)
+            )
 
             KeyField(
                 "Gemini-Schlüssel (kostenlos)", gKey, { gKey = it },
@@ -428,7 +427,7 @@ class MainActivity : ComponentActivity() {
             )
             KeyField(
                 "Claude-Schlüssel (optional, Reserve)", cKey, { cKey = it },
-                "Optional von console.anthropic.com. Ist er eingetragen, springt Claude ein, wenn das kostenlose Gemini-Tageslimit erreicht ist.",
+                "Nicht nötig – am besten leer lassen. Nur wer Guthaben bei Anthropic hat: Claude springt dann ein, wenn Google gerade kein Gratis-Kontingent hat.",
                 when {
                     cKey.isBlank() -> null
                     cClean.isNotEmpty() -> "✓ Schlüssel erkannt: ${cClean.take(10)}…"
@@ -446,12 +445,31 @@ class MainActivity : ComponentActivity() {
             )
             Button(
                 onClick = {
-                    store.provider = provider; store.geminiKey = gKey; store.apiKey = cKey; store.homeCity = city
+                    store.provider = "gemini"; store.geminiKey = gKey; store.apiKey = cKey; store.homeCity = city
                     backToMain()
                 },
                 enabled = ok,
                 colors = ButtonDefaults.buttonColors(containerColor = Pink, contentColor = Bg)
             ) { Text("Speichern und starten") }
+            if (gClean.isNotEmpty()) {
+                Button(
+                    onClick = {
+                        store.geminiKey = gKey
+                        testResult = "Teste die Verbindung zu Google …"
+                        lifecycleScope.launch {
+                            testResult = withContext(Dispatchers.IO) { brain.test() }
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Pink.copy(alpha = 0.2f), contentColor = PinkSoft)
+                ) { Text("Verbindung testen") }
+                if (testResult.isNotBlank()) {
+                    Text(
+                        testResult, fontSize = 15.sp, textAlign = TextAlign.Center,
+                        color = if (testResult.startsWith("✓")) PinkSoft else if (testResult.startsWith("✗")) Color(0xFFFF8A80) else Muted,
+                        modifier = Modifier.widthIn(max = 620.dp)
+                    )
+                }
+            }
             if (canLeave) {
                 HorizontalDivider(Modifier.widthIn(max = 620.dp), color = Pink.copy(alpha = 0.25f))
                 VoiceSettings()

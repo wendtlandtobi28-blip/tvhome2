@@ -52,6 +52,10 @@ class Store(context: Context) {
         get() = prefs.getString("gemini_model", "") ?: ""
         set(v) = prefs.edit().putString("gemini_model", v).apply()
 
+    /** Bis wann ein Gemini-Modell übersprungen wird (z. B. weil es nicht kostenlos ist). */
+    fun modelBlockedUntil(model: String): Long = prefs.getLong("block_$model", 0L)
+    fun blockModel(model: String, until: Long) = prefs.edit().putLong("block_$model", until).apply()
+
     /** Welche Denk-Einstellung ein Gemini-Modell versteht ("level", "budget" oder "none"). */
     fun thinkingMode(model: String): String = prefs.getString("think_$model", "") ?: ""
     fun setThinkingMode(model: String, mode: String) = prefs.edit().putString("think_$model", mode).apply()
